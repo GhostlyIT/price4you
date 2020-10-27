@@ -3,11 +3,9 @@ import ReactDOM from 'react-dom'
 import Login from './Login'
 import Register from './Register'
 import RegisterCompany from './RegisterCompany'
-import SideBlock from './SideBlock'
+import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom'
 
 const Auth = () => {
-    const [view, changeView] = useState('login');
-
     const socials = [
         {
             name: 'google',
@@ -37,33 +35,20 @@ const Auth = () => {
         })
     }
 
-    const currentView = () => {
-        switch (view) {
-            case 'register':
-                return (<Register changeView={changeView} socials={getSocials} />)
-
-            case 'register_company':
-                return (<RegisterCompany changeView={changeView} socials={getSocials} />)
-
-            default:
-                return (<Login changeView={changeView} socials={getSocials} />)
-        }
-    }
-
     return (
-        <div className="row">
-            <div className="col-12 main-window mt-3">
-                <div className="row">
-                    <div className="col-md-9 col-sm-12">
-                        <div className="main-window__inner row">
-                            { currentView() }
-                        </div>
-                    </div>
-                    <div className="col-md-3 d-none d-md-flex justify-content-center flex-column">
-                        <SideBlock changeView={changeView} />
-                    </div>
-                </div>
-            </div>
+        <div>
+            <Redirect to="/login" />
+            <Switch>
+                <Route path="/register">
+                    <Register socials={getSocials}/>
+                </Route>
+                <Route path="/login">
+                    <Login socials={getSocials}/>
+                </Route>
+                <Route path="/register-company">
+                    <RegisterCompany socials={getSocials}/>
+                </Route>
+            </Switch>
         </div>
     )
 }

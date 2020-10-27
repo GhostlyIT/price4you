@@ -1,16 +1,34 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Auth from './auth/Auth';
+import React, { useState } from 'react'
+import ReactDOM from 'react-dom'
+import Auth from './auth/Auth'
+import SideBlock from './sideblock/SideBlock'
+import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom'
 
 const Main = () => {
+    const [loggedIn, setLoggedIn] = useState(false);
     return (
-        <div className="main position-relative">
-            <div className="main-background" />
-            <div className="container">
-                <Auth />
+        <Router>
+            <div className="main position-relative">
+                <div className="main-background" />
+                <div className="container">
+                    <div className="row">
+                        <div className="col-12 main-window mt-3">
+                            <div className="row">
+                                <div className="col-md-9 col-sm-12">
+                                    <div className="main-window__inner row">
+                                        <Auth />
+                                    </div>
+                                </div>
+                                <div className="col-md-3 d-none d-md-flex justify-content-center flex-column">
+                                    <SideBlock />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    );
+        </Router>
+    )
 }
 
 export default Main;

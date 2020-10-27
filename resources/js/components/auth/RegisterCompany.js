@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import {Link} from 'react-router-dom'
 
 const RegisterCompany = (props) => {
 
@@ -7,7 +8,7 @@ const RegisterCompany = (props) => {
         <div className="d-flex w-100">
             <div className="d-flex flex-column col-12">
                 <h3 className="title text-center mb-2">Регистрация компании</h3>
-                <a onClick={() => props.changeView('register')} className="text-center" href="#">Регистрация</a>
+                <Link to="/register" className="text-center">Регистрация</Link>
 
                 <form className="d-flex flex-column mt-3">
                     <div className="row">
