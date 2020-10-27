@@ -69887,7 +69887,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _auth_Auth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./auth/Auth */ "./resources/js/components/auth/Auth.js");
 /* harmony import */ var _sideblock_SideBlock__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./sideblock/SideBlock */ "./resources/js/components/sideblock/SideBlock.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _faq_Faq__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./faq/Faq */ "./resources/js/components/faq/Faq.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -69906,13 +69907,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var Main = function Main() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
       loggedIn = _useState2[0],
       setLoggedIn = _useState2[1];
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["BrowserRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["BrowserRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "main position-relative"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "main-background"
@@ -69928,7 +69930,13 @@ var Main = function Main() {
     className: "col-md-9 col-sm-12"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "main-window__inner row"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_auth_Auth__WEBPACK_IMPORTED_MODULE_2__["default"], null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
+    path: "/"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Redirect"], {
+    to: "/login"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_auth_Auth__WEBPACK_IMPORTED_MODULE_2__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
+    path: "/faq"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_faq_Faq__WEBPACK_IMPORTED_MODULE_4__["default"], null)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-md-3 d-none d-md-flex justify-content-center flex-column"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_sideblock_SideBlock__WEBPACK_IMPORTED_MODULE_3__["default"], null))))))));
 };
@@ -69954,9 +69962,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _Login__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Login */ "./resources/js/components/auth/Login.js");
-/* harmony import */ var _Register__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Register */ "./resources/js/components/auth/Register.js");
-/* harmony import */ var _RegisterCompany__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./RegisterCompany */ "./resources/js/components/auth/RegisterCompany.js");
+/* harmony import */ var _auth_components_Login__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./auth-components/Login */ "./resources/js/components/auth/auth-components/Login.js");
+/* harmony import */ var _auth_components_Register__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./auth-components/Register */ "./resources/js/components/auth/auth-components/Register.js");
+/* harmony import */ var _auth_components_RegisterCompany__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./auth-components/RegisterCompany */ "./resources/js/components/auth/auth-components/RegisterCompany.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 
 
@@ -69992,31 +70000,29 @@ var Auth = function Auth() {
     });
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Redirect"], {
-    to: "/login"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
     path: "/register"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Register__WEBPACK_IMPORTED_MODULE_3__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_auth_components_Register__WEBPACK_IMPORTED_MODULE_3__["default"], {
     socials: getSocials
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
     path: "/login"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Login__WEBPACK_IMPORTED_MODULE_2__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_auth_components_Login__WEBPACK_IMPORTED_MODULE_2__["default"], {
     socials: getSocials
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__["Route"], {
     path: "/register-company"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_RegisterCompany__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_auth_components_RegisterCompany__WEBPACK_IMPORTED_MODULE_4__["default"], {
     socials: getSocials
-  }))));
+  })));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Auth);
 
 /***/ }),
 
-/***/ "./resources/js/components/auth/Login.js":
-/*!***********************************************!*\
-  !*** ./resources/js/components/auth/Login.js ***!
-  \***********************************************/
+/***/ "./resources/js/components/auth/auth-components/Login.js":
+/*!***************************************************************!*\
+  !*** ./resources/js/components/auth/auth-components/Login.js ***!
+  \***************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -70081,10 +70087,10 @@ var Login = function Login(props) {
 
 /***/ }),
 
-/***/ "./resources/js/components/auth/Register.js":
-/*!**************************************************!*\
-  !*** ./resources/js/components/auth/Register.js ***!
-  \**************************************************/
+/***/ "./resources/js/components/auth/auth-components/Register.js":
+/*!******************************************************************!*\
+  !*** ./resources/js/components/auth/auth-components/Register.js ***!
+  \******************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -70160,10 +70166,10 @@ var Register = function Register(props) {
 
 /***/ }),
 
-/***/ "./resources/js/components/auth/RegisterCompany.js":
-/*!*********************************************************!*\
-  !*** ./resources/js/components/auth/RegisterCompany.js ***!
-  \*********************************************************/
+/***/ "./resources/js/components/auth/auth-components/RegisterCompany.js":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/auth/auth-components/RegisterCompany.js ***!
+  \*************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -70261,6 +70267,69 @@ var RegisterCompany = function RegisterCompany(props) {
 
 /***/ }),
 
+/***/ "./resources/js/components/faq/Faq.js":
+/*!********************************************!*\
+  !*** ./resources/js/components/faq/Faq.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _faq_components_HowWorks__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./faq-components/HowWorks */ "./resources/js/components/faq/faq-components/HowWorks.js");
+
+
+
+
+
+var Faq = function Faq() {
+  var match = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["useRouteMatch"])();
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "faq"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+    path: "".concat(match.url, "/how-works")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_faq_components_HowWorks__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Faq);
+
+/***/ }),
+
+/***/ "./resources/js/components/faq/faq-components/HowWorks.js":
+/*!****************************************************************!*\
+  !*** ./resources/js/components/faq/faq-components/HowWorks.js ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+var HowWorks = function HowWorks() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: ""
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: "title"
+  }, "\u041A\u0430\u043A \u0440\u0430\u0431\u043E\u0442\u0430\u0435\u0442 \u0441\u0435\u0440\u0432\u0438\u0441?"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u0421\u0435\u0440\u0432\u0438\u0441 EcoPlant | Price4You \u043F\u0440\u0435\u0434\u0441\u0442\u0430\u0432\u043B\u044F\u0435\u0442 \u0441\u043E\u0431\u043E\u0439 \u0442\u043E\u0440\u0433\u043E\u0432\u0443\u044E \u043F\u043B\u043E\u0449\u0430\u0434\u043A\u0443, \u0433\u0434\u0435 \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u0435\u043B\u044C \u043C\u043E\u0436\u0435\u0442 \u0443\u0437\u043D\u0430\u0442\u044C \u043B\u0443\u0447\u0448\u0443\u044E \u0441\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C \u043F\u0440\u043E\u0434\u0443\u043A\u0442\u0430, \u0430 \u043F\u043E\u0441\u0442\u0430\u0432\u0449\u0438\u043A \u043D\u0430\u0439\u0442\u0438 \u043D\u0430\u0434\u0435\u0436\u043D\u043E\u0433\u043E \u043A\u043B\u0438\u0435\u043D\u0442\u0430."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "font-weight-bold"
+  }, "\u0412\u044B \u0432\u044B\u0431\u0438\u0440\u0430\u0435\u0442\u0435 \u0442\u043E\u0432\u0430\u0440-(\u044B) \u043D\u0430 \u0441\u0430\u0439\u0442\u0435 ecoplantagro.ru \u0438\u043B\u0438 \u0432 \u043B\u0438\u0447\u043D\u043E\u043C \u043A\u0430\u0431\u0438\u043D\u0435\u0442\u0435 \u043D\u0430 \u0432\u043A\u043B\u0430\u0434\u043A\u0435 \xAB\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C\xBB, \u0437\u0430\u043F\u043E\u043B\u043D\u044F\u0439\u0442\u0435 \u043A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E \u0438 \u0443\u0441\u043B\u043E\u0432\u0438\u044F \u0441\u0434\u0435\u043B\u043A\u0438. \u041F\u043E\u0441\u043B\u0435 \u0447\u0435\u0433\u043E \u043C\u044B \u0440\u0430\u0441\u0441\u044B\u043B\u0430\u0435\u043C \u0432\u0430\u0448 \u0437\u0430\u043F\u0440\u043E\u0441 \u0432\u0441\u0435\u043C \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u044F\u043C \u043F\u043E\u0441\u0442\u0430\u0432\u0449\u0438\u043A\u0430\u043C, \u043A\u043E\u0442\u043E\u0440\u044B\u0435 \u0437\u0430\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u043E\u0432\u0430\u043D\u043D\u044B\u0435 \u0432 \u0441\u0438\u0441\u0442\u0435\u043C\u0435. \u0418 \u0432\u044B \u043F\u043E\u043B\u0443\u0447\u0430\u0435\u0442\u0435 \u043F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u044F \u0438\u0437 \u043A\u043E\u0442\u043E\u0440\u044B\u0445 \u0432\u044B\u0431\u0438\u0440\u0430\u0435\u0442\u0435, \u0442\u043E \u0447\u0442\u043E \u0412\u0430\u043C \u043F\u043E\u0434\u0445\u043E\u0434\u0438\u0442."));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (HowWorks);
+
+/***/ }),
+
 /***/ "./resources/js/components/sideblock/SideBlock.js":
 /*!********************************************************!*\
   !*** ./resources/js/components/sideblock/SideBlock.js ***!
@@ -70297,7 +70366,7 @@ var SideBlock = function SideBlock(props) {
   }, "EcoPlant \u0410\u0433\u0440\u043E"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
     to: "/"
   }, "EcoPlant | Price4you"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
-    to: "/"
+    to: "/faq/how-works"
   }, "\u041A\u0430\u043A \u0440\u0430\u0431\u043E\u0442\u0430\u0435\u0442 \u0441\u0435\u0440\u0432\u0438\u0441"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
     to: "/"
   }, "\u0427\u0430\u0441\u0442\u044B\u0435 \u0432\u043E\u043F\u0440\u043E\u0441\u044B")));

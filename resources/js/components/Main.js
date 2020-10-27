@@ -2,7 +2,8 @@ import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import Auth from './auth/Auth'
 import SideBlock from './sideblock/SideBlock'
-import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom'
+import Faq from './faq/Faq'
+import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom'
 
 const Main = () => {
     const [loggedIn, setLoggedIn] = useState(false);
@@ -16,7 +17,13 @@ const Main = () => {
                             <div className="row">
                                 <div className="col-md-9 col-sm-12">
                                     <div className="main-window__inner row">
-                                        <Auth />
+                                        <Route path="/">
+                                            <Redirect to="/login" />
+                                            <Auth />
+                                        </Route>
+                                        <Route path="/faq">
+                                            <Faq />
+                                        </Route>
                                     </div>
                                 </div>
                                 <div className="col-md-3 d-none d-md-flex justify-content-center flex-column">

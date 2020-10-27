@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
-import Login from './Login'
-import Register from './Register'
-import RegisterCompany from './RegisterCompany'
+import Login from './auth-components/Login'
+import Register from './auth-components/Register'
+import RegisterCompany from './auth-components/RegisterCompany'
 import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom'
 
 const Auth = () => {
@@ -37,18 +37,15 @@ const Auth = () => {
 
     return (
         <div>
-            <Redirect to="/login" />
-            <Switch>
-                <Route path="/register">
-                    <Register socials={getSocials}/>
-                </Route>
-                <Route path="/login">
-                    <Login socials={getSocials}/>
-                </Route>
-                <Route path="/register-company">
-                    <RegisterCompany socials={getSocials}/>
-                </Route>
-            </Switch>
+            <Route path="/register">
+                <Register socials={getSocials}/>
+            </Route>
+            <Route path="/login">
+                <Login socials={getSocials}/>
+            </Route>
+            <Route path="/register-company">
+                <RegisterCompany socials={getSocials}/>
+            </Route>
         </div>
     )
 }

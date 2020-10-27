@@ -13,7 +13,7 @@ const SideBlock = (props) => {
             <div className="d-flex flex-column auth-faq">
                 <Link to="/">EcoPlant Агро</Link>
                 <Link to="/">EcoPlant | Price4you</Link>
-                <Link to="/">Как работает сервис</Link>
+                <Link to="/faq/how-works">Как работает сервис</Link>
                 <Link to="/">Частые вопросы</Link>
             </div>
         </div>
