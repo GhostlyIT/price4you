@@ -13,6 +13,8 @@
 
 @import 'media';
 
+@import 'faq';
+
 .main {
     background-color: #000;
     min-height: 100vh;
@@ -57,4 +59,12 @@
     -moz-border-radius: 58px;
     -ms-border-radius: 58px;
     -o-border-radius: 58px;
+}
+
+.blue {
+    color: $blue;
+}
+
+.container-xl, .container-lg, .container-md, .container-sm, .container {
+    max-width: 95%;
 }
