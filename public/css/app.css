@@ -10952,6 +10952,10 @@ img {
   border-bottom: 1px solid #E5E5E5;
 }
 
+.auth-sideblock .auth-nav {
+  margin-top: 50px;
+}
+
 .auth-sideblock .auth-nav a {
   padding: 10px 16px;
 }
@@ -10994,6 +10998,10 @@ img {
   }
 }
 
+.faq {
+  width: 100%;
+}
+
 .faq .faq__desc p:nth-child(2) {
   margin: 50px 0;
 }
@@ -11011,7 +11019,7 @@ img {
   -moz-border-radius: 100px;
   -ms-border-radius: 100px;
   -o-border-radius: 100px;
-  width: 300px;
+  width: 33%;
 }
 
 .faq .faq__links .faq__how-works-link {
@@ -11021,6 +11029,11 @@ img {
 .faq .faq__links .faq__link {
   color: #fff;
   background-color: #4525F2;
+}
+
+.faq .faq__links .faq__price-link {
+  color: #fff;
+  background-color: #EF9E39;
 }
 
 .faq .faq__text .faq__text-unit {
@@ -11063,6 +11076,130 @@ img {
   margin-right: 10px;
 }
 
+.faq .faq__cards .faq__card {
+  border: 2px solid;
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+  padding: 15px 10px;
+  margin-bottom: 10px;
+}
+
+.faq .faq__cards .faq__card p {
+  margin-bottom: 0;
+}
+
+.faq .faq__cards .faq__card .faq__card-price {
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+  text-align: center;
+  width: 220px;
+  height: 120px;
+  margin-right: 30px;
+  color: #fff;
+}
+
+.faq .faq__cards .faq__card:first-child {
+  border-color: #4525F2;
+}
+
+.faq .faq__cards .faq__card:first-child .faq__card-price {
+  background-color: #4525F2;
+}
+
+.faq .faq__cards .faq__card:first-child .faq__card-text h4 {
+  color: #4525F2;
+}
+
+.faq .faq__cards .faq__card:nth-child(2) {
+  border-color: #45484A;
+}
+
+.faq .faq__cards .faq__card:nth-child(2) .faq__card-price {
+  background-color: #45484A;
+}
+
+.faq .faq__cards .faq__card:nth-child(2) .faq__card-text h4 {
+  color: #45484A;
+}
+
+.faq .faq__cards .faq__card:nth-child(3) {
+  border-color: #69916C;
+}
+
+.faq .faq__cards .faq__card:nth-child(3) .faq__card-price {
+  background-color: #69916C;
+}
+
+.faq .faq__cards .faq__card:nth-child(3) .faq__card-text h4 {
+  color: #69916C;
+}
+
+.faq .faq__cards .faq__card:nth-child(4) {
+  border-color: #EF9E39;
+}
+
+.faq .faq__cards .faq__card:nth-child(4) .faq__card-price {
+  background-color: #EF9E39;
+}
+
+.faq .faq__cards .faq__card:nth-child(4) .faq__card-text h4 {
+  color: #EF9E39;
+}
+
+.faq .faq__cards .faq__card:nth-child(5) {
+  border-color: #1FB341;
+}
+
+.faq .faq__cards .faq__card:nth-child(5) .faq__card-price {
+  background-color: #1FB341;
+}
+
+.faq .faq__cards .faq__card:nth-child(5) .faq__card-text h4 {
+  color: #1FB341;
+}
+
+.faq .faq__list a {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.faq .faq__support {
+  margin: 100px 0;
+}
+
+.faq .faq__support p {
+  width: 300px;
+  text-align: center;
+  position: relative;
+}
+
+.faq .faq__support p:before {
+  content: "";
+  position: absolute;
+  width: 250px;
+  height: 2px;
+  background-color: #CFCFCF;
+  left: -290px;
+  top: 40px;
+}
+
+.faq .faq__support p:after {
+  content: "";
+  position: absolute;
+  width: 250px;
+  height: 2px;
+  background-color: #CFCFCF;
+  right: -290px;
+  top: 40px;
+}
+
 .main {
   background-color: #000;
   min-height: 100vh;
@@ -11095,7 +11232,8 @@ img {
   -moz-border-radius: 58px;
   -ms-border-radius: 58px;
   -o-border-radius: 58px;
-  padding: 20px 85px;
+  padding: 20px 30px;
+  justify-content: center;
 }
 
 .main-btn {

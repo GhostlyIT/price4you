@@ -26,7 +26,7 @@ const Main = () => {
                                         </Route>
                                     </div>
                                 </div>
-                                <div className="col-md-3 d-none d-md-flex justify-content-center flex-column">
+                                <div className="col-md-3 d-none d-md-flex flex-column">
                                     <SideBlock />
                                 </div>
                             </div>

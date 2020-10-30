@@ -12,7 +12,7 @@ const HowWorks = () => {
                 <p className="font-weight-bold">Вы выбираете товар-(ы) на сайте ecoplantagro.ru или в личном кабинете на вкладке «Добавить», заполняйте количество и условия сделки. После чего мы рассылаем ваш запрос всем компаниям поставщикам, которые зарегистрированные в системе. И вы получаете предложения из которых выбираете, то что Вам подходит.</p>
             </div>
 
-            <div className="faq__links d-flex justify-content-between">
+            <div className="faq__links d-flex justify-content-around">
                 <Link className="faq__how-works-link" to="/faq/how-works-company">Как работает сервис для компании</Link>
                 <Link className="faq__link" to="/faq">Частые вопросы</Link>
             </div>

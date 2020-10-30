@@ -14,7 +14,7 @@ const SideBlock = (props) => {
                 <Link to="/">EcoPlant Агро</Link>
                 <Link to="/">EcoPlant | Price4you</Link>
                 <Link to="/faq/how-works">Как работает сервис</Link>
-                <Link to="/">Частые вопросы</Link>
+                <Link to="/faq">Частые вопросы</Link>
             </div>
         </div>
     )
