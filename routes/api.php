@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// Errors
+Route::get('errorUnauthorized', function() {
+    return response()->json(['message' => 'Не авторизован', 'status' => 'error'], 401);
+})->name('unathorized');
