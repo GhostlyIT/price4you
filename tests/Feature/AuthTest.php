@@ -7,6 +7,7 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
+use App\Models\User;
 
 class AuthTest extends TestCase
 {
@@ -140,5 +141,24 @@ class AuthTest extends TestCase
             'status' => 'success'
         ]);
         $response->assertStatus(200);
+    }
+
+    public function testLoginSuccess() {
+        User::factory()->create();
+        $response = $this->postJson('/api/login', $this->userFields);
+        $response->assertJson([
+            'status' => 'success'
+        ]);
+        $response->assertStatus(200);
+    }
+
+    public function testLoginFail() {
+        User::factory()->create();
+        $this->userFields['password'] = '12345678';
+        $response = $this->postJson('/api/login', $this->userFields);
+        $response->assertJson([
+            'status' => 'error'
+        ]);
+        $response->assertStatus(401);
     }
 }

@@ -16,6 +16,7 @@ use App\Http\Controllers\AuthController;
 */
 
 Route::post('register', 'App\Http\Controllers\AuthController@register');
+Route::post('login', 'App\Http\Controllers\AuthController@login');
 
 // Errors
 Route::get('errorUnauthorized', function() {

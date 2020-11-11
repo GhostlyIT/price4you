@@ -66,7 +66,7 @@ class AuthController extends Controller
 
     public function login(Request $request) {
         $validator = Validator::make($request->all(), [
-            'phone_number' => 'required|regex:/\+7\([0-9]{3}\)-[0-9]{3}-[0-9]{3}-[0-9]{2}/g',
+            'phone_number' => 'required|regex:/\+7\([0-9]{3}\)-[0-9]{3}-[0-9]{2}-[0-9]{2}/',
             'password' => 'required|min:8',
         ]);
 
@@ -80,6 +80,7 @@ class AuthController extends Controller
         try {
             Auth::attempt(['phone_number' => $phoneNumber, 'password' => $password]);
             $user = Auth::user();
+            if ($user === null) throw new \Exception("Ошибка входа");
             $token = $user->createToken('access_token')->accessToken;
             return response()->json(['message' => 'Вход выполнен успешно', 'status' => 'success', 'token' => $token, 'user_data' => $user], 200);
         } catch (\Exception $e) {
