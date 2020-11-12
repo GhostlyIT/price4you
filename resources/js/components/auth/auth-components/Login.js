@@ -1,15 +1,15 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
+import { bindActionCreators } from 'redux'
+import authAction from '../../../store/actions/authAction'
 
 const Login = (props) => {
-
-
-
     return (
         <div className="d-flex">
             <div className="d-flex flex-column col-md-6 col-sm-12">
                 <h3 className="title text-center mb-2">Войти</h3>
+                <h1>{console.log(props)}</h1>
                 <Link to="/register" className="text-center">Регистрация</Link>
 
                 <form className="d-flex flex-column mt-3">
@@ -19,7 +19,7 @@ const Login = (props) => {
                         <input className="mr-3" id="login__remember" type="checkbox" />
                         <label className="mb-0" htmlFor="login__remember">Запомнить меня</label>
                     </div>
-                    <button type="button" className="main-btn">Войти</button>
+                    <button onClick={() => props.auth('123')} type="button" className="main-btn">Войти</button>
                 </form>
 
                 <div className="d-flex flex-column align-items-center auth-socials">
@@ -36,4 +36,16 @@ const Login = (props) => {
     )
 }
 
-export default Login;
+const mapStateToProps = store => {
+    return {
+        loggedIn: store.authReducer.loggedIn
+    };
+}
+
+const mapDispatchProps = dispatch => {
+    return {
+        auth: bindActionCreators(authAction, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchProps)(Login)

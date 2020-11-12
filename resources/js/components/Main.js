@@ -4,9 +4,15 @@ import Auth from './auth/Auth'
 import SideBlock from './sideblock/SideBlock'
 import Faq from './faq/Faq'
 import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom'
+import {Provider} from 'react-redux'
+import store from '../store/store'
+import {saveState} from '../store/localStorage'
 
 const Main = () => {
-    const [loggedIn, setLoggedIn] = useState(false);
+    store.subscribe(() => {
+        saveState(store.getState())
+    })
+
     return (
         <Router>
             <div className="main position-relative">
@@ -41,5 +47,10 @@ const Main = () => {
 export default Main;
 
 if (document.getElementById('root')) {
-    ReactDOM.render(<Main />, document.getElementById('root'));
+    ReactDOM.render(
+        <Provider store={store}>
+            <Main />
+        </Provider>,
+        document.getElementById('root')
+    );
 }
