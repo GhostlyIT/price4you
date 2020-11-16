@@ -161,6 +161,36 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 
 /***/ }),
 
+/***/ "./node_modules/animate.css/animate.css":
+/*!**********************************************!*\
+  !*** ./node_modules/animate.css/animate.css ***!
+  \**********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../css-loader??ref--6-1!../postcss-loader/src??ref--6-2!./animate.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/animate.css/animate.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/axios/index.js":
 /*!*************************************!*\
   !*** ./node_modules/axios/index.js ***!
@@ -6398,6 +6428,131 @@ module.exports = {
 
 })));
 //# sourceMappingURL=bootstrap.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/animate.css/animate.css":
+/*!******************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./node_modules/animate.css/animate.css ***!
+  \******************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "@charset \"UTF-8\";/*!\n * animate.css - https://animate.style/\n * Version - 4.1.1\n * Licensed under the MIT license - http://opensource.org/licenses/MIT\n *\n * Copyright (c) 2020 Animate.css\n */\n:root {\n  --animate-duration: 1s;\n  --animate-delay: 1s;\n  --animate-repeat: 1;\n}\n.animate__animated {\n  -webkit-animation-duration: 1s;\n  animation-duration: 1s;\n  -webkit-animation-duration: var(--animate-duration);\n  animation-duration: var(--animate-duration);\n  -webkit-animation-fill-mode: both;\n  animation-fill-mode: both;\n}\n.animate__animated.animate__infinite {\n  -webkit-animation-iteration-count: infinite;\n  animation-iteration-count: infinite;\n}\n.animate__animated.animate__repeat-1 {\n  -webkit-animation-iteration-count: 1;\n  animation-iteration-count: 1;\n  -webkit-animation-iteration-count: var(--animate-repeat);\n  animation-iteration-count: var(--animate-repeat);\n}\n.animate__animated.animate__repeat-2 {\n  -webkit-animation-iteration-count: calc(1 * 2);\n  animation-iteration-count: calc(1 * 2);\n  -webkit-animation-iteration-count: calc(var(--animate-repeat) * 2);\n  animation-iteration-count: calc(var(--animate-repeat) * 2);\n}\n.animate__animated.animate__repeat-3 {\n  -webkit-animation-iteration-count: calc(1 * 3);\n  animation-iteration-count: calc(1 * 3);\n  -webkit-animation-iteration-count: calc(var(--animate-repeat) * 3);\n  animation-iteration-count: calc(var(--animate-repeat) * 3);\n}\n.animate__animated.animate__delay-1s {\n  -webkit-animation-delay: 1s;\n  animation-delay: 1s;\n  -webkit-animation-delay: var(--animate-delay);\n  animation-delay: var(--animate-delay);\n}\n.animate__animated.animate__delay-2s {\n  -webkit-animation-delay: calc(1s * 2);\n  animation-delay: calc(1s * 2);\n  -webkit-animation-delay: calc(var(--animate-delay) * 2);\n  animation-delay: calc(var(--animate-delay) * 2);\n}\n.animate__animated.animate__delay-3s {\n  -webkit-animation-delay: calc(1s * 3);\n  animation-delay: calc(1s * 3);\n  -webkit-animation-delay: calc(var(--animate-delay) * 3);\n  animation-delay: calc(var(--animate-delay) * 3);\n}\n.animate__animated.animate__delay-4s {\n  -webkit-animation-delay: calc(1s * 4);\n  animation-delay: calc(1s * 4);\n  -webkit-animation-delay: calc(var(--animate-delay) * 4);\n  animation-delay: calc(var(--animate-delay) * 4);\n}\n.animate__animated.animate__delay-5s {\n  -webkit-animation-delay: calc(1s * 5);\n  animation-delay: calc(1s * 5);\n  -webkit-animation-delay: calc(var(--animate-delay) * 5);\n  animation-delay: calc(var(--animate-delay) * 5);\n}\n.animate__animated.animate__faster {\n  -webkit-animation-duration: calc(1s / 2);\n  animation-duration: calc(1s / 2);\n  -webkit-animation-duration: calc(var(--animate-duration) / 2);\n  animation-duration: calc(var(--animate-duration) / 2);\n}\n.animate__animated.animate__fast {\n  -webkit-animation-duration: calc(1s * 0.8);\n  animation-duration: calc(1s * 0.8);\n  -webkit-animation-duration: calc(var(--animate-duration) * 0.8);\n  animation-duration: calc(var(--animate-duration) * 0.8);\n}\n.animate__animated.animate__slow {\n  -webkit-animation-duration: calc(1s * 2);\n  animation-duration: calc(1s * 2);\n  -webkit-animation-duration: calc(var(--animate-duration) * 2);\n  animation-duration: calc(var(--animate-duration) * 2);\n}\n.animate__animated.animate__slower {\n  -webkit-animation-duration: calc(1s * 3);\n  animation-duration: calc(1s * 3);\n  -webkit-animation-duration: calc(var(--animate-duration) * 3);\n  animation-duration: calc(var(--animate-duration) * 3);\n}\n@media print, (prefers-reduced-motion: reduce) {\n  .animate__animated {\n    -webkit-animation-duration: 1ms !important;\n    animation-duration: 1ms !important;\n    -webkit-transition-duration: 1ms !important;\n    transition-duration: 1ms !important;\n    -webkit-animation-iteration-count: 1 !important;\n    animation-iteration-count: 1 !important;\n  }\n\n  .animate__animated[class*='Out'] {\n    opacity: 0;\n  }\n}\n/* Attention seekers  */\n@-webkit-keyframes bounce {\n  from,\n  20%,\n  53%,\n  to {\n    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n\n  40%,\n  43% {\n    -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);\n    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);\n    -webkit-transform: translate3d(0, -30px, 0) scaleY(1.1);\n    transform: translate3d(0, -30px, 0) scaleY(1.1);\n  }\n\n  70% {\n    -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);\n    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);\n    -webkit-transform: translate3d(0, -15px, 0) scaleY(1.05);\n    transform: translate3d(0, -15px, 0) scaleY(1.05);\n  }\n\n  80% {\n    -webkit-transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n    -webkit-transform: translate3d(0, 0, 0) scaleY(0.95);\n    transform: translate3d(0, 0, 0) scaleY(0.95);\n  }\n\n  90% {\n    -webkit-transform: translate3d(0, -4px, 0) scaleY(1.02);\n    transform: translate3d(0, -4px, 0) scaleY(1.02);\n  }\n}\n@keyframes bounce {\n  from,\n  20%,\n  53%,\n  to {\n    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n\n  40%,\n  43% {\n    -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);\n    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);\n    -webkit-transform: translate3d(0, -30px, 0) scaleY(1.1);\n    transform: translate3d(0, -30px, 0) scaleY(1.1);\n  }\n\n  70% {\n    -webkit-animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);\n    animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);\n    -webkit-transform: translate3d(0, -15px, 0) scaleY(1.05);\n    transform: translate3d(0, -15px, 0) scaleY(1.05);\n  }\n\n  80% {\n    -webkit-transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n    transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n    -webkit-transform: translate3d(0, 0, 0) scaleY(0.95);\n    transform: translate3d(0, 0, 0) scaleY(0.95);\n  }\n\n  90% {\n    -webkit-transform: translate3d(0, -4px, 0) scaleY(1.02);\n    transform: translate3d(0, -4px, 0) scaleY(1.02);\n  }\n}\n.animate__bounce {\n  -webkit-animation-name: bounce;\n  animation-name: bounce;\n  -webkit-transform-origin: center bottom;\n  transform-origin: center bottom;\n}\n@-webkit-keyframes flash {\n  from,\n  50%,\n  to {\n    opacity: 1;\n  }\n\n  25%,\n  75% {\n    opacity: 0;\n  }\n}\n@keyframes flash {\n  from,\n  50%,\n  to {\n    opacity: 1;\n  }\n\n  25%,\n  75% {\n    opacity: 0;\n  }\n}\n.animate__flash {\n  -webkit-animation-name: flash;\n  animation-name: flash;\n}\n/* originally authored by Nick Pettit - https://github.com/nickpettit/glide */\n@-webkit-keyframes pulse {\n  from {\n    -webkit-transform: scale3d(1, 1, 1);\n    transform: scale3d(1, 1, 1);\n  }\n\n  50% {\n    -webkit-transform: scale3d(1.05, 1.05, 1.05);\n    transform: scale3d(1.05, 1.05, 1.05);\n  }\n\n  to {\n    -webkit-transform: scale3d(1, 1, 1);\n    transform: scale3d(1, 1, 1);\n  }\n}\n@keyframes pulse {\n  from {\n    -webkit-transform: scale3d(1, 1, 1);\n    transform: scale3d(1, 1, 1);\n  }\n\n  50% {\n    -webkit-transform: scale3d(1.05, 1.05, 1.05);\n    transform: scale3d(1.05, 1.05, 1.05);\n  }\n\n  to {\n    -webkit-transform: scale3d(1, 1, 1);\n    transform: scale3d(1, 1, 1);\n  }\n}\n.animate__pulse {\n  -webkit-animation-name: pulse;\n  animation-name: pulse;\n  -webkit-animation-timing-function: ease-in-out;\n  animation-timing-function: ease-in-out;\n}\n@-webkit-keyframes rubberBand {\n  from {\n    -webkit-transform: scale3d(1, 1, 1);\n    transform: scale3d(1, 1, 1);\n  }\n\n  30% {\n    -webkit-transform: scale3d(1.25, 0.75, 1);\n    transform: scale3d(1.25, 0.75, 1);\n  }\n\n  40% {\n    -webkit-transform: scale3d(0.75, 1.25, 1);\n    transform: scale3d(0.75, 1.25, 1);\n  }\n\n  50% {\n    -webkit-transform: scale3d(1.15, 0.85, 1);\n    transform: scale3d(1.15, 0.85, 1);\n  }\n\n  65% {\n    -webkit-transform: scale3d(0.95, 1.05, 1);\n    transform: scale3d(0.95, 1.05, 1);\n  }\n\n  75% {\n    -webkit-transform: scale3d(1.05, 0.95, 1);\n    transform: scale3d(1.05, 0.95, 1);\n  }\n\n  to {\n    -webkit-transform: scale3d(1, 1, 1);\n    transform: scale3d(1, 1, 1);\n  }\n}\n@keyframes rubberBand {\n  from {\n    -webkit-transform: scale3d(1, 1, 1);\n    transform: scale3d(1, 1, 1);\n  }\n\n  30% {\n    -webkit-transform: scale3d(1.25, 0.75, 1);\n    transform: scale3d(1.25, 0.75, 1);\n  }\n\n  40% {\n    -webkit-transform: scale3d(0.75, 1.25, 1);\n    transform: scale3d(0.75, 1.25, 1);\n  }\n\n  50% {\n    -webkit-transform: scale3d(1.15, 0.85, 1);\n    transform: scale3d(1.15, 0.85, 1);\n  }\n\n  65% {\n    -webkit-transform: scale3d(0.95, 1.05, 1);\n    transform: scale3d(0.95, 1.05, 1);\n  }\n\n  75% {\n    -webkit-transform: scale3d(1.05, 0.95, 1);\n    transform: scale3d(1.05, 0.95, 1);\n  }\n\n  to {\n    -webkit-transform: scale3d(1, 1, 1);\n    transform: scale3d(1, 1, 1);\n  }\n}\n.animate__rubberBand {\n  -webkit-animation-name: rubberBand;\n  animation-name: rubberBand;\n}\n@-webkit-keyframes shakeX {\n  from,\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n\n  10%,\n  30%,\n  50%,\n  70%,\n  90% {\n    -webkit-transform: translate3d(-10px, 0, 0);\n    transform: translate3d(-10px, 0, 0);\n  }\n\n  20%,\n  40%,\n  60%,\n  80% {\n    -webkit-transform: translate3d(10px, 0, 0);\n    transform: translate3d(10px, 0, 0);\n  }\n}\n@keyframes shakeX {\n  from,\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n\n  10%,\n  30%,\n  50%,\n  70%,\n  90% {\n    -webkit-transform: translate3d(-10px, 0, 0);\n    transform: translate3d(-10px, 0, 0);\n  }\n\n  20%,\n  40%,\n  60%,\n  80% {\n    -webkit-transform: translate3d(10px, 0, 0);\n    transform: translate3d(10px, 0, 0);\n  }\n}\n.animate__shakeX {\n  -webkit-animation-name: shakeX;\n  animation-name: shakeX;\n}\n@-webkit-keyframes shakeY {\n  from,\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n\n  10%,\n  30%,\n  50%,\n  70%,\n  90% {\n    -webkit-transform: translate3d(0, -10px, 0);\n    transform: translate3d(0, -10px, 0);\n  }\n\n  20%,\n  40%,\n  60%,\n  80% {\n    -webkit-transform: translate3d(0, 10px, 0);\n    transform: translate3d(0, 10px, 0);\n  }\n}\n@keyframes shakeY {\n  from,\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n\n  10%,\n  30%,\n  50%,\n  70%,\n  90% {\n    -webkit-transform: translate3d(0, -10px, 0);\n    transform: translate3d(0, -10px, 0);\n  }\n\n  20%,\n  40%,\n  60%,\n  80% {\n    -webkit-transform: translate3d(0, 10px, 0);\n    transform: translate3d(0, 10px, 0);\n  }\n}\n.animate__shakeY {\n  -webkit-animation-name: shakeY;\n  animation-name: shakeY;\n}\n@-webkit-keyframes headShake {\n  0% {\n    -webkit-transform: translateX(0);\n    transform: translateX(0);\n  }\n\n  6.5% {\n    -webkit-transform: translateX(-6px) rotateY(-9deg);\n    transform: translateX(-6px) rotateY(-9deg);\n  }\n\n  18.5% {\n    -webkit-transform: translateX(5px) rotateY(7deg);\n    transform: translateX(5px) rotateY(7deg);\n  }\n\n  31.5% {\n    -webkit-transform: translateX(-3px) rotateY(-5deg);\n    transform: translateX(-3px) rotateY(-5deg);\n  }\n\n  43.5% {\n    -webkit-transform: translateX(2px) rotateY(3deg);\n    transform: translateX(2px) rotateY(3deg);\n  }\n\n  50% {\n    -webkit-transform: translateX(0);\n    transform: translateX(0);\n  }\n}\n@keyframes headShake {\n  0% {\n    -webkit-transform: translateX(0);\n    transform: translateX(0);\n  }\n\n  6.5% {\n    -webkit-transform: translateX(-6px) rotateY(-9deg);\n    transform: translateX(-6px) rotateY(-9deg);\n  }\n\n  18.5% {\n    -webkit-transform: translateX(5px) rotateY(7deg);\n    transform: translateX(5px) rotateY(7deg);\n  }\n\n  31.5% {\n    -webkit-transform: translateX(-3px) rotateY(-5deg);\n    transform: translateX(-3px) rotateY(-5deg);\n  }\n\n  43.5% {\n    -webkit-transform: translateX(2px) rotateY(3deg);\n    transform: translateX(2px) rotateY(3deg);\n  }\n\n  50% {\n    -webkit-transform: translateX(0);\n    transform: translateX(0);\n  }\n}\n.animate__headShake {\n  -webkit-animation-timing-function: ease-in-out;\n  animation-timing-function: ease-in-out;\n  -webkit-animation-name: headShake;\n  animation-name: headShake;\n}\n@-webkit-keyframes swing {\n  20% {\n    -webkit-transform: rotate3d(0, 0, 1, 15deg);\n    transform: rotate3d(0, 0, 1, 15deg);\n  }\n\n  40% {\n    -webkit-transform: rotate3d(0, 0, 1, -10deg);\n    transform: rotate3d(0, 0, 1, -10deg);\n  }\n\n  60% {\n    -webkit-transform: rotate3d(0, 0, 1, 5deg);\n    transform: rotate3d(0, 0, 1, 5deg);\n  }\n\n  80% {\n    -webkit-transform: rotate3d(0, 0, 1, -5deg);\n    transform: rotate3d(0, 0, 1, -5deg);\n  }\n\n  to {\n    -webkit-transform: rotate3d(0, 0, 1, 0deg);\n    transform: rotate3d(0, 0, 1, 0deg);\n  }\n}\n@keyframes swing {\n  20% {\n    -webkit-transform: rotate3d(0, 0, 1, 15deg);\n    transform: rotate3d(0, 0, 1, 15deg);\n  }\n\n  40% {\n    -webkit-transform: rotate3d(0, 0, 1, -10deg);\n    transform: rotate3d(0, 0, 1, -10deg);\n  }\n\n  60% {\n    -webkit-transform: rotate3d(0, 0, 1, 5deg);\n    transform: rotate3d(0, 0, 1, 5deg);\n  }\n\n  80% {\n    -webkit-transform: rotate3d(0, 0, 1, -5deg);\n    transform: rotate3d(0, 0, 1, -5deg);\n  }\n\n  to {\n    -webkit-transform: rotate3d(0, 0, 1, 0deg);\n    transform: rotate3d(0, 0, 1, 0deg);\n  }\n}\n.animate__swing {\n  -webkit-transform-origin: top center;\n  transform-origin: top center;\n  -webkit-animation-name: swing;\n  animation-name: swing;\n}\n@-webkit-keyframes tada {\n  from {\n    -webkit-transform: scale3d(1, 1, 1);\n    transform: scale3d(1, 1, 1);\n  }\n\n  10%,\n  20% {\n    -webkit-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);\n    transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);\n  }\n\n  30%,\n  50%,\n  70%,\n  90% {\n    -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);\n    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);\n  }\n\n  40%,\n  60%,\n  80% {\n    -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);\n    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);\n  }\n\n  to {\n    -webkit-transform: scale3d(1, 1, 1);\n    transform: scale3d(1, 1, 1);\n  }\n}\n@keyframes tada {\n  from {\n    -webkit-transform: scale3d(1, 1, 1);\n    transform: scale3d(1, 1, 1);\n  }\n\n  10%,\n  20% {\n    -webkit-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);\n    transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);\n  }\n\n  30%,\n  50%,\n  70%,\n  90% {\n    -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);\n    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);\n  }\n\n  40%,\n  60%,\n  80% {\n    -webkit-transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);\n    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);\n  }\n\n  to {\n    -webkit-transform: scale3d(1, 1, 1);\n    transform: scale3d(1, 1, 1);\n  }\n}\n.animate__tada {\n  -webkit-animation-name: tada;\n  animation-name: tada;\n}\n/* originally authored by Nick Pettit - https://github.com/nickpettit/glide */\n@-webkit-keyframes wobble {\n  from {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n\n  15% {\n    -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);\n    transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);\n  }\n\n  30% {\n    -webkit-transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);\n    transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);\n  }\n\n  45% {\n    -webkit-transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);\n    transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);\n  }\n\n  60% {\n    -webkit-transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);\n    transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);\n  }\n\n  75% {\n    -webkit-transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);\n    transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);\n  }\n\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n@keyframes wobble {\n  from {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n\n  15% {\n    -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);\n    transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);\n  }\n\n  30% {\n    -webkit-transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);\n    transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);\n  }\n\n  45% {\n    -webkit-transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);\n    transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);\n  }\n\n  60% {\n    -webkit-transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);\n    transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);\n  }\n\n  75% {\n    -webkit-transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);\n    transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);\n  }\n\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n.animate__wobble {\n  -webkit-animation-name: wobble;\n  animation-name: wobble;\n}\n@-webkit-keyframes jello {\n  from,\n  11.1%,\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n\n  22.2% {\n    -webkit-transform: skewX(-12.5deg) skewY(-12.5deg);\n    transform: skewX(-12.5deg) skewY(-12.5deg);\n  }\n\n  33.3% {\n    -webkit-transform: skewX(6.25deg) skewY(6.25deg);\n    transform: skewX(6.25deg) skewY(6.25deg);\n  }\n\n  44.4% {\n    -webkit-transform: skewX(-3.125deg) skewY(-3.125deg);\n    transform: skewX(-3.125deg) skewY(-3.125deg);\n  }\n\n  55.5% {\n    -webkit-transform: skewX(1.5625deg) skewY(1.5625deg);\n    transform: skewX(1.5625deg) skewY(1.5625deg);\n  }\n\n  66.6% {\n    -webkit-transform: skewX(-0.78125deg) skewY(-0.78125deg);\n    transform: skewX(-0.78125deg) skewY(-0.78125deg);\n  }\n\n  77.7% {\n    -webkit-transform: skewX(0.390625deg) skewY(0.390625deg);\n    transform: skewX(0.390625deg) skewY(0.390625deg);\n  }\n\n  88.8% {\n    -webkit-transform: skewX(-0.1953125deg) skewY(-0.1953125deg);\n    transform: skewX(-0.1953125deg) skewY(-0.1953125deg);\n  }\n}\n@keyframes jello {\n  from,\n  11.1%,\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n\n  22.2% {\n    -webkit-transform: skewX(-12.5deg) skewY(-12.5deg);\n    transform: skewX(-12.5deg) skewY(-12.5deg);\n  }\n\n  33.3% {\n    -webkit-transform: skewX(6.25deg) skewY(6.25deg);\n    transform: skewX(6.25deg) skewY(6.25deg);\n  }\n\n  44.4% {\n    -webkit-transform: skewX(-3.125deg) skewY(-3.125deg);\n    transform: skewX(-3.125deg) skewY(-3.125deg);\n  }\n\n  55.5% {\n    -webkit-transform: skewX(1.5625deg) skewY(1.5625deg);\n    transform: skewX(1.5625deg) skewY(1.5625deg);\n  }\n\n  66.6% {\n    -webkit-transform: skewX(-0.78125deg) skewY(-0.78125deg);\n    transform: skewX(-0.78125deg) skewY(-0.78125deg);\n  }\n\n  77.7% {\n    -webkit-transform: skewX(0.390625deg) skewY(0.390625deg);\n    transform: skewX(0.390625deg) skewY(0.390625deg);\n  }\n\n  88.8% {\n    -webkit-transform: skewX(-0.1953125deg) skewY(-0.1953125deg);\n    transform: skewX(-0.1953125deg) skewY(-0.1953125deg);\n  }\n}\n.animate__jello {\n  -webkit-animation-name: jello;\n  animation-name: jello;\n  -webkit-transform-origin: center;\n  transform-origin: center;\n}\n@-webkit-keyframes heartBeat {\n  0% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n  }\n\n  14% {\n    -webkit-transform: scale(1.3);\n    transform: scale(1.3);\n  }\n\n  28% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n  }\n\n  42% {\n    -webkit-transform: scale(1.3);\n    transform: scale(1.3);\n  }\n\n  70% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n  }\n}\n@keyframes heartBeat {\n  0% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n  }\n\n  14% {\n    -webkit-transform: scale(1.3);\n    transform: scale(1.3);\n  }\n\n  28% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n  }\n\n  42% {\n    -webkit-transform: scale(1.3);\n    transform: scale(1.3);\n  }\n\n  70% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n  }\n}\n.animate__heartBeat {\n  -webkit-animation-name: heartBeat;\n  animation-name: heartBeat;\n  -webkit-animation-duration: calc(1s * 1.3);\n  animation-duration: calc(1s * 1.3);\n  -webkit-animation-duration: calc(var(--animate-duration) * 1.3);\n  animation-duration: calc(var(--animate-duration) * 1.3);\n  -webkit-animation-timing-function: ease-in-out;\n  animation-timing-function: ease-in-out;\n}\n/* Back entrances */\n@-webkit-keyframes backInDown {\n  0% {\n    -webkit-transform: translateY(-1200px) scale(0.7);\n    transform: translateY(-1200px) scale(0.7);\n    opacity: 0.7;\n  }\n\n  80% {\n    -webkit-transform: translateY(0px) scale(0.7);\n    transform: translateY(0px) scale(0.7);\n    opacity: 0.7;\n  }\n\n  100% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n    opacity: 1;\n  }\n}\n@keyframes backInDown {\n  0% {\n    -webkit-transform: translateY(-1200px) scale(0.7);\n    transform: translateY(-1200px) scale(0.7);\n    opacity: 0.7;\n  }\n\n  80% {\n    -webkit-transform: translateY(0px) scale(0.7);\n    transform: translateY(0px) scale(0.7);\n    opacity: 0.7;\n  }\n\n  100% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n    opacity: 1;\n  }\n}\n.animate__backInDown {\n  -webkit-animation-name: backInDown;\n  animation-name: backInDown;\n}\n@-webkit-keyframes backInLeft {\n  0% {\n    -webkit-transform: translateX(-2000px) scale(0.7);\n    transform: translateX(-2000px) scale(0.7);\n    opacity: 0.7;\n  }\n\n  80% {\n    -webkit-transform: translateX(0px) scale(0.7);\n    transform: translateX(0px) scale(0.7);\n    opacity: 0.7;\n  }\n\n  100% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n    opacity: 1;\n  }\n}\n@keyframes backInLeft {\n  0% {\n    -webkit-transform: translateX(-2000px) scale(0.7);\n    transform: translateX(-2000px) scale(0.7);\n    opacity: 0.7;\n  }\n\n  80% {\n    -webkit-transform: translateX(0px) scale(0.7);\n    transform: translateX(0px) scale(0.7);\n    opacity: 0.7;\n  }\n\n  100% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n    opacity: 1;\n  }\n}\n.animate__backInLeft {\n  -webkit-animation-name: backInLeft;\n  animation-name: backInLeft;\n}\n@-webkit-keyframes backInRight {\n  0% {\n    -webkit-transform: translateX(2000px) scale(0.7);\n    transform: translateX(2000px) scale(0.7);\n    opacity: 0.7;\n  }\n\n  80% {\n    -webkit-transform: translateX(0px) scale(0.7);\n    transform: translateX(0px) scale(0.7);\n    opacity: 0.7;\n  }\n\n  100% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n    opacity: 1;\n  }\n}\n@keyframes backInRight {\n  0% {\n    -webkit-transform: translateX(2000px) scale(0.7);\n    transform: translateX(2000px) scale(0.7);\n    opacity: 0.7;\n  }\n\n  80% {\n    -webkit-transform: translateX(0px) scale(0.7);\n    transform: translateX(0px) scale(0.7);\n    opacity: 0.7;\n  }\n\n  100% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n    opacity: 1;\n  }\n}\n.animate__backInRight {\n  -webkit-animation-name: backInRight;\n  animation-name: backInRight;\n}\n@-webkit-keyframes backInUp {\n  0% {\n    -webkit-transform: translateY(1200px) scale(0.7);\n    transform: translateY(1200px) scale(0.7);\n    opacity: 0.7;\n  }\n\n  80% {\n    -webkit-transform: translateY(0px) scale(0.7);\n    transform: translateY(0px) scale(0.7);\n    opacity: 0.7;\n  }\n\n  100% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n    opacity: 1;\n  }\n}\n@keyframes backInUp {\n  0% {\n    -webkit-transform: translateY(1200px) scale(0.7);\n    transform: translateY(1200px) scale(0.7);\n    opacity: 0.7;\n  }\n\n  80% {\n    -webkit-transform: translateY(0px) scale(0.7);\n    transform: translateY(0px) scale(0.7);\n    opacity: 0.7;\n  }\n\n  100% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n    opacity: 1;\n  }\n}\n.animate__backInUp {\n  -webkit-animation-name: backInUp;\n  animation-name: backInUp;\n}\n/* Back exits */\n@-webkit-keyframes backOutDown {\n  0% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n    opacity: 1;\n  }\n\n  20% {\n    -webkit-transform: translateY(0px) scale(0.7);\n    transform: translateY(0px) scale(0.7);\n    opacity: 0.7;\n  }\n\n  100% {\n    -webkit-transform: translateY(700px) scale(0.7);\n    transform: translateY(700px) scale(0.7);\n    opacity: 0.7;\n  }\n}\n@keyframes backOutDown {\n  0% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n    opacity: 1;\n  }\n\n  20% {\n    -webkit-transform: translateY(0px) scale(0.7);\n    transform: translateY(0px) scale(0.7);\n    opacity: 0.7;\n  }\n\n  100% {\n    -webkit-transform: translateY(700px) scale(0.7);\n    transform: translateY(700px) scale(0.7);\n    opacity: 0.7;\n  }\n}\n.animate__backOutDown {\n  -webkit-animation-name: backOutDown;\n  animation-name: backOutDown;\n}\n@-webkit-keyframes backOutLeft {\n  0% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n    opacity: 1;\n  }\n\n  20% {\n    -webkit-transform: translateX(0px) scale(0.7);\n    transform: translateX(0px) scale(0.7);\n    opacity: 0.7;\n  }\n\n  100% {\n    -webkit-transform: translateX(-2000px) scale(0.7);\n    transform: translateX(-2000px) scale(0.7);\n    opacity: 0.7;\n  }\n}\n@keyframes backOutLeft {\n  0% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n    opacity: 1;\n  }\n\n  20% {\n    -webkit-transform: translateX(0px) scale(0.7);\n    transform: translateX(0px) scale(0.7);\n    opacity: 0.7;\n  }\n\n  100% {\n    -webkit-transform: translateX(-2000px) scale(0.7);\n    transform: translateX(-2000px) scale(0.7);\n    opacity: 0.7;\n  }\n}\n.animate__backOutLeft {\n  -webkit-animation-name: backOutLeft;\n  animation-name: backOutLeft;\n}\n@-webkit-keyframes backOutRight {\n  0% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n    opacity: 1;\n  }\n\n  20% {\n    -webkit-transform: translateX(0px) scale(0.7);\n    transform: translateX(0px) scale(0.7);\n    opacity: 0.7;\n  }\n\n  100% {\n    -webkit-transform: translateX(2000px) scale(0.7);\n    transform: translateX(2000px) scale(0.7);\n    opacity: 0.7;\n  }\n}\n@keyframes backOutRight {\n  0% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n    opacity: 1;\n  }\n\n  20% {\n    -webkit-transform: translateX(0px) scale(0.7);\n    transform: translateX(0px) scale(0.7);\n    opacity: 0.7;\n  }\n\n  100% {\n    -webkit-transform: translateX(2000px) scale(0.7);\n    transform: translateX(2000px) scale(0.7);\n    opacity: 0.7;\n  }\n}\n.animate__backOutRight {\n  -webkit-animation-name: backOutRight;\n  animation-name: backOutRight;\n}\n@-webkit-keyframes backOutUp {\n  0% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n    opacity: 1;\n  }\n\n  20% {\n    -webkit-transform: translateY(0px) scale(0.7);\n    transform: translateY(0px) scale(0.7);\n    opacity: 0.7;\n  }\n\n  100% {\n    -webkit-transform: translateY(-700px) scale(0.7);\n    transform: translateY(-700px) scale(0.7);\n    opacity: 0.7;\n  }\n}\n@keyframes backOutUp {\n  0% {\n    -webkit-transform: scale(1);\n    transform: scale(1);\n    opacity: 1;\n  }\n\n  20% {\n    -webkit-transform: translateY(0px) scale(0.7);\n    transform: translateY(0px) scale(0.7);\n    opacity: 0.7;\n  }\n\n  100% {\n    -webkit-transform: translateY(-700px) scale(0.7);\n    transform: translateY(-700px) scale(0.7);\n    opacity: 0.7;\n  }\n}\n.animate__backOutUp {\n  -webkit-animation-name: backOutUp;\n  animation-name: backOutUp;\n}\n/* Bouncing entrances  */\n@-webkit-keyframes bounceIn {\n  from,\n  20%,\n  40%,\n  60%,\n  80%,\n  to {\n    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n  }\n\n  0% {\n    opacity: 0;\n    -webkit-transform: scale3d(0.3, 0.3, 0.3);\n    transform: scale3d(0.3, 0.3, 0.3);\n  }\n\n  20% {\n    -webkit-transform: scale3d(1.1, 1.1, 1.1);\n    transform: scale3d(1.1, 1.1, 1.1);\n  }\n\n  40% {\n    -webkit-transform: scale3d(0.9, 0.9, 0.9);\n    transform: scale3d(0.9, 0.9, 0.9);\n  }\n\n  60% {\n    opacity: 1;\n    -webkit-transform: scale3d(1.03, 1.03, 1.03);\n    transform: scale3d(1.03, 1.03, 1.03);\n  }\n\n  80% {\n    -webkit-transform: scale3d(0.97, 0.97, 0.97);\n    transform: scale3d(0.97, 0.97, 0.97);\n  }\n\n  to {\n    opacity: 1;\n    -webkit-transform: scale3d(1, 1, 1);\n    transform: scale3d(1, 1, 1);\n  }\n}\n@keyframes bounceIn {\n  from,\n  20%,\n  40%,\n  60%,\n  80%,\n  to {\n    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n  }\n\n  0% {\n    opacity: 0;\n    -webkit-transform: scale3d(0.3, 0.3, 0.3);\n    transform: scale3d(0.3, 0.3, 0.3);\n  }\n\n  20% {\n    -webkit-transform: scale3d(1.1, 1.1, 1.1);\n    transform: scale3d(1.1, 1.1, 1.1);\n  }\n\n  40% {\n    -webkit-transform: scale3d(0.9, 0.9, 0.9);\n    transform: scale3d(0.9, 0.9, 0.9);\n  }\n\n  60% {\n    opacity: 1;\n    -webkit-transform: scale3d(1.03, 1.03, 1.03);\n    transform: scale3d(1.03, 1.03, 1.03);\n  }\n\n  80% {\n    -webkit-transform: scale3d(0.97, 0.97, 0.97);\n    transform: scale3d(0.97, 0.97, 0.97);\n  }\n\n  to {\n    opacity: 1;\n    -webkit-transform: scale3d(1, 1, 1);\n    transform: scale3d(1, 1, 1);\n  }\n}\n.animate__bounceIn {\n  -webkit-animation-duration: calc(1s * 0.75);\n  animation-duration: calc(1s * 0.75);\n  -webkit-animation-duration: calc(var(--animate-duration) * 0.75);\n  animation-duration: calc(var(--animate-duration) * 0.75);\n  -webkit-animation-name: bounceIn;\n  animation-name: bounceIn;\n}\n@-webkit-keyframes bounceInDown {\n  from,\n  60%,\n  75%,\n  90%,\n  to {\n    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n  }\n\n  0% {\n    opacity: 0;\n    -webkit-transform: translate3d(0, -3000px, 0) scaleY(3);\n    transform: translate3d(0, -3000px, 0) scaleY(3);\n  }\n\n  60% {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 25px, 0) scaleY(0.9);\n    transform: translate3d(0, 25px, 0) scaleY(0.9);\n  }\n\n  75% {\n    -webkit-transform: translate3d(0, -10px, 0) scaleY(0.95);\n    transform: translate3d(0, -10px, 0) scaleY(0.95);\n  }\n\n  90% {\n    -webkit-transform: translate3d(0, 5px, 0) scaleY(0.985);\n    transform: translate3d(0, 5px, 0) scaleY(0.985);\n  }\n\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n@keyframes bounceInDown {\n  from,\n  60%,\n  75%,\n  90%,\n  to {\n    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n  }\n\n  0% {\n    opacity: 0;\n    -webkit-transform: translate3d(0, -3000px, 0) scaleY(3);\n    transform: translate3d(0, -3000px, 0) scaleY(3);\n  }\n\n  60% {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 25px, 0) scaleY(0.9);\n    transform: translate3d(0, 25px, 0) scaleY(0.9);\n  }\n\n  75% {\n    -webkit-transform: translate3d(0, -10px, 0) scaleY(0.95);\n    transform: translate3d(0, -10px, 0) scaleY(0.95);\n  }\n\n  90% {\n    -webkit-transform: translate3d(0, 5px, 0) scaleY(0.985);\n    transform: translate3d(0, 5px, 0) scaleY(0.985);\n  }\n\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n.animate__bounceInDown {\n  -webkit-animation-name: bounceInDown;\n  animation-name: bounceInDown;\n}\n@-webkit-keyframes bounceInLeft {\n  from,\n  60%,\n  75%,\n  90%,\n  to {\n    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n  }\n\n  0% {\n    opacity: 0;\n    -webkit-transform: translate3d(-3000px, 0, 0) scaleX(3);\n    transform: translate3d(-3000px, 0, 0) scaleX(3);\n  }\n\n  60% {\n    opacity: 1;\n    -webkit-transform: translate3d(25px, 0, 0) scaleX(1);\n    transform: translate3d(25px, 0, 0) scaleX(1);\n  }\n\n  75% {\n    -webkit-transform: translate3d(-10px, 0, 0) scaleX(0.98);\n    transform: translate3d(-10px, 0, 0) scaleX(0.98);\n  }\n\n  90% {\n    -webkit-transform: translate3d(5px, 0, 0) scaleX(0.995);\n    transform: translate3d(5px, 0, 0) scaleX(0.995);\n  }\n\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n@keyframes bounceInLeft {\n  from,\n  60%,\n  75%,\n  90%,\n  to {\n    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n  }\n\n  0% {\n    opacity: 0;\n    -webkit-transform: translate3d(-3000px, 0, 0) scaleX(3);\n    transform: translate3d(-3000px, 0, 0) scaleX(3);\n  }\n\n  60% {\n    opacity: 1;\n    -webkit-transform: translate3d(25px, 0, 0) scaleX(1);\n    transform: translate3d(25px, 0, 0) scaleX(1);\n  }\n\n  75% {\n    -webkit-transform: translate3d(-10px, 0, 0) scaleX(0.98);\n    transform: translate3d(-10px, 0, 0) scaleX(0.98);\n  }\n\n  90% {\n    -webkit-transform: translate3d(5px, 0, 0) scaleX(0.995);\n    transform: translate3d(5px, 0, 0) scaleX(0.995);\n  }\n\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n.animate__bounceInLeft {\n  -webkit-animation-name: bounceInLeft;\n  animation-name: bounceInLeft;\n}\n@-webkit-keyframes bounceInRight {\n  from,\n  60%,\n  75%,\n  90%,\n  to {\n    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n  }\n\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(3000px, 0, 0) scaleX(3);\n    transform: translate3d(3000px, 0, 0) scaleX(3);\n  }\n\n  60% {\n    opacity: 1;\n    -webkit-transform: translate3d(-25px, 0, 0) scaleX(1);\n    transform: translate3d(-25px, 0, 0) scaleX(1);\n  }\n\n  75% {\n    -webkit-transform: translate3d(10px, 0, 0) scaleX(0.98);\n    transform: translate3d(10px, 0, 0) scaleX(0.98);\n  }\n\n  90% {\n    -webkit-transform: translate3d(-5px, 0, 0) scaleX(0.995);\n    transform: translate3d(-5px, 0, 0) scaleX(0.995);\n  }\n\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n@keyframes bounceInRight {\n  from,\n  60%,\n  75%,\n  90%,\n  to {\n    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n  }\n\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(3000px, 0, 0) scaleX(3);\n    transform: translate3d(3000px, 0, 0) scaleX(3);\n  }\n\n  60% {\n    opacity: 1;\n    -webkit-transform: translate3d(-25px, 0, 0) scaleX(1);\n    transform: translate3d(-25px, 0, 0) scaleX(1);\n  }\n\n  75% {\n    -webkit-transform: translate3d(10px, 0, 0) scaleX(0.98);\n    transform: translate3d(10px, 0, 0) scaleX(0.98);\n  }\n\n  90% {\n    -webkit-transform: translate3d(-5px, 0, 0) scaleX(0.995);\n    transform: translate3d(-5px, 0, 0) scaleX(0.995);\n  }\n\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n.animate__bounceInRight {\n  -webkit-animation-name: bounceInRight;\n  animation-name: bounceInRight;\n}\n@-webkit-keyframes bounceInUp {\n  from,\n  60%,\n  75%,\n  90%,\n  to {\n    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n  }\n\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(0, 3000px, 0) scaleY(5);\n    transform: translate3d(0, 3000px, 0) scaleY(5);\n  }\n\n  60% {\n    opacity: 1;\n    -webkit-transform: translate3d(0, -20px, 0) scaleY(0.9);\n    transform: translate3d(0, -20px, 0) scaleY(0.9);\n  }\n\n  75% {\n    -webkit-transform: translate3d(0, 10px, 0) scaleY(0.95);\n    transform: translate3d(0, 10px, 0) scaleY(0.95);\n  }\n\n  90% {\n    -webkit-transform: translate3d(0, -5px, 0) scaleY(0.985);\n    transform: translate3d(0, -5px, 0) scaleY(0.985);\n  }\n\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n@keyframes bounceInUp {\n  from,\n  60%,\n  75%,\n  90%,\n  to {\n    -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n    animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);\n  }\n\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(0, 3000px, 0) scaleY(5);\n    transform: translate3d(0, 3000px, 0) scaleY(5);\n  }\n\n  60% {\n    opacity: 1;\n    -webkit-transform: translate3d(0, -20px, 0) scaleY(0.9);\n    transform: translate3d(0, -20px, 0) scaleY(0.9);\n  }\n\n  75% {\n    -webkit-transform: translate3d(0, 10px, 0) scaleY(0.95);\n    transform: translate3d(0, 10px, 0) scaleY(0.95);\n  }\n\n  90% {\n    -webkit-transform: translate3d(0, -5px, 0) scaleY(0.985);\n    transform: translate3d(0, -5px, 0) scaleY(0.985);\n  }\n\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n.animate__bounceInUp {\n  -webkit-animation-name: bounceInUp;\n  animation-name: bounceInUp;\n}\n/* Bouncing exits  */\n@-webkit-keyframes bounceOut {\n  20% {\n    -webkit-transform: scale3d(0.9, 0.9, 0.9);\n    transform: scale3d(0.9, 0.9, 0.9);\n  }\n\n  50%,\n  55% {\n    opacity: 1;\n    -webkit-transform: scale3d(1.1, 1.1, 1.1);\n    transform: scale3d(1.1, 1.1, 1.1);\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: scale3d(0.3, 0.3, 0.3);\n    transform: scale3d(0.3, 0.3, 0.3);\n  }\n}\n@keyframes bounceOut {\n  20% {\n    -webkit-transform: scale3d(0.9, 0.9, 0.9);\n    transform: scale3d(0.9, 0.9, 0.9);\n  }\n\n  50%,\n  55% {\n    opacity: 1;\n    -webkit-transform: scale3d(1.1, 1.1, 1.1);\n    transform: scale3d(1.1, 1.1, 1.1);\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: scale3d(0.3, 0.3, 0.3);\n    transform: scale3d(0.3, 0.3, 0.3);\n  }\n}\n.animate__bounceOut {\n  -webkit-animation-duration: calc(1s * 0.75);\n  animation-duration: calc(1s * 0.75);\n  -webkit-animation-duration: calc(var(--animate-duration) * 0.75);\n  animation-duration: calc(var(--animate-duration) * 0.75);\n  -webkit-animation-name: bounceOut;\n  animation-name: bounceOut;\n}\n@-webkit-keyframes bounceOutDown {\n  20% {\n    -webkit-transform: translate3d(0, 10px, 0) scaleY(0.985);\n    transform: translate3d(0, 10px, 0) scaleY(0.985);\n  }\n\n  40%,\n  45% {\n    opacity: 1;\n    -webkit-transform: translate3d(0, -20px, 0) scaleY(0.9);\n    transform: translate3d(0, -20px, 0) scaleY(0.9);\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(0, 2000px, 0) scaleY(3);\n    transform: translate3d(0, 2000px, 0) scaleY(3);\n  }\n}\n@keyframes bounceOutDown {\n  20% {\n    -webkit-transform: translate3d(0, 10px, 0) scaleY(0.985);\n    transform: translate3d(0, 10px, 0) scaleY(0.985);\n  }\n\n  40%,\n  45% {\n    opacity: 1;\n    -webkit-transform: translate3d(0, -20px, 0) scaleY(0.9);\n    transform: translate3d(0, -20px, 0) scaleY(0.9);\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(0, 2000px, 0) scaleY(3);\n    transform: translate3d(0, 2000px, 0) scaleY(3);\n  }\n}\n.animate__bounceOutDown {\n  -webkit-animation-name: bounceOutDown;\n  animation-name: bounceOutDown;\n}\n@-webkit-keyframes bounceOutLeft {\n  20% {\n    opacity: 1;\n    -webkit-transform: translate3d(20px, 0, 0) scaleX(0.9);\n    transform: translate3d(20px, 0, 0) scaleX(0.9);\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(-2000px, 0, 0) scaleX(2);\n    transform: translate3d(-2000px, 0, 0) scaleX(2);\n  }\n}\n@keyframes bounceOutLeft {\n  20% {\n    opacity: 1;\n    -webkit-transform: translate3d(20px, 0, 0) scaleX(0.9);\n    transform: translate3d(20px, 0, 0) scaleX(0.9);\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(-2000px, 0, 0) scaleX(2);\n    transform: translate3d(-2000px, 0, 0) scaleX(2);\n  }\n}\n.animate__bounceOutLeft {\n  -webkit-animation-name: bounceOutLeft;\n  animation-name: bounceOutLeft;\n}\n@-webkit-keyframes bounceOutRight {\n  20% {\n    opacity: 1;\n    -webkit-transform: translate3d(-20px, 0, 0) scaleX(0.9);\n    transform: translate3d(-20px, 0, 0) scaleX(0.9);\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(2000px, 0, 0) scaleX(2);\n    transform: translate3d(2000px, 0, 0) scaleX(2);\n  }\n}\n@keyframes bounceOutRight {\n  20% {\n    opacity: 1;\n    -webkit-transform: translate3d(-20px, 0, 0) scaleX(0.9);\n    transform: translate3d(-20px, 0, 0) scaleX(0.9);\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(2000px, 0, 0) scaleX(2);\n    transform: translate3d(2000px, 0, 0) scaleX(2);\n  }\n}\n.animate__bounceOutRight {\n  -webkit-animation-name: bounceOutRight;\n  animation-name: bounceOutRight;\n}\n@-webkit-keyframes bounceOutUp {\n  20% {\n    -webkit-transform: translate3d(0, -10px, 0) scaleY(0.985);\n    transform: translate3d(0, -10px, 0) scaleY(0.985);\n  }\n\n  40%,\n  45% {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 20px, 0) scaleY(0.9);\n    transform: translate3d(0, 20px, 0) scaleY(0.9);\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(0, -2000px, 0) scaleY(3);\n    transform: translate3d(0, -2000px, 0) scaleY(3);\n  }\n}\n@keyframes bounceOutUp {\n  20% {\n    -webkit-transform: translate3d(0, -10px, 0) scaleY(0.985);\n    transform: translate3d(0, -10px, 0) scaleY(0.985);\n  }\n\n  40%,\n  45% {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 20px, 0) scaleY(0.9);\n    transform: translate3d(0, 20px, 0) scaleY(0.9);\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(0, -2000px, 0) scaleY(3);\n    transform: translate3d(0, -2000px, 0) scaleY(3);\n  }\n}\n.animate__bounceOutUp {\n  -webkit-animation-name: bounceOutUp;\n  animation-name: bounceOutUp;\n}\n/* Fading entrances  */\n@-webkit-keyframes fadeIn {\n  from {\n    opacity: 0;\n  }\n\n  to {\n    opacity: 1;\n  }\n}\n@keyframes fadeIn {\n  from {\n    opacity: 0;\n  }\n\n  to {\n    opacity: 1;\n  }\n}\n.animate__fadeIn {\n  -webkit-animation-name: fadeIn;\n  animation-name: fadeIn;\n}\n@-webkit-keyframes fadeInDown {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(0, -100%, 0);\n    transform: translate3d(0, -100%, 0);\n  }\n\n  to {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n@keyframes fadeInDown {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(0, -100%, 0);\n    transform: translate3d(0, -100%, 0);\n  }\n\n  to {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n.animate__fadeInDown {\n  -webkit-animation-name: fadeInDown;\n  animation-name: fadeInDown;\n}\n@-webkit-keyframes fadeInDownBig {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(0, -2000px, 0);\n    transform: translate3d(0, -2000px, 0);\n  }\n\n  to {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n@keyframes fadeInDownBig {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(0, -2000px, 0);\n    transform: translate3d(0, -2000px, 0);\n  }\n\n  to {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n.animate__fadeInDownBig {\n  -webkit-animation-name: fadeInDownBig;\n  animation-name: fadeInDownBig;\n}\n@-webkit-keyframes fadeInLeft {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(-100%, 0, 0);\n    transform: translate3d(-100%, 0, 0);\n  }\n\n  to {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n@keyframes fadeInLeft {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(-100%, 0, 0);\n    transform: translate3d(-100%, 0, 0);\n  }\n\n  to {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n.animate__fadeInLeft {\n  -webkit-animation-name: fadeInLeft;\n  animation-name: fadeInLeft;\n}\n@-webkit-keyframes fadeInLeftBig {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(-2000px, 0, 0);\n    transform: translate3d(-2000px, 0, 0);\n  }\n\n  to {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n@keyframes fadeInLeftBig {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(-2000px, 0, 0);\n    transform: translate3d(-2000px, 0, 0);\n  }\n\n  to {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n.animate__fadeInLeftBig {\n  -webkit-animation-name: fadeInLeftBig;\n  animation-name: fadeInLeftBig;\n}\n@-webkit-keyframes fadeInRight {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(100%, 0, 0);\n    transform: translate3d(100%, 0, 0);\n  }\n\n  to {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n@keyframes fadeInRight {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(100%, 0, 0);\n    transform: translate3d(100%, 0, 0);\n  }\n\n  to {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n.animate__fadeInRight {\n  -webkit-animation-name: fadeInRight;\n  animation-name: fadeInRight;\n}\n@-webkit-keyframes fadeInRightBig {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(2000px, 0, 0);\n    transform: translate3d(2000px, 0, 0);\n  }\n\n  to {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n@keyframes fadeInRightBig {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(2000px, 0, 0);\n    transform: translate3d(2000px, 0, 0);\n  }\n\n  to {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n.animate__fadeInRightBig {\n  -webkit-animation-name: fadeInRightBig;\n  animation-name: fadeInRightBig;\n}\n@-webkit-keyframes fadeInUp {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(0, 100%, 0);\n    transform: translate3d(0, 100%, 0);\n  }\n\n  to {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n@keyframes fadeInUp {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(0, 100%, 0);\n    transform: translate3d(0, 100%, 0);\n  }\n\n  to {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n.animate__fadeInUp {\n  -webkit-animation-name: fadeInUp;\n  animation-name: fadeInUp;\n}\n@-webkit-keyframes fadeInUpBig {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(0, 2000px, 0);\n    transform: translate3d(0, 2000px, 0);\n  }\n\n  to {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n@keyframes fadeInUpBig {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(0, 2000px, 0);\n    transform: translate3d(0, 2000px, 0);\n  }\n\n  to {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n.animate__fadeInUpBig {\n  -webkit-animation-name: fadeInUpBig;\n  animation-name: fadeInUpBig;\n}\n@-webkit-keyframes fadeInTopLeft {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(-100%, -100%, 0);\n    transform: translate3d(-100%, -100%, 0);\n  }\n  to {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n@keyframes fadeInTopLeft {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(-100%, -100%, 0);\n    transform: translate3d(-100%, -100%, 0);\n  }\n  to {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n.animate__fadeInTopLeft {\n  -webkit-animation-name: fadeInTopLeft;\n  animation-name: fadeInTopLeft;\n}\n@-webkit-keyframes fadeInTopRight {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(100%, -100%, 0);\n    transform: translate3d(100%, -100%, 0);\n  }\n  to {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n@keyframes fadeInTopRight {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(100%, -100%, 0);\n    transform: translate3d(100%, -100%, 0);\n  }\n  to {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n.animate__fadeInTopRight {\n  -webkit-animation-name: fadeInTopRight;\n  animation-name: fadeInTopRight;\n}\n@-webkit-keyframes fadeInBottomLeft {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(-100%, 100%, 0);\n    transform: translate3d(-100%, 100%, 0);\n  }\n  to {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n@keyframes fadeInBottomLeft {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(-100%, 100%, 0);\n    transform: translate3d(-100%, 100%, 0);\n  }\n  to {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n.animate__fadeInBottomLeft {\n  -webkit-animation-name: fadeInBottomLeft;\n  animation-name: fadeInBottomLeft;\n}\n@-webkit-keyframes fadeInBottomRight {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(100%, 100%, 0);\n    transform: translate3d(100%, 100%, 0);\n  }\n  to {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n@keyframes fadeInBottomRight {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(100%, 100%, 0);\n    transform: translate3d(100%, 100%, 0);\n  }\n  to {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n.animate__fadeInBottomRight {\n  -webkit-animation-name: fadeInBottomRight;\n  animation-name: fadeInBottomRight;\n}\n/* Fading exits */\n@-webkit-keyframes fadeOut {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    opacity: 0;\n  }\n}\n@keyframes fadeOut {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    opacity: 0;\n  }\n}\n.animate__fadeOut {\n  -webkit-animation-name: fadeOut;\n  animation-name: fadeOut;\n}\n@-webkit-keyframes fadeOutDown {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(0, 100%, 0);\n    transform: translate3d(0, 100%, 0);\n  }\n}\n@keyframes fadeOutDown {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(0, 100%, 0);\n    transform: translate3d(0, 100%, 0);\n  }\n}\n.animate__fadeOutDown {\n  -webkit-animation-name: fadeOutDown;\n  animation-name: fadeOutDown;\n}\n@-webkit-keyframes fadeOutDownBig {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(0, 2000px, 0);\n    transform: translate3d(0, 2000px, 0);\n  }\n}\n@keyframes fadeOutDownBig {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(0, 2000px, 0);\n    transform: translate3d(0, 2000px, 0);\n  }\n}\n.animate__fadeOutDownBig {\n  -webkit-animation-name: fadeOutDownBig;\n  animation-name: fadeOutDownBig;\n}\n@-webkit-keyframes fadeOutLeft {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(-100%, 0, 0);\n    transform: translate3d(-100%, 0, 0);\n  }\n}\n@keyframes fadeOutLeft {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(-100%, 0, 0);\n    transform: translate3d(-100%, 0, 0);\n  }\n}\n.animate__fadeOutLeft {\n  -webkit-animation-name: fadeOutLeft;\n  animation-name: fadeOutLeft;\n}\n@-webkit-keyframes fadeOutLeftBig {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(-2000px, 0, 0);\n    transform: translate3d(-2000px, 0, 0);\n  }\n}\n@keyframes fadeOutLeftBig {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(-2000px, 0, 0);\n    transform: translate3d(-2000px, 0, 0);\n  }\n}\n.animate__fadeOutLeftBig {\n  -webkit-animation-name: fadeOutLeftBig;\n  animation-name: fadeOutLeftBig;\n}\n@-webkit-keyframes fadeOutRight {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(100%, 0, 0);\n    transform: translate3d(100%, 0, 0);\n  }\n}\n@keyframes fadeOutRight {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(100%, 0, 0);\n    transform: translate3d(100%, 0, 0);\n  }\n}\n.animate__fadeOutRight {\n  -webkit-animation-name: fadeOutRight;\n  animation-name: fadeOutRight;\n}\n@-webkit-keyframes fadeOutRightBig {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(2000px, 0, 0);\n    transform: translate3d(2000px, 0, 0);\n  }\n}\n@keyframes fadeOutRightBig {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(2000px, 0, 0);\n    transform: translate3d(2000px, 0, 0);\n  }\n}\n.animate__fadeOutRightBig {\n  -webkit-animation-name: fadeOutRightBig;\n  animation-name: fadeOutRightBig;\n}\n@-webkit-keyframes fadeOutUp {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(0, -100%, 0);\n    transform: translate3d(0, -100%, 0);\n  }\n}\n@keyframes fadeOutUp {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(0, -100%, 0);\n    transform: translate3d(0, -100%, 0);\n  }\n}\n.animate__fadeOutUp {\n  -webkit-animation-name: fadeOutUp;\n  animation-name: fadeOutUp;\n}\n@-webkit-keyframes fadeOutUpBig {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(0, -2000px, 0);\n    transform: translate3d(0, -2000px, 0);\n  }\n}\n@keyframes fadeOutUpBig {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(0, -2000px, 0);\n    transform: translate3d(0, -2000px, 0);\n  }\n}\n.animate__fadeOutUpBig {\n  -webkit-animation-name: fadeOutUpBig;\n  animation-name: fadeOutUpBig;\n}\n@-webkit-keyframes fadeOutTopLeft {\n  from {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(-100%, -100%, 0);\n    transform: translate3d(-100%, -100%, 0);\n  }\n}\n@keyframes fadeOutTopLeft {\n  from {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(-100%, -100%, 0);\n    transform: translate3d(-100%, -100%, 0);\n  }\n}\n.animate__fadeOutTopLeft {\n  -webkit-animation-name: fadeOutTopLeft;\n  animation-name: fadeOutTopLeft;\n}\n@-webkit-keyframes fadeOutTopRight {\n  from {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(100%, -100%, 0);\n    transform: translate3d(100%, -100%, 0);\n  }\n}\n@keyframes fadeOutTopRight {\n  from {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(100%, -100%, 0);\n    transform: translate3d(100%, -100%, 0);\n  }\n}\n.animate__fadeOutTopRight {\n  -webkit-animation-name: fadeOutTopRight;\n  animation-name: fadeOutTopRight;\n}\n@-webkit-keyframes fadeOutBottomRight {\n  from {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(100%, 100%, 0);\n    transform: translate3d(100%, 100%, 0);\n  }\n}\n@keyframes fadeOutBottomRight {\n  from {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(100%, 100%, 0);\n    transform: translate3d(100%, 100%, 0);\n  }\n}\n.animate__fadeOutBottomRight {\n  -webkit-animation-name: fadeOutBottomRight;\n  animation-name: fadeOutBottomRight;\n}\n@-webkit-keyframes fadeOutBottomLeft {\n  from {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(-100%, 100%, 0);\n    transform: translate3d(-100%, 100%, 0);\n  }\n}\n@keyframes fadeOutBottomLeft {\n  from {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(-100%, 100%, 0);\n    transform: translate3d(-100%, 100%, 0);\n  }\n}\n.animate__fadeOutBottomLeft {\n  -webkit-animation-name: fadeOutBottomLeft;\n  animation-name: fadeOutBottomLeft;\n}\n/* Flippers */\n@-webkit-keyframes flip {\n  from {\n    -webkit-transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0) rotate3d(0, 1, 0, -360deg);\n    transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0) rotate3d(0, 1, 0, -360deg);\n    -webkit-animation-timing-function: ease-out;\n    animation-timing-function: ease-out;\n  }\n\n  40% {\n    -webkit-transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 150px)\n      rotate3d(0, 1, 0, -190deg);\n    transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 150px)\n      rotate3d(0, 1, 0, -190deg);\n    -webkit-animation-timing-function: ease-out;\n    animation-timing-function: ease-out;\n  }\n\n  50% {\n    -webkit-transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 150px)\n      rotate3d(0, 1, 0, -170deg);\n    transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 150px)\n      rotate3d(0, 1, 0, -170deg);\n    -webkit-animation-timing-function: ease-in;\n    animation-timing-function: ease-in;\n  }\n\n  80% {\n    -webkit-transform: perspective(400px) scale3d(0.95, 0.95, 0.95) translate3d(0, 0, 0)\n      rotate3d(0, 1, 0, 0deg);\n    transform: perspective(400px) scale3d(0.95, 0.95, 0.95) translate3d(0, 0, 0)\n      rotate3d(0, 1, 0, 0deg);\n    -webkit-animation-timing-function: ease-in;\n    animation-timing-function: ease-in;\n  }\n\n  to {\n    -webkit-transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0) rotate3d(0, 1, 0, 0deg);\n    transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0) rotate3d(0, 1, 0, 0deg);\n    -webkit-animation-timing-function: ease-in;\n    animation-timing-function: ease-in;\n  }\n}\n@keyframes flip {\n  from {\n    -webkit-transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0) rotate3d(0, 1, 0, -360deg);\n    transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0) rotate3d(0, 1, 0, -360deg);\n    -webkit-animation-timing-function: ease-out;\n    animation-timing-function: ease-out;\n  }\n\n  40% {\n    -webkit-transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 150px)\n      rotate3d(0, 1, 0, -190deg);\n    transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 150px)\n      rotate3d(0, 1, 0, -190deg);\n    -webkit-animation-timing-function: ease-out;\n    animation-timing-function: ease-out;\n  }\n\n  50% {\n    -webkit-transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 150px)\n      rotate3d(0, 1, 0, -170deg);\n    transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 150px)\n      rotate3d(0, 1, 0, -170deg);\n    -webkit-animation-timing-function: ease-in;\n    animation-timing-function: ease-in;\n  }\n\n  80% {\n    -webkit-transform: perspective(400px) scale3d(0.95, 0.95, 0.95) translate3d(0, 0, 0)\n      rotate3d(0, 1, 0, 0deg);\n    transform: perspective(400px) scale3d(0.95, 0.95, 0.95) translate3d(0, 0, 0)\n      rotate3d(0, 1, 0, 0deg);\n    -webkit-animation-timing-function: ease-in;\n    animation-timing-function: ease-in;\n  }\n\n  to {\n    -webkit-transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0) rotate3d(0, 1, 0, 0deg);\n    transform: perspective(400px) scale3d(1, 1, 1) translate3d(0, 0, 0) rotate3d(0, 1, 0, 0deg);\n    -webkit-animation-timing-function: ease-in;\n    animation-timing-function: ease-in;\n  }\n}\n.animate__animated.animate__flip {\n  -webkit-backface-visibility: visible;\n  backface-visibility: visible;\n  -webkit-animation-name: flip;\n  animation-name: flip;\n}\n@-webkit-keyframes flipInX {\n  from {\n    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);\n    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);\n    -webkit-animation-timing-function: ease-in;\n    animation-timing-function: ease-in;\n    opacity: 0;\n  }\n\n  40% {\n    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);\n    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);\n    -webkit-animation-timing-function: ease-in;\n    animation-timing-function: ease-in;\n  }\n\n  60% {\n    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);\n    transform: perspective(400px) rotate3d(1, 0, 0, 10deg);\n    opacity: 1;\n  }\n\n  80% {\n    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -5deg);\n    transform: perspective(400px) rotate3d(1, 0, 0, -5deg);\n  }\n\n  to {\n    -webkit-transform: perspective(400px);\n    transform: perspective(400px);\n  }\n}\n@keyframes flipInX {\n  from {\n    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);\n    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);\n    -webkit-animation-timing-function: ease-in;\n    animation-timing-function: ease-in;\n    opacity: 0;\n  }\n\n  40% {\n    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);\n    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);\n    -webkit-animation-timing-function: ease-in;\n    animation-timing-function: ease-in;\n  }\n\n  60% {\n    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);\n    transform: perspective(400px) rotate3d(1, 0, 0, 10deg);\n    opacity: 1;\n  }\n\n  80% {\n    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -5deg);\n    transform: perspective(400px) rotate3d(1, 0, 0, -5deg);\n  }\n\n  to {\n    -webkit-transform: perspective(400px);\n    transform: perspective(400px);\n  }\n}\n.animate__flipInX {\n  -webkit-backface-visibility: visible !important;\n  backface-visibility: visible !important;\n  -webkit-animation-name: flipInX;\n  animation-name: flipInX;\n}\n@-webkit-keyframes flipInY {\n  from {\n    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, 90deg);\n    transform: perspective(400px) rotate3d(0, 1, 0, 90deg);\n    -webkit-animation-timing-function: ease-in;\n    animation-timing-function: ease-in;\n    opacity: 0;\n  }\n\n  40% {\n    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -20deg);\n    transform: perspective(400px) rotate3d(0, 1, 0, -20deg);\n    -webkit-animation-timing-function: ease-in;\n    animation-timing-function: ease-in;\n  }\n\n  60% {\n    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, 10deg);\n    transform: perspective(400px) rotate3d(0, 1, 0, 10deg);\n    opacity: 1;\n  }\n\n  80% {\n    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -5deg);\n    transform: perspective(400px) rotate3d(0, 1, 0, -5deg);\n  }\n\n  to {\n    -webkit-transform: perspective(400px);\n    transform: perspective(400px);\n  }\n}\n@keyframes flipInY {\n  from {\n    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, 90deg);\n    transform: perspective(400px) rotate3d(0, 1, 0, 90deg);\n    -webkit-animation-timing-function: ease-in;\n    animation-timing-function: ease-in;\n    opacity: 0;\n  }\n\n  40% {\n    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -20deg);\n    transform: perspective(400px) rotate3d(0, 1, 0, -20deg);\n    -webkit-animation-timing-function: ease-in;\n    animation-timing-function: ease-in;\n  }\n\n  60% {\n    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, 10deg);\n    transform: perspective(400px) rotate3d(0, 1, 0, 10deg);\n    opacity: 1;\n  }\n\n  80% {\n    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -5deg);\n    transform: perspective(400px) rotate3d(0, 1, 0, -5deg);\n  }\n\n  to {\n    -webkit-transform: perspective(400px);\n    transform: perspective(400px);\n  }\n}\n.animate__flipInY {\n  -webkit-backface-visibility: visible !important;\n  backface-visibility: visible !important;\n  -webkit-animation-name: flipInY;\n  animation-name: flipInY;\n}\n@-webkit-keyframes flipOutX {\n  from {\n    -webkit-transform: perspective(400px);\n    transform: perspective(400px);\n  }\n\n  30% {\n    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);\n    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);\n    opacity: 1;\n  }\n\n  to {\n    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);\n    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);\n    opacity: 0;\n  }\n}\n@keyframes flipOutX {\n  from {\n    -webkit-transform: perspective(400px);\n    transform: perspective(400px);\n  }\n\n  30% {\n    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);\n    transform: perspective(400px) rotate3d(1, 0, 0, -20deg);\n    opacity: 1;\n  }\n\n  to {\n    -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);\n    transform: perspective(400px) rotate3d(1, 0, 0, 90deg);\n    opacity: 0;\n  }\n}\n.animate__flipOutX {\n  -webkit-animation-duration: calc(1s * 0.75);\n  animation-duration: calc(1s * 0.75);\n  -webkit-animation-duration: calc(var(--animate-duration) * 0.75);\n  animation-duration: calc(var(--animate-duration) * 0.75);\n  -webkit-animation-name: flipOutX;\n  animation-name: flipOutX;\n  -webkit-backface-visibility: visible !important;\n  backface-visibility: visible !important;\n}\n@-webkit-keyframes flipOutY {\n  from {\n    -webkit-transform: perspective(400px);\n    transform: perspective(400px);\n  }\n\n  30% {\n    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -15deg);\n    transform: perspective(400px) rotate3d(0, 1, 0, -15deg);\n    opacity: 1;\n  }\n\n  to {\n    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, 90deg);\n    transform: perspective(400px) rotate3d(0, 1, 0, 90deg);\n    opacity: 0;\n  }\n}\n@keyframes flipOutY {\n  from {\n    -webkit-transform: perspective(400px);\n    transform: perspective(400px);\n  }\n\n  30% {\n    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -15deg);\n    transform: perspective(400px) rotate3d(0, 1, 0, -15deg);\n    opacity: 1;\n  }\n\n  to {\n    -webkit-transform: perspective(400px) rotate3d(0, 1, 0, 90deg);\n    transform: perspective(400px) rotate3d(0, 1, 0, 90deg);\n    opacity: 0;\n  }\n}\n.animate__flipOutY {\n  -webkit-animation-duration: calc(1s * 0.75);\n  animation-duration: calc(1s * 0.75);\n  -webkit-animation-duration: calc(var(--animate-duration) * 0.75);\n  animation-duration: calc(var(--animate-duration) * 0.75);\n  -webkit-backface-visibility: visible !important;\n  backface-visibility: visible !important;\n  -webkit-animation-name: flipOutY;\n  animation-name: flipOutY;\n}\n/* Lightspeed */\n@-webkit-keyframes lightSpeedInRight {\n  from {\n    -webkit-transform: translate3d(100%, 0, 0) skewX(-30deg);\n    transform: translate3d(100%, 0, 0) skewX(-30deg);\n    opacity: 0;\n  }\n\n  60% {\n    -webkit-transform: skewX(20deg);\n    transform: skewX(20deg);\n    opacity: 1;\n  }\n\n  80% {\n    -webkit-transform: skewX(-5deg);\n    transform: skewX(-5deg);\n  }\n\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n@keyframes lightSpeedInRight {\n  from {\n    -webkit-transform: translate3d(100%, 0, 0) skewX(-30deg);\n    transform: translate3d(100%, 0, 0) skewX(-30deg);\n    opacity: 0;\n  }\n\n  60% {\n    -webkit-transform: skewX(20deg);\n    transform: skewX(20deg);\n    opacity: 1;\n  }\n\n  80% {\n    -webkit-transform: skewX(-5deg);\n    transform: skewX(-5deg);\n  }\n\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n.animate__lightSpeedInRight {\n  -webkit-animation-name: lightSpeedInRight;\n  animation-name: lightSpeedInRight;\n  -webkit-animation-timing-function: ease-out;\n  animation-timing-function: ease-out;\n}\n@-webkit-keyframes lightSpeedInLeft {\n  from {\n    -webkit-transform: translate3d(-100%, 0, 0) skewX(30deg);\n    transform: translate3d(-100%, 0, 0) skewX(30deg);\n    opacity: 0;\n  }\n\n  60% {\n    -webkit-transform: skewX(-20deg);\n    transform: skewX(-20deg);\n    opacity: 1;\n  }\n\n  80% {\n    -webkit-transform: skewX(5deg);\n    transform: skewX(5deg);\n  }\n\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n@keyframes lightSpeedInLeft {\n  from {\n    -webkit-transform: translate3d(-100%, 0, 0) skewX(30deg);\n    transform: translate3d(-100%, 0, 0) skewX(30deg);\n    opacity: 0;\n  }\n\n  60% {\n    -webkit-transform: skewX(-20deg);\n    transform: skewX(-20deg);\n    opacity: 1;\n  }\n\n  80% {\n    -webkit-transform: skewX(5deg);\n    transform: skewX(5deg);\n  }\n\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n.animate__lightSpeedInLeft {\n  -webkit-animation-name: lightSpeedInLeft;\n  animation-name: lightSpeedInLeft;\n  -webkit-animation-timing-function: ease-out;\n  animation-timing-function: ease-out;\n}\n@-webkit-keyframes lightSpeedOutRight {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    -webkit-transform: translate3d(100%, 0, 0) skewX(30deg);\n    transform: translate3d(100%, 0, 0) skewX(30deg);\n    opacity: 0;\n  }\n}\n@keyframes lightSpeedOutRight {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    -webkit-transform: translate3d(100%, 0, 0) skewX(30deg);\n    transform: translate3d(100%, 0, 0) skewX(30deg);\n    opacity: 0;\n  }\n}\n.animate__lightSpeedOutRight {\n  -webkit-animation-name: lightSpeedOutRight;\n  animation-name: lightSpeedOutRight;\n  -webkit-animation-timing-function: ease-in;\n  animation-timing-function: ease-in;\n}\n@-webkit-keyframes lightSpeedOutLeft {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    -webkit-transform: translate3d(-100%, 0, 0) skewX(-30deg);\n    transform: translate3d(-100%, 0, 0) skewX(-30deg);\n    opacity: 0;\n  }\n}\n@keyframes lightSpeedOutLeft {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    -webkit-transform: translate3d(-100%, 0, 0) skewX(-30deg);\n    transform: translate3d(-100%, 0, 0) skewX(-30deg);\n    opacity: 0;\n  }\n}\n.animate__lightSpeedOutLeft {\n  -webkit-animation-name: lightSpeedOutLeft;\n  animation-name: lightSpeedOutLeft;\n  -webkit-animation-timing-function: ease-in;\n  animation-timing-function: ease-in;\n}\n/* Rotating entrances */\n@-webkit-keyframes rotateIn {\n  from {\n    -webkit-transform: rotate3d(0, 0, 1, -200deg);\n    transform: rotate3d(0, 0, 1, -200deg);\n    opacity: 0;\n  }\n\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n    opacity: 1;\n  }\n}\n@keyframes rotateIn {\n  from {\n    -webkit-transform: rotate3d(0, 0, 1, -200deg);\n    transform: rotate3d(0, 0, 1, -200deg);\n    opacity: 0;\n  }\n\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n    opacity: 1;\n  }\n}\n.animate__rotateIn {\n  -webkit-animation-name: rotateIn;\n  animation-name: rotateIn;\n  -webkit-transform-origin: center;\n  transform-origin: center;\n}\n@-webkit-keyframes rotateInDownLeft {\n  from {\n    -webkit-transform: rotate3d(0, 0, 1, -45deg);\n    transform: rotate3d(0, 0, 1, -45deg);\n    opacity: 0;\n  }\n\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n    opacity: 1;\n  }\n}\n@keyframes rotateInDownLeft {\n  from {\n    -webkit-transform: rotate3d(0, 0, 1, -45deg);\n    transform: rotate3d(0, 0, 1, -45deg);\n    opacity: 0;\n  }\n\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n    opacity: 1;\n  }\n}\n.animate__rotateInDownLeft {\n  -webkit-animation-name: rotateInDownLeft;\n  animation-name: rotateInDownLeft;\n  -webkit-transform-origin: left bottom;\n  transform-origin: left bottom;\n}\n@-webkit-keyframes rotateInDownRight {\n  from {\n    -webkit-transform: rotate3d(0, 0, 1, 45deg);\n    transform: rotate3d(0, 0, 1, 45deg);\n    opacity: 0;\n  }\n\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n    opacity: 1;\n  }\n}\n@keyframes rotateInDownRight {\n  from {\n    -webkit-transform: rotate3d(0, 0, 1, 45deg);\n    transform: rotate3d(0, 0, 1, 45deg);\n    opacity: 0;\n  }\n\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n    opacity: 1;\n  }\n}\n.animate__rotateInDownRight {\n  -webkit-animation-name: rotateInDownRight;\n  animation-name: rotateInDownRight;\n  -webkit-transform-origin: right bottom;\n  transform-origin: right bottom;\n}\n@-webkit-keyframes rotateInUpLeft {\n  from {\n    -webkit-transform: rotate3d(0, 0, 1, 45deg);\n    transform: rotate3d(0, 0, 1, 45deg);\n    opacity: 0;\n  }\n\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n    opacity: 1;\n  }\n}\n@keyframes rotateInUpLeft {\n  from {\n    -webkit-transform: rotate3d(0, 0, 1, 45deg);\n    transform: rotate3d(0, 0, 1, 45deg);\n    opacity: 0;\n  }\n\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n    opacity: 1;\n  }\n}\n.animate__rotateInUpLeft {\n  -webkit-animation-name: rotateInUpLeft;\n  animation-name: rotateInUpLeft;\n  -webkit-transform-origin: left bottom;\n  transform-origin: left bottom;\n}\n@-webkit-keyframes rotateInUpRight {\n  from {\n    -webkit-transform: rotate3d(0, 0, 1, -90deg);\n    transform: rotate3d(0, 0, 1, -90deg);\n    opacity: 0;\n  }\n\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n    opacity: 1;\n  }\n}\n@keyframes rotateInUpRight {\n  from {\n    -webkit-transform: rotate3d(0, 0, 1, -90deg);\n    transform: rotate3d(0, 0, 1, -90deg);\n    opacity: 0;\n  }\n\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n    opacity: 1;\n  }\n}\n.animate__rotateInUpRight {\n  -webkit-animation-name: rotateInUpRight;\n  animation-name: rotateInUpRight;\n  -webkit-transform-origin: right bottom;\n  transform-origin: right bottom;\n}\n/* Rotating exits */\n@-webkit-keyframes rotateOut {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    -webkit-transform: rotate3d(0, 0, 1, 200deg);\n    transform: rotate3d(0, 0, 1, 200deg);\n    opacity: 0;\n  }\n}\n@keyframes rotateOut {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    -webkit-transform: rotate3d(0, 0, 1, 200deg);\n    transform: rotate3d(0, 0, 1, 200deg);\n    opacity: 0;\n  }\n}\n.animate__rotateOut {\n  -webkit-animation-name: rotateOut;\n  animation-name: rotateOut;\n  -webkit-transform-origin: center;\n  transform-origin: center;\n}\n@-webkit-keyframes rotateOutDownLeft {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    -webkit-transform: rotate3d(0, 0, 1, 45deg);\n    transform: rotate3d(0, 0, 1, 45deg);\n    opacity: 0;\n  }\n}\n@keyframes rotateOutDownLeft {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    -webkit-transform: rotate3d(0, 0, 1, 45deg);\n    transform: rotate3d(0, 0, 1, 45deg);\n    opacity: 0;\n  }\n}\n.animate__rotateOutDownLeft {\n  -webkit-animation-name: rotateOutDownLeft;\n  animation-name: rotateOutDownLeft;\n  -webkit-transform-origin: left bottom;\n  transform-origin: left bottom;\n}\n@-webkit-keyframes rotateOutDownRight {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    -webkit-transform: rotate3d(0, 0, 1, -45deg);\n    transform: rotate3d(0, 0, 1, -45deg);\n    opacity: 0;\n  }\n}\n@keyframes rotateOutDownRight {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    -webkit-transform: rotate3d(0, 0, 1, -45deg);\n    transform: rotate3d(0, 0, 1, -45deg);\n    opacity: 0;\n  }\n}\n.animate__rotateOutDownRight {\n  -webkit-animation-name: rotateOutDownRight;\n  animation-name: rotateOutDownRight;\n  -webkit-transform-origin: right bottom;\n  transform-origin: right bottom;\n}\n@-webkit-keyframes rotateOutUpLeft {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    -webkit-transform: rotate3d(0, 0, 1, -45deg);\n    transform: rotate3d(0, 0, 1, -45deg);\n    opacity: 0;\n  }\n}\n@keyframes rotateOutUpLeft {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    -webkit-transform: rotate3d(0, 0, 1, -45deg);\n    transform: rotate3d(0, 0, 1, -45deg);\n    opacity: 0;\n  }\n}\n.animate__rotateOutUpLeft {\n  -webkit-animation-name: rotateOutUpLeft;\n  animation-name: rotateOutUpLeft;\n  -webkit-transform-origin: left bottom;\n  transform-origin: left bottom;\n}\n@-webkit-keyframes rotateOutUpRight {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    -webkit-transform: rotate3d(0, 0, 1, 90deg);\n    transform: rotate3d(0, 0, 1, 90deg);\n    opacity: 0;\n  }\n}\n@keyframes rotateOutUpRight {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    -webkit-transform: rotate3d(0, 0, 1, 90deg);\n    transform: rotate3d(0, 0, 1, 90deg);\n    opacity: 0;\n  }\n}\n.animate__rotateOutUpRight {\n  -webkit-animation-name: rotateOutUpRight;\n  animation-name: rotateOutUpRight;\n  -webkit-transform-origin: right bottom;\n  transform-origin: right bottom;\n}\n/* Specials */\n@-webkit-keyframes hinge {\n  0% {\n    -webkit-animation-timing-function: ease-in-out;\n    animation-timing-function: ease-in-out;\n  }\n\n  20%,\n  60% {\n    -webkit-transform: rotate3d(0, 0, 1, 80deg);\n    transform: rotate3d(0, 0, 1, 80deg);\n    -webkit-animation-timing-function: ease-in-out;\n    animation-timing-function: ease-in-out;\n  }\n\n  40%,\n  80% {\n    -webkit-transform: rotate3d(0, 0, 1, 60deg);\n    transform: rotate3d(0, 0, 1, 60deg);\n    -webkit-animation-timing-function: ease-in-out;\n    animation-timing-function: ease-in-out;\n    opacity: 1;\n  }\n\n  to {\n    -webkit-transform: translate3d(0, 700px, 0);\n    transform: translate3d(0, 700px, 0);\n    opacity: 0;\n  }\n}\n@keyframes hinge {\n  0% {\n    -webkit-animation-timing-function: ease-in-out;\n    animation-timing-function: ease-in-out;\n  }\n\n  20%,\n  60% {\n    -webkit-transform: rotate3d(0, 0, 1, 80deg);\n    transform: rotate3d(0, 0, 1, 80deg);\n    -webkit-animation-timing-function: ease-in-out;\n    animation-timing-function: ease-in-out;\n  }\n\n  40%,\n  80% {\n    -webkit-transform: rotate3d(0, 0, 1, 60deg);\n    transform: rotate3d(0, 0, 1, 60deg);\n    -webkit-animation-timing-function: ease-in-out;\n    animation-timing-function: ease-in-out;\n    opacity: 1;\n  }\n\n  to {\n    -webkit-transform: translate3d(0, 700px, 0);\n    transform: translate3d(0, 700px, 0);\n    opacity: 0;\n  }\n}\n.animate__hinge {\n  -webkit-animation-duration: calc(1s * 2);\n  animation-duration: calc(1s * 2);\n  -webkit-animation-duration: calc(var(--animate-duration) * 2);\n  animation-duration: calc(var(--animate-duration) * 2);\n  -webkit-animation-name: hinge;\n  animation-name: hinge;\n  -webkit-transform-origin: top left;\n  transform-origin: top left;\n}\n@-webkit-keyframes jackInTheBox {\n  from {\n    opacity: 0;\n    -webkit-transform: scale(0.1) rotate(30deg);\n    transform: scale(0.1) rotate(30deg);\n    -webkit-transform-origin: center bottom;\n    transform-origin: center bottom;\n  }\n\n  50% {\n    -webkit-transform: rotate(-10deg);\n    transform: rotate(-10deg);\n  }\n\n  70% {\n    -webkit-transform: rotate(3deg);\n    transform: rotate(3deg);\n  }\n\n  to {\n    opacity: 1;\n    -webkit-transform: scale(1);\n    transform: scale(1);\n  }\n}\n@keyframes jackInTheBox {\n  from {\n    opacity: 0;\n    -webkit-transform: scale(0.1) rotate(30deg);\n    transform: scale(0.1) rotate(30deg);\n    -webkit-transform-origin: center bottom;\n    transform-origin: center bottom;\n  }\n\n  50% {\n    -webkit-transform: rotate(-10deg);\n    transform: rotate(-10deg);\n  }\n\n  70% {\n    -webkit-transform: rotate(3deg);\n    transform: rotate(3deg);\n  }\n\n  to {\n    opacity: 1;\n    -webkit-transform: scale(1);\n    transform: scale(1);\n  }\n}\n.animate__jackInTheBox {\n  -webkit-animation-name: jackInTheBox;\n  animation-name: jackInTheBox;\n}\n/* originally authored by Nick Pettit - https://github.com/nickpettit/glide */\n@-webkit-keyframes rollIn {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -120deg);\n    transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -120deg);\n  }\n\n  to {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n@keyframes rollIn {\n  from {\n    opacity: 0;\n    -webkit-transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -120deg);\n    transform: translate3d(-100%, 0, 0) rotate3d(0, 0, 1, -120deg);\n  }\n\n  to {\n    opacity: 1;\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n.animate__rollIn {\n  -webkit-animation-name: rollIn;\n  animation-name: rollIn;\n}\n/* originally authored by Nick Pettit - https://github.com/nickpettit/glide */\n@-webkit-keyframes rollOut {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, 120deg);\n    transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, 120deg);\n  }\n}\n@keyframes rollOut {\n  from {\n    opacity: 1;\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, 120deg);\n    transform: translate3d(100%, 0, 0) rotate3d(0, 0, 1, 120deg);\n  }\n}\n.animate__rollOut {\n  -webkit-animation-name: rollOut;\n  animation-name: rollOut;\n}\n/* Zooming entrances */\n@-webkit-keyframes zoomIn {\n  from {\n    opacity: 0;\n    -webkit-transform: scale3d(0.3, 0.3, 0.3);\n    transform: scale3d(0.3, 0.3, 0.3);\n  }\n\n  50% {\n    opacity: 1;\n  }\n}\n@keyframes zoomIn {\n  from {\n    opacity: 0;\n    -webkit-transform: scale3d(0.3, 0.3, 0.3);\n    transform: scale3d(0.3, 0.3, 0.3);\n  }\n\n  50% {\n    opacity: 1;\n  }\n}\n.animate__zoomIn {\n  -webkit-animation-name: zoomIn;\n  animation-name: zoomIn;\n}\n@-webkit-keyframes zoomInDown {\n  from {\n    opacity: 0;\n    -webkit-transform: scale3d(0.1, 0.1, 0.1) translate3d(0, -1000px, 0);\n    transform: scale3d(0.1, 0.1, 0.1) translate3d(0, -1000px, 0);\n    -webkit-animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);\n    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);\n  }\n\n  60% {\n    opacity: 1;\n    -webkit-transform: scale3d(0.475, 0.475, 0.475) translate3d(0, 60px, 0);\n    transform: scale3d(0.475, 0.475, 0.475) translate3d(0, 60px, 0);\n    -webkit-animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);\n    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);\n  }\n}\n@keyframes zoomInDown {\n  from {\n    opacity: 0;\n    -webkit-transform: scale3d(0.1, 0.1, 0.1) translate3d(0, -1000px, 0);\n    transform: scale3d(0.1, 0.1, 0.1) translate3d(0, -1000px, 0);\n    -webkit-animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);\n    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);\n  }\n\n  60% {\n    opacity: 1;\n    -webkit-transform: scale3d(0.475, 0.475, 0.475) translate3d(0, 60px, 0);\n    transform: scale3d(0.475, 0.475, 0.475) translate3d(0, 60px, 0);\n    -webkit-animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);\n    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);\n  }\n}\n.animate__zoomInDown {\n  -webkit-animation-name: zoomInDown;\n  animation-name: zoomInDown;\n}\n@-webkit-keyframes zoomInLeft {\n  from {\n    opacity: 0;\n    -webkit-transform: scale3d(0.1, 0.1, 0.1) translate3d(-1000px, 0, 0);\n    transform: scale3d(0.1, 0.1, 0.1) translate3d(-1000px, 0, 0);\n    -webkit-animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);\n    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);\n  }\n\n  60% {\n    opacity: 1;\n    -webkit-transform: scale3d(0.475, 0.475, 0.475) translate3d(10px, 0, 0);\n    transform: scale3d(0.475, 0.475, 0.475) translate3d(10px, 0, 0);\n    -webkit-animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);\n    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);\n  }\n}\n@keyframes zoomInLeft {\n  from {\n    opacity: 0;\n    -webkit-transform: scale3d(0.1, 0.1, 0.1) translate3d(-1000px, 0, 0);\n    transform: scale3d(0.1, 0.1, 0.1) translate3d(-1000px, 0, 0);\n    -webkit-animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);\n    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);\n  }\n\n  60% {\n    opacity: 1;\n    -webkit-transform: scale3d(0.475, 0.475, 0.475) translate3d(10px, 0, 0);\n    transform: scale3d(0.475, 0.475, 0.475) translate3d(10px, 0, 0);\n    -webkit-animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);\n    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);\n  }\n}\n.animate__zoomInLeft {\n  -webkit-animation-name: zoomInLeft;\n  animation-name: zoomInLeft;\n}\n@-webkit-keyframes zoomInRight {\n  from {\n    opacity: 0;\n    -webkit-transform: scale3d(0.1, 0.1, 0.1) translate3d(1000px, 0, 0);\n    transform: scale3d(0.1, 0.1, 0.1) translate3d(1000px, 0, 0);\n    -webkit-animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);\n    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);\n  }\n\n  60% {\n    opacity: 1;\n    -webkit-transform: scale3d(0.475, 0.475, 0.475) translate3d(-10px, 0, 0);\n    transform: scale3d(0.475, 0.475, 0.475) translate3d(-10px, 0, 0);\n    -webkit-animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);\n    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);\n  }\n}\n@keyframes zoomInRight {\n  from {\n    opacity: 0;\n    -webkit-transform: scale3d(0.1, 0.1, 0.1) translate3d(1000px, 0, 0);\n    transform: scale3d(0.1, 0.1, 0.1) translate3d(1000px, 0, 0);\n    -webkit-animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);\n    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);\n  }\n\n  60% {\n    opacity: 1;\n    -webkit-transform: scale3d(0.475, 0.475, 0.475) translate3d(-10px, 0, 0);\n    transform: scale3d(0.475, 0.475, 0.475) translate3d(-10px, 0, 0);\n    -webkit-animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);\n    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);\n  }\n}\n.animate__zoomInRight {\n  -webkit-animation-name: zoomInRight;\n  animation-name: zoomInRight;\n}\n@-webkit-keyframes zoomInUp {\n  from {\n    opacity: 0;\n    -webkit-transform: scale3d(0.1, 0.1, 0.1) translate3d(0, 1000px, 0);\n    transform: scale3d(0.1, 0.1, 0.1) translate3d(0, 1000px, 0);\n    -webkit-animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);\n    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);\n  }\n\n  60% {\n    opacity: 1;\n    -webkit-transform: scale3d(0.475, 0.475, 0.475) translate3d(0, -60px, 0);\n    transform: scale3d(0.475, 0.475, 0.475) translate3d(0, -60px, 0);\n    -webkit-animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);\n    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);\n  }\n}\n@keyframes zoomInUp {\n  from {\n    opacity: 0;\n    -webkit-transform: scale3d(0.1, 0.1, 0.1) translate3d(0, 1000px, 0);\n    transform: scale3d(0.1, 0.1, 0.1) translate3d(0, 1000px, 0);\n    -webkit-animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);\n    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);\n  }\n\n  60% {\n    opacity: 1;\n    -webkit-transform: scale3d(0.475, 0.475, 0.475) translate3d(0, -60px, 0);\n    transform: scale3d(0.475, 0.475, 0.475) translate3d(0, -60px, 0);\n    -webkit-animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);\n    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);\n  }\n}\n.animate__zoomInUp {\n  -webkit-animation-name: zoomInUp;\n  animation-name: zoomInUp;\n}\n/* Zooming exits */\n@-webkit-keyframes zoomOut {\n  from {\n    opacity: 1;\n  }\n\n  50% {\n    opacity: 0;\n    -webkit-transform: scale3d(0.3, 0.3, 0.3);\n    transform: scale3d(0.3, 0.3, 0.3);\n  }\n\n  to {\n    opacity: 0;\n  }\n}\n@keyframes zoomOut {\n  from {\n    opacity: 1;\n  }\n\n  50% {\n    opacity: 0;\n    -webkit-transform: scale3d(0.3, 0.3, 0.3);\n    transform: scale3d(0.3, 0.3, 0.3);\n  }\n\n  to {\n    opacity: 0;\n  }\n}\n.animate__zoomOut {\n  -webkit-animation-name: zoomOut;\n  animation-name: zoomOut;\n}\n@-webkit-keyframes zoomOutDown {\n  40% {\n    opacity: 1;\n    -webkit-transform: scale3d(0.475, 0.475, 0.475) translate3d(0, -60px, 0);\n    transform: scale3d(0.475, 0.475, 0.475) translate3d(0, -60px, 0);\n    -webkit-animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);\n    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: scale3d(0.1, 0.1, 0.1) translate3d(0, 2000px, 0);\n    transform: scale3d(0.1, 0.1, 0.1) translate3d(0, 2000px, 0);\n    -webkit-animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);\n    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);\n  }\n}\n@keyframes zoomOutDown {\n  40% {\n    opacity: 1;\n    -webkit-transform: scale3d(0.475, 0.475, 0.475) translate3d(0, -60px, 0);\n    transform: scale3d(0.475, 0.475, 0.475) translate3d(0, -60px, 0);\n    -webkit-animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);\n    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: scale3d(0.1, 0.1, 0.1) translate3d(0, 2000px, 0);\n    transform: scale3d(0.1, 0.1, 0.1) translate3d(0, 2000px, 0);\n    -webkit-animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);\n    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);\n  }\n}\n.animate__zoomOutDown {\n  -webkit-animation-name: zoomOutDown;\n  animation-name: zoomOutDown;\n  -webkit-transform-origin: center bottom;\n  transform-origin: center bottom;\n}\n@-webkit-keyframes zoomOutLeft {\n  40% {\n    opacity: 1;\n    -webkit-transform: scale3d(0.475, 0.475, 0.475) translate3d(42px, 0, 0);\n    transform: scale3d(0.475, 0.475, 0.475) translate3d(42px, 0, 0);\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: scale(0.1) translate3d(-2000px, 0, 0);\n    transform: scale(0.1) translate3d(-2000px, 0, 0);\n  }\n}\n@keyframes zoomOutLeft {\n  40% {\n    opacity: 1;\n    -webkit-transform: scale3d(0.475, 0.475, 0.475) translate3d(42px, 0, 0);\n    transform: scale3d(0.475, 0.475, 0.475) translate3d(42px, 0, 0);\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: scale(0.1) translate3d(-2000px, 0, 0);\n    transform: scale(0.1) translate3d(-2000px, 0, 0);\n  }\n}\n.animate__zoomOutLeft {\n  -webkit-animation-name: zoomOutLeft;\n  animation-name: zoomOutLeft;\n  -webkit-transform-origin: left center;\n  transform-origin: left center;\n}\n@-webkit-keyframes zoomOutRight {\n  40% {\n    opacity: 1;\n    -webkit-transform: scale3d(0.475, 0.475, 0.475) translate3d(-42px, 0, 0);\n    transform: scale3d(0.475, 0.475, 0.475) translate3d(-42px, 0, 0);\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: scale(0.1) translate3d(2000px, 0, 0);\n    transform: scale(0.1) translate3d(2000px, 0, 0);\n  }\n}\n@keyframes zoomOutRight {\n  40% {\n    opacity: 1;\n    -webkit-transform: scale3d(0.475, 0.475, 0.475) translate3d(-42px, 0, 0);\n    transform: scale3d(0.475, 0.475, 0.475) translate3d(-42px, 0, 0);\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: scale(0.1) translate3d(2000px, 0, 0);\n    transform: scale(0.1) translate3d(2000px, 0, 0);\n  }\n}\n.animate__zoomOutRight {\n  -webkit-animation-name: zoomOutRight;\n  animation-name: zoomOutRight;\n  -webkit-transform-origin: right center;\n  transform-origin: right center;\n}\n@-webkit-keyframes zoomOutUp {\n  40% {\n    opacity: 1;\n    -webkit-transform: scale3d(0.475, 0.475, 0.475) translate3d(0, 60px, 0);\n    transform: scale3d(0.475, 0.475, 0.475) translate3d(0, 60px, 0);\n    -webkit-animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);\n    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: scale3d(0.1, 0.1, 0.1) translate3d(0, -2000px, 0);\n    transform: scale3d(0.1, 0.1, 0.1) translate3d(0, -2000px, 0);\n    -webkit-animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);\n    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);\n  }\n}\n@keyframes zoomOutUp {\n  40% {\n    opacity: 1;\n    -webkit-transform: scale3d(0.475, 0.475, 0.475) translate3d(0, 60px, 0);\n    transform: scale3d(0.475, 0.475, 0.475) translate3d(0, 60px, 0);\n    -webkit-animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);\n    animation-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19);\n  }\n\n  to {\n    opacity: 0;\n    -webkit-transform: scale3d(0.1, 0.1, 0.1) translate3d(0, -2000px, 0);\n    transform: scale3d(0.1, 0.1, 0.1) translate3d(0, -2000px, 0);\n    -webkit-animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);\n    animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1);\n  }\n}\n.animate__zoomOutUp {\n  -webkit-animation-name: zoomOutUp;\n  animation-name: zoomOutUp;\n  -webkit-transform-origin: center bottom;\n  transform-origin: center bottom;\n}\n/* Sliding entrances */\n@-webkit-keyframes slideInDown {\n  from {\n    -webkit-transform: translate3d(0, -100%, 0);\n    transform: translate3d(0, -100%, 0);\n    visibility: visible;\n  }\n\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n@keyframes slideInDown {\n  from {\n    -webkit-transform: translate3d(0, -100%, 0);\n    transform: translate3d(0, -100%, 0);\n    visibility: visible;\n  }\n\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n.animate__slideInDown {\n  -webkit-animation-name: slideInDown;\n  animation-name: slideInDown;\n}\n@-webkit-keyframes slideInLeft {\n  from {\n    -webkit-transform: translate3d(-100%, 0, 0);\n    transform: translate3d(-100%, 0, 0);\n    visibility: visible;\n  }\n\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n@keyframes slideInLeft {\n  from {\n    -webkit-transform: translate3d(-100%, 0, 0);\n    transform: translate3d(-100%, 0, 0);\n    visibility: visible;\n  }\n\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n.animate__slideInLeft {\n  -webkit-animation-name: slideInLeft;\n  animation-name: slideInLeft;\n}\n@-webkit-keyframes slideInRight {\n  from {\n    -webkit-transform: translate3d(100%, 0, 0);\n    transform: translate3d(100%, 0, 0);\n    visibility: visible;\n  }\n\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n@keyframes slideInRight {\n  from {\n    -webkit-transform: translate3d(100%, 0, 0);\n    transform: translate3d(100%, 0, 0);\n    visibility: visible;\n  }\n\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n.animate__slideInRight {\n  -webkit-animation-name: slideInRight;\n  animation-name: slideInRight;\n}\n@-webkit-keyframes slideInUp {\n  from {\n    -webkit-transform: translate3d(0, 100%, 0);\n    transform: translate3d(0, 100%, 0);\n    visibility: visible;\n  }\n\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n@keyframes slideInUp {\n  from {\n    -webkit-transform: translate3d(0, 100%, 0);\n    transform: translate3d(0, 100%, 0);\n    visibility: visible;\n  }\n\n  to {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n}\n.animate__slideInUp {\n  -webkit-animation-name: slideInUp;\n  animation-name: slideInUp;\n}\n/* Sliding exits */\n@-webkit-keyframes slideOutDown {\n  from {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n\n  to {\n    visibility: hidden;\n    -webkit-transform: translate3d(0, 100%, 0);\n    transform: translate3d(0, 100%, 0);\n  }\n}\n@keyframes slideOutDown {\n  from {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n\n  to {\n    visibility: hidden;\n    -webkit-transform: translate3d(0, 100%, 0);\n    transform: translate3d(0, 100%, 0);\n  }\n}\n.animate__slideOutDown {\n  -webkit-animation-name: slideOutDown;\n  animation-name: slideOutDown;\n}\n@-webkit-keyframes slideOutLeft {\n  from {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n\n  to {\n    visibility: hidden;\n    -webkit-transform: translate3d(-100%, 0, 0);\n    transform: translate3d(-100%, 0, 0);\n  }\n}\n@keyframes slideOutLeft {\n  from {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n\n  to {\n    visibility: hidden;\n    -webkit-transform: translate3d(-100%, 0, 0);\n    transform: translate3d(-100%, 0, 0);\n  }\n}\n.animate__slideOutLeft {\n  -webkit-animation-name: slideOutLeft;\n  animation-name: slideOutLeft;\n}\n@-webkit-keyframes slideOutRight {\n  from {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n\n  to {\n    visibility: hidden;\n    -webkit-transform: translate3d(100%, 0, 0);\n    transform: translate3d(100%, 0, 0);\n  }\n}\n@keyframes slideOutRight {\n  from {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n\n  to {\n    visibility: hidden;\n    -webkit-transform: translate3d(100%, 0, 0);\n    transform: translate3d(100%, 0, 0);\n  }\n}\n.animate__slideOutRight {\n  -webkit-animation-name: slideOutRight;\n  animation-name: slideOutRight;\n}\n@-webkit-keyframes slideOutUp {\n  from {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n\n  to {\n    visibility: hidden;\n    -webkit-transform: translate3d(0, -100%, 0);\n    transform: translate3d(0, -100%, 0);\n  }\n}\n@keyframes slideOutUp {\n  from {\n    -webkit-transform: translate3d(0, 0, 0);\n    transform: translate3d(0, 0, 0);\n  }\n\n  to {\n    visibility: hidden;\n    -webkit-transform: translate3d(0, -100%, 0);\n    transform: translate3d(0, -100%, 0);\n  }\n}\n.animate__slideOutUp {\n  -webkit-animation-name: slideOutUp;\n  animation-name: slideOutUp;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/react-notifications-component/dist/theme.css":
+/*!***************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./node_modules/react-notifications-component/dist/theme.css ***!
+  \***************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".notification-container--bottom-center,.notification-container--bottom-full,.notification-container--bottom-left,.notification-container--bottom-right,.notification-container--center,.notification-container--top-center,.notification-container--top-full,.notification-container--top-left,.notification-container--top-right{min-width:325px;position:absolute;pointer-events:all}.notification-container--bottom-center,.notification-container--center,.notification-container--top-center{display:flex;justify-content:center;align-items:center;flex-direction:column;left:calc(50% - 175px);max-width:350px}.notification-container--center{top:20px;height:100%;pointer-events:none}.notification-container--bottom-full,.notification-container--top-full{width:100%;min-width:100%}.notification-container--bottom-full{bottom:0}.flex-center{min-width:325px;display:flex;justify-content:center;align-items:center;flex-direction:column;pointer-events:all}.notification-container--top-center{top:20px}.notification-container--bottom-center{bottom:20px}.notification-container--top-left{left:20px;top:20px}.notification-container--top-right{right:20px;top:20px}.notification-container--bottom-left{left:20px;bottom:20px}.notification-container--bottom-right{bottom:20px;right:20px}.notification-container--mobile-bottom,.notification-container--mobile-top{pointer-events:all;position:absolute}.notification-container--mobile-top{right:20px;left:20px;top:20px}.notification-container--mobile-bottom{right:20px;left:20px;bottom:20px;margin-bottom:-15px}.notification__item--default{background-color:#007bff;border-left:8px solid #0562c7}.notification__item--default .notification__timer{background-color:#007bff}.notification__item--default .notification__timer-filler{background-color:#fff}.notification__item--default .notification__close{background-color:#007bff}.notification__item--success{background-color:#28a745;border-left:8px solid #1f8838}.notification__item--success .notification__timer{background-color:#28a745}.notification__item--success .notification__timer-filler{background-color:#fff}.notification__item--success .notification__close{background-color:#28a745}.notification__item--danger{background-color:#dc3545;border-left:8px solid #bd1120}.notification__item--danger .notification__timer{background-color:#dc3545}.notification__item--danger .notification__timer-filler{background-color:#fff}.notification__item--danger .notification__close{background-color:#dc3545}.notification__item--info{background-color:#17a2b8;border-left:8px solid #138b9e}.notification__item--info .notification__timer{background-color:#17a2b8}.notification__item--info .notification__timer-filler{background-color:#fff}.notification__item--info .notification__close{background-color:#17a2b8}.notification__item--warning{background-color:#eab000;border-left:8px solid #ce9c09}.notification__item--warning .notification__timer{background-color:#eab000}.notification__item--warning .notification__timer-filler{background-color:#fff}.notification__item--warning .notification__close{background-color:#eab000}.notification__item--awesome{background-color:#685dc3;border-left:8px solid #4c3fb1}.notification__item--awesome .notification__timer{background-color:#685dc3}.notification__item--awesome .notification__timer-filler{background-color:#fff}.notification__item--awesome .notification__close{background-color:#685dc3}@-webkit-keyframes timer{0%{width:100%}to{width:0}}@keyframes timer{0%{width:100%}to{width:0}}.notifications-component{position:fixed;z-index:9000;pointer-events:none;width:100%;height:100%}.notification__item{display:flex;position:relative;border-radius:3px;margin-bottom:15px;box-shadow:1px 3px 4px rgba(0,0,0,.2);cursor:pointer}.notification-container--bottom-full .notification__item,.notification-container--top-full .notification__item{margin-bottom:0;border-radius:0}.notification__timer{width:100%;margin-top:10px}.notification__timer,.notification__timer-filler{height:3px;border-radius:5px}.notification__title{color:#fff;font-weight:700;font-size:14px;margin-top:5px;margin-bottom:5px}.notification__message{color:#fff;max-width:calc(100% - 15px);font-size:14px;line-height:150%;word-wrap:break-word;margin-bottom:0;margin-top:0}.notification__content{padding:8px 15px;display:inline-block;width:100%}.notification__close{width:18px;height:18px;border-radius:50%;display:inline-block;position:absolute;right:10px;top:10px}.notification__close:after{content:\"\\D7\";position:absolute;transform:translate(-50%,-50%);color:#fff;font-size:12px;left:50%;top:50%}.notification-container--mobile-bottom .notification,.notification-container--mobile-bottom .notification__item,.notification-container--mobile-top .notification,.notification-container--mobile-top .notification__item{max-width:100%;width:100%}.notification-container--bottom-right .notification,.notification-container--top-right .notification{margin-left:auto}.notification-container--bottom-left .notification,.notification-container--top-left .notification{margin-right:auto}.notification-container--mobile-bottom .notification,.notification-container--mobile-top .notification{margin-left:auto;margin-right:auto}", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/lib/css-base.js":
+/*!*************************************************!*\
+  !*** ./node_modules/css-loader/lib/css-base.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
 
 
 /***/ }),
@@ -64697,6 +64852,1253 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./node_modules/react-notifications-component/dist/index.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/react-notifications-component/dist/index.js ***!
+  \******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+ false?undefined:module.exports=__webpack_require__(/*! ./js/react-notifications.dev.js */ "./node_modules/react-notifications-component/dist/js/react-notifications.dev.js");
+
+/***/ }),
+
+/***/ "./node_modules/react-notifications-component/dist/js/react-notifications.dev.js":
+/*!***************************************************************************************!*\
+  !*** ./node_modules/react-notifications-component/dist/js/react-notifications.dev.js ***!
+  \***************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports =
+/******/ (function(modules) { // webpackBootstrap
+/******/ 	// The module cache
+/******/ 	var installedModules = {};
+/******/
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/
+/******/ 		// Check if module is in cache
+/******/ 		if(installedModules[moduleId]) {
+/******/ 			return installedModules[moduleId].exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = installedModules[moduleId] = {
+/******/ 			i: moduleId,
+/******/ 			l: false,
+/******/ 			exports: {}
+/******/ 		};
+/******/
+/******/ 		// Execute the module function
+/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
+/******/
+/******/ 		// Flag the module as loaded
+/******/ 		module.l = true;
+/******/
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/
+/******/
+/******/ 	// expose the modules object (__webpack_modules__)
+/******/ 	__webpack_require__.m = modules;
+/******/
+/******/ 	// expose the module cache
+/******/ 	__webpack_require__.c = installedModules;
+/******/
+/******/ 	// define getter function for harmony exports
+/******/ 	__webpack_require__.d = function(exports, name, getter) {
+/******/ 		if(!__webpack_require__.o(exports, name)) {
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 		}
+/******/ 	};
+/******/
+/******/ 	// define __esModule on exports
+/******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
+/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
+/******/ 	};
+/******/
+/******/ 	// getDefaultExport function for compatibility with non-harmony modules
+/******/ 	__webpack_require__.n = function(module) {
+/******/ 		var getter = module && module.__esModule ?
+/******/ 			function getDefault() { return module['default']; } :
+/******/ 			function getModuleExports() { return module; };
+/******/ 		__webpack_require__.d(getter, 'a', getter);
+/******/ 		return getter;
+/******/ 	};
+/******/
+/******/ 	// Object.prototype.hasOwnProperty.call
+/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
+/******/
+/******/ 	// __webpack_public_path__
+/******/ 	__webpack_require__.p = "";
+/******/
+/******/
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/index.ts");
+/******/ })
+/************************************************************************/
+/******/ ({
+
+/***/ "./node_modules/css-loader/dist/runtime/api.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/api.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+// eslint-disable-next-line func-names
+module.exports = function (useSourceMap) {
+  var list = []; // return the list of modules as css string
+
+  list.toString = function toString() {
+    return this.map(function (item) {
+      var content = cssWithMappingToString(item, useSourceMap);
+
+      if (item[2]) {
+        return "@media ".concat(item[2], " {").concat(content, "}");
+      }
+
+      return content;
+    }).join('');
+  }; // import a list of modules into the list
+  // eslint-disable-next-line func-names
+
+
+  list.i = function (modules, mediaQuery, dedupe) {
+    if (typeof modules === 'string') {
+      // eslint-disable-next-line no-param-reassign
+      modules = [[null, modules, '']];
+    }
+
+    var alreadyImportedModules = {};
+
+    if (dedupe) {
+      for (var i = 0; i < this.length; i++) {
+        // eslint-disable-next-line prefer-destructuring
+        var id = this[i][0];
+
+        if (id != null) {
+          alreadyImportedModules[id] = true;
+        }
+      }
+    }
+
+    for (var _i = 0; _i < modules.length; _i++) {
+      var item = [].concat(modules[_i]);
+
+      if (dedupe && alreadyImportedModules[item[0]]) {
+        // eslint-disable-next-line no-continue
+        continue;
+      }
+
+      if (mediaQuery) {
+        if (!item[2]) {
+          item[2] = mediaQuery;
+        } else {
+          item[2] = "".concat(mediaQuery, " and ").concat(item[2]);
+        }
+      }
+
+      list.push(item);
+    }
+  };
+
+  return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+  var content = item[1] || ''; // eslint-disable-next-line prefer-destructuring
+
+  var cssMapping = item[3];
+
+  if (!cssMapping) {
+    return content;
+  }
+
+  if (useSourceMap && typeof btoa === 'function') {
+    var sourceMapping = toComment(cssMapping);
+    var sourceURLs = cssMapping.sources.map(function (source) {
+      return "/*# sourceURL=".concat(cssMapping.sourceRoot || '').concat(source, " */");
+    });
+    return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+  }
+
+  return [content].join('\n');
+} // Adapted from convert-source-map (MIT)
+
+
+function toComment(sourceMap) {
+  // eslint-disable-next-line no-undef
+  var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+  var data = "sourceMappingURL=data:application/json;charset=utf-8;base64,".concat(base64);
+  return "/*# ".concat(data, " */");
+}
+
+/***/ }),
+
+/***/ "./src/components/Container.tsx":
+/*!**************************************!*\
+  !*** ./src/components/Container.tsx ***!
+  \**************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var src_components_Notification__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/components/Notification */ "./src/components/Notification.tsx");
+/* harmony import */ var src_scss_notification_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/scss/notification.scss */ "./src/scss/notification.scss");
+/* harmony import */ var src_store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/store */ "./src/store/index.ts");
+/* harmony import */ var src_utils_constants__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/utils/constants */ "./src/utils/constants.ts");
+/* harmony import */ var src_utils_helpers__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/utils/helpers */ "./src/utils/helpers.ts");
+
+
+
+
+
+
+class Container extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
+    constructor(props) {
+        super(props);
+        this.handleResize = () => {
+            this.setState({ windowWidth: window.innerWidth });
+        };
+        this.add = (notification) => {
+            this.setState(({ notifications }) => ({
+                notifications: notification.insert === 'top'
+                    ? [notification, ...notifications]
+                    : [...notifications, notification]
+            }));
+            return notification.id;
+        };
+        this.remove = (id) => {
+            this.setState(({ notifications }) => ({
+                notifications: notifications.map((notification) => {
+                    if (notification.id === id) {
+                        notification.hasBeenRemoved = true;
+                    }
+                    return notification;
+                })
+            }));
+        };
+        this.removeAllNotifications = () => {
+            this.setState({
+                notifications: this.state.notifications.map((notification) => (Object.assign(Object.assign({}, notification), { hasBeenRemoved: true })))
+            });
+        };
+        this.toggleRemoval = (id, callback) => {
+            this.setState(({ notifications }) => ({
+                notifications: notifications.filter(({ id: nId }) => nId !== id)
+            }), callback);
+        };
+        this.state = {
+            isMobile: Object(src_utils_helpers__WEBPACK_IMPORTED_MODULE_5__["isNull"])(props.isMobile) ? src_utils_constants__WEBPACK_IMPORTED_MODULE_4__["DEFAULT_CONTAINER_VALUES"].isMobile : props.isMobile,
+            breakpoint: Object(src_utils_helpers__WEBPACK_IMPORTED_MODULE_5__["isNull"])(props.breakpoint) ? src_utils_constants__WEBPACK_IMPORTED_MODULE_4__["DEFAULT_CONTAINER_VALUES"].breakpoint : props.breakpoint,
+            notifications: [],
+            windowWidth: undefined
+        };
+    }
+    componentDidMount() {
+        const { types, defaultNotificationWidth } = this.props;
+        src_store__WEBPACK_IMPORTED_MODULE_3__["default"].register({
+            addNotification: this.add,
+            removeNotification: this.remove,
+            removeAllNotifications: this.removeAllNotifications,
+            defaultNotificationWidth: defaultNotificationWidth || src_utils_constants__WEBPACK_IMPORTED_MODULE_4__["DEFAULT_CONTAINER_VALUES"].defaultNotificationWidth,
+            types
+        });
+        this.setState({ windowWidth: window.innerWidth });
+        window.addEventListener('resize', this.handleResize);
+    }
+    componentWillUnmount() {
+        window.removeEventListener('resize', this.handleResize);
+    }
+    renderNotifications(notifications, isMobile) {
+        return notifications.map((notification) => (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(src_components_Notification__WEBPACK_IMPORTED_MODULE_1__["default"], { id: notification.id, key: notification.id, isMobile: isMobile, defaultNotificationWidth: this.props.defaultNotificationWidth, notification: notification, toggleRemoval: this.toggleRemoval, notificationsCount: notifications.length, hasBeenRemoved: notification.hasBeenRemoved })));
+    }
+    renderMobileNotifications(props) {
+        const { className, id } = props;
+        const { notifications } = this.state;
+        const mobileNotifications = Object(src_utils_helpers__WEBPACK_IMPORTED_MODULE_5__["getNotificationsForMobileView"])(notifications);
+        const top = this.renderNotifications(mobileNotifications.top, true);
+        const bottom = this.renderNotifications(mobileNotifications.bottom, true);
+        return (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", { id: id, key: "mobile", className: `notifications-component ${className || ''}` },
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", { className: "notification-container--mobile-top" }, top),
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", { className: "notification-container--mobile-bottom" }, bottom)));
+    }
+    renderScreenNotifications(props) {
+        const { className, id } = props;
+        const { notifications } = this.state;
+        const items = Object(src_utils_helpers__WEBPACK_IMPORTED_MODULE_5__["getNotificationsForEachContainer"])(notifications);
+        const topFull = this.renderNotifications(items.topFull, false);
+        const bottomFull = this.renderNotifications(items.bottomFull, false);
+        const topLeft = this.renderNotifications(items.topLeft, false);
+        const topRight = this.renderNotifications(items.topRight, false);
+        const topCenter = this.renderNotifications(items.topCenter, false);
+        const bottomLeft = this.renderNotifications(items.bottomLeft, false);
+        const bottomRight = this.renderNotifications(items.bottomRight, false);
+        const bottomCenter = this.renderNotifications(items.bottomCenter, false);
+        const center = this.renderNotifications(items.center, false);
+        return (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", { id: id, key: "screen", className: `notifications-component ${className || ''}` },
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", { className: "notification-container--top-full" }, topFull),
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", { className: "notification-container--bottom-full" }, bottomFull),
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", { className: "notification-container--top-left" }, topLeft),
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", { className: "notification-container--top-right" }, topRight),
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", { className: "notification-container--bottom-left" }, bottomLeft),
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", { className: "notification-container--bottom-right" }, bottomRight),
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", { className: "notification-container--top-center" }, topCenter),
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", { className: "notification-container--center" },
+                react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", { className: "flex-center" }, center)),
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", { className: "notification-container--bottom-center" }, bottomCenter)));
+    }
+    render() {
+        const { isMobile } = this.props;
+        const { windowWidth, breakpoint } = this.state;
+        if (isMobile && windowWidth <= breakpoint) {
+            return this.renderMobileNotifications(this.props);
+        }
+        return this.renderScreenNotifications(this.props);
+    }
+}
+/* harmony default export */ __webpack_exports__["default"] = (Container);
+
+
+/***/ }),
+
+/***/ "./src/components/Notification.tsx":
+/*!*****************************************!*\
+  !*** ./src/components/Notification.tsx ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _utils_constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../utils/constants */ "./src/utils/constants.ts");
+/* harmony import */ var _utils_helpers__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../utils/helpers */ "./src/utils/helpers.ts");
+/* harmony import */ var _utils_timer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../utils/timer */ "./src/utils/timer.ts");
+
+
+
+
+class iNotificationProps {
+}
+class Notification extends react__WEBPACK_IMPORTED_MODULE_0___default.a.Component {
+    constructor(props) {
+        super(props);
+        this.onClick = () => {
+            const { notification: { dismiss } } = this.props;
+            if (dismiss.click || dismiss.showIcon) {
+                this.removeNotification(_utils_constants__WEBPACK_IMPORTED_MODULE_1__["REMOVAL"].CLICK);
+            }
+        };
+        this.onTouchStart = (event) => {
+            const { pageX } = event.touches[0];
+            this.setState(({ parentStyle }) => ({
+                startX: pageX,
+                currentX: pageX,
+                parentStyle: Object.assign(Object.assign({}, parentStyle), { position: 'relative' })
+            }));
+        };
+        this.onTouchMove = (event) => {
+            const { pageX } = event.touches[0];
+            const { startX } = this.state;
+            const { toggleRemoval, notification: { id, onRemoval, slidingExit, touchSlidingExit: { swipe, fade } } } = this.props;
+            const distance = pageX - startX;
+            const { offsetWidth: width } = this.rootElementRef.current;
+            const swipeTo = window.innerWidth + width;
+            const left = `${pageX - startX >= 0 ? swipeTo : -swipeTo}px`;
+            if (Object(_utils_helpers__WEBPACK_IMPORTED_MODULE_2__["hasFullySwiped"])(distance, width)) {
+                const t1 = Object(_utils_helpers__WEBPACK_IMPORTED_MODULE_2__["getTransition"])(swipe, 'left');
+                const t2 = Object(_utils_helpers__WEBPACK_IMPORTED_MODULE_2__["getTransition"])(fade, 'opacity');
+                const onTransitionEnd = () => {
+                    toggleRemoval(id, () => onRemoval(id, _utils_constants__WEBPACK_IMPORTED_MODULE_1__["REMOVAL"].TOUCH));
+                };
+                return this.setState(({ parentStyle }) => ({
+                    touchEnabled: false,
+                    parentStyle: Object.assign(Object.assign({}, parentStyle), { left, opacity: 0, transition: `${t1}, ${t2}` }),
+                    onTransitionEnd: () => {
+                        this.setState(({ parentStyle }) => ({
+                            parentStyle: Object.assign(Object.assign({}, parentStyle), { height: `0px`, overflow: 'hidden', transition: Object(_utils_helpers__WEBPACK_IMPORTED_MODULE_2__["getTransition"])(slidingExit, 'height') }),
+                            onTransitionEnd
+                        }));
+                    }
+                }));
+            }
+            return this.setState(({ parentStyle }) => ({
+                currentX: pageX,
+                parentStyle: Object.assign(Object.assign({}, parentStyle), { left: `${0 + distance}px` })
+            }));
+        };
+        this.onTouchEnd = () => {
+            const { notification: { touchRevert } } = this.props;
+            this.setState(({ parentStyle }) => ({
+                parentStyle: Object.assign(Object.assign({}, parentStyle), { left: 0, transition: Object(_utils_helpers__WEBPACK_IMPORTED_MODULE_2__["getTransition"])(touchRevert, 'left') })
+            }));
+        };
+        this.onMouseEnter = () => {
+            if (this.timer) {
+                this.timer.pause();
+            }
+            else {
+                this.setState({ animationPlayState: 'paused' });
+            }
+        };
+        this.onMouseLeave = () => {
+            if (this.timer) {
+                this.timer.resume();
+            }
+            else {
+                this.setState({ animationPlayState: 'running' });
+            }
+        };
+        this.rootElementRef = react__WEBPACK_IMPORTED_MODULE_0___default.a.createRef();
+        const { defaultNotificationWidth, notification, isMobile } = props;
+        const { width, container } = notification;
+        this.state = {
+            parentStyle: {
+                height: `0px`,
+                overflow: 'hidden',
+                width: `${width ? width : defaultNotificationWidth}px`
+            },
+            htmlClassList: Object(_utils_helpers__WEBPACK_IMPORTED_MODULE_2__["getHtmlClassesForType"])(notification),
+            animationPlayState: 'running',
+            touchEnabled: true
+        };
+        const isFullWidthNotification = [_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_CONTAINER"].TOP_FULL, _utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_CONTAINER"].BOTTOM_FULL, _utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_CONTAINER"].TOP_CENTER, _utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_CONTAINER"].BOTTOM_CENTER, _utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_CONTAINER"].CENTER].indexOf(container) !== -1;
+        if (isMobile || isFullWidthNotification) {
+            this.state.parentStyle.width = '100%';
+        }
+    }
+    componentWillUnmount() {
+        if (this.timer) {
+            this.timer.clear();
+        }
+    }
+    componentDidMount() {
+        const { notification, notificationsCount } = this.props;
+        const { dismiss: { duration, onScreen } } = notification;
+        const willSlide = Object(_utils_helpers__WEBPACK_IMPORTED_MODULE_2__["shouldNotificationHaveSliding"])(notification, notificationsCount);
+        const { scrollHeight } = this.rootElementRef.current;
+        const onTransitionEnd = () => {
+            if (!duration || onScreen)
+                return;
+            const callback = () => this.removeNotification(_utils_constants__WEBPACK_IMPORTED_MODULE_1__["REMOVAL"].TIMEOUT);
+            this.timer = new _utils_timer__WEBPACK_IMPORTED_MODULE_3__["default"](callback, duration);
+        };
+        const callback = () => {
+            requestAnimationFrame(() => {
+                this.setState((prevState) => ({
+                    htmlClassList: [...notification.animationIn, ...prevState.htmlClassList]
+                }));
+            });
+        };
+        this.setState(({ parentStyle: { width } }) => ({
+            parentStyle: {
+                width,
+                height: `${scrollHeight}px`,
+                transition: willSlide ? Object(_utils_helpers__WEBPACK_IMPORTED_MODULE_2__["getTransition"])(notification.slidingEnter, 'height') : '10ms height'
+            },
+            onTransitionEnd
+        }), callback);
+    }
+    componentDidUpdate({ hasBeenRemoved }) {
+        if (this.props.hasBeenRemoved && !hasBeenRemoved) {
+            this.removeNotification(_utils_constants__WEBPACK_IMPORTED_MODULE_1__["REMOVAL"].MANUAL);
+        }
+    }
+    removeNotification(removalFlag) {
+        const { notification, toggleRemoval } = this.props;
+        const { id, onRemoval, dismiss: { waitForAnimation } } = notification;
+        const htmlClassList = [...notification.animationOut, ...Object(_utils_helpers__WEBPACK_IMPORTED_MODULE_2__["getHtmlClassesForType"])(notification)];
+        const onTransitionEnd = () => toggleRemoval(id, () => onRemoval(id, removalFlag));
+        const parentStyle = {
+            height: `0px`,
+            overflow: 'hidden',
+            transition: Object(_utils_helpers__WEBPACK_IMPORTED_MODULE_2__["getTransition"])(notification.slidingExit, 'height')
+        };
+        if (waitForAnimation) {
+            return this.setState(({ parentStyle: { width } }) => ({
+                htmlClassList,
+                onAnimationEnd: () => {
+                    this.setState({
+                        parentStyle: Object.assign({ width }, parentStyle),
+                        onTransitionEnd
+                    });
+                }
+            }));
+        }
+        return this.setState(({ parentStyle: { width } }) => ({
+            parentStyle: Object.assign({ width }, parentStyle),
+            onTransitionEnd,
+            htmlClassList
+        }));
+    }
+    renderTimer() {
+        const { notification: { dismiss } } = this.props;
+        const { duration, onScreen } = dismiss;
+        const { animationPlayState } = this.state;
+        if (!duration || !onScreen) {
+            return;
+        }
+        const style = {
+            animationName: 'timer',
+            animationDuration: `${duration}ms`,
+            animationTimingFunction: 'linear',
+            animationFillMode: 'forwards',
+            animationDelay: `0`,
+            animationPlayState
+        };
+        const onAnimationEnd = () => this.removeNotification(_utils_constants__WEBPACK_IMPORTED_MODULE_1__["REMOVAL"].TIMEOUT);
+        return (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", { className: "notification__timer" },
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", { className: "notification__timer-filler", onAnimationEnd: onAnimationEnd, style: style })));
+    }
+    renderCustomContent() {
+        const { htmlClassList } = this.state;
+        const { notification: { id, content: CustomContent, dismiss: { duration, pauseOnHover } } } = this.props;
+        const hasMouseEvents = duration > 0 && pauseOnHover;
+        return (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", { className: `${[...htmlClassList].join(' ')}`, onMouseEnter: hasMouseEvents ? this.onMouseEnter : null, onMouseLeave: hasMouseEvents ? this.onMouseLeave : null }, react__WEBPACK_IMPORTED_MODULE_0___default.a.isValidElement(CustomContent) ? CustomContent : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(CustomContent, Object.assign({}, { id }))));
+    }
+    renderNotification() {
+        const { notification: { title, message, dismiss: { showIcon, duration, pauseOnHover } } } = this.props;
+        const { htmlClassList } = this.state;
+        const hasMouseEvents = duration > 0 && pauseOnHover;
+        return (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", { className: `${[...htmlClassList].join(' ')}`, onMouseEnter: hasMouseEvents ? this.onMouseEnter : null, onMouseLeave: hasMouseEvents ? this.onMouseLeave : null },
+            react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", { className: "notification__content" },
+                showIcon && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", { className: "notification__close", onClick: this.onClick }),
+                title && react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", { className: "notification__title" }, title),
+                react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", { className: "notification__message" }, message),
+                this.renderTimer())));
+    }
+    render() {
+        const { notification: { content, dismiss: { click } } } = this.props;
+        const { parentStyle, onAnimationEnd, onTransitionEnd, touchEnabled } = this.state;
+        return (react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", { ref: this.rootElementRef, onClick: click ? this.onClick : null, className: "notification", style: parentStyle, onAnimationEnd: onAnimationEnd, onTransitionEnd: onTransitionEnd, onTouchStart: touchEnabled ? this.onTouchStart : null, onTouchMove: touchEnabled ? this.onTouchMove : null, onTouchEnd: touchEnabled ? this.onTouchEnd : null }, content ? this.renderCustomContent() : this.renderNotification()));
+    }
+}
+/* harmony default export */ __webpack_exports__["default"] = (Notification);
+
+
+/***/ }),
+
+/***/ "./src/index.ts":
+/*!**********************!*\
+  !*** ./src/index.ts ***!
+  \**********************/
+/*! exports provided: store, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var src_components_Container__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/components/Container */ "./src/components/Container.tsx");
+/* harmony import */ var src_store__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/store */ "./src/store/index.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "store", function() { return src_store__WEBPACK_IMPORTED_MODULE_1__["default"]; });
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = (src_components_Container__WEBPACK_IMPORTED_MODULE_0__["default"]);
+
+
+/***/ }),
+
+/***/ "./src/scss/notification.scss":
+/*!************************************!*\
+  !*** ./src/scss/notification.scss ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(true);
+// Module
+___CSS_LOADER_EXPORT___.push([module.i, ".notification-container--top-center,\n.notification-container--top-left,\n.notification-container--top-right,\n.notification-container--bottom-center,\n.notification-container--bottom-left,\n.notification-container--bottom-right,\n.notification-container--center,\n.notification-container--top-full,\n.notification-container--bottom-full {\n  min-width: 325px;\n  position: absolute;\n  pointer-events: all; }\n\n.notification-container--center,\n.notification-container--top-center,\n.notification-container--bottom-center {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  left: calc(50% - 175px); }\n\n.notification-container--center,\n.notification-container--top-center,\n.notification-container--bottom-center {\n  max-width: 350px; }\n\n.notification-container--center {\n  top: 20px;\n  height: 100%;\n  pointer-events: none; }\n\n.notification-container--top-full,\n.notification-container--bottom-full {\n  width: 100%;\n  min-width: 100%; }\n\n.notification-container--bottom-full {\n  bottom: 0; }\n\n.flex-center {\n  min-width: 325px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-direction: column;\n  pointer-events: all; }\n\n.notification-container--top-center {\n  top: 20px; }\n\n.notification-container--bottom-center {\n  bottom: 20px; }\n\n.notification-container--top-left {\n  left: 20px;\n  top: 20px; }\n\n.notification-container--top-right {\n  right: 20px;\n  top: 20px; }\n\n.notification-container--bottom-left {\n  left: 20px;\n  bottom: 20px; }\n\n.notification-container--bottom-right {\n  bottom: 20px;\n  right: 20px; }\n\n.notification-container--mobile-top,\n.notification-container--mobile-bottom {\n  pointer-events: all;\n  position: absolute; }\n\n.notification-container--mobile-top {\n  right: 20px;\n  left: 20px;\n  top: 20px; }\n\n.notification-container--mobile-bottom {\n  right: 20px;\n  left: 20px;\n  bottom: 20px;\n  margin-bottom: -15px; }\n\n.notification__item--default {\n  background-color: #007bff;\n  border-left: 8px solid #0562c7; }\n  .notification__item--default .notification__timer {\n    background-color: #007bff; }\n  .notification__item--default .notification__timer-filler {\n    background-color: #fff; }\n  .notification__item--default .notification__close {\n    background-color: #007bff; }\n\n.notification__item--success {\n  background-color: #28a745;\n  border-left: 8px solid #1f8838; }\n  .notification__item--success .notification__timer {\n    background-color: #28a745; }\n  .notification__item--success .notification__timer-filler {\n    background-color: #fff; }\n  .notification__item--success .notification__close {\n    background-color: #28a745; }\n\n.notification__item--danger {\n  background-color: #dc3545;\n  border-left: 8px solid #bd1120; }\n  .notification__item--danger .notification__timer {\n    background-color: #dc3545; }\n  .notification__item--danger .notification__timer-filler {\n    background-color: #fff; }\n  .notification__item--danger .notification__close {\n    background-color: #dc3545; }\n\n.notification__item--info {\n  background-color: #17a2b8;\n  border-left: 8px solid #138b9e; }\n  .notification__item--info .notification__timer {\n    background-color: #17a2b8; }\n  .notification__item--info .notification__timer-filler {\n    background-color: #fff; }\n  .notification__item--info .notification__close {\n    background-color: #17a2b8; }\n\n.notification__item--warning {\n  background-color: #eab000;\n  border-left: 8px solid #ce9c09; }\n  .notification__item--warning .notification__timer {\n    background-color: #eab000; }\n  .notification__item--warning .notification__timer-filler {\n    background-color: #fff; }\n  .notification__item--warning .notification__close {\n    background-color: #eab000; }\n\n.notification__item--awesome {\n  background-color: #685dc3;\n  border-left: 8px solid #4c3fb1; }\n  .notification__item--awesome .notification__timer {\n    background-color: #685dc3; }\n  .notification__item--awesome .notification__timer-filler {\n    background-color: #fff; }\n  .notification__item--awesome .notification__close {\n    background-color: #685dc3; }\n\n@keyframes timer {\n  0% {\n    width: 100%; }\n  100% {\n    width: 0%; } }\n\n.notifications-component {\n  position: fixed;\n  z-index: 9000;\n  pointer-events: none;\n  width: 100%;\n  height: 100%; }\n\n.notification__item {\n  display: flex;\n  position: relative;\n  border-radius: 3px;\n  margin-bottom: 15px;\n  box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.2);\n  cursor: pointer; }\n\n.notification-container--top-full .notification__item,\n.notification-container--bottom-full .notification__item {\n  margin-bottom: 0;\n  border-radius: 0; }\n\n.notification__timer {\n  width: 100%;\n  height: 3px;\n  margin-top: 10px;\n  border-radius: 5px; }\n\n.notification__timer-filler {\n  height: 3px;\n  border-radius: 5px; }\n\n.notification__title {\n  color: #fff;\n  font-weight: 700;\n  font-size: 14px;\n  margin-top: 5px;\n  margin-bottom: 5px; }\n\n.notification__message {\n  color: #fff;\n  max-width: calc(100% - 15px);\n  font-size: 14px;\n  line-height: 150%;\n  word-wrap: break-word;\n  margin-bottom: 0;\n  margin-top: 0; }\n\n.notification__content {\n  padding: 8px 15px;\n  display: inline-block;\n  width: 100%; }\n\n.notification__close {\n  width: 18px;\n  height: 18px;\n  border-radius: 50%;\n  display: inline-block;\n  position: absolute;\n  right: 10px;\n  top: 10px; }\n  .notification__close::after {\n    content: '\\D7';\n    position: absolute;\n    transform: translate(-50%, -50%);\n    color: #fff;\n    font-size: 12px;\n    left: 50%;\n    top: 50%; }\n\n.notification-container--mobile-top .notification__item,\n.notification-container--mobile-bottom .notification__item,\n.notification-container--mobile-top .notification,\n.notification-container--mobile-bottom .notification {\n  max-width: 100%;\n  width: 100%; }\n\n.notification-container--top-right .notification,\n.notification-container--bottom-right .notification {\n  margin-left: auto; }\n\n.notification-container--top-left .notification,\n.notification-container--bottom-left .notification {\n  margin-right: auto; }\n\n.notification-container--mobile-top .notification,\n.notification-container--mobile-bottom .notification {\n  margin-left: auto;\n  margin-right: auto; }\n", "",{"version":3,"sources":["F:/Projects/react-notifications-component/src/scss/_containers.scss","F:/Projects/react-notifications-component/src/scss/_types.scss","F:/Projects/react-notifications-component/src/scss/_variables.scss","F:/Projects/react-notifications-component/src/scss/notification.scss"],"names":[],"mappings":"AAAA;;;;;;;;;EASE,gBAAgB;EAChB,kBAAkB;EAClB,mBAAmB,EAAA;;AAGrB;;;EAGE,aAAa;EACb,uBAAuB;EACvB,mBAAmB;EACnB,sBAAsB;EACtB,uBAAuB,EAAA;;AAGzB;;;EAGE,gBAAgB,EAAA;;AAGlB;EACE,SAAS;EACT,YAAY;EACZ,oBAAoB,EAAA;;AAGtB;;EAEE,WAAW;EACX,eAAe,EAAA;;AAGjB;EACE,SAAS,EAAA;;AAGX;EACE,gBAAgB;EAChB,aAAa;EACb,uBAAuB;EACvB,mBAAmB;EACnB,sBAAsB;EACtB,mBAAmB,EAAA;;AAGrB;EACE,SAAS,EAAA;;AAEX;EACE,YAAY,EAAA;;AAGd;EACE,UAAU;EACV,SAAS,EAAA;;AAGX;EACE,WAAW;EACX,SAAS,EAAA;;AAGX;EACE,UAAU;EACV,YAAY,EAAA;;AAGd;EACE,YAAY;EACZ,WAAW,EAAA;;AAGb;;EAEE,mBAAmB;EACnB,kBAAkB,EAAA;;AAGpB;EACE,WAAW;EACX,UAAU;EACV,SAAS,EAAA;;AAGX;EACE,WAAW;EACX,UAAU;EACV,YAAY;EACZ,oBAAoB,EAAA;;AChGtB;EACE,yBCHe;EDIf,8BCHoB,EAAA;EDCtB;IAKI,yBCWmB,EAAA;EDhBvB;IAQI,sBCSuB,EAAA;EDjB3B;IAWI,yBCba,EAAA;;ADiBjB;EACE,yBCfe;EDgBf,8BCfoB,EAAA;EDatB;IAKI,yBCDmB,EAAA;EDJvB;IAQI,sBCHuB,EAAA;EDL3B;IAWI,yBCzBa,EAAA;;AD6BjB;EACE,yBC3Bc;ED4Bd,8BC3BmB,EAAA;EDyBrB;IAKI,yBCbkB,EAAA;EDQtB;IAQI,sBCfsB,EAAA;EDO1B;IAWI,yBCrCY,EAAA;;ADyChB;EACE,yBCvCY;EDwCZ,8BCvCiB,EAAA;EDqCnB;IAKI,yBCzBgB,EAAA;EDoBpB;IAQI,sBC3BoB,EAAA;EDmBxB;IAWI,yBCjDU,EAAA;;ADqDd;EACE,yBCnDe;EDoDf,8BCnDoB,EAAA;EDiDtB;IAKI,yBCrCmB,EAAA;EDgCvB;IAQI,sBCvCuB,EAAA;ED+B3B;IAWI,yBC7Da,EAAA;;ADiEjB;EACE,yBC/De;EDgEf,8BC/DoB,EAAA;ED6DtB;IAKI,yBCjDmB,EAAA;ED4CvB;IAQI,sBCnDuB,EAAA;ED2C3B;IAWI,yBCzEa,EAAA;;ACZjB;EACE;IAAK,WAAW,EAAA;EAChB;IAAO,SAAS,EAAA,EAAA;;AAGlB;EACE,eAAe;EACf,aAAa;EACb,oBAAoB;EACpB,WAAW;EACX,YAAY,EAAA;;AAGd;EACE,aAAa;EACb,kBAAkB;EAClB,kBAAkB;EAClB,mBAAmB;EACnB,0CAA0C;EAC1C,eAAe,EAAA;;AAGjB;;EAEE,gBAAgB;EAChB,gBAAgB,EAAA;;AAGlB;EACE,WAAW;EACX,WAAW;EACX,gBAAgB;EAChB,kBAAkB,EAAA;;AAEpB;EACE,WAAW;EACX,kBAAkB,EAAA;;AAEpB;EACE,WAAW;EACX,gBAAgB;EAChB,eAAe;EACf,eAAe;EACf,kBAAkB,EAAA;;AAEpB;EACE,WAAW;EACX,4BAA4B;EAC5B,eAAe;EACf,iBAAiB;EACjB,qBAAqB;EACrB,gBAAgB;EAChB,aAAa,EAAA;;AAEf;EACE,iBAAiB;EACjB,qBAAqB;EACrB,WAAW,EAAA;;AAEb;EACE,WAAW;EACX,YAAY;EACZ,kBAAkB;EAClB,qBAAqB;EACrB,kBAAkB;EAClB,WAAW;EACX,SAAS,EAAA;EAPX;IAUI,cAAc;IACd,kBAAkB;IAClB,gCAAgC;IAChC,WAAW;IACX,eAAe;IACf,SAAS;IACT,QAAQ,EAAA;;AAIZ;;;;EAIE,eAAe;EACf,WAAW,EAAA;;AAGb;;EAEE,iBAAiB,EAAA;;AAGnB;;EAEE,kBAAkB,EAAA;;AAGpB;;EAEE,iBAAiB;EACjB,kBAAkB,EAAA","file":"notification.scss","sourcesContent":[".notification-container--top-center,\r\n.notification-container--top-left,\r\n.notification-container--top-right,\r\n.notification-container--bottom-center,\r\n.notification-container--bottom-left,\r\n.notification-container--bottom-right,\r\n.notification-container--center,\r\n.notification-container--top-full,\r\n.notification-container--bottom-full {\r\n  min-width: 325px;\r\n  position: absolute;\r\n  pointer-events: all;\r\n}\r\n\r\n.notification-container--center,\r\n.notification-container--top-center,\r\n.notification-container--bottom-center {\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  flex-direction: column;\r\n  left: calc(50% - 175px);\r\n}\r\n\r\n.notification-container--center,\r\n.notification-container--top-center,\r\n.notification-container--bottom-center {\r\n  max-width: 350px;\r\n}\r\n\r\n.notification-container--center {\r\n  top: 20px;\r\n  height: 100%;\r\n  pointer-events: none;\r\n}\r\n\r\n.notification-container--top-full,\r\n.notification-container--bottom-full {\r\n  width: 100%;\r\n  min-width: 100%;\r\n}\r\n\r\n.notification-container--bottom-full {\r\n  bottom: 0;\r\n}\r\n\r\n.flex-center {\r\n  min-width: 325px;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  flex-direction: column;\r\n  pointer-events: all;\r\n}\r\n\r\n.notification-container--top-center {\r\n  top: 20px;\r\n}\r\n.notification-container--bottom-center {\r\n  bottom: 20px;\r\n}\r\n\r\n.notification-container--top-left {\r\n  left: 20px;\r\n  top: 20px;\r\n}\r\n\r\n.notification-container--top-right {\r\n  right: 20px;\r\n  top: 20px;\r\n}\r\n\r\n.notification-container--bottom-left {\r\n  left: 20px;\r\n  bottom: 20px;\r\n}\r\n\r\n.notification-container--bottom-right {\r\n  bottom: 20px;\r\n  right: 20px;\r\n}\r\n\r\n.notification-container--mobile-top,\r\n.notification-container--mobile-bottom {\r\n  pointer-events: all;\r\n  position: absolute;\r\n}\r\n\r\n.notification-container--mobile-top {\r\n  right: 20px;\r\n  left: 20px;\r\n  top: 20px;\r\n}\r\n\r\n.notification-container--mobile-bottom {\r\n  right: 20px;\r\n  left: 20px;\r\n  bottom: 20px;\r\n  margin-bottom: -15px;\r\n}\r\n","@import \"_variables.scss\";\r\n\r\n.notification__item--default {\r\n  background-color: $default;\r\n  border-left: 8px solid $default_dark;\r\n\r\n  .notification__timer {\r\n    background-color: $default_timer;\r\n  }\r\n  .notification__timer-filler {\r\n    background-color: $default_timer_filler;\r\n  }\r\n  .notification__close {\r\n    background-color: $default;\r\n  }\r\n}\r\n\r\n.notification__item--success {\r\n  background-color: $success;\r\n  border-left: 8px solid $success_dark;\r\n\r\n  .notification__timer {\r\n    background-color: $success_timer;\r\n  }\r\n  .notification__timer-filler {\r\n    background-color: $success_timer_filler;\r\n  }\r\n  .notification__close {\r\n    background-color: $success;\r\n  }\r\n}\r\n\r\n.notification__item--danger {\r\n  background-color: $danger;\r\n  border-left: 8px solid $danger_dark;\r\n\r\n  .notification__timer {\r\n    background-color: $danger_timer;\r\n  }\r\n  .notification__timer-filler {\r\n    background-color: $danger_timer_filler;\r\n  }\r\n  .notification__close {\r\n    background-color: $danger;\r\n  }\r\n}\r\n\r\n.notification__item--info {\r\n  background-color: $info;\r\n  border-left: 8px solid $info_dark;\r\n\r\n  .notification__timer {\r\n    background-color: $info_timer;\r\n  }\r\n  .notification__timer-filler {\r\n    background-color: $info_timer_filler;\r\n  }\r\n  .notification__close {\r\n    background-color: $info;\r\n  }\r\n}\r\n\r\n.notification__item--warning {\r\n  background-color: $warning;\r\n  border-left: 8px solid $warning_dark;\r\n\r\n  .notification__timer {\r\n    background-color: $warning_timer;\r\n  }\r\n  .notification__timer-filler {\r\n    background-color: $warning_timer_filler;\r\n  }\r\n  .notification__close {\r\n    background-color: $warning;\r\n  }\r\n}\r\n\r\n.notification__item--awesome {\r\n  background-color: $awesome;\r\n  border-left: 8px solid $awesome_dark;\r\n\r\n  .notification__timer {\r\n    background-color: $awesome_timer;\r\n  }\r\n  .notification__timer-filler {\r\n    background-color: $awesome_timer_filler;\r\n  }\r\n  .notification__close {\r\n    background-color: $awesome;\r\n  }\r\n}","$default: #007bff !default;\r\n$default_dark: #0562c7 !default;\r\n\r\n$success: #28a745 !default;\r\n$success_dark: #1f8838 !default;\r\n\r\n$danger: #dc3545 !default;\r\n$danger_dark: #bd1120 !default;\r\n\r\n$info: #17a2b8 !default;\r\n$info_dark: #138b9e !default;\r\n\r\n$warning: #eab000 !default;\r\n$warning_dark: #ce9c09 !default;\r\n\r\n$awesome: #685dc3 !default;\r\n$awesome_dark: #4c3fb1 !default;\r\n\r\n$default_timer: #007bff !default;\r\n$default_timer_filler: #fff !default;\r\n\r\n$success_timer: #28a745 !default;\r\n$success_timer_filler: #fff !default;\r\n\r\n$danger_timer: #dc3545 !default;\r\n$danger_timer_filler: #fff !default;\r\n\r\n$info_timer: #17a2b8 !default;\r\n$info_timer_filler: #fff !default;\r\n\r\n$warning_timer: #eab000 !default;\r\n$warning_timer_filler: #fff !default;\r\n\r\n$awesome_timer: #685dc3 !default;\r\n$awesome_timer_filler: #fff !default;\r\n","@import \"./_containers.scss\";\r\n@import \"./_types.scss\";\r\n\r\n@keyframes timer {\r\n  0% { width: 100%; }\r\n  100% { width: 0%; }\r\n}\r\n\r\n.notifications-component {\r\n  position: fixed;\r\n  z-index: 9000;\r\n  pointer-events: none;\r\n  width: 100%;\r\n  height: 100%;\r\n}\r\n\r\n.notification__item {\r\n  display: flex;\r\n  position: relative;\r\n  border-radius: 3px;\r\n  margin-bottom: 15px;\r\n  box-shadow: 1px 3px 4px rgba(0, 0, 0, 0.2);\r\n  cursor: pointer;\r\n}\r\n\r\n.notification-container--top-full .notification__item,\r\n.notification-container--bottom-full .notification__item {\r\n  margin-bottom: 0;\r\n  border-radius: 0;\r\n}\r\n\r\n.notification__timer {\r\n  width: 100%;\r\n  height: 3px;\r\n  margin-top: 10px;\r\n  border-radius: 5px;\r\n}\r\n.notification__timer-filler {\r\n  height: 3px;\r\n  border-radius: 5px;\r\n}\r\n.notification__title {\r\n  color: #fff;\r\n  font-weight: 700;\r\n  font-size: 14px;\r\n  margin-top: 5px;\r\n  margin-bottom: 5px;\r\n}\r\n.notification__message {\r\n  color: #fff;\r\n  max-width: calc(100% - 15px);\r\n  font-size: 14px;\r\n  line-height: 150%;\r\n  word-wrap: break-word;\r\n  margin-bottom: 0;\r\n  margin-top: 0;\r\n}\r\n.notification__content {\r\n  padding: 8px 15px;\r\n  display: inline-block;\r\n  width: 100%;\r\n}\r\n.notification__close {\r\n  width: 18px;\r\n  height: 18px;\r\n  border-radius: 50%;\r\n  display: inline-block;\r\n  position: absolute;\r\n  right: 10px;\r\n  top: 10px;\r\n\r\n  &::after {\r\n    content: '\\D7';\r\n    position: absolute;\r\n    transform: translate(-50%, -50%);\r\n    color: #fff;\r\n    font-size: 12px;\r\n    left: 50%;\r\n    top: 50%;\r\n  }\r\n}\r\n\r\n.notification-container--mobile-top .notification__item,\r\n.notification-container--mobile-bottom .notification__item,\r\n.notification-container--mobile-top .notification,\r\n.notification-container--mobile-bottom .notification {\r\n  max-width: 100%;\r\n  width: 100%;\r\n}\r\n\r\n.notification-container--top-right .notification,\r\n.notification-container--bottom-right .notification {\r\n  margin-left: auto;\r\n}\r\n\r\n.notification-container--top-left .notification,\r\n.notification-container--bottom-left .notification {\r\n  margin-right: auto;\r\n}\r\n\r\n.notification-container--mobile-top .notification,\r\n.notification-container--mobile-bottom .notification {\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n}"]}]);
+// Exports
+/* harmony default export */ __webpack_exports__["default"] = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./src/store/index.ts":
+/*!****************************!*\
+  !*** ./src/store/index.ts ***!
+  \****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var src_utils_helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/utils/helpers */ "./src/utils/helpers.ts");
+/* harmony import */ var src_utils_validators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/utils/validators */ "./src/utils/validators.ts");
+
+
+class Store {
+    constructor() {
+        this.incrementCounter = () => (this.counter += 1);
+        this.getCounter = () => this.counter;
+        this.counter = 0;
+        this.add = null;
+    }
+    addNotification(notification) {
+        if (true) {
+            const transitions = ['slidingEnter', 'slidingExit', 'touchRevert', 'touchSlidingExit'];
+            transitions.forEach((transition) => Object(src_utils_validators__WEBPACK_IMPORTED_MODULE_1__["validateTransition"])(notification, transition));
+            src_utils_validators__WEBPACK_IMPORTED_MODULE_1__["validators"].forEach((validator) => validator(notification, this.types));
+        }
+        this.incrementCounter();
+        const parsedNotification = Object(src_utils_helpers__WEBPACK_IMPORTED_MODULE_0__["parseNotification"])(notification, this.types, this.defaultNotificationWidth);
+        return this.add(parsedNotification);
+    }
+    register(parameters) {
+        const { addNotification, removeNotification, removeAllNotifications, types, defaultNotificationWidth } = parameters;
+        this.add = addNotification;
+        this.removeNotification = removeNotification;
+        this.removeAllNotifications = removeAllNotifications;
+        this.defaultNotificationWidth = defaultNotificationWidth;
+        this.types = types;
+    }
+}
+/* harmony default export */ __webpack_exports__["default"] = (new Store());
+
+
+/***/ }),
+
+/***/ "./src/utils/constants.ts":
+/*!********************************!*\
+  !*** ./src/utils/constants.ts ***!
+  \********************************/
+/*! exports provided: DEFAULT_CONTAINER_VALUES, NOTIFICATION_BASE_CLASS, NOTIFICATION_CONTAINER, INSERTION, NOTIFICATION_TYPE, REMOVAL, ERROR */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DEFAULT_CONTAINER_VALUES", function() { return DEFAULT_CONTAINER_VALUES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NOTIFICATION_BASE_CLASS", function() { return NOTIFICATION_BASE_CLASS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NOTIFICATION_CONTAINER", function() { return NOTIFICATION_CONTAINER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "INSERTION", function() { return INSERTION; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NOTIFICATION_TYPE", function() { return NOTIFICATION_TYPE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVAL", function() { return REMOVAL; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ERROR", function() { return ERROR; });
+const DEFAULT_CONTAINER_VALUES = {
+    isMobile: true,
+    breakpoint: 768,
+    defaultNotificationWidth: 325
+};
+const NOTIFICATION_BASE_CLASS = 'notification__item';
+var NOTIFICATION_CONTAINER;
+(function (NOTIFICATION_CONTAINER) {
+    NOTIFICATION_CONTAINER["BOTTOM_LEFT"] = "bottom-left";
+    NOTIFICATION_CONTAINER["BOTTOM_RIGHT"] = "bottom-right";
+    NOTIFICATION_CONTAINER["BOTTOM_CENTER"] = "bottom-center";
+    NOTIFICATION_CONTAINER["TOP_LEFT"] = "top-left";
+    NOTIFICATION_CONTAINER["TOP_RIGHT"] = "top-right";
+    NOTIFICATION_CONTAINER["TOP_CENTER"] = "top-center";
+    NOTIFICATION_CONTAINER["CENTER"] = "center";
+    NOTIFICATION_CONTAINER["TOP_FULL"] = "top-full";
+    NOTIFICATION_CONTAINER["BOTTOM_FULL"] = "bottom-full";
+})(NOTIFICATION_CONTAINER || (NOTIFICATION_CONTAINER = {}));
+var INSERTION;
+(function (INSERTION) {
+    INSERTION["TOP"] = "top";
+    INSERTION["BOTTOM"] = "bottom";
+})(INSERTION || (INSERTION = {}));
+var NOTIFICATION_TYPE;
+(function (NOTIFICATION_TYPE) {
+    NOTIFICATION_TYPE["SUCCESS"] = "success";
+    NOTIFICATION_TYPE["DANGER"] = "danger";
+    NOTIFICATION_TYPE["INFO"] = "info";
+    NOTIFICATION_TYPE["DEFAULT"] = "default";
+    NOTIFICATION_TYPE["WARNING"] = "warning";
+})(NOTIFICATION_TYPE || (NOTIFICATION_TYPE = {}));
+var REMOVAL;
+(function (REMOVAL) {
+    REMOVAL["TIMEOUT"] = "timeout";
+    REMOVAL["CLICK"] = "click";
+    REMOVAL["TOUCH"] = "touch";
+    REMOVAL["MANUAL"] = "manual";
+})(REMOVAL || (REMOVAL = {}));
+const ERROR = {
+    ANIMATION_IN: 'Validation error. `animationIn` option must be an array',
+    ANIMATION_OUT: 'Validation error. `animationOut` option must be an array',
+    DISMISS_REQUIRED: 'Validation error. `duration` property of `dismiss` option is required',
+    DISMISS_NUMBER: 'Validation error. `duration` property of `dismiss` option must be a Number',
+    DISMISS_POSITIVE: 'Validation error. `duration` property of `dismiss` option must be a positive Number',
+    DISMISS_CLICK_BOOL: 'Validation error. `click` property of `dismiss` option must be a Boolean',
+    DISMISS_TOUCH_BOOL: 'Validation error. `touch` property of `dismiss` option must be a Boolean',
+    DISMISS_WAIT: 'Validation error. `waitForAnimation` property of `dismiss` option must be a Boolean',
+    DISMISS_PAUSE_BOOL: 'Validation error. `pauseOnHover` property of `dismiss` option must be a Boolean',
+    DISMISS_ONSCREEN_BOOL: 'Validation error. `onScreen` property of `dismiss` option must be a Boolean',
+    DISMISS_ICON: 'Validation error. `showIcon` property of `dismiss` option must be a Boolean',
+    TITLE_STRING: 'Validation error. `title` option must be a String',
+    TITLE_ELEMENT: 'Validation error. `title` option must be a valid React element/function',
+    MESSAGE_REQUIRED: 'Validation error. `message` option is required',
+    MESSAGE_STRING: 'Validation error. `message` option must be a String',
+    MESSAGE_ELEMENT: 'Validation error. `message` option must be a valid React element/function',
+    TYPE_REQUIRED: 'Validation error. `type` option is required',
+    TYPE_STRING: 'Validation error. `type` option must be a String',
+    TYPE_NOT_EXISTENT: 'Validation error. `type` option not found',
+    CONTAINER_REQUIRED: 'Validation error. `container` option is required',
+    CONTAINER_STRING: 'Validation error. `container` option must be a String',
+    CONTENT_INVALID: 'Validation error. `content` option must be a valid React component/function/element',
+    WIDTH_NUMBER: 'Validation error. `width` option must be a Number',
+    INSERT_STRING: 'Validation error. `insert` option must be a String',
+    TRANSITION_DURATION_NUMBER: 'Validation error. `duration` property of `transition` option must be a Number',
+    TRANSITION_TIMING_FUNCTION: 'Validation error. `timingFunction` property of `transition` option must be a String',
+    TRANSITION_DELAY_NUMBER: 'Validation error. `delay` property of `transition` option must be a Number',
+    TYPE_NOT_FOUND: 'Validation error. Custom type not found',
+    REMOVAL_FUNC: 'Validation error. `onRemoval` must be a function'
+};
+
+
+/***/ }),
+
+/***/ "./src/utils/helpers.ts":
+/*!******************************!*\
+  !*** ./src/utils/helpers.ts ***!
+  \******************************/
+/*! exports provided: isNull, isBottomContainer, isTopContainer, hasFullySwiped, shouldNotificationHaveSliding, htmlClassesForExistingType, getHtmlClassesForType, getNotificationsForMobileView, getNotificationsForEachContainer, getTransition, parseNotification */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isNull", function() { return isNull; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isBottomContainer", function() { return isBottomContainer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isTopContainer", function() { return isTopContainer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "hasFullySwiped", function() { return hasFullySwiped; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "shouldNotificationHaveSliding", function() { return shouldNotificationHaveSliding; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "htmlClassesForExistingType", function() { return htmlClassesForExistingType; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getHtmlClassesForType", function() { return getHtmlClassesForType; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getNotificationsForMobileView", function() { return getNotificationsForMobileView; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getNotificationsForEachContainer", function() { return getNotificationsForEachContainer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTransition", function() { return getTransition; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseNotification", function() { return parseNotification; });
+/* harmony import */ var src_store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/store */ "./src/store/index.ts");
+/* harmony import */ var src_utils_constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/utils/constants */ "./src/utils/constants.ts");
+
+
+const isNull = (object) => object === null || object === undefined;
+function isBottomContainer(container) {
+    return (container === src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_CONTAINER"].BOTTOM_FULL ||
+        container === src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_CONTAINER"].BOTTOM_LEFT ||
+        container === src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_CONTAINER"].BOTTOM_RIGHT ||
+        container === src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_CONTAINER"].BOTTOM_CENTER);
+}
+function isTopContainer(container) {
+    return (container === src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_CONTAINER"].TOP_FULL ||
+        container === src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_CONTAINER"].TOP_LEFT ||
+        container === src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_CONTAINER"].TOP_RIGHT ||
+        container === src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_CONTAINER"].TOP_CENTER);
+}
+function hasFullySwiped(diffX, width) {
+    const swipeLength = Math.abs(diffX);
+    const requiredSwipeLength = (40 / 100) * width;
+    return swipeLength >= requiredSwipeLength;
+}
+function shouldNotificationHaveSliding(notification, count) {
+    if (count <= 1) {
+        return false;
+    }
+    return (count > 1 &&
+        ((notification.insert === src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["INSERTION"].TOP && isTopContainer(notification.container)) ||
+            (notification.insert === src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["INSERTION"].BOTTOM && isBottomContainer(notification.container)) ||
+            notification.container === src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_CONTAINER"].CENTER));
+}
+function htmlClassesForExistingType(type) {
+    switch (type) {
+        case src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_TYPE"].DEFAULT:
+            return [src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_BASE_CLASS"], 'notification__item--default'];
+        case src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_TYPE"].SUCCESS:
+            return [src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_BASE_CLASS"], 'notification__item--success'];
+        case src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_TYPE"].DANGER:
+            return [src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_BASE_CLASS"], 'notification__item--danger'];
+        case src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_TYPE"].WARNING:
+            return [src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_BASE_CLASS"], 'notification__item--warning'];
+        case src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_TYPE"].INFO:
+            return [src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_BASE_CLASS"], 'notification__item--info'];
+        default:
+            return [src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_BASE_CLASS"]];
+    }
+}
+function getHtmlClassesForType(notification) {
+    const { type, content, userDefinedTypes } = notification;
+    const base = [src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_BASE_CLASS"]];
+    if (content) {
+        return base;
+    }
+    if (isNull(userDefinedTypes)) {
+        return htmlClassesForExistingType(type);
+    }
+    const foundType = userDefinedTypes.find((q) => q.name === type);
+    return base.concat(foundType.htmlClasses);
+}
+function getNotificationsForMobileView(notifications) {
+    const top = [];
+    const bottom = [];
+    notifications.forEach((notification) => {
+        const { container } = notification;
+        const { CENTER } = src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_CONTAINER"];
+        if (isTopContainer(container) || container === CENTER) {
+            top.push(notification);
+        }
+        else if (isBottomContainer(container)) {
+            bottom.push(notification);
+        }
+    });
+    return { top, bottom };
+}
+function getNotificationsForEachContainer(notifications) {
+    const topLeft = [];
+    const topRight = [];
+    const topCenter = [];
+    const bottomLeft = [];
+    const bottomRight = [];
+    const bottomCenter = [];
+    const center = [];
+    const topFull = [];
+    const bottomFull = [];
+    notifications.forEach((notification) => {
+        const { container } = notification;
+        if (container === src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_CONTAINER"].TOP_FULL) {
+            topFull.push(notification);
+        }
+        else if (container === src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_CONTAINER"].BOTTOM_FULL) {
+            bottomFull.push(notification);
+        }
+        else if (container === src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_CONTAINER"].TOP_LEFT) {
+            topLeft.push(notification);
+        }
+        else if (container === src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_CONTAINER"].TOP_RIGHT) {
+            topRight.push(notification);
+        }
+        else if (container === src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_CONTAINER"].TOP_CENTER) {
+            topCenter.push(notification);
+        }
+        else if (container === src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_CONTAINER"].BOTTOM_LEFT) {
+            bottomLeft.push(notification);
+        }
+        else if (container === src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_CONTAINER"].BOTTOM_RIGHT) {
+            bottomRight.push(notification);
+        }
+        else if (container === src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_CONTAINER"].BOTTOM_CENTER) {
+            bottomCenter.push(notification);
+        }
+        else if (container === src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_CONTAINER"].CENTER) {
+            center.push(notification);
+        }
+    });
+    return {
+        topFull,
+        bottomFull,
+        topLeft,
+        topRight,
+        topCenter,
+        bottomLeft,
+        bottomRight,
+        bottomCenter,
+        center
+    };
+}
+function getTransition({ duration, timingFunction, delay }, property) {
+    return `${duration}ms ${property} ${timingFunction} ${delay}ms`;
+}
+function defaultTransition(transition, { duration, timingFunction, delay }) {
+    const transitionOptions = transition || {};
+    if (isNull(transitionOptions.duration)) {
+        transitionOptions.duration = duration;
+    }
+    if (isNull(transitionOptions.timingFunction)) {
+        transitionOptions.timingFunction = timingFunction;
+    }
+    if (isNull(transitionOptions.delay)) {
+        transitionOptions.delay = delay;
+    }
+    return transitionOptions;
+}
+function defaultDismiss(dismiss) {
+    const option = dismiss;
+    const defaults = {
+        duration: 0,
+        click: true,
+        touch: true,
+        onScreen: false,
+        pauseOnHover: false,
+        waitForAnimation: false,
+        showIcon: false
+    };
+    if (!option) {
+        return defaults;
+    }
+    Object.keys(defaults).forEach((prop) => {
+        if (isNull(option[prop])) {
+            option[prop] = defaults[prop];
+        }
+    });
+    return option;
+}
+function defaultUserDefinedTypes(notification, definedTypes) {
+    const { content, type } = notification;
+    if (content) {
+        return undefined;
+    }
+    if (type === src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_TYPE"].SUCCESS ||
+        type === src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_TYPE"].DANGER ||
+        type === src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_TYPE"].INFO ||
+        type === src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_TYPE"].DEFAULT ||
+        type === src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_TYPE"].WARNING ||
+        !definedTypes) {
+        return undefined;
+    }
+    return definedTypes;
+}
+function parseNotification(options, userDefinedTypes, defaultNotificationWidth) {
+    const notification = options;
+    const { id, type, insert, content, container, animationIn, animationOut, slidingEnter, slidingExit, touchRevert, touchSlidingExit, dismiss, width, onRemoval } = notification;
+    notification.id = id || src_store__WEBPACK_IMPORTED_MODULE_0__["default"].getCounter().toString();
+    notification.type = content ? null : type.toLowerCase();
+    if (userDefinedTypes && !content) {
+        notification.userDefinedTypes = defaultUserDefinedTypes(notification, userDefinedTypes);
+    }
+    notification.width = isNull(width) ? defaultNotificationWidth : width;
+    notification.container = container.toLowerCase();
+    notification.insert = (insert || 'top').toLowerCase();
+    notification.dismiss = defaultDismiss(dismiss);
+    notification.animationIn = animationIn || [];
+    notification.animationOut = animationOut || [];
+    notification.onRemoval = onRemoval || (() => { });
+    const t = (duration, timingFunction, delay) => ({
+        duration,
+        timingFunction,
+        delay
+    });
+    notification.slidingEnter = defaultTransition(slidingEnter, t(600, 'linear', 0));
+    notification.slidingExit = defaultTransition(slidingExit, t(600, 'linear', 0));
+    notification.touchRevert = defaultTransition(touchRevert, t(600, 'linear', 0));
+    const touchExit = touchSlidingExit || {};
+    const swipe = touchExit.swipe || {};
+    const fade = touchExit.fade || {};
+    notification.touchSlidingExit = touchExit;
+    notification.touchSlidingExit.swipe = defaultTransition(swipe, t(600, 'linear', 0));
+    notification.touchSlidingExit.fade = defaultTransition(fade, t(300, 'linear', 0));
+    return notification;
+}
+
+
+/***/ }),
+
+/***/ "./src/utils/timer.ts":
+/*!****************************!*\
+  !*** ./src/utils/timer.ts ***!
+  \****************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Timer; });
+class Timer {
+    constructor(callback, delay) {
+        this.callback = callback;
+        this.remaining = delay;
+        this.resume();
+    }
+    pause() {
+        clearTimeout(this.timerId);
+        this.remaining -= Date.now() - this.start;
+    }
+    resume() {
+        this.start = Date.now();
+        clearTimeout(this.timerId);
+        this.timerId = setTimeout(this.callback, this.remaining);
+    }
+    clear() {
+        clearTimeout(this.timerId);
+    }
+}
+
+
+/***/ }),
+
+/***/ "./src/utils/validators.ts":
+/*!*********************************!*\
+  !*** ./src/utils/validators.ts ***!
+  \*********************************/
+/*! exports provided: validateTransition, validators */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validateTransition", function() { return validateTransition; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validators", function() { return validators; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var src_utils_constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/utils/constants */ "./src/utils/constants.ts");
+
+
+const isNull = (object) => object === null || object === undefined;
+const isString = (object) => typeof object === 'string';
+const isNumber = (object) => typeof object === 'number';
+const isBoolean = (object) => typeof object === 'boolean';
+const isFunction = (object) => !!(object && object.constructor && object.call && object.apply);
+const isArray = (object) => !isNull(object) && object.constructor === Array;
+function isClassComponent(component) {
+    return typeof component === 'function' && component.prototype && !!component.prototype.render;
+}
+function isFunctionComponent(component) {
+    return typeof component === 'function';
+}
+const isReactElement = (value) => isFunctionComponent(value) || react__WEBPACK_IMPORTED_MODULE_0___default.a.isValidElement(value);
+function validateTransition(notification, transition) {
+    const { TRANSITION_DURATION_NUMBER, TRANSITION_TIMING_FUNCTION, TRANSITION_DELAY_NUMBER } = src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["ERROR"];
+    const { duration, timingFunction, delay } = notification[transition] || {};
+    if (!isNull(duration) && !isNumber(duration)) {
+        throw new Error(TRANSITION_DURATION_NUMBER.replace('transition', transition));
+    }
+    if (!isNull(timingFunction) && !isString(timingFunction)) {
+        throw new Error(TRANSITION_TIMING_FUNCTION.replace('transition', transition));
+    }
+    if (!isNull(delay) && !isNumber(delay)) {
+        throw new Error(TRANSITION_DELAY_NUMBER.replace('transition', transition));
+    }
+}
+const validators = [
+    function title({ content, title }) {
+        if (content)
+            return;
+        if (isNull(title))
+            return;
+        const isReactEl = isReactElement(title);
+        if (isReactEl || typeof title === 'string')
+            return;
+        if (!isReactEl) {
+            throw new Error(src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["ERROR"].TITLE_ELEMENT);
+        }
+        if (typeof title !== 'string') {
+            throw new Error(src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["ERROR"].TITLE_STRING);
+        }
+    },
+    function message({ content, message }) {
+        if (content)
+            return;
+        if (!message) {
+            throw new Error(src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["ERROR"].MESSAGE_REQUIRED);
+        }
+        const isReactEl = isReactElement(message);
+        if (isString(message) || isReactEl) {
+            return;
+        }
+        if (!isString(message)) {
+            throw new Error(src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["ERROR"].MESSAGE_STRING);
+        }
+        if (!isReactEl) {
+            throw new Error(src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["ERROR"].MESSAGE_ELEMENT);
+        }
+    },
+    function type({ content, type }, userDefinedTypes) {
+        if (content)
+            return;
+        if (!type) {
+            throw new Error(src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["ERROR"].TYPE_REQUIRED);
+        }
+        if (!isString(type)) {
+            throw new Error(src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["ERROR"].TYPE_STRING);
+        }
+        if (!userDefinedTypes &&
+            type !== src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_TYPE"].SUCCESS &&
+            type !== src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_TYPE"].DANGER &&
+            type !== src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_TYPE"].INFO &&
+            type !== src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_TYPE"].DEFAULT &&
+            type !== src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_TYPE"].WARNING) {
+            throw new Error(src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["ERROR"].TYPE_NOT_EXISTENT);
+        }
+    },
+    function container({ container }) {
+        if (isNull(container)) {
+            throw new Error(src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["ERROR"].CONTAINER_REQUIRED);
+        }
+        if (!isString(container)) {
+            throw new Error(src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["ERROR"].CONTAINER_STRING);
+        }
+    },
+    function insert({ insert }) {
+        if (isNull(insert))
+            return;
+        if (!isString(insert)) {
+            throw new Error(src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["ERROR"].INSERT_STRING);
+        }
+    },
+    function width({ width }) {
+        if (isNull(width))
+            return;
+        if (!isNumber(width)) {
+            throw new Error(src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["ERROR"].WIDTH_NUMBER);
+        }
+    },
+    function userDefinedTypes({ type, content }, userDefinedTypes) {
+        if (content)
+            return;
+        if (type === src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_TYPE"].SUCCESS ||
+            type === src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_TYPE"].DANGER ||
+            type === src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_TYPE"].INFO ||
+            type === src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_TYPE"].DEFAULT ||
+            type === src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["NOTIFICATION_TYPE"].WARNING ||
+            !userDefinedTypes) {
+            return;
+        }
+        if (!userDefinedTypes.find((p) => p.name === type)) {
+            throw new Error(src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["ERROR"].TYPE_NOT_FOUND);
+        }
+    },
+    function content({ content }) {
+        if (!content)
+            return;
+        const isClass = isClassComponent(content);
+        const isFunction = isFunctionComponent(content);
+        const isElem = react__WEBPACK_IMPORTED_MODULE_0___default.a.isValidElement(content);
+        if (!isClass && !isFunction && !isElem) {
+            throw new Error(src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["ERROR"].CONTENT_INVALID);
+        }
+    },
+    function animationIn({ animationIn }) {
+        if (isNull(animationIn))
+            return;
+        if (!isArray(animationIn)) {
+            throw new Error(src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["ERROR"].ANIMATION_IN);
+        }
+    },
+    function animationOut({ animationOut }) {
+        if (isNull(animationOut))
+            return;
+        if (!isArray(animationOut)) {
+            throw new Error(src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["ERROR"].ANIMATION_OUT);
+        }
+    },
+    function onRemoval({ onRemoval }) {
+        if (!onRemoval)
+            return;
+        if (!isFunction(onRemoval)) {
+            throw new Error(src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["ERROR"].REMOVAL_FUNC);
+        }
+    },
+    function dismiss({ dismiss }) {
+        if (!dismiss)
+            return;
+        const { duration, onScreen, showIcon, pauseOnHover, waitForAnimation: wait, click, touch } = dismiss;
+        if (isNull(duration)) {
+            throw new Error(src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["ERROR"].DISMISS_REQUIRED);
+        }
+        if (!isNumber(duration)) {
+            throw new Error(src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["ERROR"].DISMISS_NUMBER);
+        }
+        if (duration < 0) {
+            throw new Error(src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["ERROR"].DISMISS_POSITIVE);
+        }
+        if (!isNull(onScreen) && !isBoolean(onScreen)) {
+            throw new Error(src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["ERROR"].DISMISS_ONSCREEN_BOOL);
+        }
+        if (!isNull(pauseOnHover) && !isBoolean(pauseOnHover)) {
+            throw new Error(src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["ERROR"].DISMISS_PAUSE_BOOL);
+        }
+        if (!isNull(click) && !isBoolean(click)) {
+            throw new Error(src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["ERROR"].DISMISS_CLICK_BOOL);
+        }
+        if (!isNull(touch) && !isBoolean(touch)) {
+            throw new Error(src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["ERROR"].DISMISS_TOUCH_BOOL);
+        }
+        if (!isNull(showIcon) && !isBoolean(showIcon)) {
+            throw new Error(src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["ERROR"].DISMISS_ICON);
+        }
+        if (!isNull(wait) && !isBoolean(wait)) {
+            throw new Error(src_utils_constants__WEBPACK_IMPORTED_MODULE_1__["ERROR"].DISMISS_WAIT);
+        }
+    }
+];
+
+
+/***/ }),
+
+/***/ "react":
+/*!**************************************************************************************!*\
+  !*** external {"commonjs":"react","commonjs2":"react","amd":"react","root":"React"} ***!
+  \**************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+
+/***/ })
+
+/******/ });
+//# sourceMappingURL=react-notifications.dev.js.map
+
+/***/ }),
+
+/***/ "./node_modules/react-notifications-component/dist/theme.css":
+/*!*******************************************************************!*\
+  !*** ./node_modules/react-notifications-component/dist/theme.css ***!
+  \*******************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../css-loader??ref--6-1!../../postcss-loader/src??ref--6-2!./theme.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./node_modules/react-notifications-component/dist/theme.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/react-redux/es/components/Context.js":
 /*!***********************************************************!*\
   !*** ./node_modules/react-redux/es/components/Context.js ***!
@@ -72016,6 +73418,515 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/lib/addStyles.js":
+/*!****************************************************!*\
+  !*** ./node_modules/style-loader/lib/addStyles.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+
+var stylesInDom = {};
+
+var	memoize = function (fn) {
+	var memo;
+
+	return function () {
+		if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+		return memo;
+	};
+};
+
+var isOldIE = memoize(function () {
+	// Test for IE <= 9 as proposed by Browserhacks
+	// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+	// Tests for existence of standard globals is to allow style-loader
+	// to operate correctly into non-standard environments
+	// @see https://github.com/webpack-contrib/style-loader/issues/177
+	return window && document && document.all && !window.atob;
+});
+
+var getTarget = function (target, parent) {
+  if (parent){
+    return parent.querySelector(target);
+  }
+  return document.querySelector(target);
+};
+
+var getElement = (function (fn) {
+	var memo = {};
+
+	return function(target, parent) {
+                // If passing function in options, then use it for resolve "head" element.
+                // Useful for Shadow Root style i.e
+                // {
+                //   insertInto: function () { return document.querySelector("#foo").shadowRoot }
+                // }
+                if (typeof target === 'function') {
+                        return target();
+                }
+                if (typeof memo[target] === "undefined") {
+			var styleTarget = getTarget.call(this, target, parent);
+			// Special case to return head of iframe instead of iframe itself
+			if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
+				try {
+					// This will throw an exception if access to iframe is blocked
+					// due to cross-origin restrictions
+					styleTarget = styleTarget.contentDocument.head;
+				} catch(e) {
+					styleTarget = null;
+				}
+			}
+			memo[target] = styleTarget;
+		}
+		return memo[target]
+	};
+})();
+
+var singleton = null;
+var	singletonCounter = 0;
+var	stylesInsertedAtTop = [];
+
+var	fixUrls = __webpack_require__(/*! ./urls */ "./node_modules/style-loader/lib/urls.js");
+
+module.exports = function(list, options) {
+	if (typeof DEBUG !== "undefined" && DEBUG) {
+		if (typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+	}
+
+	options = options || {};
+
+	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
+
+	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+	// tags it will allow on a page
+	if (!options.singleton && typeof options.singleton !== "boolean") options.singleton = isOldIE();
+
+	// By default, add <style> tags to the <head> element
+        if (!options.insertInto) options.insertInto = "head";
+
+	// By default, add <style> tags to the bottom of the target
+	if (!options.insertAt) options.insertAt = "bottom";
+
+	var styles = listToStyles(list, options);
+
+	addStylesToDom(styles, options);
+
+	return function update (newList) {
+		var mayRemove = [];
+
+		for (var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+
+			domStyle.refs--;
+			mayRemove.push(domStyle);
+		}
+
+		if(newList) {
+			var newStyles = listToStyles(newList, options);
+			addStylesToDom(newStyles, options);
+		}
+
+		for (var i = 0; i < mayRemove.length; i++) {
+			var domStyle = mayRemove[i];
+
+			if(domStyle.refs === 0) {
+				for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
+
+				delete stylesInDom[domStyle.id];
+			}
+		}
+	};
+};
+
+function addStylesToDom (styles, options) {
+	for (var i = 0; i < styles.length; i++) {
+		var item = styles[i];
+		var domStyle = stylesInDom[item.id];
+
+		if(domStyle) {
+			domStyle.refs++;
+
+			for(var j = 0; j < domStyle.parts.length; j++) {
+				domStyle.parts[j](item.parts[j]);
+			}
+
+			for(; j < item.parts.length; j++) {
+				domStyle.parts.push(addStyle(item.parts[j], options));
+			}
+		} else {
+			var parts = [];
+
+			for(var j = 0; j < item.parts.length; j++) {
+				parts.push(addStyle(item.parts[j], options));
+			}
+
+			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+		}
+	}
+}
+
+function listToStyles (list, options) {
+	var styles = [];
+	var newStyles = {};
+
+	for (var i = 0; i < list.length; i++) {
+		var item = list[i];
+		var id = options.base ? item[0] + options.base : item[0];
+		var css = item[1];
+		var media = item[2];
+		var sourceMap = item[3];
+		var part = {css: css, media: media, sourceMap: sourceMap};
+
+		if(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});
+		else newStyles[id].parts.push(part);
+	}
+
+	return styles;
+}
+
+function insertStyleElement (options, style) {
+	var target = getElement(options.insertInto)
+
+	if (!target) {
+		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
+	}
+
+	var lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];
+
+	if (options.insertAt === "top") {
+		if (!lastStyleElementInsertedAtTop) {
+			target.insertBefore(style, target.firstChild);
+		} else if (lastStyleElementInsertedAtTop.nextSibling) {
+			target.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);
+		} else {
+			target.appendChild(style);
+		}
+		stylesInsertedAtTop.push(style);
+	} else if (options.insertAt === "bottom") {
+		target.appendChild(style);
+	} else if (typeof options.insertAt === "object" && options.insertAt.before) {
+		var nextSibling = getElement(options.insertAt.before, target);
+		target.insertBefore(style, nextSibling);
+	} else {
+		throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");
+	}
+}
+
+function removeStyleElement (style) {
+	if (style.parentNode === null) return false;
+	style.parentNode.removeChild(style);
+
+	var idx = stylesInsertedAtTop.indexOf(style);
+	if(idx >= 0) {
+		stylesInsertedAtTop.splice(idx, 1);
+	}
+}
+
+function createStyleElement (options) {
+	var style = document.createElement("style");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+
+	if(options.attrs.nonce === undefined) {
+		var nonce = getNonce();
+		if (nonce) {
+			options.attrs.nonce = nonce;
+		}
+	}
+
+	addAttrs(style, options.attrs);
+	insertStyleElement(options, style);
+
+	return style;
+}
+
+function createLinkElement (options) {
+	var link = document.createElement("link");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+	options.attrs.rel = "stylesheet";
+
+	addAttrs(link, options.attrs);
+	insertStyleElement(options, link);
+
+	return link;
+}
+
+function addAttrs (el, attrs) {
+	Object.keys(attrs).forEach(function (key) {
+		el.setAttribute(key, attrs[key]);
+	});
+}
+
+function getNonce() {
+	if (false) {}
+
+	return __webpack_require__.nc;
+}
+
+function addStyle (obj, options) {
+	var style, update, remove, result;
+
+	// If a transform function was defined, run it on the css
+	if (options.transform && obj.css) {
+	    result = typeof options.transform === 'function'
+		 ? options.transform(obj.css) 
+		 : options.transform.default(obj.css);
+
+	    if (result) {
+	    	// If transform returns a value, use that instead of the original css.
+	    	// This allows running runtime transformations on the css.
+	    	obj.css = result;
+	    } else {
+	    	// If the transform function returns a falsy value, don't add this css.
+	    	// This allows conditional loading of css
+	    	return function() {
+	    		// noop
+	    	};
+	    }
+	}
+
+	if (options.singleton) {
+		var styleIndex = singletonCounter++;
+
+		style = singleton || (singleton = createStyleElement(options));
+
+		update = applyToSingletonTag.bind(null, style, styleIndex, false);
+		remove = applyToSingletonTag.bind(null, style, styleIndex, true);
+
+	} else if (
+		obj.sourceMap &&
+		typeof URL === "function" &&
+		typeof URL.createObjectURL === "function" &&
+		typeof URL.revokeObjectURL === "function" &&
+		typeof Blob === "function" &&
+		typeof btoa === "function"
+	) {
+		style = createLinkElement(options);
+		update = updateLink.bind(null, style, options);
+		remove = function () {
+			removeStyleElement(style);
+
+			if(style.href) URL.revokeObjectURL(style.href);
+		};
+	} else {
+		style = createStyleElement(options);
+		update = applyToTag.bind(null, style);
+		remove = function () {
+			removeStyleElement(style);
+		};
+	}
+
+	update(obj);
+
+	return function updateStyle (newObj) {
+		if (newObj) {
+			if (
+				newObj.css === obj.css &&
+				newObj.media === obj.media &&
+				newObj.sourceMap === obj.sourceMap
+			) {
+				return;
+			}
+
+			update(obj = newObj);
+		} else {
+			remove();
+		}
+	};
+}
+
+var replaceText = (function () {
+	var textStore = [];
+
+	return function (index, replacement) {
+		textStore[index] = replacement;
+
+		return textStore.filter(Boolean).join('\n');
+	};
+})();
+
+function applyToSingletonTag (style, index, remove, obj) {
+	var css = remove ? "" : obj.css;
+
+	if (style.styleSheet) {
+		style.styleSheet.cssText = replaceText(index, css);
+	} else {
+		var cssNode = document.createTextNode(css);
+		var childNodes = style.childNodes;
+
+		if (childNodes[index]) style.removeChild(childNodes[index]);
+
+		if (childNodes.length) {
+			style.insertBefore(cssNode, childNodes[index]);
+		} else {
+			style.appendChild(cssNode);
+		}
+	}
+}
+
+function applyToTag (style, obj) {
+	var css = obj.css;
+	var media = obj.media;
+
+	if(media) {
+		style.setAttribute("media", media)
+	}
+
+	if(style.styleSheet) {
+		style.styleSheet.cssText = css;
+	} else {
+		while(style.firstChild) {
+			style.removeChild(style.firstChild);
+		}
+
+		style.appendChild(document.createTextNode(css));
+	}
+}
+
+function updateLink (link, options, obj) {
+	var css = obj.css;
+	var sourceMap = obj.sourceMap;
+
+	/*
+		If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
+		and there is no publicPath defined then lets turn convertToAbsoluteUrls
+		on by default.  Otherwise default to the convertToAbsoluteUrls option
+		directly
+	*/
+	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
+
+	if (options.convertToAbsoluteUrls || autoFixUrls) {
+		css = fixUrls(css);
+	}
+
+	if (sourceMap) {
+		// http://stackoverflow.com/a/26603875
+		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+	}
+
+	var blob = new Blob([css], { type: "text/css" });
+
+	var oldSrc = link.href;
+
+	link.href = URL.createObjectURL(blob);
+
+	if(oldSrc) URL.revokeObjectURL(oldSrc);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/lib/urls.js":
+/*!***********************************************!*\
+  !*** ./node_modules/style-loader/lib/urls.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+/**
+ * When source maps are enabled, `style-loader` uses a link element with a data-uri to
+ * embed the css on the page. This breaks all relative urls because now they are relative to a
+ * bundle instead of the current page.
+ *
+ * One solution is to only use full urls, but that may be impossible.
+ *
+ * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
+ *
+ * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
+ *
+ */
+
+module.exports = function (css) {
+  // get current location
+  var location = typeof window !== "undefined" && window.location;
+
+  if (!location) {
+    throw new Error("fixUrls requires window.location");
+  }
+
+	// blank or null?
+	if (!css || typeof css !== "string") {
+	  return css;
+  }
+
+  var baseUrl = location.protocol + "//" + location.host;
+  var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
+
+	// convert each url(...)
+	/*
+	This regular expression is just a way to recursively match brackets within
+	a string.
+
+	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
+	   (  = Start a capturing group
+	     (?:  = Start a non-capturing group
+	         [^)(]  = Match anything that isn't a parentheses
+	         |  = OR
+	         \(  = Match a start parentheses
+	             (?:  = Start another non-capturing groups
+	                 [^)(]+  = Match anything that isn't a parentheses
+	                 |  = OR
+	                 \(  = Match a start parentheses
+	                     [^)(]*  = Match anything that isn't a parentheses
+	                 \)  = Match a end parentheses
+	             )  = End Group
+              *\) = Match anything and then a close parens
+          )  = Close non-capturing group
+          *  = Match anything
+       )  = Close capturing group
+	 \)  = Match a close parens
+
+	 /gi  = Get all matches, not the first.  Be case insensitive.
+	 */
+	var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(fullMatch, origUrl) {
+		// strip quotes (if they exist)
+		var unquotedOrigUrl = origUrl
+			.trim()
+			.replace(/^"(.*)"$/, function(o, $1){ return $1; })
+			.replace(/^'(.*)'$/, function(o, $1){ return $1; });
+
+		// already a full url? no change
+		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(unquotedOrigUrl)) {
+		  return fullMatch;
+		}
+
+		// convert the url to a full url
+		var newUrl;
+
+		if (unquotedOrigUrl.indexOf("//") === 0) {
+		  	//TODO: should we add protocol?
+			newUrl = unquotedOrigUrl;
+		} else if (unquotedOrigUrl.indexOf("/") === 0) {
+			// path should be relative to the base url
+			newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
+		} else {
+			// path should be relative to current directory
+			newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
+		}
+
+		// send back the fixed url(...)
+		return "url(" + JSON.stringify(newUrl) + ")";
+	});
+
+	// send back the fixed css
+	return fixedCss;
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/symbol-observable/es/index.js":
 /*!****************************************************!*\
   !*** ./node_modules/symbol-observable/es/index.js ***!
@@ -72375,6 +74286,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../store/store */ "./resources/js/store/store.js");
 /* harmony import */ var _store_localStorage__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../store/localStorage */ "./resources/js/store/localStorage.js");
+/* harmony import */ var react_notifications_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react-notifications-component */ "./node_modules/react-notifications-component/dist/index.js");
+/* harmony import */ var react_notifications_component__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react_notifications_component__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var react_notifications_component_dist_theme_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! react-notifications-component/dist/theme.css */ "./node_modules/react-notifications-component/dist/theme.css");
+/* harmony import */ var react_notifications_component_dist_theme_css__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(react_notifications_component_dist_theme_css__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var animate_css__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! animate.css */ "./node_modules/animate.css/animate.css");
+/* harmony import */ var animate_css__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(animate_css__WEBPACK_IMPORTED_MODULE_11__);
+
+
+
 
 
 
@@ -72421,7 +74341,7 @@ var Main = function Main() {
 if (document.getElementById('root')) {
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_6__["Provider"], {
     store: _store_store__WEBPACK_IMPORTED_MODULE_7__["default"]
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Main, null)), document.getElementById('root'));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_notifications_component__WEBPACK_IMPORTED_MODULE_9___default.a, null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Main, null)), document.getElementById('root'));
 }
 
 /***/ }),
@@ -72596,6 +74516,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var react_notifications_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-notifications-component */ "./node_modules/react-notifications-component/dist/index.js");
+/* harmony import */ var react_notifications_component__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_notifications_component__WEBPACK_IMPORTED_MODULE_3__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -72607,6 +74529,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -72639,8 +74562,34 @@ var Register = function Register(props) {
       account_type: 'user'
     }).then(function (response) {
       console.log(response);
+      react_notifications_component__WEBPACK_IMPORTED_MODULE_3__["store"].addNotification({
+        title: "Регистрация",
+        message: response,
+        type: "success",
+        insert: "top",
+        container: "top-center",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 3000,
+          onScreen: false
+        }
+      });
     })["catch"](function (error) {
-      console.log(error);
+      console.log(error.response.data.message);
+      react_notifications_component__WEBPACK_IMPORTED_MODULE_3__["store"].addNotification({
+        title: "Регистрация",
+        message: error.response.data.message,
+        type: "danger",
+        insert: "top",
+        container: "top-center",
+        animationIn: ["animate__animated", "animate__fadeIn"],
+        animationOut: ["animate__animated", "animate__fadeOut"],
+        dismiss: {
+          duration: 3000,
+          onScreen: false
+        }
+      });
     });
   };
 

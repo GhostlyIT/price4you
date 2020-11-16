@@ -162,6 +162,7 @@ return [
 
     'attributes' => [
         'name'                  => 'Имя',
+        'surname'               => 'Фамилия',
         'username'              => 'Никнейм',
         'email'                 => 'E-Mail адрес',
         'first_name'            => 'Имя',
@@ -171,7 +172,7 @@ return [
         'city'                  => 'Город',
         'country'               => 'Страна',
         'address'               => 'Адрес',
-        'phone'                 => 'Телефон',
+        'phone_number'          => 'Телефон',
         'mobile'                => 'Моб. номер',
         'age'                   => 'Возраст',
         'sex'                   => 'Пол',
@@ -190,5 +191,8 @@ return [
         'time'                  => 'Время',
         'available'             => 'Доступно',
         'size'                  => 'Размер',
+        'company_name'          => 'Название компании',
+        'company_address'       => 'Адрес компании',
+        'director'              => 'Руководитель'
     ],
 ];

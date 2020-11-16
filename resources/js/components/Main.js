@@ -7,6 +7,9 @@ import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-rout
 import {Provider} from 'react-redux'
 import store from '../store/store'
 import {saveState} from '../store/localStorage'
+import ReactNotification from 'react-notifications-component'
+import 'react-notifications-component/dist/theme.css'
+import 'animate.css';
 
 const Main = () => {
     store.subscribe(() => {
@@ -49,6 +52,7 @@ export default Main;
 if (document.getElementById('root')) {
     ReactDOM.render(
         <Provider store={store}>
+            <ReactNotification />
             <Main />
         </Provider>,
         document.getElementById('root')

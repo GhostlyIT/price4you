@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
+import {store as notificationStore} from 'react-notifications-component'
 
 const Register = (props) => {
     const   [name, setName] = useState(''),
@@ -18,10 +19,38 @@ const Register = (props) => {
         })
         .then(response => {
             console.log(response)
+            notificationStore.addNotification({
+                title: "Регистрация",
+                message: response,
+                type: "success",
+                insert: "top",
+                container: "top-center",
+                animationIn: ["animate__animated", "animate__fadeIn"],
+                animationOut: ["animate__animated", "animate__fadeOut"],
+                dismiss: {
+                    duration: 3000,
+                    onScreen: false
+                }
+            })
         })
         .catch(error => {
-            console.log(error)
+            console.log(error.response.data.message)
+            notificationStore.addNotification({
+                title: "Регистрация",
+                message: error.response.data.message,
+                type: "danger",
+                insert: "top",
+                container: "top-center",
+                animationIn: ["animate__animated", "animate__fadeIn"],
+                animationOut: ["animate__animated", "animate__fadeOut"],
+                dismiss: {
+                    duration: 3000,
+                    onScreen: false
+                }
+            })
         })
+
+
     }
 
     return (
