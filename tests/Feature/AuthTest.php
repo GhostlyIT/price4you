@@ -16,7 +16,7 @@ class AuthTest extends TestCase
     protected $userFields = [
         'name' => 'Иван',
         'surname' => 'Иванов',
-        'phone_number' => '+7(918)-123-12-23',
+        'phone_number' => '+7(918)123-12-23',
         'password' => '1q2w3e4r',
         'account_type' => 'user',
         'company_name' => 'ООО "Компания"',

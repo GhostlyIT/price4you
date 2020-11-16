@@ -9,7 +9,6 @@ const Login = (props) => {
         <div className="d-flex">
             <div className="d-flex flex-column col-md-6 col-sm-12">
                 <h3 className="title text-center mb-2">Войти</h3>
-                <h1>{console.log(props)}</h1>
                 <Link to="/register" className="text-center">Регистрация</Link>
 
                 <form className="d-flex flex-column mt-3">
@@ -38,7 +37,7 @@ const Login = (props) => {
 
 const mapStateToProps = store => {
     return {
-        loggedIn: store.authReducer.loggedIn
+        userToken: store.authReducer.userToken
     };
 }
 

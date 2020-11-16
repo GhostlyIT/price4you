@@ -1,8 +1,28 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
+import React, { useState } from 'react'
 import {Link} from 'react-router-dom'
+import axios from 'axios'
 
 const Register = (props) => {
+    const   [name, setName] = useState(''),
+            [surname, setSurname] = useState(''),
+            [phone, setPhone] = useState(''),
+            [password, setPassword] = useState('')
+
+    const register = () => {
+        axios.post('/api/register', {
+            name: name,
+            surname: surname,
+            phone_number: phone,
+            password: password,
+            account_type: 'user'
+        })
+        .then(response => {
+            console.log(response)
+        })
+        .catch(error => {
+            console.log(error)
+        })
+    }
 
     return (
         <div className="d-flex">
@@ -11,15 +31,15 @@ const Register = (props) => {
                 <Link to="/register-company" className="text-center">Регистрация компании</Link>
 
                 <form className="d-flex flex-column mt-3">
-                    <input className="mt-3 w-100" id="register__name" type="text" placeholder="Имя" />
-                    <input className="mt-3 w-100" id="register__surname" type="text" placeholder="Фамилия" />
-                    <input className="mt-3 w-100" id="register__tel" type="tel" placeholder="Номер телефона" />
-                    <input className="mt-3 w-100" id="register__pass" type="password" placeholder="Пароль" />
+                    <input value={name} onChange={(event) => setName(event.target.value)} className="mt-3 w-100" id="register__name" type="text" placeholder="Имя" />
+                    <input value={surname} onChange={(event) => setSurname(event.target.value)} className="mt-3 w-100" id="register__surname" type="text" placeholder="Фамилия" />
+                    <input value={phone} onChange={(event) => setPhone(event.target.value)} className="mt-3 w-100" id="register__tel" type="tel" placeholder="Номер телефона" />
+                    <input value={password} onChange={(event) => setPassword(event.target.value)} className="mt-3 w-100" id="register__pass" type="password" placeholder="Пароль" />
                     <div className="d-flex align-items-center mt-4 mb-4">
                         <input className="mr-3" id="register__agreement" type="checkbox" />
                         <label className="mb-0" htmlFor="register__agreement">Я принимаю условия пользования сервисами EcoPlant Org.</label>
                     </div>
-                    <button type="button" className="main-btn">Зарегистрироваться</button>
+                    <button onClick={() => register()} type="button" className="main-btn">Зарегистрироваться</button>
                 </form>
 
                 <div className="d-flex flex-column align-items-center auth-socials">

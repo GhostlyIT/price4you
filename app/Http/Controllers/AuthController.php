@@ -24,7 +24,7 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:32',
             'surname' => 'required|string|max:32',
-            'phone_number' => 'required|regex:/\+7\([0-9]{3}\)-[0-9]{3}-[0-9]{2}-[0-9]{2}/',
+            'phone_number' => 'required|regex:/\+7\([0-9]{3}\)[0-9]{3}-[0-9]{2}-[0-9]{2}/',
             'password' => 'required|min:8',
             'account_type' => 'required|string|in:' . implode(',', $this->allowedAccountTypes),
             'company_name' => 'required_if:account_type,company|string',
