@@ -60,13 +60,16 @@ class AuthController extends Controller
             }
             return response()->json(['message' => 'Аккаунт успешно зарегистрирован', 'status' => 'success', 'token' => $token, 'user_data' => $user], 200);
         } catch (\Exception $e) {
+            if ($e->getCode() == 23000) {
+                return response()->json(['message' => 'такой номер телефона уже зарегистрирован', 'status' => 'error'], 401);
+            }
             return response()->json(['message' => $e->getMessage(), 'status' => 'error'], 401);
         }
     }
 
     public function login(Request $request) {
         $validator = Validator::make($request->all(), [
-            'phone_number' => 'required|regex:/\+7\([0-9]{3}\)-[0-9]{3}-[0-9]{2}-[0-9]{2}/',
+            'phone_number' => 'required|regex:/\+7\([0-9]{3}\)[0-9]{3}-[0-9]{2}-[0-9]{2}/',
             'password' => 'required|min:8',
         ]);
 

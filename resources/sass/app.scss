@@ -60,6 +60,10 @@
     -moz-border-radius: 58px;
     -ms-border-radius: 58px;
     -o-border-radius: 58px;
+
+    &:disabled {
+        background-color: $disabled-color;
+    }
 }
 
 .blue {

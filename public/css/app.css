@@ -10907,6 +10907,10 @@ a.text-dark:focus {
   font-size: 16px;
 }
 
+*:focus {
+  outline: none !important;
+}
+
 a {
   color: #4525F2;
   cursor: pointer;
@@ -11245,6 +11249,10 @@ img {
   -moz-border-radius: 58px;
   -ms-border-radius: 58px;
   -o-border-radius: 58px;
+}
+
+.main-btn:disabled {
+  background-color: #4525f282;
 }
 
 .blue {
