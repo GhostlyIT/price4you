@@ -75923,21 +75923,97 @@ var mapDispatchProps = function mapDispatchProps(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _functions_notifications__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../functions/notifications */ "./resources/js/components/functions/notifications.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _store_actions_authAction__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../store/actions/authAction */ "./resources/js/store/actions/authAction.js");
+/* harmony import */ var react_input_mask__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-input-mask */ "./node_modules/react-input-mask/index.js");
+/* harmony import */ var react_input_mask__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_input_mask__WEBPACK_IMPORTED_MODULE_6__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
 
 
 
 
 var RegisterCompany = function RegisterCompany(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+      _useState2 = _slicedToArray(_useState, 2),
+      name = _useState2[0],
+      setName = _useState2[1],
+      _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+      _useState4 = _slicedToArray(_useState3, 2),
+      surname = _useState4[0],
+      setSurname = _useState4[1],
+      _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+      _useState6 = _slicedToArray(_useState5, 2),
+      phone = _useState6[0],
+      setPhone = _useState6[1],
+      _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+      _useState8 = _slicedToArray(_useState7, 2),
+      password = _useState8[0],
+      setPassword = _useState8[1],
+      _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+      _useState10 = _slicedToArray(_useState9, 2),
+      companyName = _useState10[0],
+      setCompanyName = _useState10[1],
+      _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+      _useState12 = _slicedToArray(_useState11, 2),
+      companyAddress = _useState12[0],
+      setCompanyAddress = _useState12[1],
+      _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+      _useState14 = _slicedToArray(_useState13, 2),
+      companyEmail = _useState14[0],
+      setCompanyEmail = _useState14[1],
+      _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+      _useState16 = _slicedToArray(_useState15, 2),
+      companyDirector = _useState16[0],
+      setCompanyDirector = _useState16[1],
+      _useState17 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
+      _useState18 = _slicedToArray(_useState17, 2),
+      disabled = _useState18[0],
+      setDisabled = _useState18[1];
+
+  var register = function register() {
+    axios.post('/api/register', {
+      name: name,
+      surname: surname,
+      phone_number: phone,
+      password: password,
+      account_type: 'company',
+      company_name: companyName,
+      company_address: companyAddress,
+      email: companyEmail,
+      director: companyDirector
+    }).then(function (response) {
+      Object(_functions_notifications__WEBPACK_IMPORTED_MODULE_2__["showNotification"])('Регистрация', response.data.message, 'success');
+      props.auth(response.data.token);
+    })["catch"](function (error) {
+      Object(_functions_notifications__WEBPACK_IMPORTED_MODULE_2__["showNotification"])('Регистрация', error.response.data.message, 'danger');
+    });
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "d-flex w-100"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "d-flex flex-column col-12"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
     className: "title text-center mb-2"
-  }, "\u0420\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044F \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u0438"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Link"], {
+  }, "\u0420\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044F \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u0438"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/register",
     className: "text-center"
   }, "\u0420\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044F"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
@@ -75947,21 +76023,38 @@ var RegisterCompany = function RegisterCompany(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-xs-12 col-md-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: name,
+    onChange: function onChange(event) {
+      return setName(event.target.value);
+    },
     className: "mt-3 w-100",
     id: "register__name",
     type: "text",
     placeholder: "\u0418\u043C\u044F"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: surname,
+    onChange: function onChange(event) {
+      return setSurname(event.target.value);
+    },
     className: "mt-3 w-100",
     id: "register__surname",
     type: "text",
     placeholder: "\u0424\u0430\u043C\u0438\u043B\u0438\u044F"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_input_mask__WEBPACK_IMPORTED_MODULE_6___default.a, {
+    mask: "+7(999)999-99-99",
+    value: phone,
+    onChange: function onChange(event) {
+      return setPhone(event.target.value);
+    },
     className: "mt-3 w-100",
     id: "register__tel",
     type: "tel",
     placeholder: "\u041D\u043E\u043C\u0435\u0440 \u0442\u0435\u043B\u0435\u0444\u043E\u043D\u0430"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: password,
+    onChange: function onChange(event) {
+      return setPassword(event.target.value);
+    },
     className: "mt-3 w-100",
     id: "register__pass",
     type: "password",
@@ -75969,21 +76062,37 @@ var RegisterCompany = function RegisterCompany(props) {
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-xs-12 col-md-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: companyName,
+    onChange: function onChange(event) {
+      return setCompanyName(event.target.value);
+    },
     className: "mt-3 w-100",
     id: "register__company-name",
     type: "text",
     placeholder: "\u041D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u0438"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: companyAddress,
+    onChange: function onChange(event) {
+      return setCompanyAddress(event.target.value);
+    },
     className: "mt-3 w-100",
     id: "register__company-office",
     type: "text",
     placeholder: "\u041E\u0444\u0438\u0441 \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u0438"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: companyEmail,
+    onChange: function onChange(event) {
+      return setCompanyEmail(event.target.value);
+    },
     className: "mt-3 w-100",
     id: "register__company-email",
     type: "email",
     placeholder: "\u041F\u043E\u0447\u0442\u0430 \u0440\u0443\u043A\u043E\u0432\u043E\u0434\u0438\u0442\u0435\u043B\u044F"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: companyDirector,
+    onChange: function onChange(event) {
+      return setCompanyDirector(event.target.value);
+    },
     className: "mt-3 w-100",
     id: "register__company-director",
     type: "text",
@@ -75993,13 +76102,20 @@ var RegisterCompany = function RegisterCompany(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     className: "mr-3",
     id: "register__agreement",
-    type: "checkbox"
+    type: "checkbox",
+    onChange: function onChange() {
+      return setDisabled(!disabled);
+    }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     className: "mb-0",
     htmlFor: "register__agreement"
   }, "\u042F \u043F\u0440\u0438\u043D\u0438\u043C\u0430\u044E \u0443\u0441\u043B\u043E\u0432\u0438\u044F \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u043D\u0438\u044F \u0441\u0435\u0440\u0432\u0438\u0441\u0430\u043C\u0438 EcoPlant Org.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: function onClick() {
+      return register();
+    },
     type: "button",
-    className: "main-btn"
+    className: "main-btn",
+    disabled: disabled
   }, "\u0417\u0430\u0440\u0435\u0433\u0438\u0441\u0442\u0440\u0438\u0440\u043E\u0432\u0430\u0442\u044C\u0441\u044F")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "d-flex flex-column align-items-center auth-socials"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -76009,7 +76125,19 @@ var RegisterCompany = function RegisterCompany(props) {
   }, props.socials()))));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (RegisterCompany);
+var mapStateToProps = function mapStateToProps(store) {
+  return {
+    userToken: store.authReducer.userToken
+  };
+};
+
+var mapDispatchProps = function mapDispatchProps(dispatch) {
+  return {
+    auth: Object(redux__WEBPACK_IMPORTED_MODULE_4__["bindActionCreators"])(_store_actions_authAction__WEBPACK_IMPORTED_MODULE_5__["default"], dispatch)
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(mapStateToProps, mapDispatchProps)(RegisterCompany));
 
 /***/ }),
 
