@@ -1,60 +1,55 @@
-import React, { useState } from 'react'
-import ReactDOM from 'react-dom'
+import React from 'react'
 import Auth from './auth/Auth'
 import SideBlock from './sideblock/SideBlock'
 import Faq from './faq/Faq'
 import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom'
-import {Provider} from 'react-redux'
-import store from '../store/store'
-import {saveState} from '../store/localStorage'
-import ReactNotification from 'react-notifications-component'
+import {connect} from 'react-redux'
 import 'react-notifications-component/dist/theme.css'
-import 'animate.css';
+import 'animate.css'
+import { bindActionCreators } from 'redux'
+import authAction from '../store/actions/authAction'
 
-const Main = () => {
-    store.subscribe(() => {
-        saveState(store.getState())
-    })
+const Main = (props) => {
 
     return (
-        <Router>
-            <div className="main position-relative">
-                <div className="main-background" />
-                <div className="container">
-                    <div className="row">
-                        <div className="col-12 main-window mt-3">
-                            <div className="row">
-                                <div className="col-md-9 col-sm-12">
-                                    <div className="main-window__inner row">
-                                        <Route path="/">
-                                            <Redirect to="/login" />
-                                            <Auth />
-                                        </Route>
-                                        <Route path="/faq">
-                                            <Faq />
-                                        </Route>
-                                    </div>
+        <div className="main position-relative">
+            <div className="main-background" />
+            <div className="container">
+                <div className="row">
+                    <div className="col-12 main-window mt-3">
+                        <div className="row">
+                            <div className="col-md-9 col-sm-12">
+                                <div className="main-window__inner row">
+                                    <Route path="/">
+                                        <Redirect to="/login" />
+                                        <Auth />
+                                    </Route>
+                                    <Route path="/faq">
+                                        <Faq />
+                                    </Route>
                                 </div>
-                                <div className="col-md-3 d-none d-md-flex flex-column">
-                                    <SideBlock />
-                                </div>
+                            </div>
+                            <div className="col-md-3 d-none d-md-flex flex-column">
+                                <SideBlock />
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </Router>
+        </div>
     )
 }
 
-export default Main;
-
-if (document.getElementById('root')) {
-    ReactDOM.render(
-        <Provider store={store}>
-            <ReactNotification />
-            <Main />
-        </Provider>,
-        document.getElementById('root')
-    );
+const mapStateToProps = store => {
+    return {
+        loggedIn: store.authReducer.loggedIn
+    };
 }
+
+const mapDispatchProps = dispatch => {
+    return {
+        auth: bindActionCreators(authAction, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchProps)(Main);
