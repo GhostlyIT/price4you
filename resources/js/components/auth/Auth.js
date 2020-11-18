@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import Login from './auth-components/Login'
 import Register from './auth-components/Register'
 import RegisterCompany from './auth-components/RegisterCompany'
-import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom'
+import {Route, Redirect} from 'react-router-dom'
 
 const Auth = () => {
     const socials = [
@@ -36,7 +36,10 @@ const Auth = () => {
     }
 
     return (
-        <div>
+        <>
+            <Route path="/">
+                <Redirect to="/login" />
+            </Route>
             <Route path="/register">
                 <Register socials={getSocials}/>
             </Route>
@@ -46,7 +49,7 @@ const Auth = () => {
             <Route path="/register-company">
                 <RegisterCompany socials={getSocials}/>
             </Route>
-        </div>
+        </>
     )
 }
 

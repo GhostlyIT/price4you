@@ -8,6 +8,8 @@ import 'react-notifications-component/dist/theme.css'
 import 'animate.css'
 import { bindActionCreators } from 'redux'
 import authAction from '../store/actions/authAction'
+import User from './user/User'
+import UserSideBlock from './sideblock/UserSideBlock'
 
 const Main = (props) => {
 
@@ -21,8 +23,10 @@ const Main = (props) => {
                             <div className="col-md-9 col-sm-12">
                                 <div className="main-window__inner row">
                                     <Route path="/">
-                                        <Redirect to="/login" />
-                                        <Auth />
+                                        {props.loggedIn ? <Redirect to="/user" /> : <Auth />}
+                                    </Route>
+                                    <Route path="/user">
+                                        <User />
                                     </Route>
                                     <Route path="/faq">
                                         <Faq />
@@ -30,7 +34,7 @@ const Main = (props) => {
                                 </div>
                             </div>
                             <div className="col-md-3 d-none d-md-flex flex-column">
-                                <SideBlock />
+                                {props.loggedIn ? <UserSideBlock /> : <SideBlock />}
                             </div>
                         </div>
                     </div>

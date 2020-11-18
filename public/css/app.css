@@ -11238,6 +11238,7 @@ img {
   -o-border-radius: 58px;
   padding: 20px 30px;
   justify-content: center;
+  height: 100%;
 }
 
 .main-btn {
