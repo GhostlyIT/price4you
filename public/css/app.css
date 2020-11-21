@@ -11204,6 +11204,26 @@ img {
   top: 40px;
 }
 
+.user-sideblock__links a {
+  color: #000;
+  padding: 12px 16px;
+  border-bottom: 1px solid #E5E5E5;
+  font-weight: 600;
+}
+
+.user-sideblock__links a.active {
+  color: #4525F2;
+}
+
+.user-sideblock__links button {
+  color: #000;
+  padding: 12px 16px;
+  border-bottom: 1px solid #E5E5E5;
+  font-weight: 600;
+  background: transparent;
+  text-align: start;
+}
+
 .main {
   background-color: #000;
   min-height: 100vh;
