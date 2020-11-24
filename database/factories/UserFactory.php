@@ -25,7 +25,7 @@ class UserFactory extends Factory
         return [
             'name' => 'Ivan',
             'surname' => $this->faker->lastName,
-            'phone_number' => '+7(918)-123-12-23',
+            'phone_number' => '+7(918)123-12-23',
             'password' => bcrypt('1q2w3e4r'),
             'account_type' => 'user'
         ];

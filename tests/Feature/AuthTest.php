@@ -56,14 +56,14 @@ class AuthTest extends TestCase
             'asdawdas',
             '888391283',
             '123',
-            '+7(918)-123-12-23'
+            '+7(918)123-12-23'
         ];
         $this->userFields['phone_number'] = '+79181231223';
 
         $response = $this->postJson('/api/register', $this->userFields);
 
         $response->assertJson([
-            'message' => 'Поле phone number имеет ошибочный формат.'
+            'message' => 'Поле Телефон имеет ошибочный формат.'
         ]);
 
         foreach ($phoneNumbers as $phoneNumber) {
@@ -71,7 +71,7 @@ class AuthTest extends TestCase
 
             $response = $this->postJson('/api/register', $this->userFields);
 
-            if ($phoneNumber !== '+7(918)-123-12-23') {
+            if ($phoneNumber !== '+7(918)123-12-23') {
                 $response->assertJson([
                     'status' => 'error'
                 ]);

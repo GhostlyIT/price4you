@@ -15,7 +15,7 @@ class ProductsController extends Controller
 
     public function search(Request $request) {
         $validator = Validator::make($request->all(), [
-            'query' => 'require'
+            'query' => 'required|min:1'
         ]);
 
         if ($validator->fails()) {
@@ -24,7 +24,7 @@ class ProductsController extends Controller
 
         $query = $request->get('query');
         try {
-            $searchAttempt = Product::where('name_product_rus', 'like', $query)->get();
+            $searchAttempt = Product::where('name_product_rus', 'like', '%'.$query.'%')->get();
             if ($searchAttempt->isEmpty()) throw new \Exception('Не найдено товаров по вашему запросу');
             return response()->json(['search_result' => $searchAttempt, 'status' => 'success'], 200);
         } catch (\Exception $e) {
