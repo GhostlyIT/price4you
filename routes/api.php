@@ -15,8 +15,12 @@ use App\Http\Controllers\AuthController;
 |
 */
 
+//User
 Route::post('register', 'App\Http\Controllers\AuthController@register');
 Route::post('login', 'App\Http\Controllers\AuthController@login');
+
+//Products
+Route::get('product/search', 'App\Http\Controllers\ProductsController@search');
 
 // Errors
 Route::get('errorUnauthorized', function() {
