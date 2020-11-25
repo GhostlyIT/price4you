@@ -76799,6 +76799,12 @@ var AddRequest = function AddRequest() {
     }
   };
 
+  var pickProduct = function pickProduct(product) {
+    console.log(product.name_product_rus);
+    var pickedProductsWrapper = document.querySelector('.picked-products');
+    pickedProductsWrapper.innerHTML += "<div key=".concat('picked-' + product.id_product, " className=\"picked-product\">").concat(product.name_product_rus, "</div>");
+  };
+
   var renderProducts = function renderProducts() {
     if (products.length < 1) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "\u041F\u0440\u0435\u043F\u0430\u0440\u0430\u0442\u044B \u043D\u0435 \u043D\u0430\u0439\u0434\u0435\u043D\u044B");
@@ -76806,6 +76812,9 @@ var AddRequest = function AddRequest() {
 
     return products.map(function (product) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        onClick: function onClick() {
+          return pickProduct(product);
+        },
         className: "product",
         key: product.id_product
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, product.name_product_rus));

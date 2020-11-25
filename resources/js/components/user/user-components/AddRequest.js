@@ -31,6 +31,12 @@ const AddRequest = () => {
         }
     }
 
+    const pickProduct = (product) => {
+        console.log(product.name_product_rus)
+        const pickedProductsWrapper = document.querySelector('.picked-products')
+        pickedProductsWrapper.innerHTML += `<div key=${'picked-' + product.id_product} className="picked-product">${product.name_product_rus}</div>`
+    }
+
     const renderProducts = () => {
         if (products.length < 1) {
             return(
@@ -39,7 +45,7 @@ const AddRequest = () => {
         }
         return products.map(product => {
             return(
-                <div className="product" key={product.id_product}>
+                <div onClick={() => pickProduct(product)} className="product" key={product.id_product}>
                     <span>{product.name_product_rus}</span>
                 </div>
             )
