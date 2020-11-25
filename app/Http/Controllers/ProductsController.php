@@ -15,7 +15,7 @@ class ProductsController extends Controller
 
     public function search(Request $request) {
         $validator = Validator::make($request->all(), [
-            'query' => 'required|min:1'
+            'query' => 'min:1'
         ]);
 
         if ($validator->fails()) {

@@ -11224,6 +11224,28 @@ img {
   text-align: start;
 }
 
+#add-request .falling-list {
+  background: #F2F4F8;
+  padding: 20px;
+  border-radius: 15px;
+  -webkit-border-radius: 15px;
+  -moz-border-radius: 15px;
+  -ms-border-radius: 15px;
+  -o-border-radius: 15px;
+  width: 500px;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+#add-request .falling-list .product {
+  margin-bottom: 10px;
+  padding: 10px;
+  cursor: pointer;
+  border: 1px solid;
+  border-radius: 15px;
+  background-color: #fff;
+}
+
 .main {
   background-color: #000;
   min-height: 100vh;
