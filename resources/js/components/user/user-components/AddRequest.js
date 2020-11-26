@@ -4,7 +4,8 @@ import { showNotification } from '../../functions/notifications'
 
 const AddRequest = () => {
     const   [products, setProducts] = useState([]),
-            [productsOpen, setProductsOpen] = useState(false)
+            [productsOpen, setProductsOpen] = useState(false),
+            [selectedProducts, setSelectedProducts] = useState([]) // Выбранные препараты
 
     useEffect(() => {
         document.addEventListener('click', handleClick, false)
@@ -23,7 +24,7 @@ const AddRequest = () => {
             .then((response) => {
                 setProducts(response.data.search_result)
             })
-            .catch((errors) => {
+            .catch(() => {
                 setProducts([])
             })
         } else {
@@ -32,9 +33,29 @@ const AddRequest = () => {
     }
 
     const pickProduct = (product) => {
-        console.log(product.name_product_rus)
-        const pickedProductsWrapper = document.querySelector('.picked-products')
-        pickedProductsWrapper.innerHTML += `<div key=${'picked-' + product.id_product} className="picked-product">${product.name_product_rus}</div>`
+        selectedProducts.push(product)
+    }
+
+    const renderSelectedProducts = () => {
+        if (selectedProducts.length > 0) {
+            return selectedProducts.map((product) => {
+                return(
+                    <div key={'picked-' + product.id_product} className="picked-product position-relative">
+                        <span>{product.name_product_rus}</span>
+                        <button onClick={() => removeProductFromSelected(product)} type="button" className="position-absolute remove-btn"></button>
+                    </div>
+                )
+            })
+        }
+        return null
+    }
+
+    const removeProductFromSelected = (product) => {
+        let arrCopy = [...selectedProducts]
+        const index = arrCopy.indexOf(product)
+        console.log(index)
+        arrCopy.splice(index, 1)
+        setSelectedProducts(arrCopy)
     }
 
     const renderProducts = () => {
@@ -52,19 +73,22 @@ const AddRequest = () => {
         })
     }
 
+
+
+
     return(
-        <section id="add-request">
-            <h3>Новый запрос</h3>
+        <section id="add-request" className="col-12">
+            <h2 className="title">Новый запрос</h2>
             <span className="date">№ 124 от 7 сентября 2020</span>
 
             <hr />
 
-            <div className="d-flex align-items-center">
+            <div className="d-flex align-items-center add-request__title add-request__component">
                 <label htmlFor="request-title">Введите название запроса</label>
                 <input id="request-title" />
             </div>
 
-            <div className="request-products d-flex flex-column">
+            <div className="request-products d-flex flex-column add-request__component">
                 <div className="d-flex align-items-center">
                     <div className="position-relative">
                         <input onClick={() => setProductsOpen(true)} onChange={(e) => searchProduct(e.target.value)} id="request-product" placeholder="Введите товар для запроса" />
@@ -72,7 +96,7 @@ const AddRequest = () => {
                     </div>
                 </div>
 
-                <div className="d-flex picked-products"></div>
+                <div className="d-flex flex-wrap picked-products">{renderSelectedProducts()}</div>
             </div>
         </section>
     )

@@ -76749,6 +76749,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _functions_notifications__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../functions/notifications */ "./resources/js/components/functions/notifications.js");
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -76773,7 +76781,12 @@ var AddRequest = function AddRequest() {
       _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
       _useState4 = _slicedToArray(_useState3, 2),
       productsOpen = _useState4[0],
-      setProductsOpen = _useState4[1];
+      setProductsOpen = _useState4[1],
+      _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
+      _useState6 = _slicedToArray(_useState5, 2),
+      selectedProducts = _useState6[0],
+      setSelectedProducts = _useState6[1]; // Выбранные препараты
+
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     document.addEventListener('click', handleClick, false);
@@ -76791,7 +76804,7 @@ var AddRequest = function AddRequest() {
     if (query != '') {
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/product/search?query=".concat(query)).then(function (response) {
         setProducts(response.data.search_result);
-      })["catch"](function (errors) {
+      })["catch"](function () {
         setProducts([]);
       });
     } else {
@@ -76800,9 +76813,35 @@ var AddRequest = function AddRequest() {
   };
 
   var pickProduct = function pickProduct(product) {
-    console.log(product.name_product_rus);
-    var pickedProductsWrapper = document.querySelector('.picked-products');
-    pickedProductsWrapper.innerHTML += "<div key=".concat('picked-' + product.id_product, " className=\"picked-product\">").concat(product.name_product_rus, "</div>");
+    selectedProducts.push(product);
+  };
+
+  var renderSelectedProducts = function renderSelectedProducts() {
+    if (selectedProducts.length > 0) {
+      return selectedProducts.map(function (product) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+          key: 'picked-' + product.id_product,
+          className: "picked-product position-relative"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, product.name_product_rus), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+          onClick: function onClick() {
+            return removeProductFromSelected(product);
+          },
+          type: "button",
+          className: "position-absolute remove-btn"
+        }));
+      });
+    }
+
+    return null;
+  };
+
+  var removeProductFromSelected = function removeProductFromSelected(product) {
+    var arrCopy = _toConsumableArray(selectedProducts);
+
+    var index = arrCopy.indexOf(product);
+    console.log(index);
+    arrCopy.splice(index, 1);
+    setSelectedProducts(arrCopy);
   };
 
   var renderProducts = function renderProducts() {
@@ -76822,17 +76861,20 @@ var AddRequest = function AddRequest() {
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("section", {
-    id: "add-request"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h3", null, "\u041D\u043E\u0432\u044B\u0439 \u0437\u0430\u043F\u0440\u043E\u0441"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    id: "add-request",
+    className: "col-12"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h2", {
+    className: "title"
+  }, "\u041D\u043E\u0432\u044B\u0439 \u0437\u0430\u043F\u0440\u043E\u0441"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "date"
   }, "\u2116 124 \u043E\u0442 7 \u0441\u0435\u043D\u0442\u044F\u0431\u0440\u044F 2020"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "d-flex align-items-center"
+    className: "d-flex align-items-center add-request__title add-request__component"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     htmlFor: "request-title"
   }, "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u0437\u0430\u043F\u0440\u043E\u0441\u0430"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
     id: "request-title"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "request-products d-flex flex-column"
+    className: "request-products d-flex flex-column add-request__component"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "d-flex align-items-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
@@ -76850,8 +76892,8 @@ var AddRequest = function AddRequest() {
     id: "request-products",
     className: "falling-list position-absolute"
   }, renderProducts()))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "d-flex picked-products"
-  })));
+    className: "d-flex flex-wrap picked-products"
+  }, renderSelectedProducts())));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (AddRequest);

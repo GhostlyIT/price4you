@@ -21,6 +21,10 @@
 }
 
 #add-request {
+    .add-request__component {
+        margin-bottom: 40px;
+    }
+
     .falling-list {
         background: $input-background;
         padding: 20px;
@@ -32,6 +36,7 @@
         width: 500px;
         max-height: 300px;
         overflow-y: scroll;
+        z-index: 999;
 
         .product {
             margin-bottom: 10px;
@@ -40,6 +45,59 @@
             border: 1px solid;
             border-radius: 15px;
             background-color: #fff;
+        }
+    }
+
+    hr {
+        border-top: 2px solid #4525F2 !important;
+        box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+        margin: 20px 0;
+    }
+
+    .title {
+        margin-bottom: 22px;
+    }
+
+    .add-request__title {
+        label {
+            margin-right: 30px;
+        }
+
+        input {
+            width: 375px;
+        }
+    }
+
+    .request-products {
+        input {
+            width: 500px;
+        }
+    }
+
+    .picked-products {
+        margin-top: 20px;
+        .picked-product {
+            padding: 9px 20px;
+            background-color: #E6E6E6;
+            border-radius: 20px;
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            -ms-border-radius: 20px;
+            -o-border-radius: 20px;
+            margin-right: 20px;
+
+            span {
+                color: $blue;
+            }
+
+            .remove-btn {
+                right: -4px;
+                top: -4px;
+                background-image: url('../../public/images/icons/close-btn.svg');
+                width: 20px;
+                height: 20px;
+                background-color: transparent;
+            }
         }
     }
 }
