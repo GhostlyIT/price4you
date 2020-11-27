@@ -1,7 +1,7 @@
 import React from 'react'
 import UserRequests from './user-components/UserRequests'
 import {Route, Redirect, useRouteMatch} from 'react-router-dom'
-import AddRequest from './user-components/AddRequest'
+import AddRequest from './user-components/AddRequest/AddRequest'
 
 
 const User = () => {

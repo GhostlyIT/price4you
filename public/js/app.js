@@ -76712,7 +76712,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _user_components_UserRequests__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./user-components/UserRequests */ "./resources/js/components/user/user-components/UserRequests.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _user_components_AddRequest__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./user-components/AddRequest */ "./resources/js/components/user/user-components/AddRequest.js");
+/* harmony import */ var _user_components_AddRequest_AddRequest__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./user-components/AddRequest/AddRequest */ "./resources/js/components/user/user-components/AddRequest/AddRequest.js");
 
 
 
@@ -76728,17 +76728,17 @@ var User = function User() {
     path: "".concat(match.url, "/requests")
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_user_components_UserRequests__WEBPACK_IMPORTED_MODULE_1__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "".concat(match.url, "/add-request")
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_user_components_AddRequest__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_user_components_AddRequest_AddRequest__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (User);
 
 /***/ }),
 
-/***/ "./resources/js/components/user/user-components/AddRequest.js":
-/*!********************************************************************!*\
-  !*** ./resources/js/components/user/user-components/AddRequest.js ***!
-  \********************************************************************/
+/***/ "./resources/js/components/user/user-components/AddRequest/AddRequest.js":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/user/user-components/AddRequest/AddRequest.js ***!
+  \*******************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -76748,7 +76748,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _functions_notifications__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../functions/notifications */ "./resources/js/components/functions/notifications.js");
+/* harmony import */ var _components_paymentMethods__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/paymentMethods */ "./resources/js/components/user/user-components/AddRequest/components/paymentMethods.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -76785,8 +76785,11 @@ var AddRequest = function AddRequest() {
       _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
       _useState6 = _slicedToArray(_useState5, 2),
       selectedProducts = _useState6[0],
-      setSelectedProducts = _useState6[1]; // Выбранные препараты
-
+      setSelectedProducts = _useState6[1],
+      _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+      _useState8 = _slicedToArray(_useState7, 2),
+      selectedPaymentMethod = _useState8[0],
+      setSelectedPaymentMethod = _useState8[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     document.addEventListener('click', handleClick, false);
@@ -76860,6 +76863,20 @@ var AddRequest = function AddRequest() {
     });
   };
 
+  var parsePaymentMethods = function parsePaymentMethods() {
+    if (_components_paymentMethods__WEBPACK_IMPORTED_MODULE_2__["paymentMethods"].length > 0) {
+      return _components_paymentMethods__WEBPACK_IMPORTED_MODULE_2__["paymentMethods"].map(function (method, i) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+          onClick: function onClick() {
+            return setSelectedPaymentMethod(method);
+          },
+          key: i,
+          className: "payment-method ".concat(selectedPaymentMethod === method && 'selected')
+        }, method);
+      });
+    }
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("section", {
     id: "add-request",
     className: "col-12"
@@ -76893,10 +76910,30 @@ var AddRequest = function AddRequest() {
     className: "falling-list position-absolute"
   }, renderProducts()))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "d-flex flex-wrap picked-products"
-  }, renderSelectedProducts())));
+  }, renderSelectedProducts())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "d-flex request__payment-methods add-request__component"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "add-request__component--title"
+  }, "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0441\u043F\u043E\u0441\u043E\u0431 \u043E\u043F\u043B\u0430\u0442\u044B:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "d-flex"
+  }, parsePaymentMethods())));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (AddRequest);
+
+/***/ }),
+
+/***/ "./resources/js/components/user/user-components/AddRequest/components/paymentMethods.js":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/components/user/user-components/AddRequest/components/paymentMethods.js ***!
+  \**********************************************************************************************/
+/*! exports provided: paymentMethods */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "paymentMethods", function() { return paymentMethods; });
+var paymentMethods = ['Оплата при получении', 'Предоплата', '50/50', 'Кредит', 'Другое'];
 
 /***/ }),
 

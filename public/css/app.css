@@ -11307,6 +11307,22 @@ img {
   background-color: transparent;
 }
 
+#add-request .request__payment-methods .payment-method {
+  padding: 9px 20px;
+  border-radius: 9px;
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  -ms-border-radius: 9px;
+  -o-border-radius: 9px;
+  text-align: center;
+  border: 1px solid #4B4B4B;
+  margin-right: 20px;
+}
+
+#add-request .request__payment-methods .payment-method.selected {
+  border-color: #4525F2;
+}
+
 .main {
   background-color: #000;
   min-height: 100vh;

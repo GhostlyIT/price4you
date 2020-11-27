@@ -1,11 +1,12 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { showNotification } from '../../functions/notifications'
+import {paymentMethods} from './components/paymentMethods'
 
 const AddRequest = () => {
     const   [products, setProducts] = useState([]),
             [productsOpen, setProductsOpen] = useState(false),
-            [selectedProducts, setSelectedProducts] = useState([]) // Выбранные препараты
+            [selectedProducts, setSelectedProducts] = useState([]), // Выбранные препараты
+            [selectedPaymentMethod, setSelectedPaymentMethod] = useState(false)
 
     useEffect(() => {
         document.addEventListener('click', handleClick, false)
@@ -73,6 +74,15 @@ const AddRequest = () => {
         })
     }
 
+    const parsePaymentMethods = () => {
+        if (paymentMethods.length > 0) {
+            return paymentMethods.map((method, i) => {
+                return (
+                    <span onClick={() => setSelectedPaymentMethod(method)} key={i} className={`payment-method ${selectedPaymentMethod === method && 'selected'}`}>{method}</span>
+                )
+            })
+        }
+    }
 
 
 
@@ -95,8 +105,12 @@ const AddRequest = () => {
                         {productsOpen === true && <div id="request-products" className="falling-list position-absolute">{renderProducts()}</div>}
                     </div>
                 </div>
-
                 <div className="d-flex flex-wrap picked-products">{renderSelectedProducts()}</div>
+            </div>
+
+            <div className="d-flex request__payment-methods add-request__component">
+                <span className="add-request__component--title">Выберите способ оплаты:</span>
+                <div className="d-flex">{parsePaymentMethods()}</div>
             </div>
         </section>
     )
