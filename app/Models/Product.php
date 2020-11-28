@@ -15,4 +15,8 @@ class Product extends Model
     public function requestAndProduct() {
         return $this->hasMany('App\Models\UserRequestsAndProducts');
     }
+
+    public function productClass() {
+        return $this->belongsTo('App\Models\ProductClass', 'id_clproduct', 'id_clproduct');
+    }
 }

@@ -31,4 +31,23 @@ class ProductsController extends Controller
             return response()->json(['message' => $e->getMessage(), 'status' => 'error'], 400);
         }
     }
+
+    public function getProductClass(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'product_id' => 'required|integer'
+        ]);
+
+        if ($validator->fails()) {
+            $this->failedValidation($validator);
+        }
+
+        $id = $request->get('product_id');
+        try {
+            $product = Product::where('id_product', $id)->first();
+            $productClass = $product->productClass->name_clproduct_rus;
+            return response()->json(['product_class' => $productClass, 'status' => 'success'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => 'error'], 400);
+        }
+    }
 }
