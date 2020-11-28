@@ -6,7 +6,9 @@ const AddRequest = () => {
     const   [products, setProducts] = useState([]),
             [productsOpen, setProductsOpen] = useState(false),
             [selectedProducts, setSelectedProducts] = useState([]), // Выбранные препараты
-            [selectedPaymentMethod, setSelectedPaymentMethod] = useState(false)
+            [selectedPaymentMethod, setSelectedPaymentMethod] = useState(false),
+            [requestTitle, setRequestTitle] = useState(''),
+            [deliveryAddress, setDeliveryAddress] = useState('')
 
     useEffect(() => {
         document.addEventListener('click', handleClick, false)
@@ -101,7 +103,7 @@ const AddRequest = () => {
 
             <div className="d-flex align-items-center add-request__title add-request__component">
                 <label htmlFor="request-title">Введите название запроса</label>
-                <input id="request-title" />
+                <input onChange={e => setRequestTitle(e.target.value)} id="request-title" />
             </div>
 
             <div className="request-products d-flex flex-column add-request__component">
@@ -118,6 +120,13 @@ const AddRequest = () => {
                 <h5 className="add-request__component--title">Выберите способ оплаты:</h5>
                 <div className="d-flex">{parsePaymentMethods()}</div>
             </div>
+
+            <div className="d-flex align-items-center add-request__component">
+                <h5 className="add-request__component--title">Введите Ваш адрес, куда необходимо доставить товар:</h5>
+                <input onChange={e => setDeliveryAddress(e.target.value)} />
+            </div>
+
+
         </section>
     )
 }
