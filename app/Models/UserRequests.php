@@ -12,4 +12,8 @@ class UserRequests extends Model
     public function user() {
         return $this->belongsTo('App\Models\User');
     }
+
+    public function productsAndValue() {
+        return $this->hasMany('App\Models\UserRequestsAndProducts');
+    }
 }

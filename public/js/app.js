@@ -75498,7 +75498,7 @@ var Main = function Main(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-md-9 col-sm-12"
+    className: "col-md-10 col-sm-12"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "main-window__inner row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
@@ -75510,7 +75510,7 @@ var Main = function Main(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_user_User__WEBPACK_IMPORTED_MODULE_10__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
     path: "/faq"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_faq_Faq__WEBPACK_IMPORTED_MODULE_3__["default"], null)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-md-3 d-none d-md-flex flex-column"
+    className: "col-md-2 d-none d-md-flex flex-column"
   }, props.loggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_sideblock_UserSideBlock__WEBPACK_IMPORTED_MODULE_11__["default"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_sideblock_SideBlock__WEBPACK_IMPORTED_MODULE_2__["default"], null)))))));
 };
 
@@ -76871,7 +76871,7 @@ var AddRequest = function AddRequest() {
             return setSelectedPaymentMethod(method);
           },
           key: i,
-          className: "payment-method ".concat(selectedPaymentMethod === method && 'selected')
+          className: "payment-method d-flex align-items-center ".concat(selectedPaymentMethod === method && 'selected')
         }, method);
       });
     }
@@ -76911,8 +76911,8 @@ var AddRequest = function AddRequest() {
   }, renderProducts()))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "d-flex flex-wrap picked-products"
   }, renderSelectedProducts())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-    className: "d-flex request__payment-methods add-request__component"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "d-flex align-items-center request__payment-methods add-request__component"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h5", {
     className: "add-request__component--title"
   }, "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0441\u043F\u043E\u0441\u043E\u0431 \u043E\u043F\u043B\u0430\u0442\u044B:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "d-flex"

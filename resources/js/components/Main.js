@@ -20,7 +20,7 @@ const Main = (props) => {
                 <div className="row">
                     <div className="col-12 main-window mt-3">
                         <div className="row">
-                            <div className="col-md-9 col-sm-12">
+                            <div className="col-md-10 col-sm-12">
                                 <div className="main-window__inner row">
                                     <Route path="/">
                                         {props.loggedIn ? <Redirect to="/user" /> : <Auth />}
@@ -33,7 +33,7 @@ const Main = (props) => {
                                     </Route>
                                 </div>
                             </div>
-                            <div className="col-md-3 d-none d-md-flex flex-column">
+                            <div className="col-md-2 d-none d-md-flex flex-column">
                                 {props.loggedIn ? <UserSideBlock /> : <SideBlock />}
                             </div>
                         </div>

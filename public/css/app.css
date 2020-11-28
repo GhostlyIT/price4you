@@ -11317,10 +11317,21 @@ img {
   text-align: center;
   border: 1px solid #4B4B4B;
   margin-right: 20px;
+  transition: 0.1s;
+  -webkit-transition: 0.1s;
+  -moz-transition: 0.1s;
+  -ms-transition: 0.1s;
+  -o-transition: 0.1s;
 }
 
 #add-request .request__payment-methods .payment-method.selected {
   border-color: #4525F2;
+  box-shadow: 0px 0px 7px 0px #4252f2;
+}
+
+#add-request .add-request__component--title {
+  color: #5D854B;
+  margin-bottom: 0;
 }
 
 .main {

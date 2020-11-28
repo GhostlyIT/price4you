@@ -78,7 +78,13 @@ const AddRequest = () => {
         if (paymentMethods.length > 0) {
             return paymentMethods.map((method, i) => {
                 return (
-                    <span onClick={() => setSelectedPaymentMethod(method)} key={i} className={`payment-method ${selectedPaymentMethod === method && 'selected'}`}>{method}</span>
+                    <span
+                        onClick={() => setSelectedPaymentMethod(method)}
+                        key={i}
+                        className={`payment-method d-flex align-items-center ${selectedPaymentMethod === method && 'selected'}`}
+                    >
+                        {method}
+                    </span>
                 )
             })
         }
@@ -108,8 +114,8 @@ const AddRequest = () => {
                 <div className="d-flex flex-wrap picked-products">{renderSelectedProducts()}</div>
             </div>
 
-            <div className="d-flex request__payment-methods add-request__component">
-                <span className="add-request__component--title">Выберите способ оплаты:</span>
+            <div className="d-flex align-items-center request__payment-methods add-request__component">
+                <h5 className="add-request__component--title">Выберите способ оплаты:</h5>
                 <div className="d-flex">{parsePaymentMethods()}</div>
             </div>
         </section>

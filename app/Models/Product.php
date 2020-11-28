@@ -11,4 +11,8 @@ class Product extends Model
 
     protected $connection = 'mysql_ecoplant';
     protected $table = 'product';
+
+    public function requestAndProduct() {
+        return $this->hasMany('App\Models\UserRequestsAndProducts');
+    }
 }
