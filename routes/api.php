@@ -20,7 +20,7 @@ Route::post('register', 'App\Http\Controllers\AuthController@register');
 Route::post('login', 'App\Http\Controllers\AuthController@login');
 
 //Products
-Route::get('product/search', 'App\Http\Controllers\ProductsController@search');
+Route::get('product/search/all', 'App\Http\Controllers\ProductsController@searchAllProducts');
 Route::get('product/class', 'App\Http\Controllers\ProductsController@getProductClass');
 
 // Errors

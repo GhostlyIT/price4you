@@ -76789,7 +76789,15 @@ var AddRequest = function AddRequest() {
       _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
       _useState8 = _slicedToArray(_useState7, 2),
       selectedPaymentMethod = _useState8[0],
-      setSelectedPaymentMethod = _useState8[1];
+      setSelectedPaymentMethod = _useState8[1],
+      _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
+      _useState10 = _slicedToArray(_useState9, 2),
+      requestTitle = _useState10[0],
+      setRequestTitle = _useState10[1],
+      _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
+      _useState12 = _slicedToArray(_useState11, 2),
+      deliveryAddress = _useState12[0],
+      setDeliveryAddress = _useState12[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     document.addEventListener('click', handleClick, false);
@@ -76889,6 +76897,9 @@ var AddRequest = function AddRequest() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
     htmlFor: "request-title"
   }, "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043D\u0430\u0437\u0432\u0430\u043D\u0438\u0435 \u0437\u0430\u043F\u0440\u043E\u0441\u0430"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    onChange: function onChange(e) {
+      return setRequestTitle(e.target.value);
+    },
     id: "request-title"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "request-products d-flex flex-column add-request__component"
@@ -76916,7 +76927,15 @@ var AddRequest = function AddRequest() {
     className: "add-request__component--title"
   }, "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0441\u043F\u043E\u0441\u043E\u0431 \u043E\u043F\u043B\u0430\u0442\u044B:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "d-flex"
-  }, parsePaymentMethods())));
+  }, parsePaymentMethods())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "d-flex align-items-center add-request__component"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h5", {
+    className: "add-request__component--title"
+  }, "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0412\u0430\u0448 \u0430\u0434\u0440\u0435\u0441, \u043A\u0443\u0434\u0430 \u043D\u0435\u043E\u0431\u0445\u043E\u0434\u0438\u043C\u043E \u0434\u043E\u0441\u0442\u0430\u0432\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    onChange: function onChange(e) {
+      return setDeliveryAddress(e.target.value);
+    }
+  })));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (AddRequest);

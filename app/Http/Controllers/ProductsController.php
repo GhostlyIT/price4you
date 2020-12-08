@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fertiliser;
+use App\Models\Seed;
 use Illuminate\Http\Request;
 use App\Exceptions\ValidationException;
 use Illuminate\Support\Facades\Validator;
@@ -9,11 +11,14 @@ use App\Models\Product;
 
 class ProductsController extends Controller
 {
-    protected function failedValidation($validator) {
+    protected function failedValidation($validator)
+    {
         throw new ValidationException($validator);
     }
 
-    public function search(Request $request) {
+
+    public function searchAllProducts(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'query' => 'min:1'
         ]);
@@ -23,16 +28,25 @@ class ProductsController extends Controller
         }
 
         $query = $request->get('query');
+
         try {
-            $searchAttempt = Product::where('name_product_rus', 'like', '%'.$query.'%')->get();
-            if ($searchAttempt->isEmpty()) throw new \Exception('Не найдено товаров по вашему запросу');
-            return response()->json(['search_result' => $searchAttempt, 'status' => 'success'], 200);
+            $products = Product::where('name_product_rus', 'like', "%$query%")->get();
+            $seeds = Seed::where('name_seed_rus', 'like', "%$query%")->get();
+            $fertilisers = Fertiliser::where('name_fertiliser', 'like', "%$query%")->get();
+            $totalResult = [
+                'products' => $products,
+                'seeds' => $seeds,
+                'fertilisers' => $fertilisers
+            ];
+            if ($products->isEmpty() && $seeds->isEmpty() && $fertilisers->isEmpty()) throw new \Exception('По запросу ничего не найдено');
+            return response()->json(['search_result' => $totalResult, 'status' => 'success'],200);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 'error'], 400);
         }
     }
 
-    public function getProductClass(Request $request) {
+    public function getProductClass(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'product_id' => 'required|integer'
         ]);
@@ -43,7 +57,7 @@ class ProductsController extends Controller
 
         $id = $request->get('product_id');
         try {
-            $product = Product::where('id_product', $id)->first();
+            $product = Product::where('id_product', $id)->firstOrFail();
             $productClass = $product->productClass->name_clproduct_rus;
             return response()->json(['product_class' => $productClass, 'status' => 'success'], 200);
         } catch (\Exception $e) {
