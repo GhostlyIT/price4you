@@ -30,10 +30,10 @@ class ProductsController extends Controller
         $query = $request->get('query');
 
         try {
-            $products = Product::select('id_product AS id', 'name_product_rus AS name')
-                ->where('name_product_rus', 'like', "%$query%")
-                ->orderBy('name')
-                ->get();
+            $products = Product::select('id_product AS id', 'name_product_rus AS name')->where('name_product_rus', 'like', "%$query%")->orderBy('name')->get();
+            foreach ($products as $product) {
+                $product['culture'] = $product->culture()->get();
+            }
             $seeds = Seed::select('id_seed_product AS id', 'name_seed_rus AS name')->where('name_seed_rus', 'like', "%$query%")->orderBy('name')->get();
             $fertilisers = Fertiliser::select('id_fertiliser AS id', 'name_fertiliser AS name')->where('name_fertiliser', 'like', "%$query%")->orderBy('name')->get();
             $totalResult = [

@@ -76773,7 +76773,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
- //TODO: Дописать поля для продуктов
+
 
 var AddRequest = function AddRequest() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),

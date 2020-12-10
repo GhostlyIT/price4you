@@ -19,4 +19,8 @@ class Product extends Model
     public function productClass() {
         return $this->belongsTo('App\Models\ProductClass', 'id_clproduct', 'id_clproduct');
     }
+
+    public function culture() {
+        return $this->belongsToMany('App\Models\Culture', 'product_and_culture', 'id_product', 'id_culture', '', 'id_culture');
+    }
 }

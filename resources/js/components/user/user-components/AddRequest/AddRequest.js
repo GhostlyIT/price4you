@@ -2,7 +2,6 @@ import axios from 'axios'
 import React, {useEffect, useState} from 'react'
 import {paymentMethods} from './components/paymentMethods'
 import {productUnits} from "../../../../helpers/units";
-//TODO: Дописать поля для продуктов
 
 const AddRequest = () => {
     const [products, setProducts] = useState([]),
