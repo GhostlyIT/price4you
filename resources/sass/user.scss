@@ -45,6 +45,8 @@
             border: 1px solid;
             border-radius: 15px;
             background-color: #fff;
+            display: flex;
+            justify-content: space-between;
         }
     }
 
@@ -121,11 +123,36 @@
                 border-color: $blue;
                 box-shadow: 0px 0px 7px 0px #4252f2;
             }
+
+            &:last-child {
+                margin-right: 0;
+            }
         }
     }
 
-    .add-request__component--title {
-        color: #5D854B;
-        margin-bottom: 0;
+    .add-request__component {
+        .add-request__component--title {
+            color: #5D854B;
+            margin-bottom: 0;
+            margin-right: 20px;
+        }
+
+        .address-field {
+            width: 50%;
+        }
+    }
+
+    .picked-products__field {
+        margin-bottom: 20px;
+
+        label {
+            margin-bottom: 0;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        small {
+            color: $blue;
+        }
     }
 }

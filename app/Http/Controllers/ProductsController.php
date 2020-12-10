@@ -30,14 +30,18 @@ class ProductsController extends Controller
         $query = $request->get('query');
 
         try {
-            $products = Product::where('name_product_rus', 'like', "%$query%")->get();
-            $seeds = Seed::where('name_seed_rus', 'like', "%$query%")->get();
-            $fertilisers = Fertiliser::where('name_fertiliser', 'like', "%$query%")->get();
+            $products = Product::select('id_product AS id', 'name_product_rus AS name')
+                ->where('name_product_rus', 'like', "%$query%")
+                ->orderBy('name')
+                ->get();
+            $seeds = Seed::select('id_seed_product AS id', 'name_seed_rus AS name')->where('name_seed_rus', 'like', "%$query%")->orderBy('name')->get();
+            $fertilisers = Fertiliser::select('id_fertiliser AS id', 'name_fertiliser AS name')->where('name_fertiliser', 'like', "%$query%")->orderBy('name')->get();
             $totalResult = [
-                'products' => $products,
-                'seeds' => $seeds,
-                'fertilisers' => $fertilisers
+                'Защита растений' => $products,
+                'Семена' => $seeds,
+                'Удобрения' => $fertilisers
             ];
+
             if ($products->isEmpty() && $seeds->isEmpty() && $fertilisers->isEmpty()) throw new \Exception('По запросу ничего не найдено');
             return response()->json(['search_result' => $totalResult, 'status' => 'success'],200);
         } catch (\Exception $e) {

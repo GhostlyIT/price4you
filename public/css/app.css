@@ -11255,6 +11255,8 @@ img {
   border: 1px solid;
   border-radius: 15px;
   background-color: #fff;
+  display: flex;
+  justify-content: space-between;
 }
 
 #add-request hr {
@@ -11329,9 +11331,32 @@ img {
   box-shadow: 0px 0px 7px 0px #4252f2;
 }
 
-#add-request .add-request__component--title {
+#add-request .request__payment-methods .payment-method:last-child {
+  margin-right: 0;
+}
+
+#add-request .add-request__component .add-request__component--title {
   color: #5D854B;
   margin-bottom: 0;
+  margin-right: 20px;
+}
+
+#add-request .add-request__component .address-field {
+  width: 50%;
+}
+
+#add-request .picked-products__field {
+  margin-bottom: 20px;
+}
+
+#add-request .picked-products__field label {
+  margin-bottom: 0;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+#add-request .picked-products__field small {
+  color: #4525F2;
 }
 
 .main {

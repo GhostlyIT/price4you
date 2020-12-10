@@ -76749,6 +76749,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _components_paymentMethods__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/paymentMethods */ "./resources/js/components/user/user-components/AddRequest/components/paymentMethods.js");
+/* harmony import */ var _helpers_units__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../helpers/units */ "./resources/js/helpers/units.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -76772,6 +76773,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+ //TODO: Дописать поля для продуктов
 
 var AddRequest = function AddRequest() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
@@ -76813,7 +76815,7 @@ var AddRequest = function AddRequest() {
 
   var searchProduct = function searchProduct(query) {
     if (query != '') {
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/product/search?query=".concat(query)).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/product/search/all?query=".concat(query)).then(function (response) {
         setProducts(response.data.search_result);
       })["catch"](function () {
         setProducts([]);
@@ -76823,17 +76825,19 @@ var AddRequest = function AddRequest() {
     }
   };
 
-  var pickProduct = function pickProduct(product) {
+  var pickProduct = function pickProduct(product, productType) {
+    product['type'] = productType;
     selectedProducts.push(product);
+    console.log(selectedProducts);
   };
 
   var renderSelectedProducts = function renderSelectedProducts() {
     if (selectedProducts.length > 0) {
       return selectedProducts.map(function (product) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-          key: 'picked-' + product.id_product,
+          key: 'picked-' + product.id,
           className: "picked-product position-relative"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, product.name_product_rus), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, product.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
           onClick: function onClick() {
             return removeProductFromSelected(product);
           },
@@ -76850,7 +76854,6 @@ var AddRequest = function AddRequest() {
     var arrCopy = _toConsumableArray(selectedProducts);
 
     var index = arrCopy.indexOf(product);
-    console.log(index);
     arrCopy.splice(index, 1);
     setSelectedProducts(arrCopy);
   };
@@ -76860,14 +76863,17 @@ var AddRequest = function AddRequest() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, "\u041F\u0440\u0435\u043F\u0430\u0440\u0430\u0442\u044B \u043D\u0435 \u043D\u0430\u0439\u0434\u0435\u043D\u044B");
     }
 
-    return products.map(function (product) {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-        onClick: function onClick() {
-          return pickProduct(product);
-        },
-        className: "product",
-        key: product.id_product
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, product.name_product_rus));
+    return Object.keys(products).map(function (key) {
+      return products[key].map(function (product) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+          onClick: function onClick() {
+            return pickProduct(product, key);
+          },
+          id: key + '-' + product.id,
+          className: "product",
+          key: key + '-' + product.id
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, product.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("small", null, key));
+      });
     });
   };
 
@@ -76883,6 +76889,33 @@ var AddRequest = function AddRequest() {
         }, method);
       });
     }
+  };
+
+  var renderProductUnits = function renderProductUnits() {
+    return _helpers_units__WEBPACK_IMPORTED_MODULE_3__["productUnits"].map(function (unit) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("option", null, unit);
+    });
+  };
+
+  var renderFieldsForSelectedProducts = function renderFieldsForSelectedProducts() {
+    if (selectedProducts.length > 0) {
+      return selectedProducts.map(function (product) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+          key: 'field-picked-' + product.id,
+          className: "d-flex align-items-center picked-products__field row"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
+          htmlFor: 'field-picked-' + product.id,
+          className: "position-relative d-flex flex-column col-5"
+        }, product.name, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("small", null, product.type)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+          id: 'field-picked-' + product.id,
+          className: "col-5"
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
+          className: "col-2"
+        }, renderProductUnits()));
+      });
+    }
+
+    return null;
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("section", {
@@ -76932,10 +76965,17 @@ var AddRequest = function AddRequest() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h5", {
     className: "add-request__component--title"
   }, "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0412\u0430\u0448 \u0430\u0434\u0440\u0435\u0441, \u043A\u0443\u0434\u0430 \u043D\u0435\u043E\u0431\u0445\u043E\u0434\u0438\u043C\u043E \u0434\u043E\u0441\u0442\u0430\u0432\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    className: "address-field",
     onChange: function onChange(e) {
       return setDeliveryAddress(e.target.value);
     }
-  })));
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "d-flex add-request__component"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h5", {
+    className: "add-request__component--title"
+  }, "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043D\u0435\u043E\u0431\u0445\u043E\u0434\u0438\u043C\u044B\u0439 \u043E\u0431\u044A\u0435\u043C:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+    className: "d-flex flex-column"
+  }, renderFieldsForSelectedProducts())));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (AddRequest);
@@ -76976,6 +77016,20 @@ var UserRequests = function UserRequests() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (UserRequests);
+
+/***/ }),
+
+/***/ "./resources/js/helpers/units.js":
+/*!***************************************!*\
+  !*** ./resources/js/helpers/units.js ***!
+  \***************************************/
+/*! exports provided: productUnits */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "productUnits", function() { return productUnits; });
+var productUnits = ['кг', 'г', 'л', 'мл', 'уп.'];
 
 /***/ }),
 
