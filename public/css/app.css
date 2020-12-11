@@ -11359,6 +11359,10 @@ img {
   color: #4525F2;
 }
 
+#add-request .picked-products__field .btn-calculate {
+  border-radius: 10px;
+}
+
 .main {
   background-color: #000;
   min-height: 100vh;

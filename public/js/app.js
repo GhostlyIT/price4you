@@ -76799,7 +76799,11 @@ var AddRequest = function AddRequest() {
       _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(''),
       _useState12 = _slicedToArray(_useState11, 2),
       deliveryAddress = _useState12[0],
-      setDeliveryAddress = _useState12[1];
+      setDeliveryAddress = _useState12[1],
+      _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])([]),
+      _useState14 = _slicedToArray(_useState13, 2),
+      calculateProductsList = _useState14[0],
+      setCalculateProductsList = _useState14[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     document.addEventListener('click', handleClick, false);
@@ -76828,7 +76832,6 @@ var AddRequest = function AddRequest() {
   var pickProduct = function pickProduct(product, productType) {
     product['type'] = productType;
     selectedProducts.push(product);
-    console.log(selectedProducts);
   };
 
   var renderSelectedProducts = function renderSelectedProducts() {
@@ -76839,7 +76842,7 @@ var AddRequest = function AddRequest() {
           className: "picked-product position-relative"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", null, product.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
           onClick: function onClick() {
-            return removeProductFromSelected(product);
+            return removeProductFromList(product, selectedProducts, setSelectedProducts);
           },
           type: "button",
           className: "position-absolute remove-btn"
@@ -76850,12 +76853,12 @@ var AddRequest = function AddRequest() {
     return null;
   };
 
-  var removeProductFromSelected = function removeProductFromSelected(product) {
-    var arrCopy = _toConsumableArray(selectedProducts);
+  var removeProductFromList = function removeProductFromList(product, list, setFunction) {
+    var arrCopy = _toConsumableArray(list);
 
     var index = arrCopy.indexOf(product);
     arrCopy.splice(index, 1);
-    setSelectedProducts(arrCopy);
+    setFunction(arrCopy);
   };
 
   var renderProducts = function renderProducts() {
@@ -76901,17 +76904,33 @@ var AddRequest = function AddRequest() {
     if (selectedProducts.length > 0) {
       return selectedProducts.map(function (product) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-          key: 'field-picked-' + product.id,
+          key: 'field-picked-' + product.name + '-' + product.id,
           className: "d-flex align-items-center picked-products__field row"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
           htmlFor: 'field-picked-' + product.id,
-          className: "position-relative d-flex flex-column col-5"
+          className: "position-relative d-flex flex-column col-4"
         }, product.name, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("small", null, product.type)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-          id: 'field-picked-' + product.id,
-          className: "col-5"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
+          disabled: calculateProductsList.includes(product),
+          id: 'field-picked-' + product.name + '-' + product.id,
           className: "col-2"
-        }, renderProductUnits()));
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
+          className: "ml-3 mr-3"
+        }, renderProductUnits()), product.type === 'Защита растений' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+          className: "col-4"
+        }, calculateProductsList.includes(product) ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+          onClick: function onClick() {
+            return removeProductFromList(product, calculateProductsList, setCalculateProductsList);
+          },
+          className: "btn btn-danger",
+          type: "button"
+        }, "\u0420\u0430\u0441\u0441\u0447\u0438\u0442\u0430\u0442\u044C \u0432\u0440\u0443\u0447\u043D\u0443\u044E") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+          onClick: function onClick() {
+            setCalculateProductsList([].concat(_toConsumableArray(calculateProductsList), [product]));
+            console.log(calculateProductsList);
+          },
+          className: "btn btn-success",
+          type: "button"
+        }, "\u0420\u0430\u0441\u0441\u0447\u0438\u0442\u0430\u0442\u044C \u0430\u0432\u0442\u043E\u043C\u0430\u0442\u0438\u0447\u0435\u0441\u043A\u0438")));
       });
     }
 
@@ -76969,7 +76988,7 @@ var AddRequest = function AddRequest() {
     onChange: function onChange(e) {
       return setDeliveryAddress(e.target.value);
     }
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  })), selectedProducts.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "d-flex add-request__component"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h5", {
     className: "add-request__component--title"

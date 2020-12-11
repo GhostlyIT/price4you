@@ -9,7 +9,8 @@ const AddRequest = () => {
         [selectedProducts, setSelectedProducts] = useState([]),
         [selectedPaymentMethod, setSelectedPaymentMethod] = useState(false),
         [requestTitle, setRequestTitle] = useState(''),
-        [deliveryAddress, setDeliveryAddress] = useState('')
+        [deliveryAddress, setDeliveryAddress] = useState(''),
+        [calculateProductsList, setCalculateProductsList ] = useState([])
 
     useEffect(() => {
         document.addEventListener('click', handleClick, false)
@@ -39,7 +40,6 @@ const AddRequest = () => {
     const pickProduct = (product, productType) => {
         product['type'] = productType
         selectedProducts.push(product)
-        console.log(selectedProducts)
     }
 
     const renderSelectedProducts = () => {
@@ -48,7 +48,7 @@ const AddRequest = () => {
                 return (
                     <div key={'picked-' + product.id} className="picked-product position-relative">
                         <span>{product.name}</span>
-                        <button onClick={() => removeProductFromSelected(product)} type="button"
+                        <button onClick={() => removeProductFromList(product, selectedProducts, setSelectedProducts)} type="button"
                                 className="position-absolute remove-btn"></button>
                     </div>
                 )
@@ -57,11 +57,11 @@ const AddRequest = () => {
         return null
     }
 
-    const removeProductFromSelected = (product) => {
-        let arrCopy = [...selectedProducts]
+    const removeProductFromList = (product, list, setFunction) => {
+        let arrCopy = [...list]
         const index = arrCopy.indexOf(product)
         arrCopy.splice(index, 1)
-        setSelectedProducts(arrCopy)
+        setFunction(arrCopy)
     }
 
     const renderProducts = () => {
@@ -98,7 +98,6 @@ const AddRequest = () => {
         }
     }
 
-
     const renderProductUnits = () => {
         return productUnits.map(unit => {
             return(
@@ -111,24 +110,36 @@ const AddRequest = () => {
         if (selectedProducts.length > 0) {
             return selectedProducts.map(product => {
                 return (
-                    <div key={'field-picked-' + product.id} className="d-flex align-items-center picked-products__field row">
-                        <label htmlFor={'field-picked-' + product.id} className="position-relative d-flex flex-column col-5">
+                    <div key={'field-picked-' + product.name + '-' + product.id} className="d-flex align-items-center picked-products__field row">
+
+                        <label htmlFor={'field-picked-' + product.id} className="position-relative d-flex flex-column col-4">
                             {product.name}
                             <small>{product.type}</small>
                         </label>
 
-                        <input id={'field-picked-' + product.id} className="col-5" />
+                        <input disabled={calculateProductsList.includes(product)} id={'field-picked-' + product.name + '-' + product.id} className="col-2" />
 
-                        <select className="col-2">
+                        <select className="ml-3 mr-3">
                             {renderProductUnits()}
                         </select>
+
+                        { product.type === 'Защита растений' &&
+                            <div className="col-4">
+                                { calculateProductsList.includes(product)
+                                    ? <button onClick={() => removeProductFromList(product, calculateProductsList, setCalculateProductsList)} className="btn btn-danger" type="button">Рассчитать вручную</button>
+                                    : <button onClick={() => {
+                                        setCalculateProductsList([...calculateProductsList, product])
+                                        console.log(calculateProductsList)
+                                    }} className="btn btn-success" type="button">Рассчитать автоматически</button>
+                                }
+                            </div>
+                        }
                     </div>
                 )
             })
         }
         return null
     }
-
 
     return (
         <section id="add-request" className="col-12">
@@ -164,10 +175,12 @@ const AddRequest = () => {
                 <input className="address-field" onChange={e => setDeliveryAddress(e.target.value)}/>
             </div>
 
-            <div className="d-flex add-request__component">
-                <h5 className="add-request__component--title">Введите необходимый объем:</h5>
-                <div className="d-flex flex-column">{renderFieldsForSelectedProducts()}</div>
-            </div>
+            { selectedProducts.length > 0 &&
+                <div className="d-flex add-request__component">
+                    <h5 className="add-request__component--title">Введите необходимый объем:</h5>
+                    <div className="d-flex flex-column">{renderFieldsForSelectedProducts()}</div>
+                </div>
+            }
         </section>
     )
 }
