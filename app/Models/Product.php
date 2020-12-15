@@ -23,4 +23,8 @@ class Product extends Model
     public function culture() {
         return $this->belongsToMany('App\Models\Culture', 'product_and_culture', 'id_product', 'id_culture', '', 'id_culture');
     }
+
+    public function regdata() {
+        return $this->belongsToMany('App\Models\RegData', 'product_and_regdata', 'id_product', 'id_regdata', 'id_product', 'id_regdata');
+    }
 }

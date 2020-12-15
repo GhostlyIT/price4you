@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Culture;
 use App\Models\Fertiliser;
+use App\Models\RegData;
 use App\Models\Seed;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Exceptions\ValidationException;
 use Illuminate\Support\Facades\Validator;
-use App\Models\Product;
+
 
 class ProductsController extends Controller
 {
@@ -64,6 +67,27 @@ class ProductsController extends Controller
             $product = Product::where('id_product', $id)->firstOrFail();
             $productClass = $product->productClass->name_clproduct_rus;
             return response()->json(['product_class' => $productClass, 'status' => 'success'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => 'error'], 400);
+        }
+    }
+
+    public function getRatesByCulture(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'id_product' => 'required|integer',
+            'id_culture' => 'required|integer'
+        ]);
+
+        if ($validator->fails()) {
+            $this->failedValidation($validator);
+        }
+
+        $idProduct = $request->get('id_product');
+        $idCulture = $request->get('id_culture');
+
+        try {
+            $rates = Product::where('id_product', $idProduct)->firstOrFail()->regdata()->select('min_rate', 'max_rate')->where('id_culture', $idCulture)->get();
+            return response()->json(['rates' => $rates, 'status' => 'success'],200);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 'error'], 400);
         }

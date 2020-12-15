@@ -178,7 +178,7 @@ const AddRequest = () => {
                     </div>
                     <div className="d-flex align-items-center calculate-product__area calculate-product__row">
                         <span className="calculate-product__title">Введите площадь для обработки:</span>
-                        <input type="number" />
+                        <input type="number" min="0" />
                     </div>
                 </div>
             )

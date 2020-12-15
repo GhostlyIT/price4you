@@ -78621,7 +78621,8 @@ var AddRequest = function AddRequest() {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
         className: "calculate-product__title"
       }, "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u043F\u043B\u043E\u0449\u0430\u0434\u044C \u0434\u043B\u044F \u043E\u0431\u0440\u0430\u0431\u043E\u0442\u043A\u0438:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-        type: "number"
+        type: "number",
+        min: "0"
       })));
     }
 

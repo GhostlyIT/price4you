@@ -22,6 +22,7 @@ Route::post('login', 'App\Http\Controllers\AuthController@login');
 //Products
 Route::get('product/search/all', 'App\Http\Controllers\ProductsController@searchAllProducts');
 Route::get('product/class', 'App\Http\Controllers\ProductsController@getProductClass');
+Route::get('product/rates-by-culture', 'App\Http\Controllers\ProductsController@getRatesByCulture');
 
 // Errors
 Route::get('errorUnauthorized', function() {
