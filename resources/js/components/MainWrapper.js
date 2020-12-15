@@ -8,7 +8,9 @@ import ReactNotification from 'react-notifications-component'
 import 'react-notifications-component/dist/theme.css'
 import 'animate.css';
 import Main from './Main'
+import Modal from 'react-modal'
 
+Modal.setAppElement('#root')
 const MainWrapper = () => {
     store.subscribe(() => {
         saveState(store.getState())

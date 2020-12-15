@@ -103,33 +103,6 @@
         }
     }
 
-    .request__payment-methods {
-        .payment-method {
-            padding: 9px 20px;
-            border-radius: 9px;
-            -webkit-border-radius: 9px;
-            -moz-border-radius: 9px;
-            -ms-border-radius: 9px;
-            -o-border-radius: 9px;
-            text-align: center;
-            border: 1px solid #4B4B4B;
-            margin-right: 20px;
-            transition: 0.1s;
-            -webkit-transition: 0.1s;
-            -moz-transition: 0.1s;
-            -ms-transition: 0.1s;
-            -o-transition: 0.1s;
-            &.selected {
-                border-color: $blue;
-                box-shadow: 0px 0px 7px 0px #4252f2;
-            }
-
-            &:last-child {
-                margin-right: 0;
-            }
-        }
-    }
-
     .add-request__component {
         .add-request__component--title {
             color: #5D854B;
@@ -158,5 +131,29 @@
         .btn-calculate {
             border-radius: 10px;
         }
+
+        input {
+            min-width: 110px;
+        }
+    }
+}
+
+.calculate-product {
+    .calculate-product__title {
+        margin-right: 30px;
+        font-weight: 700;
+    }
+
+    .calculate-product__culture-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+
+        .calculate-product__culture {
+            margin-top: 10px;
+        }
+    }
+
+    .calculate-product__row {
+        margin-bottom: 30px;
     }
 }

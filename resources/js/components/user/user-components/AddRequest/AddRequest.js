@@ -1,7 +1,8 @@
 import axios from 'axios'
 import React, {useEffect, useState} from 'react'
 import {paymentMethods} from './components/paymentMethods'
-import {productUnits} from "../../../../helpers/units";
+import {productUnits} from "../../../../helpers/units"
+import MyModal from "../../../../helpers/modal"
 
 const AddRequest = () => {
     const [products, setProducts] = useState([]),
@@ -10,11 +11,15 @@ const AddRequest = () => {
         [selectedPaymentMethod, setSelectedPaymentMethod] = useState(false),
         [requestTitle, setRequestTitle] = useState(''),
         [deliveryAddress, setDeliveryAddress] = useState(''),
-        [calculateProductsList, setCalculateProductsList ] = useState([])
+        [productToCalculate, setProductToCalculate ] = useState(false),
+        [isModalOpen, setIsModalOpen] = useState(false)
 
     useEffect(() => {
         document.addEventListener('click', handleClick, false)
     })
+
+    const openModal = () => setIsModalOpen(true)
+    const closeModal = () => setIsModalOpen(false)
 
     const handleClick = (e) => {
         const requestProduct = document.getElementById('request-product')
@@ -88,8 +93,8 @@ const AddRequest = () => {
                 return (
                     <span
                         onClick={() => setSelectedPaymentMethod(method)}
-                        key={i}
-                        className={`payment-method d-flex align-items-center ${selectedPaymentMethod === method && 'selected'}`}
+                        key={method + i}
+                        className={`select-cards d-flex align-items-center ${selectedPaymentMethod === method && 'selected'}`}
                     >
                         {method}
                     </span>
@@ -101,7 +106,7 @@ const AddRequest = () => {
     const renderProductUnits = () => {
         return productUnits.map(unit => {
             return(
-                <option>{unit}</option>
+                <option key={unit}>{unit}</option>
             )
         })
     }
@@ -117,7 +122,7 @@ const AddRequest = () => {
                             <small>{product.type}</small>
                         </label>
 
-                        <input disabled={calculateProductsList.includes(product)} id={'field-picked-' + product.name + '-' + product.id} className="col-2" />
+                        <input id={'field-picked-' + product.name + '-' + product.id} className="col-2" />
 
                         <select className="ml-3 mr-3">
                             {renderProductUnits()}
@@ -125,13 +130,11 @@ const AddRequest = () => {
 
                         { product.type === 'Защита растений' &&
                             <div className="col-4">
-                                { calculateProductsList.includes(product)
-                                    ? <button onClick={() => removeProductFromList(product, calculateProductsList, setCalculateProductsList)} className="btn btn-danger" type="button">Рассчитать вручную</button>
-                                    : <button onClick={() => {
-                                        setCalculateProductsList([...calculateProductsList, product])
-                                        console.log(calculateProductsList)
-                                    }} className="btn btn-success" type="button">Рассчитать автоматически</button>
-                                }
+                                    <button onClick={() => {
+                                            setProductToCalculate(product)
+                                            setIsModalOpen(true)
+                                        }
+                                    } className="btn btn-success" type="button">Рассчитать автоматически</button>
                             </div>
                         }
                     </div>
@@ -141,10 +144,54 @@ const AddRequest = () => {
         return null
     }
 
+    const renderProductsToCalculate = () => {
+        const product = productToCalculate
+        if (product) {
+            const data = {
+                culture: 0,
+                area: 0,
+                rates: 0
+            }
+
+            const selectCulture = (cultureDomElement, culture) => {
+                $('.calculate-product__culture').removeClass('selected')
+                cultureDomElement.addClass('selected')
+                data.culture = culture
+            }
+
+            return (
+                <div key={'calculate-' + product.name + '-' + product.id}
+                     className="d-flex flex-column calculate-product add-request__component">
+                    <h5 className="add-request__component--title">{product.name}</h5>
+                    <div className="d-flex align-items-center calculate-product__row">
+                        <span className="calculate-product__title">Выберите вашу культуру:</span>
+                        <div className="calculate-product__culture-list">
+                            {
+                                product.culture.map(culture => {
+                                    return (
+                                        <span onClick={(e) => selectCulture($(e.currentTarget), culture.id_culture) } key={culture.name_rus + culture.id_culture}
+                                              className="select-cards calculate-product__culture d-flex align-items-center justify-content-center">{culture.name_rus}</span>
+                                    )
+                                })
+                            }
+                        </div>
+                    </div>
+                    <div className="d-flex align-items-center calculate-product__area calculate-product__row">
+                        <span className="calculate-product__title">Введите площадь для обработки:</span>
+                        <input type="number" />
+                    </div>
+                </div>
+            )
+        }
+        return null
+    }
+
+
+
+
     return (
         <section id="add-request" className="col-12">
             <h2 className="title">Новый запрос</h2>
-            <span className="date">№ 124 от 7 сентября 2020</span>
 
             <hr/>
 
@@ -181,6 +228,13 @@ const AddRequest = () => {
                     <div className="d-flex flex-column">{renderFieldsForSelectedProducts()}</div>
                 </div>
             }
+
+            <MyModal isOpen={isModalOpen}
+                     closeModal={() => setIsModalOpen(false)}
+                     modalTitle="Автоматический расчет необходимого объема препарата"
+            >
+                {renderProductsToCalculate()}
+            </MyModal>
         </section>
     )
 }
