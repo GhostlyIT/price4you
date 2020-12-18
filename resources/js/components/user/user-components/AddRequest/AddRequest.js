@@ -3,23 +3,32 @@ import React, {useEffect, useState} from 'react'
 import {paymentMethods} from './components/paymentMethods'
 import {productUnits} from "../../../../helpers/units"
 import MyModal from "../../../../helpers/modal"
+import {showNotification} from "../../../functions/notifications"
+import {connect} from 'react-redux'
+import {bindActionCreators} from "redux";
+import authAction from "../../../../store/actions/authAction"
 
-const AddRequest = () => {
+const AddRequest = (props) => {
     const [products, setProducts] = useState([]),
         [productsOpen, setProductsOpen] = useState(false),
         [selectedProducts, setSelectedProducts] = useState([]),
         [selectedPaymentMethod, setSelectedPaymentMethod] = useState(false),
         [requestTitle, setRequestTitle] = useState(''),
+        [selectedDeliveryMethod, setSelectedDeliveryMethod] = useState(false),
         [deliveryAddress, setDeliveryAddress] = useState(''),
         [productToCalculate, setProductToCalculate ] = useState(false),
-        [isModalOpen, setIsModalOpen] = useState(false)
+        [isModalOpen, setIsModalOpen] = useState(false),
+        [rates, setRates] = useState([]),
+        [dataToCalculate,] = useState({
+            id_culture: 0,
+            area: 0,
+            rate: 0
+        }),
+        [comment, setComment] = useState(false)
 
     useEffect(() => {
         document.addEventListener('click', handleClick, false)
     })
-
-    const openModal = () => setIsModalOpen(true)
-    const closeModal = () => setIsModalOpen(false)
 
     const handleClick = (e) => {
         const requestProduct = document.getElementById('request-product')
@@ -44,6 +53,18 @@ const AddRequest = () => {
 
     const pickProduct = (product, productType) => {
         product['type'] = productType
+        switch (productType) {
+            case 'Защита растений':
+                product['type_for_db'] = 'product'
+                break
+            case 'Семена':
+                product['type_for_db'] = 'seed'
+                break
+            case 'Удобрения':
+                product['type_for_db'] = 'fertiliser'
+                break
+        }
+        product['unit'] = 'кг'
         selectedProducts.push(product)
     }
 
@@ -106,14 +127,14 @@ const AddRequest = () => {
     const renderProductUnits = () => {
         return productUnits.map(unit => {
             return(
-                <option key={unit}>{unit}</option>
+                <option value={unit} key={unit}>{unit}</option>
             )
         })
     }
 
     const renderFieldsForSelectedProducts = () => {
         if (selectedProducts.length > 0) {
-            return selectedProducts.map(product => {
+            return selectedProducts.map((product, i) => {
                 return (
                     <div key={'field-picked-' + product.name + '-' + product.id} className="d-flex align-items-center picked-products__field row">
 
@@ -122,9 +143,12 @@ const AddRequest = () => {
                             <small>{product.type}</small>
                         </label>
 
-                        <input id={'field-picked-' + product.name + '-' + product.id} className="col-2" />
+                        <input onChange={(e) => selectedProducts[i].value = parseFloat(e.target.value) }
+                                id={'field-picked-' + product.id}
+                                className="col-2"
+                        />
 
-                        <select className="ml-3 mr-3">
+                        <select onChange={(e) => selectedProducts[i].unit = e.target.value } className="ml-3 mr-3">
                             {renderProductUnits()}
                         </select>
 
@@ -146,18 +170,43 @@ const AddRequest = () => {
 
     const renderProductsToCalculate = () => {
         const product = productToCalculate
+
+        const index = selectedProducts.findIndex((el) => {
+            if (el.id == product.id)
+                return true
+        })
+
         if (product) {
-            const data = {
-                culture: 0,
-                area: 0,
-                rates: 0
-            }
 
             const selectCulture = (cultureDomElement, culture) => {
                 $('.calculate-product__culture').removeClass('selected')
                 cultureDomElement.addClass('selected')
-                data.culture = culture
+                dataToCalculate.id_culture = culture
+
+                axios.get(`/api/product/rates-by-culture?id_product=${product.id}&id_culture=${culture}`)
+                .then((response) => {
+                    setRates(response.data.rates)
+                })
+                .catch((error) => {
+                    console.log(error.message)
+                    setRates([])
+                })
             }
+
+
+            const calculateVolume = () => {
+                axios.post('/api/product/calculate-volume', dataToCalculate)
+                .then(response => {
+                    $('#field-picked-' + product.id).val(response.data.result)
+                    selectedProducts[index].value = response.data.result
+                    setRates([])
+                    setIsModalOpen(false)
+                })
+                .catch(error => {
+                    showNotification('Автоматический расчет объема препарата', error.message, 'danger')
+                })
+            }
+
 
             return (
                 <div key={'calculate-' + product.name + '-' + product.id}
@@ -176,9 +225,31 @@ const AddRequest = () => {
                             }
                         </div>
                     </div>
+
                     <div className="d-flex align-items-center calculate-product__area calculate-product__row">
                         <span className="calculate-product__title">Введите площадь для обработки:</span>
-                        <input type="number" min="0" />
+                        <input onChange={(e) => dataToCalculate.area = e.target.value} type="number" min="0" />
+                    </div>
+
+                    <div className="d-flex align-items-center calculate-product__row">
+                        <span className="calculate-product__title">Выберите норму применения:</span>
+                        <div className="calculate-product__culture-list">
+                            { rates.length > 0 &&
+                                rates.map((rate, i) => {
+                                    return (
+                                        <span onClick={(e) => {
+                                            dataToCalculate.rate = rate
+                                            $('.calculate-product__rate').removeClass('selected')
+                                            $(e.currentTarget).addClass('selected')
+                                        }} key={rate + i} className="select-cards calculate-product__rate d-flex align-items-center justify-content-center">{rate}</span>
+                                    )
+                                })
+                            }
+                        </div>
+                    </div>
+
+                    <div className="d-flex align-items-center calculate-product__row">
+                        <button onClick={() => calculateVolume()} type="button" className="btn btn-success btn-lg">Рассчитать</button>
                     </div>
                 </div>
             )
@@ -186,7 +257,25 @@ const AddRequest = () => {
         return null
     }
 
-
+    const sendRequest = () => {
+        axios.post('/api/request/save', {
+            title: requestTitle,
+            payment_method: selectedPaymentMethod,
+            delivery_method: selectedDeliveryMethod,
+            comment: comment,
+            delivery_address: deliveryAddress,
+            products: selectedProducts
+        },
+        {
+            headers: {'Authorization': 'Bearer ' + props.token}
+        })
+        .then((response) => {
+            showNotification('Создание нового запроса', response.data.message, 'success')
+        })
+        .catch((error) => {
+            showNotification('Создание нового запроса', error.message, 'danger')
+        })
+    }
 
 
     return (
@@ -198,6 +287,11 @@ const AddRequest = () => {
             <div className="d-flex align-items-center add-request__title add-request__component">
                 <label htmlFor="request-title">Введите название запроса</label>
                 <input onChange={e => setRequestTitle(e.target.value)} id="request-title"/>
+            </div>
+
+            <div className="d-flex align-items-center add-request__title add-request__component">
+                <label htmlFor="request-comment">Введите Ваш комментарий к запросу</label>
+                <input onChange={e => setComment(e.target.value)} id="request-comment"/>
             </div>
 
             <div className="request-products d-flex flex-column add-request__component">
@@ -217,6 +311,27 @@ const AddRequest = () => {
                 <div className="d-flex">{parsePaymentMethods()}</div>
             </div>
 
+            <div className="d-flex align-items-center request__payment-methods add-request__component">
+                <h5 className="add-request__component--title">Выберите способ доставки:</h5>
+                <div className="d-flex">
+                    <span
+                        onClick={() => setSelectedDeliveryMethod('Самовывоз')}
+                        className={`select-cards d-flex align-items-center ${selectedDeliveryMethod === 'Самовывоз' && 'selected'}`}
+                    >
+                        Самовывоз
+                    </span>
+
+                    <span
+                        onClick={() => setSelectedDeliveryMethod('До двери')}
+                        className={`select-cards d-flex align-items-center ${selectedDeliveryMethod === 'До двери' && 'selected'}`}
+                    >
+                        До двери
+                    </span>
+                </div>
+            </div>
+
+
+
             <div className="d-flex align-items-center add-request__component">
                 <h5 className="add-request__component--title">Введите Ваш адрес, куда необходимо доставить товар:</h5>
                 <input className="address-field" onChange={e => setDeliveryAddress(e.target.value)}/>
@@ -229,6 +344,12 @@ const AddRequest = () => {
                 </div>
             }
 
+            <hr/>
+
+            <div className="d-flex align-items-center justify-content-center add-request__component">
+                <button onClick={() => sendRequest()} type="button" className="main-btn">Отправить запрос</button>
+            </div>
+
             <MyModal isOpen={isModalOpen}
                      closeModal={() => setIsModalOpen(false)}
                      modalTitle="Автоматический расчет необходимого объема препарата"
@@ -239,4 +360,16 @@ const AddRequest = () => {
     )
 }
 
-export default AddRequest
+const mapStateToProps = store => {
+    return {
+        token: store.authReducer.userToken,
+    };
+}
+
+const mapDispatchProps = dispatch => {
+    return {
+        auth: bindActionCreators(authAction, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchProps)(AddRequest)

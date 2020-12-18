@@ -3,12 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Culture;
+
 use App\Models\Fertiliser;
+
 use App\Models\RegData;
+
 use App\Models\Seed;
+
 use App\Models\Product;
+
 use Illuminate\Http\Request;
+
 use App\Exceptions\ValidationException;
+
 use Illuminate\Support\Facades\Validator;
 
 
@@ -84,10 +91,42 @@ class ProductsController extends Controller
 
         $idProduct = $request->get('id_product');
         $idCulture = $request->get('id_culture');
+        $result = [];
 
         try {
             $rates = Product::where('id_product', $idProduct)->firstOrFail()->regdata()->select('min_rate', 'max_rate')->where('id_culture', $idCulture)->get();
-            return response()->json(['rates' => $rates, 'status' => 'success'],200);
+
+            foreach ($rates as $rate) {
+                $result[] = $rate['min_rate'];
+                $result[] = $rate['max_rate'];
+            }
+            $result = array_unique($result);
+            sort($result);
+
+            return response()->json(['rates' => $result, 'status' => 'success'],200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => 'error'], 400);
+        }
+    }
+
+    public function calculateProductVolume(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'id_culture' => 'required|integer|min:1',
+            'area' => 'required|integer|min:1',
+            'rate' => 'required|numeric|min:0.1'
+        ]);
+
+        if ($validator->fails()) {
+            $this->failedValidation($validator);
+        }
+
+        $idCulture = $request->get('id_culture');
+        $area = $request->get('area');
+        $rate = $request->get('rate');
+
+        try {
+            $result = $area * $rate;
+            return response()->json(['result' => $result, 'status' => 'success'],200);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 'error'], 400);
         }

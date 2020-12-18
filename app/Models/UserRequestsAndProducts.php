@@ -9,6 +9,10 @@ class UserRequestsAndProducts extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+      'user_requests_id', 'product_type', 'product_id', 'value', 'unit'
+    ];
+
     public function request() {
         return $this->belongsTo('App\Models\UserRequests');
     }

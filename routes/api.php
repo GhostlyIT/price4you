@@ -23,6 +23,10 @@ Route::post('login', 'App\Http\Controllers\AuthController@login');
 Route::get('product/search/all', 'App\Http\Controllers\ProductsController@searchAllProducts');
 Route::get('product/class', 'App\Http\Controllers\ProductsController@getProductClass');
 Route::get('product/rates-by-culture', 'App\Http\Controllers\ProductsController@getRatesByCulture');
+Route::post('product/calculate-volume', 'App\Http\Controllers\ProductsController@calculateProductVolume');
+
+//Requests
+Route::middleware('auth:api')->post('request/save', 'App\Http\Controllers\RequestController@save');
 
 // Errors
 Route::get('errorUnauthorized', function() {
