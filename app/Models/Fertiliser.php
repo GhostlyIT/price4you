@@ -11,4 +11,10 @@ class Fertiliser extends Model
 
     protected $connection = 'mysql_ecoplant';
     protected $table = 'fertiliser';
+
+    public function getNameAttribute() {
+        return "{$this->name_fertiliser}";
+    }
+
+    protected $appends = ['name'];
 }

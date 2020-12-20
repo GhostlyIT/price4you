@@ -11,4 +11,10 @@ class Seed extends Model
 
     protected $connection = 'mysql_ecoplant';
     protected $table = 'seed_product';
+
+    public function getNameAttribute() {
+        return "{$this->name_seed_rus}";
+    }
+
+    protected $appends = ['name'];
 }

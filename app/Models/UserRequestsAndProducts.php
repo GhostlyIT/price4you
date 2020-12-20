@@ -18,6 +18,14 @@ class UserRequestsAndProducts extends Model
     }
 
     public function product() {
-        return $this->belongsTo('App\Models\Product');
+        return $this->belongsTo('App\Models\Product', 'product_id', 'id_product');
+    }
+
+    public function fertiliser() {
+        return $this->belongsTo('App\Models\Fertiliser', 'product_id', 'id_fertiliser');
+    }
+
+    public function seed() {
+        return $this->belongsTo('App\Models\Seed', 'product_id', 'id_seed_product');
     }
 }

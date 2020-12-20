@@ -27,6 +27,7 @@ Route::post('product/calculate-volume', 'App\Http\Controllers\ProductsController
 
 //Requests
 Route::middleware('auth:api')->post('request/save', 'App\Http\Controllers\RequestController@save');
+Route::middleware('auth:api')->get('request/get-for-user', 'App\Http\Controllers\RequestController@getForUser');
 
 // Errors
 Route::get('errorUnauthorized', function() {

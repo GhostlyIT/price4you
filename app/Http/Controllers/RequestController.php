@@ -16,6 +16,8 @@ use App\Models\UserRequests;
 
 use App\Models\UserRequestsAndProducts;
 
+use App\Models\User;
+
 class RequestController extends Controller
 {
 
@@ -79,6 +81,16 @@ class RequestController extends Controller
             return response()->json(['message' => 'Запрос успешно добавлен', 'status' => 'success'],200);
         } catch (\Exception $e) {
             DB::rollBack();
+            return response()->json(['message' => $e->getMessage(), 'status' => 'error'], 400);
+        }
+    }
+
+    public function getForUser(Request $request) {
+        try {
+            $user = Auth::user();
+            $requests = $user->requests()->with(['products', 'products.product', 'products.fertiliser', 'products.seed'])->get();
+            return response()->json(['requests' => $requests, 'status' => 'success'],200);
+        } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 'error'], 400);
         }
     }

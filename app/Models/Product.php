@@ -27,4 +27,10 @@ class Product extends Model
     public function regdata() {
         return $this->belongsToMany('App\Models\RegData', 'product_and_regdata', 'id_product', 'id_regdata', 'id_product', 'id_regdata');
     }
+
+    public function getNameAttribute() {
+        return "{$this->name_product_rus}";
+    }
+
+    protected $appends = ['name'];
 }
