@@ -28,7 +28,8 @@ const UserRequests = (props) => {
             const date = new Date(request.created_at);
             return (
                 <div key={request.id} className="col-4 mt-4">
-                    <span onClick={() => setSelectedRequest(request)} className={`request-picker ${request == selectedRequest ? 'selected' : ''}`}>
+                    <span onClick={() => setSelectedRequest(request)} className={`request-picker d-flex flex-column ${request == selectedRequest ? 'selected' : ''}`}>
+                        <span className="request-picker__title">{request.title}</span>
                         <span className="request-picker__title">№ {request.id} от {date.getDate()} {getMonthOnRus(date.getMonth())} {date.getFullYear()}</span>
                     </span>
                 </div>

@@ -78977,8 +78977,10 @@ var UserRequests = function UserRequests(props) {
         onClick: function onClick() {
           return setSelectedRequest(request);
         },
-        className: "request-picker ".concat(request == selectedRequest ? 'selected' : '')
+        className: "request-picker d-flex flex-column ".concat(request == selectedRequest ? 'selected' : '')
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "request-picker__title"
+      }, request.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "request-picker__title"
       }, "\u2116 ", request.id, " \u043E\u0442 ", date.getDate(), " ", Object(_helpers_dateConverter__WEBPACK_IMPORTED_MODULE_6__["getMonthOnRus"])(date.getMonth()), " ", date.getFullYear())));
     });
