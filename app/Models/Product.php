@@ -25,7 +25,15 @@ class Product extends Model
     }
 
     public function regdata() {
-        return $this->belongsToMany('App\Models\RegData', 'product_and_regdata', 'id_product', 'id_regdata', 'id_product', 'id_regdata');
+        return $this->belongsToMany('App\Models\RegData', 'product_and_regdata', 'id_product', 'id_regdata', '', 'id_regdata');
+    }
+
+    public function regdataForLph() {
+        return $this->hasMany('App\Models\RegDataForLph', 'id_product');
+    }
+
+    public function regdataForAvia() {
+        return $this->hasMany('App\Models\RegDataForAvia', 'id_product');
     }
 
     public function getNameAttribute() {

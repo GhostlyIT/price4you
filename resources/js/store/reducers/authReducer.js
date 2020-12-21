@@ -6,7 +6,8 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loggedIn: action.payload.loggedIn,
-                userToken: action.payload.token
+                userToken: action.payload.token,
+                userData: action.payload.user
             }
 
         default:

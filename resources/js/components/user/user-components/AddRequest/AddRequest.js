@@ -7,6 +7,7 @@ import {showNotification} from "../../../functions/notifications"
 import {connect} from 'react-redux'
 import {bindActionCreators} from "redux";
 import authAction from "../../../../store/actions/authAction"
+import Loader from "../../../../helpers/loader";
 
 const AddRequest = (props) => {
     const [products, setProducts] = useState([]),
@@ -24,7 +25,8 @@ const AddRequest = (props) => {
             area: 0,
             rate: 0
         }),
-        [comment, setComment] = useState(false)
+        [comment, setComment] = useState(false),
+        [loading, setLoading] = useState(false)
 
     useEffect(() => {
         document.addEventListener('click', handleClick, false)
@@ -32,19 +34,24 @@ const AddRequest = (props) => {
 
     const handleClick = (e) => {
         const requestProduct = document.getElementById('request-product')
-        if (!e.path.includes(requestProduct)) {
+        let path = e.path || (event.composedPath && event.composedPath())
+        if (!path.includes(requestProduct)) {
             setProductsOpen(false)
         }
     }
 
     const searchProduct = (query) => {
         if (query != '') {
+            setLoading(true)
             axios.get(`/api/product/search/all?query=${query}`)
                 .then((response) => {
                     setProducts(response.data.search_result)
                 })
                 .catch(() => {
                     setProducts([])
+                })
+                .then(() => {
+                    setLoading(false)
                 })
         } else {
             setProducts([])
@@ -91,6 +98,11 @@ const AddRequest = (props) => {
     }
 
     const renderProducts = () => {
+        if (loading) {
+            return (
+                <Loader/>
+            )
+        }
         if (products.length < 1) {
             return (
                 <span>Препараты не найдены</span>
@@ -178,19 +190,25 @@ const AddRequest = (props) => {
 
         if (product) {
 
-            const selectCulture = (cultureDomElement, culture) => {
+            const selectCulture = (cultureDomElement, culture, regdata) => {
                 $('.calculate-product__culture').removeClass('selected')
                 cultureDomElement.addClass('selected')
                 dataToCalculate.id_culture = culture
 
-                axios.get(`/api/product/rates-by-culture?id_product=${product.id}&id_culture=${culture}`)
-                .then((response) => {
-                    setRates(response.data.rates)
-                })
-                .catch((error) => {
-                    console.log(error.message)
-                    setRates([])
-                })
+                if ('id_regdata_lph' in regdata) {
+                    setRates([regdata.rate])
+                } else {
+                    setRates([regdata.min_rate, regdata.max_rate])
+                }
+
+                // axios.get(`/api/product/rates-by-culture?id_product=${product.id}&id_culture=${culture}`)
+                // .then((response) => {
+                //     setRates(response.data.rates)
+                // })
+                // .catch((error) => {
+                //     console.log(error.message)
+                //     setRates([])
+                // })
             }
 
 
@@ -203,7 +221,7 @@ const AddRequest = (props) => {
                     setIsModalOpen(false)
                 })
                 .catch(error => {
-                    showNotification('Автоматический расчет объема препарата', error.message, 'danger')
+                    showNotification('Автоматический расчет объема препарата', error.response.data.message, 'danger')
                 })
             }
 
@@ -216,9 +234,10 @@ const AddRequest = (props) => {
                         <span className="calculate-product__title">Выберите вашу культуру:</span>
                         <div className="calculate-product__culture-list">
                             {
-                                product.culture.map(culture => {
+                                product.regdata.map(regdataElement => {
+                                    const culture = regdataElement.culture
                                     return (
-                                        <span onClick={(e) => selectCulture($(e.currentTarget), culture.id_culture) } key={culture.name_rus + culture.id_culture}
+                                        <span onClick={(e) => selectCulture($(e.currentTarget), culture.id_culture, regdataElement) } key={culture.name_rus + culture.id_culture}
                                               className="select-cards calculate-product__culture d-flex align-items-center justify-content-center">{culture.name_rus}</span>
                                     )
                                 })
@@ -273,7 +292,7 @@ const AddRequest = (props) => {
             showNotification('Создание нового запроса', response.data.message, 'success')
         })
         .catch((error) => {
-            showNotification('Создание нового запроса', error.message, 'danger')
+            showNotification('Создание нового запроса', error.response.data.message, 'danger')
         })
     }
 
@@ -300,7 +319,8 @@ const AddRequest = (props) => {
                         <input onClick={() => setProductsOpen(true)} onChange={(e) => searchProduct(e.target.value)}
                                id="request-product" placeholder="Введите товар для запроса"/>
                         {productsOpen === true &&
-                        <div id="request-products" className="falling-list position-absolute">{renderProducts()}</div>}
+                            <div id="request-products" className="falling-list position-absolute">{renderProducts()}</div>
+                        }
                     </div>
                 </div>
                 <div className="d-flex flex-wrap picked-products">{renderSelectedProducts()}</div>

@@ -1,3 +1,9 @@
+.user-name {
+    padding-left: 15px;
+    margin-bottom: 30px;
+    color: $blue;
+}
+
 .user-sideblock__links {
     a {
         color: #000;
@@ -105,7 +111,7 @@
 
     .add-request__component {
         .add-request__component--title {
-            color: #5D854B;
+            color: $blue;
             margin-bottom: 0;
             margin-right: 20px;
         }

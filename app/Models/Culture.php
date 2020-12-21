@@ -11,4 +11,6 @@ class Culture extends Model
 
     protected $connection = 'mysql_ecoplant';
     protected $table = 'culture';
+
+
 }

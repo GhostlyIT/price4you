@@ -4,7 +4,8 @@ const authAction = (payload) => {
         type: 'AUTH',
         payload: {
             loggedIn: true,
-            token: payload
+            token: payload.token,
+            user: payload.user
         }
     }
 }

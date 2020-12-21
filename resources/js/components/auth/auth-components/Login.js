@@ -23,7 +23,7 @@ const Login = (props) => {
         })
         .then(response => {
             showNotification('Вход', response.data.message, 'success')
-            props.auth(response.data.token)
+            props.auth({token: response.data.token, user: response.data.user_data})
         })
         .catch(error => {
             showNotification('Вход', error.response.data.message, 'danger')

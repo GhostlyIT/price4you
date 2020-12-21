@@ -40,12 +40,19 @@ class ProductsController extends Controller
         $query = $request->get('query');
 
         try {
-            $products = Product::select('id_product AS id', 'name_product_rus AS name')->where('name_product_rus', 'like', "%$query%")->orderBy('name')->get();
+            $products = Product::select('id_product AS id', 'name_product_rus')->where('name_product_rus', 'like', "%$query%")->orderBy('name_product_rus')->get();
             foreach ($products as $product) {
-                $product['culture'] = $product->culture()->get();
+                //$product['culture'] = $product->culture()->get();
+                if ($product->regdata()->first()) {
+                    $product['regdata'] = $product->regdata()->with('culture')->get();
+                } elseif ($product->regdataForLph()->first()) {
+                    $product['regdata'] = $product->regdataForLph()->with('culture')->get();
+                } elseif ($product->regdataForAvia()->first()) {
+                    $product['regdata'] = $product->regdataForAvia()->with('culture')->get();
+                }
             }
-            $seeds = Seed::select('id_seed_product AS id', 'name_seed_rus AS name')->where('name_seed_rus', 'like', "%$query%")->orderBy('name')->get();
-            $fertilisers = Fertiliser::select('id_fertiliser AS id', 'name_fertiliser AS name')->where('name_fertiliser', 'like', "%$query%")->orderBy('name')->get();
+            $seeds = Seed::select('id_seed_product AS id', 'name_seed_rus')->where('name_seed_rus', 'like', "%$query%")->orderBy('name_seed_rus')->get();
+            $fertilisers = Fertiliser::select('id_fertiliser AS id', 'name_fertiliser')->where('name_fertiliser', 'like', "%$query%")->orderBy('name_fertiliser')->get();
             $totalResult = [
                 'Защита растений' => $products,
                 'Семена' => $seeds,

@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import {Link} from 'react-router-dom'
+import {bindActionCreators} from "redux";
+import authAction from "../../store/actions/authAction";
+import {connect} from "react-redux";
 
-const UserSideBlock = () => {
+const UserSideBlock = (props) => {
     const [activeLink, setActiveLink] = useState(2)
 
     return(
@@ -10,7 +13,7 @@ const UserSideBlock = () => {
 
             </div>
 
-            <h1 className="user-name"></h1>
+            <h3 className="user-name">{props.userData.name} {props.userData.surname}</h3>
 
             <div className="user-sideblock__links d-flex flex-column justify-content-between">
                 <Link onClick={() => setActiveLink('1')} className={window.location.pathname === '/user/add-request' ? 'active' : null} to="/user/add-request">Добавить запрос</Link>
@@ -26,4 +29,17 @@ const UserSideBlock = () => {
     )
 }
 
-export default UserSideBlock
+
+const mapStateToProps = store => {
+    return {
+        userData: store.authReducer.userData
+    };
+}
+
+const mapDispatchProps = dispatch => {
+    return {
+        auth: bindActionCreators(authAction, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchProps)(UserSideBlock)

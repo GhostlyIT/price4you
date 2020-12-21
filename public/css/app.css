@@ -11253,6 +11253,12 @@ img {
   top: 40px;
 }
 
+.user-name {
+  padding-left: 15px;
+  margin-bottom: 30px;
+  color: #4525F2;
+}
+
 .user-sideblock__links a {
   color: #000;
   padding: 12px 16px;
@@ -11353,7 +11359,7 @@ img {
 }
 
 #add-request .add-request__component .add-request__component--title {
-  color: #5D854B;
+  color: #4525F2;
   margin-bottom: 0;
   margin-right: 20px;
 }
