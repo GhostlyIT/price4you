@@ -13,6 +13,12 @@ import UserSideBlock from './sideblock/UserSideBlock'
 
 const Main = (props) => {
 
+    let userPage = "/user"
+
+    if (props.loggedIn && props.user.account_type === 'company') {
+        userPage = "/company"
+    }
+
     return (
         <div className="main position-relative">
             <div className="main-background" />
@@ -23,7 +29,7 @@ const Main = (props) => {
                             <div className="col-md-10 col-sm-12">
                                 <div className="main-window__inner row">
                                     <Route path="/">
-                                        {props.loggedIn ? <Redirect to="/user" /> : <Auth />}
+                                        {props.loggedIn ? <Redirect to={userPage} /> : <Auth />}
                                     </Route>
                                     <Route path="/user">
                                         <User />
@@ -46,7 +52,8 @@ const Main = (props) => {
 
 const mapStateToProps = store => {
     return {
-        loggedIn: store.authReducer.loggedIn
+        loggedIn: store.authReducer.loggedIn,
+        user: store.authReducer.userData
     };
 }
 

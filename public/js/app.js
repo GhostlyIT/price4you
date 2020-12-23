@@ -77116,6 +77116,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Main = function Main(props) {
+  var userPage = "/user";
+
+  if (props.loggedIn && props.user.account_type === 'company') {
+    userPage = "/company";
+  }
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "main position-relative"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -77135,7 +77141,7 @@ var Main = function Main(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
     path: "/"
   }, props.loggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Redirect"], {
-    to: "/user"
+    to: userPage
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_auth_Auth__WEBPACK_IMPORTED_MODULE_1__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
     path: "/user"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_user_User__WEBPACK_IMPORTED_MODULE_10__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
@@ -77147,7 +77153,8 @@ var Main = function Main(props) {
 
 var mapStateToProps = function mapStateToProps(store) {
   return {
-    loggedIn: store.authReducer.loggedIn
+    loggedIn: store.authReducer.loggedIn,
+    user: store.authReducer.userData
   };
 };
 
@@ -78372,12 +78379,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _user_components_UserRequests_UserRequests__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./user-components/UserRequests/UserRequests */ "./resources/js/components/user/user-components/UserRequests/UserRequests.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _user_components_AddRequest_AddRequest__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./user-components/AddRequest/AddRequest */ "./resources/js/components/user/user-components/AddRequest/AddRequest.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _store_actions_authAction__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../store/actions/authAction */ "./resources/js/store/actions/authAction.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 
 
 
 
 
-var User = function User() {
+
+
+
+var User = function User(props) {
   var match = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["useRouteMatch"])();
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: match.url
@@ -78390,7 +78403,19 @@ var User = function User() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_user_components_AddRequest_AddRequest__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (User);
+var mapStateToProps = function mapStateToProps(store) {
+  return {
+    user: store.authReducer.userData
+  };
+};
+
+var mapDispatchProps = function mapDispatchProps(dispatch) {
+  return {
+    auth: Object(redux__WEBPACK_IMPORTED_MODULE_4__["bindActionCreators"])(_store_actions_authAction__WEBPACK_IMPORTED_MODULE_5__["default"], dispatch)
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_6__["connect"])(mapStateToProps, mapDispatchProps)(User));
 
 /***/ }),
 

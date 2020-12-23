@@ -2,9 +2,12 @@ import React from 'react'
 import UserRequests from './user-components/UserRequests/UserRequests'
 import {Route, Redirect, useRouteMatch} from 'react-router-dom'
 import AddRequest from './user-components/AddRequest/AddRequest'
+import {bindActionCreators} from "redux";
+import authAction from "../../store/actions/authAction";
+import {connect} from "react-redux";
 
 
-const User = () => {
+const User = (props) => {
     const match = useRouteMatch()
     return(
         <>
@@ -21,4 +24,16 @@ const User = () => {
     )
 }
 
-export default User
+const mapStateToProps = store => {
+    return {
+        user: store.authReducer.userData,
+    };
+}
+
+const mapDispatchProps = dispatch => {
+    return {
+        auth: bindActionCreators(authAction, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchProps)(User)
