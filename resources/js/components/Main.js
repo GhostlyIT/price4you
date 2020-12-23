@@ -10,6 +10,7 @@ import { bindActionCreators } from 'redux'
 import authAction from '../store/actions/authAction'
 import User from './user/User'
 import UserSideBlock from './sideblock/UserSideBlock'
+import Company from "./company/Company";
 
 const Main = (props) => {
 
@@ -33,6 +34,9 @@ const Main = (props) => {
                                     </Route>
                                     <Route path="/user">
                                         <User />
+                                    </Route>
+                                    <Route path="/company">
+                                        <Company />
                                     </Route>
                                     <Route path="/faq">
                                         <Faq />

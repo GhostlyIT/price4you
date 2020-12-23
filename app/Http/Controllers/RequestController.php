@@ -94,4 +94,9 @@ class RequestController extends Controller
             return response()->json(['message' => $e->getMessage(), 'status' => 'error'], 400);
         }
     }
+
+    public function getForCompany() {
+        $user = Auth::user();
+
+    }
 }
