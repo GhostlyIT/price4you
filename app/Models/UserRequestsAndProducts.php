@@ -14,7 +14,7 @@ class UserRequestsAndProducts extends Model
     ];
 
     public function request() {
-        return $this->belongsTo('App\Models\UserRequests');
+        return $this->belongsTo('App\Models\UserRequests', 'user_requests_id');
     }
 
     public function product() {

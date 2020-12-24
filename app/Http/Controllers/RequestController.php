@@ -95,8 +95,30 @@ class RequestController extends Controller
         }
     }
 
-    public function getForCompany() {
-        $user = Auth::user();
+    public function getForCompany(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'offset' => 'required|integer'
+        ]);
 
+        if ($validator->fails()) {
+            $this->failedValidation($validator);
+        }
+
+        $offset = $request->get('offset');
+
+        try {
+            $user = Auth::user();
+            $requestsCount = UserRequestsAndProducts::where('status', 'open')->count();
+            $requests = UserRequestsAndProducts::where('status', 'open')
+                ->with('request', 'product', 'fertiliser', 'seed')
+                ->orderBy('created_at', 'desc')
+                ->offset($offset)
+                ->limit(3)
+                ->get();
+
+            return response()->json(['requests' => $requests, 'requests_count' => $requestsCount, 'status' => 'success'],200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => 'error'], 400);
+        }
     }
 }

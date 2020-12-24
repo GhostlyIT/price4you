@@ -11,13 +11,15 @@ import authAction from '../store/actions/authAction'
 import User from './user/User'
 import UserSideBlock from './sideblock/UserSideBlock'
 import Company from "./company/Company";
+import CompanySideBlock from "./sideblock/CompanySideBlock";
 
 const Main = (props) => {
 
-    let userPage = "/user"
+    let userPage = "/user", sideBlock = <UserSideBlock />
 
     if (props.loggedIn && props.user.account_type === 'company') {
         userPage = "/company"
+        sideBlock = <CompanySideBlock />
     }
 
     return (
@@ -44,7 +46,7 @@ const Main = (props) => {
                                 </div>
                             </div>
                             <div className="col-md-2 d-none d-md-flex flex-column">
-                                {props.loggedIn ? <UserSideBlock /> : <SideBlock />}
+                                {props.loggedIn ? sideBlock : <SideBlock />}
                             </div>
                         </div>
                     </div>
