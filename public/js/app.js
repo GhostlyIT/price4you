@@ -78639,35 +78639,23 @@ var CompanySideblock = function CompanySideblock(props) {
     onClick: function onClick() {
       return setActiveLink('5');
     },
-    className: window.location.pathname === '/search/price' ? 'active' : null,
-    to: "/search/price"
-  }, "\u041F\u043E\u0438\u0441\u043A \u0446\u0435\u043D\u044B"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    onClick: function onClick() {
-      return setActiveLink('6');
-    },
     className: window.location.pathname === '/company/employee-info' ? 'active' : null,
     to: "/company/employee-info"
   }, "\u041C\u043E\u0438 \u0434\u0430\u043D\u043D\u044B\u0435"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     onClick: function onClick() {
-      return setActiveLink('7');
+      return setActiveLink('6');
     },
     className: window.location.pathname === '/company/info' ? 'active' : null,
     to: "/company/info"
   }, "\u0414\u0430\u043D\u043D\u044B\u0435 \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u0438"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     onClick: function onClick() {
-      return setActiveLink('8');
+      return setActiveLink('7');
     },
     className: window.location.pathname === '/company/statistic' ? 'active' : null,
     to: "/company/statistic"
   }, "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     onClick: function onClick() {
-      return setActiveLink('9');
-    },
-    className: window.location.pathname === '/company/settings' ? 'active' : null,
-    to: "/company/settings"
-  }, "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    onClick: function onClick() {
-      return setActiveLink('10');
+      return setActiveLink('8');
     },
     className: window.location.pathname === '/faq/how-works' ? 'active' : null,
     to: "/faq/how-works"
@@ -78816,17 +78804,11 @@ var UserSideBlock = function UserSideBlock(props) {
     onClick: function onClick() {
       return setActiveLink('5');
     },
-    className: window.location.pathname === '/search/price' ? 'active' : null,
-    to: "/search/price"
-  }, "\u041F\u043E\u0438\u0441\u043A \u0446\u0435\u043D\u044B"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    onClick: function onClick() {
-      return setActiveLink('6');
-    },
     className: window.location.pathname === '/user/settings' ? 'active' : null,
     to: "/user/settings"
   }, "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     onClick: function onClick() {
-      return setActiveLink('7');
+      return setActiveLink('6');
     },
     className: window.location.pathname === '/faq/how-works' ? 'active' : null,
     to: "/faq/how-works"

@@ -21,12 +21,10 @@ const CompanySideblock = (props) => {
                 <Link onClick={() => setActiveLink('2')} className={window.location.pathname === '/company/responses' ? 'active' : null} to="/company/responses">Отклики</Link>
                 <Link onClick={() => setActiveLink('3')} className={window.location.pathname === '/company/messages' ? 'active' : null} to="/company/messages">Сообщения</Link>
                 <Link onClick={() => setActiveLink('4')} className={window.location.pathname === '/company/add-product' ? 'active' : null} to="/company/add-product">Добавить товар</Link>
-                <Link onClick={() => setActiveLink('5')} className={window.location.pathname === '/search/price' ? 'active' : null} to="/search/price">Поиск цены</Link>
-                <Link onClick={() => setActiveLink('6')} className={window.location.pathname === '/company/employee-info' ? 'active' : null} to="/company/employee-info">Мои данные</Link>
-                <Link onClick={() => setActiveLink('7')} className={window.location.pathname === '/company/info' ? 'active' : null} to="/company/info">Данные компании</Link>
-                <Link onClick={() => setActiveLink('8')} className={window.location.pathname === '/company/statistic' ? 'active' : null} to="/company/statistic">Настройки</Link>
-                <Link onClick={() => setActiveLink('9')} className={window.location.pathname === '/company/settings' ? 'active' : null} to="/company/settings">Настройки</Link>
-                <Link onClick={() => setActiveLink('10')} className={window.location.pathname === '/faq/how-works' ? 'active' : null} to="/faq/how-works">Как работает сервис</Link>
+                <Link onClick={() => setActiveLink('5')} className={window.location.pathname === '/company/employee-info' ? 'active' : null} to="/company/employee-info">Мои данные</Link>
+                <Link onClick={() => setActiveLink('6')} className={window.location.pathname === '/company/info' ? 'active' : null} to="/company/info">Данные компании</Link>
+                <Link onClick={() => setActiveLink('7')} className={window.location.pathname === '/company/statistic' ? 'active' : null} to="/company/statistic">Настройки</Link>
+                <Link onClick={() => setActiveLink('8')} className={window.location.pathname === '/faq/how-works' ? 'active' : null} to="/faq/how-works">Как работает сервис</Link>
                 <button onClick={() => props.exit()} type="button">Выйти</button>
             </div>
         </div>
