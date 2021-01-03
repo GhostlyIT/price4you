@@ -77979,7 +77979,15 @@ var Paginator = function Paginator(_ref) {
     return parseInt(totalItemsAmount) / parseInt(itemsOnPageAmount);
   };
 
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, activePage !== 1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u041D\u0430\u0437\u0430\u0434") : '', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, activePage), activePage < getPagesAmount() ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u0412\u043F\u0435\u0440\u0435\u0434") : '');
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12 paginator d-flex justify-content-center align-items-center"
+  }, activePage !== 1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "paginator__prev"
+  }, "\u041D\u0430\u0437\u0430\u0434") : '', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "paginator__current-page"
+  }, activePage), activePage < getPagesAmount() ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "paginator__next"
+  }, "\u0412\u043F\u0435\u0440\u0435\u0434") : '');
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Paginator);
@@ -78184,13 +78192,11 @@ var UsersRequests = function UsersRequests(props) {
     }, "\u041A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439 \u043A \u0437\u0430\u044F\u0432\u043A\u0435:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "request-info__parameter"
     }, request.request.comment)))));
-  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "\u0417\u0430\u043F\u0440\u043E\u0441\u043E\u0432 \u043D\u0435\u0442"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-12"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_paginator__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "\u0417\u0430\u043F\u0440\u043E\u0441\u043E\u0432 \u043D\u0435\u0442"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_paginator__WEBPACK_IMPORTED_MODULE_4__["default"], {
     totalItemsAmount: requestsCount,
     itemsOnPageAmount: limit,
     getItemsFunc: getRequests
-  })));
+  }));
 };
 
 var mapStateToProps = function mapStateToProps(store) {

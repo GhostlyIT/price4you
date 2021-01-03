@@ -70,13 +70,12 @@ const UsersRequests = (props) => {
                 })
                 : <h1>Запросов нет</h1>
             }
-            <div className="col-12">
-                <Paginator
-                    totalItemsAmount={requestsCount}
-                    itemsOnPageAmount={limit}
-                    getItemsFunc={getRequests}
-                />
-            </div>
+
+            <Paginator
+                totalItemsAmount={requestsCount}
+                itemsOnPageAmount={limit}
+                getItemsFunc={getRequests}
+            />
         </div>
     )
 }

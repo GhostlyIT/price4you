@@ -12,11 +12,11 @@ const Paginator = ({totalItemsAmount, itemsOnPageAmount, getItemsFunc}) => {
     }
 
     return (
-        <>
-            {activePage !== 1 ? <span>Назад</span> : ''}
-            <span>{activePage}</span>
-            {activePage < getPagesAmount() ? <span>Вперед</span> : ''}
-        </>
+        <div className="col-12 paginator d-flex justify-content-center align-items-center">
+            {activePage !== 1 ? <span className="paginator__prev">Назад</span> : ''}
+            <span className="paginator__current-page">{activePage}</span>
+            {activePage < getPagesAmount() ? <span className="paginator__next">Вперед</span> : ''}
+        </div>
     )
 }
 
