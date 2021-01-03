@@ -3,7 +3,7 @@ import axios from 'axios'
 import {bindActionCreators} from "redux";
 import authAction from "../../../../store/actions/authAction";
 import {connect} from "react-redux";
-import {showNotification} from "../../../functions/notifications";
+import {showNotification} from "../../../../helpers/notifications";
 import {getMonthOnRus} from "../../../../helpers/dateConverter";
 import {productTypeConverter} from "../../../../helpers/productTypeConverter";
 

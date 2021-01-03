@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
-import { showNotification } from '../../functions/notifications'
+import { showNotification } from '../../../helpers/notifications'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import authAction from '../../../store/actions/authAction'

@@ -1,7 +1,7 @@
 const initialState = {
     loggedIn: false,
     userToken: '',
-    user: ''
+    userData: ''
 }
 
 export default initialState

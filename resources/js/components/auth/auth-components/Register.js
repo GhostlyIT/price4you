@@ -5,7 +5,7 @@ import InputMask from 'react-input-mask'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import authAction from '../../../store/actions/authAction'
-import { showNotification } from '../../functions/notifications'
+import { showNotification } from '../../../helpers/notifications'
 
 const Register = (props) => {
     const   [name, setName] = useState(''),

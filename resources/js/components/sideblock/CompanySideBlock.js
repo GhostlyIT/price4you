@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import {Link} from 'react-router-dom'
 import {bindActionCreators} from "redux";
 import authAction from "../../store/actions/authAction";
+import exitAction from "../../store/actions/exitAction";
 import {connect} from "react-redux";
 
 const CompanySideblock = (props) => {
@@ -16,7 +17,7 @@ const CompanySideblock = (props) => {
             <h3 className="user-name">{props.userData.name} {props.userData.surname}</h3>
 
             <div className="user-sideblock__links d-flex flex-column justify-content-between">
-                <Link onClick={() => setActiveLink('1')} className={window.location.pathname === '/company/requests' ? 'active' : null} to="/company/requests">Запросы</Link>
+                <Link onClick={() => setActiveLink('1')} className={window.location.pathname === '/company/requests' || activeLink === 1 ? 'active' : null} to="/company/requests">Запросы</Link>
                 <Link onClick={() => setActiveLink('2')} className={window.location.pathname === '/company/responses' ? 'active' : null} to="/company/responses">Отклики</Link>
                 <Link onClick={() => setActiveLink('3')} className={window.location.pathname === '/company/messages' ? 'active' : null} to="/company/messages">Сообщения</Link>
                 <Link onClick={() => setActiveLink('4')} className={window.location.pathname === '/company/add-product' ? 'active' : null} to="/company/add-product">Добавить товар</Link>
@@ -26,7 +27,7 @@ const CompanySideblock = (props) => {
                 <Link onClick={() => setActiveLink('8')} className={window.location.pathname === '/company/statistic' ? 'active' : null} to="/company/statistic">Настройки</Link>
                 <Link onClick={() => setActiveLink('9')} className={window.location.pathname === '/company/settings' ? 'active' : null} to="/company/settings">Настройки</Link>
                 <Link onClick={() => setActiveLink('10')} className={window.location.pathname === '/faq/how-works' ? 'active' : null} to="/faq/how-works">Как работает сервис</Link>
-                <button type="button">Выйти</button>
+                <button onClick={() => props.exit()} type="button">Выйти</button>
             </div>
         </div>
     )
@@ -40,7 +41,8 @@ const mapStateToProps = store => {
 
 const mapDispatchProps = dispatch => {
     return {
-        auth: bindActionCreators(authAction, dispatch)
+        auth: bindActionCreators(authAction, dispatch),
+        exit: bindActionCreators(exitAction, dispatch)
     }
 }
 

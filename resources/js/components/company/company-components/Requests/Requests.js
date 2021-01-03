@@ -3,28 +3,13 @@ import axios from "axios"
 import {bindActionCreators} from "redux"
 import authAction from "../../../../store/actions/authAction"
 import {connect} from "react-redux"
-import {showNotification} from "../../../functions/notifications"
+import {showNotification} from "../../../../helpers/notifications"
+import UsersRequests from "./components/UsersRequests";
 
 const Requests = (props) => {
-    const [requests, setRequests] = useState([]),
-        [requestsCount, setRequestsCount] = useState(0)
-
-    useEffect(() => {
-        axios.get('/api/request/get-for-company', {
-            headers: {'Authorization': 'Bearer ' + props.token}
-        })
-        .then(response => {
-            setRequests(response.data.requests)
-            setRequestsCount(response.data.requests_count)
-        })
-        .catch(error => {
-            console.log(error.response.data.message)
-        })
-    }, [])
-
     return (
      <div className="col-12">
-         <h1 className="text-center">Запросов нет</h1>
+         <UsersRequests />
      </div>
     )
 }

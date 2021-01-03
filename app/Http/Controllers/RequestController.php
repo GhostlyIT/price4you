@@ -97,7 +97,8 @@ class RequestController extends Controller
 
     public function getForCompany(Request $request) {
         $validator = Validator::make($request->all(), [
-            'offset' => 'required|integer'
+            'offset' => 'required|integer',
+            'limit' => 'required|integer'
         ]);
 
         if ($validator->fails()) {
@@ -105,6 +106,7 @@ class RequestController extends Controller
         }
 
         $offset = $request->get('offset');
+        $limit = $request->get('limit');
 
         try {
             $user = Auth::user();
@@ -113,7 +115,7 @@ class RequestController extends Controller
                 ->with('request', 'product', 'fertiliser', 'seed')
                 ->orderBy('created_at', 'desc')
                 ->offset($offset)
-                ->limit(3)
+                ->limit($limit)
                 ->get();
 
             return response()->json(['requests' => $requests, 'requests_count' => $requestsCount, 'status' => 'success'],200);

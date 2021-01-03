@@ -10,6 +10,12 @@ const authReducer = (state = initialState, action) => {
                 userData: action.payload.user
             }
 
+        case 'EXIT':
+            localStorage.removeItem('price4you')
+            return {
+                state
+            }
+
         default:
             return state
     }

@@ -5,7 +5,7 @@ import { bindActionCreators } from 'redux'
 import authAction from '../../../store/actions/authAction'
 import axios from 'axios'
 import InputMask from 'react-input-mask'
-import {showNotification} from '../../functions/notifications'
+import {showNotification} from '../../../helpers/notifications'
 
 const Login = (props) => {
     const   [phone, setPhone] = useState(''),

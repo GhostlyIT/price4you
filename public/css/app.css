@@ -11433,6 +11433,10 @@ img {
   margin-top: 30px;
 }
 
+.requests-wrapper .request-info .request-info__parameter {
+  font-size: 14px;
+}
+
 .requests-wrapper .request-info .request-info__title span {
   font-weight: 700;
   top: 0px;

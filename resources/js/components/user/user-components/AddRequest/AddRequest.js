@@ -2,12 +2,12 @@ import axios from 'axios'
 import React, {useEffect, useState} from 'react'
 import {paymentMethods} from './components/paymentMethods'
 import {productUnits} from "../../../../helpers/units"
-import MyModal from "../../../../helpers/modal"
-import {showNotification} from "../../../functions/notifications"
+import MyModal from "../../../common/modal"
+import {showNotification} from "../../../../helpers/notifications"
 import {connect} from 'react-redux'
 import {bindActionCreators} from "redux";
 import authAction from "../../../../store/actions/authAction"
-import Loader from "../../../../helpers/loader";
+import Loader from "../../../common/loader";
 
 const AddRequest = (props) => {
     const [products, setProducts] = useState([]),
