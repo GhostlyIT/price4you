@@ -77982,10 +77982,16 @@ var Paginator = function Paginator(_ref) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-12 paginator d-flex justify-content-center align-items-center"
   }, activePage !== 1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    onClick: function onClick() {
+      return setActivePage(activePage - 1);
+    },
     className: "paginator__prev"
   }, "\u041D\u0430\u0437\u0430\u0434") : '', /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "paginator__current-page"
   }, activePage), activePage < getPagesAmount() ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    onClick: function onClick() {
+      return setActivePage(activePage + 1);
+    },
     className: "paginator__next"
   }, "\u0412\u043F\u0435\u0440\u0435\u0434") : '');
 };
@@ -78092,6 +78098,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _common_paginator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../common/paginator */ "./resources/js/components/common/paginator.js");
+/* harmony import */ var _common_modal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../common/modal */ "./resources/js/components/common/modal.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -78103,6 +78110,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -78123,10 +78131,14 @@ var UsersRequests = function UsersRequests(props) {
       _useState6 = _slicedToArray(_useState5, 2),
       selectedRequest = _useState6[0],
       setSelectedRequest = _useState6[1],
-      _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0),
+      _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState8 = _slicedToArray(_useState7, 2),
-      offset = _useState8[0],
-      setOffset = _useState8[1],
+      isModalOpen = _useState8[0],
+      setIsModalOpen = _useState8[1],
+      _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0),
+      _useState10 = _slicedToArray(_useState9, 2),
+      offset = _useState10[0],
+      setOffset = _useState10[1],
       limit = 9;
 
   var getRequests = function getRequests() {
@@ -78149,16 +78161,17 @@ var UsersRequests = function UsersRequests(props) {
     var type = request.product_type;
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       key: request.id,
-      className: "col-12 col-md-4 d-flex flex-column request-info"
+      className: "col-12 col-md-4 request-info d-flex flex-column"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-      className: "request-picker d-flex justify-content-between"
+      className: "request-picker d-flex justify-content-between align-items-center",
+      style: {
+        height: "16%"
+      }
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "request-picker__title"
     }, request[type].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "request-picker__title"
     }, request.value, " ", request.unit)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "d-flex flex-column"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "request-info__title position-relative mt-5"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "position-absolute",
@@ -78166,8 +78179,6 @@ var UsersRequests = function UsersRequests(props) {
         top: "15px"
       }
     }, "\u041F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "d-flex flex-column"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "d-flex align-items-center flex-wrap"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "mr-2 font-weight-bold"
@@ -78186,16 +78197,25 @@ var UsersRequests = function UsersRequests(props) {
     }, "\u0410\u0434\u0440\u0435\u0441 \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0438:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "request-info__parameter"
     }, request.request.delivery_address)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "d-flex align-items-center flex-wrap mt-3"
+      className: "d-flex align-items-center flex-wrap mt-3 mb-4"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "mr-2 font-weight-bold"
     }, "\u041A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439 \u043A \u0437\u0430\u044F\u0432\u043A\u0435:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "request-info__parameter"
-    }, request.request.comment)))));
+    }, request.request.comment)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      type: "button",
+      className: "main-btn mt-auto"
+    }, "\u041E\u0442\u043A\u043B\u0438\u043A\u043D\u0443\u0442\u044C\u0441\u044F"));
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "\u0417\u0430\u043F\u0440\u043E\u0441\u043E\u0432 \u043D\u0435\u0442"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_paginator__WEBPACK_IMPORTED_MODULE_4__["default"], {
     totalItemsAmount: requestsCount,
     itemsOnPageAmount: limit,
     getItemsFunc: getRequests
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_modal__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    isOpen: isModalOpen,
+    closeModal: function closeModal() {
+      return setIsModalOpen(false);
+    },
+    modalTitle: "\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C \u043E\u0442\u043A\u043B\u0438\u043A \u043D\u0430 \u0437\u0430\u043F\u0440\u043E\u0441"
   }));
 };
 

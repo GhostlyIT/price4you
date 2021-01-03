@@ -374,7 +374,7 @@ const AddRequest = (props) => {
                      closeModal={() => setIsModalOpen(false)}
                      modalTitle="Автоматический расчет необходимого объема препарата"
             >
-                {renderProductsToCalculate()}
+                { renderProductsToCalculate() }
             </MyModal>
         </section>
     )
