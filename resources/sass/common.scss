@@ -108,3 +108,17 @@ img {
         font-size: 20px;
     }
 }
+
+.modal__body {
+
+    .modal__element {
+        margin-top: 30px;
+
+        textarea {
+            border: 1px solid $blue;
+            width: 100%;
+            padding: 15px;
+            border-radius: 15px;
+        }
+    }
+}

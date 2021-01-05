@@ -30,6 +30,9 @@ Route::middleware('auth:api')->post('request/save', 'App\Http\Controllers\Reques
 Route::middleware('auth:api')->get('request/get-for-user', 'App\Http\Controllers\RequestController@getForUser');
 Route::middleware('auth:api')->get('request/get-for-company', 'App\Http\Controllers\RequestController@getForCompany');
 
+//Responses
+Route::middleware('auth:api')->post('response/add', 'App\Http\Controllers\CompanyController@saveNewResponse');
+
 // Errors
 Route::get('errorUnauthorized', function() {
     return response()->json(['message' => 'Не авторизован', 'status' => 'error'], 401);

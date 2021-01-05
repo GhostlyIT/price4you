@@ -227,8 +227,7 @@ const AddRequest = (props) => {
 
 
             return (
-                <div key={'calculate-' + product.name + '-' + product.id}
-                     className="d-flex flex-column calculate-product add-request__component">
+                <div key={'calculate-' + product.name + '-' + product.id} className="d-flex flex-column calculate-product add-request__component">
                     <h5 className="add-request__component--title">{product.name}</h5>
                     <div className="d-flex align-items-center calculate-product__row">
                         <span className="calculate-product__title">Выберите вашу культуру:</span>

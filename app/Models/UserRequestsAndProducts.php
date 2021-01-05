@@ -28,4 +28,8 @@ class UserRequestsAndProducts extends Model
     public function seed() {
         return $this->belongsTo('App\Models\Seed', 'product_id', 'id_seed_product');
     }
+
+    public function responses() {
+        return $this->hasMany('App\Models\CompanyResponses', 'request_id');
+    }
 }

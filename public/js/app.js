@@ -78099,6 +78099,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _common_paginator__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../common/paginator */ "./resources/js/components/common/paginator.js");
 /* harmony import */ var _common_modal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../common/modal */ "./resources/js/components/common/modal.js");
+/* harmony import */ var _helpers_notifications__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../../helpers/notifications */ "./resources/js/helpers/notifications.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -78118,6 +78119,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var UsersRequests = function UsersRequests(props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
       _useState2 = _slicedToArray(_useState, 2),
@@ -78127,7 +78129,7 @@ var UsersRequests = function UsersRequests(props) {
       _useState4 = _slicedToArray(_useState3, 2),
       requestsCount = _useState4[0],
       setRequestsCount = _useState4[1],
-      _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+      _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState6 = _slicedToArray(_useState5, 2),
       selectedRequest = _useState6[0],
       setSelectedRequest = _useState6[1],
@@ -78153,6 +78155,66 @@ var UsersRequests = function UsersRequests(props) {
     })["catch"](function (error) {
       console.log(error.response.data.message);
     });
+  };
+
+  var renderModal = function renderModal() {
+    if (selectedRequest) {
+      var type = selectedRequest.product_type;
+      var comment = null;
+      var price = 0;
+
+      var saveResponse = function saveResponse() {
+        axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/response/add', {
+          request_id: selectedRequest.id,
+          price: price,
+          comment: comment
+        }, {
+          headers: {
+            'Authorization': 'Bearer ' + props.token
+          }
+        }).then(function (response) {
+          getRequests(offset);
+          setIsModalOpen(false);
+          Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_6__["showNotification"])('Отклик', response.data.message, 'success');
+        })["catch"](function (error) {
+          console.log(error.response.data.message);
+          Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_6__["showNotification"])('Отклик', 'Произошла ошибка. Попробуйте еще раз.', 'danger');
+        });
+      };
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal__body"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal__element d-flex justify-content-center"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "mr-3"
+      }, selectedRequest[type].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, selectedRequest.value, " ", selectedRequest.unit)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal__element"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        onChange: function onChange(e) {
+          return price = e.target.value;
+        },
+        type: "number",
+        min: "0",
+        placeholder: "\u0412\u0430\u0448\u0430 \u0441\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal__element"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+        onChange: function onChange(e) {
+          return comment = e.target.value;
+        },
+        placeholder: "\u0412\u0430\u0448 \u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "modal__element"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: function onClick() {
+          return saveResponse();
+        },
+        className: "main-btn"
+      }, "\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C \u043E\u0442\u043A\u043B\u0438\u043A")));
+    }
+
+    return null;
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -78202,10 +78264,20 @@ var UsersRequests = function UsersRequests(props) {
       className: "mr-2 font-weight-bold"
     }, "\u041A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439 \u043A \u0437\u0430\u044F\u0432\u043A\u0435:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "request-info__parameter"
-    }, request.request.comment)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    }, request.request.comment)), request.responses.findIndex(function (response) {
+      return response.company_id == props.userData.company.id;
+    }) == -1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      onClick: function onClick() {
+        setSelectedRequest(request);
+        setIsModalOpen(true);
+      },
       type: "button",
       className: "main-btn mt-auto"
-    }, "\u041E\u0442\u043A\u043B\u0438\u043A\u043D\u0443\u0442\u044C\u0441\u044F"));
+    }, "\u041E\u0442\u043A\u043B\u0438\u043A\u043D\u0443\u0442\u044C\u0441\u044F") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      type: "button",
+      className: "main-btn mt-auto",
+      disabled: true
+    }, "\u0412\u044B \u0443\u0436\u0435 \u043E\u0442\u043A\u043B\u0438\u043A\u043D\u0443\u043B\u0438\u0441\u044C"));
   }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "\u0417\u0430\u043F\u0440\u043E\u0441\u043E\u0432 \u043D\u0435\u0442"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_paginator__WEBPACK_IMPORTED_MODULE_4__["default"], {
     totalItemsAmount: requestsCount,
     itemsOnPageAmount: limit,
@@ -78216,12 +78288,13 @@ var UsersRequests = function UsersRequests(props) {
       return setIsModalOpen(false);
     },
     modalTitle: "\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C \u043E\u0442\u043A\u043B\u0438\u043A \u043D\u0430 \u0437\u0430\u043F\u0440\u043E\u0441"
-  }));
+  }, renderModal()));
 };
 
 var mapStateToProps = function mapStateToProps(store) {
   return {
-    token: store.authReducer.userToken
+    token: store.authReducer.userToken,
+    userData: store.authReducer.userData
   };
 };
 

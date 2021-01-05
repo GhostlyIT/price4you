@@ -11022,6 +11022,17 @@ img {
   font-size: 20px;
 }
 
+.modal__body .modal__element {
+  margin-top: 30px;
+}
+
+.modal__body .modal__element textarea {
+  border: 1px solid #4525F2;
+  width: 100%;
+  padding: 15px;
+  border-radius: 15px;
+}
+
 .auth-sideblock .auth-faq {
   margin-top: 90px;
 }

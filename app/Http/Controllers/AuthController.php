@@ -90,6 +90,7 @@ class AuthController extends Controller
             $user = Auth::user();
             if ($user === null) throw new \Exception("Ошибка входа");
             $token = $user->createToken('access_token')->accessToken;
+            $user->company = $user->company;
             return response()->json(['message' => 'Вход выполнен успешно', 'status' => 'success', 'token' => $token, 'user_data' => $user], 200);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 'error'], 401);

@@ -16,8 +16,6 @@ use App\Models\UserRequests;
 
 use App\Models\UserRequestsAndProducts;
 
-use App\Models\User;
-
 class RequestController extends Controller
 {
 
@@ -112,7 +110,7 @@ class RequestController extends Controller
             $user = Auth::user();
             $requestsCount = UserRequestsAndProducts::where('status', 'open')->count();
             $requests = UserRequestsAndProducts::where('status', 'open')
-                ->with('request', 'product', 'fertiliser', 'seed')
+                ->with('request', 'product', 'fertiliser', 'seed', 'responses')
                 ->orderBy('created_at', 'desc')
                 ->offset($offset)
                 ->limit($limit)

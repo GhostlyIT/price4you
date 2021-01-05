@@ -4,16 +4,16 @@ import {bindActionCreators} from "redux"
 import {connect} from "react-redux"
 import Paginator from "../../../../common/paginator"
 import MyModal from "../../../../common/modal"
+import {showNotification} from "../../../../../helpers/notifications";
 
 const UsersRequests = (props) => {
     const [requests, setRequests] = useState([]),
         [requestsCount, setRequestsCount] = useState(0),
-        [selectedRequest, setSelectedRequest] = useState(''),
+        [selectedRequest, setSelectedRequest] = useState(false),
         [isModalOpen, setIsModalOpen] = useState(false),
 
         [offset, setOffset] = useState(0),
         limit = 9
-
 
     const getRequests = (offset = offset) => {
         axios.get(`/api/request/get-for-company?offset=${offset}&limit=${limit}`, {
@@ -26,6 +26,57 @@ const UsersRequests = (props) => {
         .catch(error => {
             console.log(error.response.data.message)
         })
+    }
+
+
+    const renderModal = () => {
+        if (selectedRequest) {
+            const type = selectedRequest.product_type
+            let comment = null
+            let price = 0
+
+            const saveResponse = () => {
+                axios.post('/api/response/add',
+                    {
+                        request_id: selectedRequest.id,
+                        price: price,
+                        comment: comment
+                    },
+                    {
+                        headers: {'Authorization': 'Bearer ' + props.token}
+                    }
+                )
+                .then(response => {
+                    getRequests(offset)
+                    setIsModalOpen(false)
+                    showNotification('Отклик', response.data.message, 'success')
+                })
+                .catch(error => {
+                    console.log(error.response.data.message)
+                    showNotification('Отклик', 'Произошла ошибка. Попробуйте еще раз.', 'danger')
+                })
+            }
+
+            return (
+                <div className="modal__body">
+                    <div className="modal__element d-flex justify-content-center">
+                        <span className="mr-3">{selectedRequest[type].name}</span>
+                        <span>{selectedRequest.value} {selectedRequest.unit}</span>
+                    </div>
+                    <div className="modal__element">
+                        <input onChange={(e) => price = e.target.value} type="number" min="0" placeholder="Ваша стоимость"/>
+                    </div>
+                    <div className="modal__element">
+                        <textarea onChange={(e) => comment = e.target.value} placeholder="Ваш комментарий"></textarea>
+                    </div>
+                    <div className="modal__element">
+                        <button onClick={() => saveResponse()} className="main-btn">Отправить отклик</button>
+                    </div>
+                </div>
+            )
+        }
+
+        return null
     }
 
 
@@ -66,7 +117,29 @@ const UsersRequests = (props) => {
                                 <span className="request-info__parameter">{request.request.comment}</span>
                             </div>
 
-                            <button type="button" className="main-btn mt-auto">Откликнуться</button>
+                            { request.responses.findIndex(response => response.company_id == props.userData.company.id) == -1
+                                ?
+                                    <button
+                                        onClick={() => {
+                                            setSelectedRequest(request)
+                                            setIsModalOpen(true)
+                                        }}
+                                        type="button"
+                                        className="main-btn mt-auto"
+                                    >
+                                        Откликнуться
+                                    </button>
+                                :
+                                    <button
+                                        type="button"
+                                        className="main-btn mt-auto"
+                                        disabled
+                                    >
+                                        Вы уже откликнулись
+                                    </button>
+                            }
+
+
 
                         </div>
                     )
@@ -85,7 +158,7 @@ const UsersRequests = (props) => {
                  closeModal={() => setIsModalOpen(false)}
                  modalTitle="Отправить отклик на запрос"
             >
-
+                { renderModal() }
             </MyModal>
         </div>
     )
@@ -94,6 +167,7 @@ const UsersRequests = (props) => {
 const mapStateToProps = store => {
     return {
         token: store.authReducer.userToken,
+        userData: store.authReducer.userData
     };
 }
 
