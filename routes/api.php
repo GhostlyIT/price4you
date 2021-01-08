@@ -23,6 +23,7 @@ Route::post('login', 'App\Http\Controllers\AuthController@login');
 //User
 Route::middleware('auth:api')->post('user/blacklist/remove', 'App\Http\Controllers\UserController@removeCompanyFromBlackList');
 Route::middleware('auth:api')->post('user/blacklist/add', 'App\Http\Controllers\UserController@addCompanyToBlackList');
+Route::middleware('auth:api')->get('user/options', 'App\Http\Controllers\OptionsController@getForUser');
 
 
 //Company
@@ -44,10 +45,6 @@ Route::middleware('auth:api')->get('request/get-for-company', 'App\Http\Controll
 
 //Responses
 Route::middleware('auth:api')->post('response/add', 'App\Http\Controllers\ResponseController@save');
-
-
-//Options
-Route::middleware('auth:api')->get('options/user', 'App\Http\Controllers\OptionsController@getForUser');
 
 
 // Errors

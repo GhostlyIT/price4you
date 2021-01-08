@@ -32,7 +32,7 @@ class CompanyController extends Controller
         $query = $request->get('query');
 
         try {
-            $companies = Companies::where('company_name', 'like', "%$query%")->orderBy('company_name')->get();
+            $companies = Companies::where('company_name', 'like', "%$query%")->orderBy('company_name')->with('user:id,phone_number')->get();
             return response()->json(['companies' => $companies, 'status' => 'success'], 200);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);

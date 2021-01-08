@@ -78927,6 +78927,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _store_actions_authAction__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../store/actions/authAction */ "./resources/js/store/actions/authAction.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _user_components_Options_Options__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./user-components/Options/Options */ "./resources/js/components/user/user-components/Options/Options.js");
+
 
 
 
@@ -78945,7 +78947,9 @@ var User = function User(props) {
     path: "".concat(match.url, "/requests")
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_user_components_UserRequests_UserRequests__WEBPACK_IMPORTED_MODULE_1__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "".concat(match.url, "/add-request")
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_user_components_AddRequest_AddRequest__WEBPACK_IMPORTED_MODULE_3__["default"], null)));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_user_components_AddRequest_AddRequest__WEBPACK_IMPORTED_MODULE_3__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+    path: "".concat(match.url, "/settings")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_user_components_Options_Options__WEBPACK_IMPORTED_MODULE_7__["default"], null)));
 };
 
 var mapStateToProps = function mapStateToProps(store) {
@@ -79472,6 +79476,342 @@ var mapDispatchProps = function mapDispatchProps(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "paymentMethods", function() { return paymentMethods; });
 var paymentMethods = ['Оплата при получении', 'Предоплата', '50/50', 'Кредит', 'Другое'];
+
+/***/ }),
+
+/***/ "./resources/js/components/user/user-components/Options/Options.js":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/user/user-components/Options/Options.js ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _helpers_notifications__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../helpers/notifications */ "./resources/js/helpers/notifications.js");
+/* harmony import */ var _options_components_ViewOptions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./options-components/ViewOptions */ "./resources/js/components/user/user-components/Options/options-components/ViewOptions.js");
+/* harmony import */ var _options_components_SearchCompany__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./options-components/SearchCompany */ "./resources/js/components/user/user-components/Options/options-components/SearchCompany.js");
+/* harmony import */ var _options_components_BlackList__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./options-components/BlackList */ "./resources/js/components/user/user-components/Options/options-components/BlackList.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+var Options = function Options(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(1),
+      _useState2 = _slicedToArray(_useState, 2),
+      selectedViewOption = _useState2[0],
+      setSelectedViewOption = _useState2[1],
+      _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
+      _useState4 = _slicedToArray(_useState3, 2),
+      viewOptions = _useState4[0],
+      setViewOptions = _useState4[1],
+      _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState6 = _slicedToArray(_useState5, 2),
+      blackList = _useState6[0],
+      setBlackList = _useState6[1];
+
+  var refreshOptions = function refreshOptions() {
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('/api/user/options', {
+      headers: {
+        'Authorization': 'Bearer ' + props.token
+      }
+    }).then(function (response) {
+      setViewOptions(response.data.all_view_options);
+      setSelectedViewOption(response.data.selected_view_option);
+      setBlackList(response.data.black_list);
+    })["catch"](function (error) {
+      console.log(error.response.data.message);
+      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_3__["showNotification"])('Ошибка', 'Произошла ошибка. Попробуйте перезагрузить страницу.', 'danger');
+    });
+  };
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    refreshOptions();
+  }, []);
+
+  var addCompanyToBlackList = function addCompanyToBlackList(companyId) {
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/user/blacklist/add', {
+      company_id: companyId
+    }, {
+      headers: {
+        'Authorization': 'Bearer ' + props.token
+      }
+    }).then(function (response) {
+      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_3__["showNotification"])('Черный список', 'Компания добавлена в черный список.', 'success');
+      refreshOptions();
+    })["catch"](function (error) {
+      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_3__["showNotification"])('Ошибка', 'Произошла ошибка при добавлении компании в черный список. Попробуйте еще раз.', 'danger');
+      console.log(error.response.data.message);
+    });
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12 options-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: "text-center"
+  }, "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "options-element"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "options-element__title"
+  }, "\u041F\u043E\u043A\u0430\u0437\u044B\u0432\u0430\u0442\u044C \u0441\u0432\u043E\u0438 \u0434\u0430\u043D\u043D\u044B\u0435"), viewOptions != null && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_options_components_ViewOptions__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    options: viewOptions,
+    selectedOptionId: selectedViewOption,
+    setOption: setSelectedViewOption
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "options-element"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "options-element__title"
+  }, "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438 \u0432\u0437\u0430\u0438\u043C\u043E\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u044F \u0441 \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u044F\u043C\u0438"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_options_components_SearchCompany__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    blackList: blackList,
+    addCompanyToBlackList: addCompanyToBlackList
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "options-element"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "options-element__title"
+  }, "\u041A\u043E\u043C\u043F\u0430\u043D\u0438\u0438 \u0432 \u0447\u0435\u0440\u043D\u043E\u043C \u0441\u043F\u0438\u0441\u043A\u0435"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_options_components_BlackList__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    blackList: blackList,
+    removeCompanyFromBlackList: function removeCompanyFromBlackList() {
+      return console.log('ok');
+    }
+  })));
+};
+
+var mapStateToProps = function mapStateToProps(store) {
+  return {
+    token: store.authReducer.userToken
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps)(Options));
+
+/***/ }),
+
+/***/ "./resources/js/components/user/user-components/Options/options-components/BlackList.js":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/components/user/user-components/Options/options-components/BlackList.js ***!
+  \**********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var BlackList = function BlackList(_ref) {
+  var blackList = _ref.blackList,
+      removeCompanyFromBlackList = _ref.removeCompanyFromBlackList;
+
+  if (blackList.length > 0) {
+    return blackList.map(function (record) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        key: record.id,
+        className: "black-list"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "d-flex justify-content-between"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, record.company.company_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "button",
+        className: "remove-btn"
+      }, "\u0423\u0434\u0430\u043B\u0438\u0442\u044C")));
+    });
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (BlackList);
+
+/***/ }),
+
+/***/ "./resources/js/components/user/user-components/Options/options-components/SearchCompany.js":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/components/user/user-components/Options/options-components/SearchCompany.js ***!
+  \**************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _common_loader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../common/loader */ "./resources/js/components/common/loader.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+var SearchCompany = function SearchCompany(_ref) {
+  var blackList = _ref.blackList,
+      addCompanyToBlackList = _ref.addCompanyToBlackList;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      searchResult = _useState2[0],
+      setSearchResult = _useState2[1],
+      _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      loading = _useState4[0],
+      setLoading = _useState4[1],
+      _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      fallingListOpen = _useState6[0],
+      setFallingListOpen = _useState6[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    document.addEventListener('click', handleClick, false);
+  });
+
+  var handleClick = function handleClick(e) {
+    var companies = document.getElementById('companies');
+    var companyList = document.getElementById('company-wrapper');
+    var path = e.path || Event.composedPath && Event.composedPath();
+
+    if (!path.includes(companies) && !path.includes(companyList)) {
+      setFallingListOpen(false);
+    }
+  };
+
+  var searchCompany = function searchCompany(query) {
+    if (query != '') {
+      setLoading(true);
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/company/search?query=".concat(query)).then(function (response) {
+        setSearchResult(response.data.companies);
+        setLoading(false);
+      })["catch"](function (error) {
+        setSearchResult([]);
+        setLoading(false);
+        console.log(error.response.data.message);
+      }).then(function () {
+        setLoading(false);
+      });
+    }
+  };
+
+  var renderCompanies = function renderCompanies() {
+    if (loading) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_loader__WEBPACK_IMPORTED_MODULE_1__["default"], null);
+    }
+
+    if (searchResult.length > 0) {
+      return searchResult.map(function (company) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          id: "company-wrapper",
+          className: "company-wrapper",
+          key: company.id
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "company__title"
+        }, company.company_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "company__address"
+        }, company.company_address)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "company__phone"
+        }, company.user.phone_number)), blackList.findIndex(function (item) {
+          return item.company_id == company.id;
+        }) == -1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            return addCompanyToBlackList(company.id);
+          },
+          type: "button",
+          className: "white-blue-btn"
+        }, "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "button",
+          className: "white-blue-btn",
+          disabled: true
+        }, "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0430"));
+      });
+    } else {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u041A\u043E\u043C\u043F\u0430\u043D\u0438\u0438 \u043D\u0435 \u043D\u0430\u0439\u0434\u0435\u043D\u044B");
+    }
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "position-relative"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    onClick: function onClick() {
+      return setFallingListOpen(true);
+    },
+    onChange: function onChange(e) {
+      return searchCompany(e.target.value);
+    },
+    id: "companies",
+    placeholder: "\u041F\u043E\u0438\u0441\u043A \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u0438"
+  }), fallingListOpen === true && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "falling-list position-absolute"
+  }, renderCompanies()));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (SearchCompany);
+
+/***/ }),
+
+/***/ "./resources/js/components/user/user-components/Options/options-components/ViewOptions.js":
+/*!************************************************************************************************!*\
+  !*** ./resources/js/components/user/user-components/Options/options-components/ViewOptions.js ***!
+  \************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var ViewOptions = function ViewOptions(_ref) {
+  var options = _ref.options,
+      selectedOptionId = _ref.selectedOptionId,
+      setOption = _ref.setOption;
+  return options.map(function (option) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      key: option.id,
+      className: "view-option__item"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      onChange: function onChange(e) {
+        return setOption(e.target.value);
+      },
+      type: "radio",
+      name: "view-option",
+      value: option.id,
+      checked: option.id == selectedOptionId
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, option.text_for_user)));
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ViewOptions);
 
 /***/ }),
 
