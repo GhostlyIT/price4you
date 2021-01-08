@@ -19,6 +19,9 @@ use App\Http\Controllers\AuthController;
 Route::post('register', 'App\Http\Controllers\AuthController@register');
 Route::post('login', 'App\Http\Controllers\AuthController@login');
 
+//Company
+Route::get('company/search', 'App\Http\Controllers\CompanyController@search');
+
 //Products
 Route::get('product/search/all', 'App\Http\Controllers\ProductsController@searchAllProducts');
 Route::get('product/class', 'App\Http\Controllers\ProductsController@getProductClass');

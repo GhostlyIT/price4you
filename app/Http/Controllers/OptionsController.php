@@ -24,6 +24,7 @@ class OptionsController extends Controller
         }
     }
 
+    //TODO: доделать запросы для опций компаний
     public function getForCompany() {
         try {
             $user = Auth::user();

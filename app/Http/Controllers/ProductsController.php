@@ -66,6 +66,7 @@ class ProductsController extends Controller
         }
     }
 
+
     public function getProductClass(Request $request)
     {
         $validator = Validator::make($request->all(), [
