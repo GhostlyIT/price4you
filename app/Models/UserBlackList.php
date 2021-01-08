@@ -9,6 +9,10 @@ class UserBlackList extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'user_id', 'company_id'
+    ];
+
     public function company() {
         return $this->belongsTo('App\Models\Companies', 'company_id');
     }
