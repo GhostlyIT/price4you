@@ -31,7 +31,10 @@ Route::middleware('auth:api')->get('request/get-for-user', 'App\Http\Controllers
 Route::middleware('auth:api')->get('request/get-for-company', 'App\Http\Controllers\RequestController@getForCompany');
 
 //Responses
-Route::middleware('auth:api')->post('response/add', 'App\Http\Controllers\CompanyController@saveNewResponse');
+Route::middleware('auth:api')->post('response/add', 'App\Http\Controllers\ResponseController@save');
+
+//Options
+Route::middleware('auth:api')->get('options/user', 'App\Http\Controllers\OptionsController@getForUser');
 
 // Errors
 Route::get('errorUnauthorized', function() {

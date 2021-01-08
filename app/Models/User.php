@@ -41,4 +41,12 @@ class User extends Authenticatable
     public function requests() {
         return $this->hasMany('App\Models\UserRequests');
     }
+
+    public function viewOption() {
+        return $this->belongsTo('App\Models\ViewOptions');
+    }
+
+    public function blackList() {
+        return $this->hasMany('App\Models\UserBlackList');
+    }
 }

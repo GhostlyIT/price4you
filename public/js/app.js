@@ -78196,7 +78196,7 @@ var UsersRequests = function UsersRequests(props) {
         },
         type: "number",
         min: "0",
-        placeholder: "\u0412\u0430\u0448\u0430 \u0441\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C"
+        placeholder: "\u0412\u0430\u0448\u0430 \u0446\u0435\u043D\u0430 \u0437\u0430 ".concat(selectedRequest.unit, " \u0442\u043E\u0432\u0430\u0440\u0430")
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal__element"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {

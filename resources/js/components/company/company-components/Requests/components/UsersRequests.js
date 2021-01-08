@@ -15,6 +15,7 @@ const UsersRequests = (props) => {
         [offset, setOffset] = useState(0),
         limit = 9
 
+
     const getRequests = (offset = offset) => {
         axios.get(`/api/request/get-for-company?offset=${offset}&limit=${limit}`, {
             headers: {'Authorization': 'Bearer ' + props.token}
@@ -64,7 +65,7 @@ const UsersRequests = (props) => {
                         <span>{selectedRequest.value} {selectedRequest.unit}</span>
                     </div>
                     <div className="modal__element">
-                        <input onChange={(e) => price = e.target.value} type="number" min="0" placeholder="Ваша стоимость"/>
+                        <input onChange={(e) => price = e.target.value} type="number" min="0" placeholder={`Ваша цена за ${selectedRequest.unit} товара`}/>
                     </div>
                     <div className="modal__element">
                         <textarea onChange={(e) => comment = e.target.value} placeholder="Ваш комментарий"></textarea>
@@ -164,11 +165,13 @@ const UsersRequests = (props) => {
     )
 }
 
+
 const mapStateToProps = store => {
     return {
         token: store.authReducer.userToken,
         userData: store.authReducer.userData
     };
 }
+
 
 export default connect(mapStateToProps)(UsersRequests)
