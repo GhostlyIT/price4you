@@ -79566,6 +79566,22 @@ var Options = function Options(props) {
     });
   };
 
+  var removeCompanyFromBlackList = function removeCompanyFromBlackList(companyId) {
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/user/blacklist/remove', {
+      company_id: companyId
+    }, {
+      headers: {
+        'Authorization': 'Bearer ' + props.token
+      }
+    }).then(function (response) {
+      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_3__["showNotification"])('Черный список', 'Компания была удалена из черного списка.', 'success');
+      refreshOptions();
+    })["catch"](function (error) {
+      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_3__["showNotification"])('Ошибка', 'Произошла ошибка при удалени компании из черного списка. Попробуйте еще раз.', 'danger');
+      console.log(error.response.data.message);
+    });
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-12 options-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
@@ -79591,9 +79607,7 @@ var Options = function Options(props) {
     className: "options-element__title"
   }, "\u041A\u043E\u043C\u043F\u0430\u043D\u0438\u0438 \u0432 \u0447\u0435\u0440\u043D\u043E\u043C \u0441\u043F\u0438\u0441\u043A\u0435"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_options_components_BlackList__WEBPACK_IMPORTED_MODULE_6__["default"], {
     blackList: blackList,
-    removeCompanyFromBlackList: function removeCompanyFromBlackList() {
-      return console.log('ok');
-    }
+    removeCompanyFromBlackList: removeCompanyFromBlackList
   })));
 };
 
@@ -79632,6 +79646,9 @@ var BlackList = function BlackList(_ref) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "d-flex justify-content-between"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, record.company.company_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: function onClick() {
+          return removeCompanyFromBlackList(record.company.id);
+        },
         type: "button",
         className: "remove-btn"
       }, "\u0423\u0434\u0430\u043B\u0438\u0442\u044C")));

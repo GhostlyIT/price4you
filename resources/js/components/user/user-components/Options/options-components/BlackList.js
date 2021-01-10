@@ -7,7 +7,7 @@ const BlackList = ({blackList, removeCompanyFromBlackList}) => {
                 <div key={record.id} className="black-list">
                     <div className="d-flex justify-content-between">
                         <span>{record.company.company_name}</span>
-                        <button type="button" className="remove-btn">Удалить</button>
+                        <button onClick={() => removeCompanyFromBlackList(record.company.id)} type="button" className="remove-btn">Удалить</button>
                     </div>
                 </div>
             )

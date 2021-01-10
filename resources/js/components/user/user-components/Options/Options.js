@@ -31,7 +31,7 @@ const Options = (props) => {
         refreshOptions()
     }, [])
 
-    const addCompanyToBlackList = (companyId) => {
+    const addCompanyToBlackList = companyId => {
         axios.post('/api/user/blacklist/add',
             {
                 company_id: companyId
@@ -46,6 +46,25 @@ const Options = (props) => {
             })
             .catch(error => {
                 showNotification('Ошибка', 'Произошла ошибка при добавлении компании в черный список. Попробуйте еще раз.', 'danger')
+                console.log(error.response.data.message)
+            })
+    }
+
+    const removeCompanyFromBlackList = companyId => {
+        axios.post('/api/user/blacklist/remove',
+            {
+                company_id: companyId
+            },
+            {
+                headers: {'Authorization': 'Bearer ' + props.token}
+            }
+        )
+            .then(response => {
+                showNotification('Черный список', 'Компания была удалена из черного списка.', 'success')
+                refreshOptions()
+            })
+            .catch(error => {
+                showNotification('Ошибка', 'Произошла ошибка при удалени компании из черного списка. Попробуйте еще раз.', 'danger')
                 console.log(error.response.data.message)
             })
     }
@@ -72,7 +91,7 @@ const Options = (props) => {
 
             <div className="options-element">
                 <h3 className="options-element__title">Компании в черном списке</h3>
-                <BlackList blackList={blackList} removeCompanyFromBlackList={() => console.log('ok')} />
+                <BlackList blackList={blackList} removeCompanyFromBlackList={removeCompanyFromBlackList} />
             </div>
         </div>
     )
