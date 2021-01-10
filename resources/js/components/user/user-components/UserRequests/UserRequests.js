@@ -24,13 +24,24 @@ const UserRequests = (props) => {
     },[])
 
     const renderRequests = () => {
+        console.log(requests)
         return requests.map(request => {
+            let responsesAmount = 0
+            for (let i = 0; i < request.products.length; i++) {
+                responsesAmount += parseInt(request.products[i].responses.length)
+            }
             const date = new Date(request.created_at);
             return (
                 <div key={request.id} className="col-4 mt-4">
-                    <span onClick={() => setSelectedRequest(request)} className={`request-picker d-flex flex-column ${request == selectedRequest ? 'selected' : ''}`}>
+                    <span onClick={() => setSelectedRequest(request)} className={`request-picker d-flex flex-column position-relative ${request == selectedRequest ? 'selected' : ''}`}>
                         <span className="request-picker__title">{request.title}</span>
                         <span className="request-picker__title">№ {request.id} от {date.getDate()} {getMonthOnRus(date.getMonth())} {date.getFullYear()}</span>
+                        {responsesAmount > 0 &&
+                            <span className="amount-badge position-absolute font-weight-bold">
+                                <span>{responsesAmount}</span>
+                            </span>
+                        }
+
                     </span>
                 </div>
             )
@@ -48,6 +59,7 @@ const UserRequests = (props) => {
                 <div className="row">
                     {selectedRequest.products.map(product => {
                         const type = product.product_type
+                        const responsesAmount = product.responses.length
                         let convertedType = productTypeConverter(type)
 
                         if (!convertedType) {
@@ -55,8 +67,14 @@ const UserRequests = (props) => {
                         }
 
                         return (
-                            <div key={'wrapper-'+product.id} className="col-4 mt-3">
-                                <div key={product.id} className="d-flex justify-content-between align-items-center request-info__product">
+                            <div key={'wrapper-' + product.id} className="col-4 mt-3">
+                                <div key={product.id} className="d-flex justify-content-between align-items-center request-info__product position-relative">
+                                    {responsesAmount > 0 &&
+                                        <span className="amount-badge position-absolute">
+                                            <span>{responsesAmount}</span>
+                                        </span>
+                                    }
+
                                     <span className="request-info__product-title d-flex flex-column">
                                         {product[type].name}
                                         <small>{convertedType}</small>

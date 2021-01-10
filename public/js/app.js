@@ -79920,7 +79920,14 @@ var UserRequests = function UserRequests(props) {
   }, []);
 
   var renderRequests = function renderRequests() {
+    console.log(requests);
     return requests.map(function (request) {
+      var responsesAmount = 0;
+
+      for (var i = 0; i < request.products.length; i++) {
+        responsesAmount += parseInt(request.products[i].responses.length);
+      }
+
       var date = new Date(request.created_at);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         key: request.id,
@@ -79929,12 +79936,14 @@ var UserRequests = function UserRequests(props) {
         onClick: function onClick() {
           return setSelectedRequest(request);
         },
-        className: "request-picker d-flex flex-column ".concat(request == selectedRequest ? 'selected' : '')
+        className: "request-picker d-flex flex-column position-relative ".concat(request == selectedRequest ? 'selected' : '')
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "request-picker__title"
       }, request.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "request-picker__title"
-      }, "\u2116 ", request.id, " \u043E\u0442 ", date.getDate(), " ", Object(_helpers_dateConverter__WEBPACK_IMPORTED_MODULE_6__["getMonthOnRus"])(date.getMonth()), " ", date.getFullYear())));
+      }, "\u2116 ", request.id, " \u043E\u0442 ", date.getDate(), " ", Object(_helpers_dateConverter__WEBPACK_IMPORTED_MODULE_6__["getMonthOnRus"])(date.getMonth()), " ", date.getFullYear()), responsesAmount > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "amount-badge position-absolute font-weight-bold"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, responsesAmount))));
     });
   };
 
@@ -79949,6 +79958,7 @@ var UserRequests = function UserRequests(props) {
       className: "row"
     }, selectedRequest.products.map(function (product) {
       var type = product.product_type;
+      var responsesAmount = product.responses.length;
       var convertedType = Object(_helpers_productTypeConverter__WEBPACK_IMPORTED_MODULE_7__["productTypeConverter"])(type);
 
       if (!convertedType) {
@@ -79960,8 +79970,10 @@ var UserRequests = function UserRequests(props) {
         className: "col-4 mt-3"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         key: product.id,
-        className: "d-flex justify-content-between align-items-center request-info__product"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "d-flex justify-content-between align-items-center request-info__product position-relative"
+      }, responsesAmount > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "amount-badge position-absolute"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, responsesAmount)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "request-info__product-title d-flex flex-column"
       }, product[type].name, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, convertedType)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, product.value, " ", product.unit)));
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

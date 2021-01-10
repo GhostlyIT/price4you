@@ -11142,6 +11142,20 @@ img {
   background-image: url("/images/icons/phone.svg");
 }
 
+.amount-badge {
+  top: -12px;
+  right: -7px;
+  background-color: #fd7e14;
+  color: #fff;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+}
+
 .auth-sideblock .auth-faq {
   margin-top: 90px;
 }
