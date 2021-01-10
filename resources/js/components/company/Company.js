@@ -6,7 +6,7 @@ const Company = () => {
     const match = useRouteMatch()
     return(
         <>
-            <Route path={match.url}>
+            <Route exact path={match.url}>
                 <Redirect to={`${match.url}/requests`} />
             </Route>
             <Route path={`${match.url}/requests`}>
