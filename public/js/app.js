@@ -79582,6 +79582,21 @@ var Options = function Options(props) {
     });
   };
 
+  var saveViewOption = function saveViewOption(optionId) {
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/user/options/view/save', {
+      option_id: optionId
+    }, {
+      headers: {
+        'Authorization': 'Bearer ' + props.token
+      }
+    }).then(function () {
+      refreshOptions();
+    })["catch"](function (error) {
+      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_3__["showNotification"])('Ошибка', 'Произошла ошибка. Попробуйте еще раз.', 'danger');
+      console.log(error.response.data.message);
+    });
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-12 options-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
@@ -79593,12 +79608,14 @@ var Options = function Options(props) {
   }, "\u041F\u043E\u043A\u0430\u0437\u044B\u0432\u0430\u0442\u044C \u0441\u0432\u043E\u0438 \u0434\u0430\u043D\u043D\u044B\u0435"), viewOptions != null && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_options_components_ViewOptions__WEBPACK_IMPORTED_MODULE_4__["default"], {
     options: viewOptions,
     selectedOptionId: selectedViewOption,
-    setOption: setSelectedViewOption
+    setOption: saveViewOption
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "options-element"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
     className: "options-element__title"
-  }, "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438 \u0432\u0437\u0430\u0438\u043C\u043E\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u044F \u0441 \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u044F\u043C\u0438"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_options_components_SearchCompany__WEBPACK_IMPORTED_MODULE_5__["default"], {
+  }, "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438 \u0432\u0437\u0430\u0438\u043C\u043E\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u044F \u0441 \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u044F\u043C\u0438"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "options-element__text"
+  }, "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u0438, \u0441 \u043A\u043E\u0442\u043E\u0440\u044B\u043C\u0438 \u0432\u044B \u043D\u0435 \u0445\u043E\u0442\u0438\u0442\u0435 \u0441\u043E\u0442\u0440\u0443\u0434\u043D\u0438\u0447\u0430\u0442\u044C"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_options_components_SearchCompany__WEBPACK_IMPORTED_MODULE_5__["default"], {
     blackList: blackList,
     addCompanyToBlackList: addCompanyToBlackList
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -79644,13 +79661,15 @@ var BlackList = function BlackList(_ref) {
         key: record.id,
         className: "black-list"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "d-flex justify-content-between"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, record.company.company_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        className: "d-flex align-items-center"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "mr-4"
+      }, record.company.company_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
           return removeCompanyFromBlackList(record.company.id);
         },
         type: "button",
-        className: "remove-btn"
+        className: "btn btn-danger"
       }, "\u0423\u0434\u0430\u043B\u0438\u0442\u044C")));
     });
   }
@@ -79747,26 +79766,29 @@ var SearchCompany = function SearchCompany(_ref) {
     if (searchResult.length > 0) {
       return searchResult.map(function (company) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          id: "company-wrapper",
-          className: "company-wrapper",
+          className: "company-wrapper falling-list__element",
           key: company.id
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
-          className: "company__title"
+          className: "text-center font-weight-bold mb-2"
         }, company.company_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "company__address"
-        }, company.company_address)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "company__phone"
-        }, company.user.phone_number)), blackList.findIndex(function (item) {
+          className: "options__address"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          className: "geo-icon"
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, company.company_address))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "options__phone"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+          className: "phone-icon"
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, company.user.phone_number))), blackList.findIndex(function (item) {
           return item.company_id == company.id;
         }) == -1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           onClick: function onClick() {
             return addCompanyToBlackList(company.id);
           },
           type: "button",
-          className: "white-blue-btn"
+          className: "white-blue-btn w-100"
         }, "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
           type: "button",
-          className: "white-blue-btn",
+          className: "white-blue-btn w-100",
           disabled: true
         }, "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D\u0430"));
       });
@@ -79823,7 +79845,8 @@ var ViewOptions = function ViewOptions(_ref) {
       type: "radio",
       name: "view-option",
       value: option.id,
-      checked: option.id == selectedOptionId
+      checked: option.id == selectedOptionId,
+      className: "mr-2"
     }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, option.text_for_user)));
   });
 };

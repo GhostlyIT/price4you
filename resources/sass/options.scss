@@ -1,0 +1,16 @@
+.options-wrapper {
+
+    .options-element {
+        margin-bottom: 50px;
+    }
+
+    .options__address, .options__phone {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        span {
+            max-width: 80%;
+        }
+    }
+}

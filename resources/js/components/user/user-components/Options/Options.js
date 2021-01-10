@@ -69,6 +69,24 @@ const Options = (props) => {
             })
     }
 
+    const saveViewOption = optionId => {
+        axios.post('/api/user/options/view/save',
+            {
+                option_id: optionId
+            },
+            {
+                headers: {'Authorization': 'Bearer ' + props.token}
+            }
+        )
+            .then(() => {
+                refreshOptions()
+            })
+            .catch(error => {
+                showNotification('Ошибка', 'Произошла ошибка. Попробуйте еще раз.', 'danger')
+                console.log(error.response.data.message)
+            })
+    }
+
     return (
         <div className="col-12 options-wrapper">
             <h1 className="text-center">Настройки</h1>
@@ -79,13 +97,16 @@ const Options = (props) => {
                     <ViewOptions
                         options={viewOptions}
                         selectedOptionId={selectedViewOption}
-                        setOption={setSelectedViewOption}
+                        setOption={saveViewOption}
                     />
                 }
             </div>
 
             <div className="options-element">
                 <h3 className="options-element__title">Настройки взаимодействия с компаниями</h3>
+                <p className="options-element__text">
+                    Выберите компании, с которыми вы не хотите сотрудничать
+                </p>
                 <SearchCompany blackList={blackList} addCompanyToBlackList={addCompanyToBlackList} />
             </div>
 

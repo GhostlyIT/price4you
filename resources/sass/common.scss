@@ -44,6 +44,78 @@ img {
     max-width: 100%;
 }
 
+.main {
+    background-color: #000;
+    min-height: 100vh;
+}
+
+.main-background {
+    background-image: url('/images/main_background.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+}
+
+.main-window {
+    background-color: #EBEBEB;
+    border-radius: 58px;
+    -webkit-border-radius: 58px;
+    -moz-border-radius: 58px;
+    -ms-border-radius: 58px;
+    -o-border-radius: 58px;
+    padding: 54px 68px;
+}
+
+.main-window__inner {
+    background-color: #fff;
+    border-radius: 58px;
+    -webkit-border-radius: 58px;
+    -moz-border-radius: 58px;
+    -ms-border-radius: 58px;
+    -o-border-radius: 58px;
+    padding: 20px 30px;
+    height: 100%;
+}
+
+.main-btn, .white-blue-btn {
+    color: #fff;
+    background-color: $link-color;
+    padding: 13px;
+    border-radius: 58px;
+    -webkit-border-radius: 58px;
+    -moz-border-radius: 58px;
+    -ms-border-radius: 58px;
+    -o-border-radius: 58px;
+
+    &:disabled {
+        background-color: $disabled-color;
+    }
+}
+
+.white-blue-btn {
+    color: $blue;
+    background-color: #fff;
+    border: 2px solid $blue;
+    padding: 8px 20px;
+
+    &:disabled {
+        color: $disabled-color;
+        border-color: $disabled-color;
+        background-color: #fff;
+    }
+}
+
+.blue {
+    color: $blue;
+}
+
+.container-xl, .container-lg, .container-md, .container-sm, .container {
+    max-width: 95%;
+}
+
 .ReactModal__Overlay {
     background-color: rgba(0, 0, 0, 0.75) !important;
 }
@@ -121,4 +193,37 @@ img {
             border-radius: 15px;
         }
     }
+}
+
+.falling-list {
+    background-color: #fff;
+    padding: 10px 20px;
+    box-shadow: 0px 0px 7px -2px;
+    border-radius: 15px;
+    max-height: 250px;
+    overflow-y: scroll;
+    max-width: 300px;
+
+    .falling-list__element {
+
+        &:not(:last-child) {
+            margin-bottom: 30px;
+        }
+
+        div {
+            margin-bottom: 15px;
+        }
+    }
+}
+
+.geo-icon, .phone-icon {
+    background-image: url("/images/icons/geo.svg");
+    background-repeat: no-repeat;
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.phone-icon {
+    background-image: url("/images/icons/phone.svg");
 }

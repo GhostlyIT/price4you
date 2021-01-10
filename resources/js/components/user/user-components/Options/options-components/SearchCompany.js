@@ -47,21 +47,27 @@ const SearchCompany = ({blackList, addCompanyToBlackList}) => {
         if (searchResult.length > 0) {
             return searchResult.map(company => {
                 return (
-                    <div id="company-wrapper" className="company-wrapper" key={company.id}>
-                        <h4 className="company__title">{company.company_name}</h4>
+                    <div className="company-wrapper falling-list__element" key={company.id}>
+                        <h4 className="text-center font-weight-bold mb-2">{company.company_name}</h4>
 
                         <div>
-                            <span className="company__address">{company.company_address}</span>
+                            <span className="options__address">
+                                <i className="geo-icon"></i>
+                                <span>{company.company_address}</span>
+                            </span>
                         </div>
 
                         <div>
-                            <span className="company__phone">{company.user.phone_number}</span>
+                            <span className="options__phone">
+                                <i className="phone-icon"></i>
+                                <span>{company.user.phone_number}</span>
+                            </span>
                         </div>
 
                         {
                             blackList.findIndex(item => item.company_id == company.id) == -1
-                                ? <button onClick={() => addCompanyToBlackList(company.id)} type="button" className="white-blue-btn">Добавить</button>
-                                : <button type="button" className="white-blue-btn" disabled>Добавлена</button>
+                                ? <button onClick={() => addCompanyToBlackList(company.id)} type="button" className="white-blue-btn w-100">Добавить</button>
+                                : <button type="button" className="white-blue-btn w-100" disabled>Добавлена</button>
                         }
 
                     </div>

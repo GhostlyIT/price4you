@@ -5,9 +5,9 @@ const BlackList = ({blackList, removeCompanyFromBlackList}) => {
         return blackList.map(record => {
             return (
                 <div key={record.id} className="black-list">
-                    <div className="d-flex justify-content-between">
-                        <span>{record.company.company_name}</span>
-                        <button onClick={() => removeCompanyFromBlackList(record.company.id)} type="button" className="remove-btn">Удалить</button>
+                    <div className="d-flex align-items-center">
+                        <span className="mr-4">{record.company.company_name}</span>
+                        <button onClick={() => removeCompanyFromBlackList(record.company.id)} type="button" className="btn btn-danger">Удалить</button>
                     </div>
                 </div>
             )

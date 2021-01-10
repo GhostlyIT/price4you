@@ -24,6 +24,7 @@ Route::post('login', 'App\Http\Controllers\AuthController@login');
 Route::middleware('auth:api')->post('user/blacklist/remove', 'App\Http\Controllers\UserController@removeCompanyFromBlackList');
 Route::middleware('auth:api')->post('user/blacklist/add', 'App\Http\Controllers\UserController@addCompanyToBlackList');
 Route::middleware('auth:api')->get('user/options', 'App\Http\Controllers\OptionsController@getForUser');
+Route::middleware('auth:api')->post('user/options/view/save', 'App\Http\Controllers\OptionsController@saveViewOption');
 
 
 //Company

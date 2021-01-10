@@ -17,61 +17,6 @@
 
 @import 'user';
 
-.main {
-    background-color: #000;
-    min-height: 100vh;
-}
+@import 'options';
 
-.main-background {
-    background-image: url('/images/main_background.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-}
 
-.main-window {
-    background-color: #EBEBEB;
-    border-radius: 58px;
-    -webkit-border-radius: 58px;
-    -moz-border-radius: 58px;
-    -ms-border-radius: 58px;
-    -o-border-radius: 58px;
-    padding: 54px 68px;
-}
-
-.main-window__inner {
-    background-color: #fff;
-    border-radius: 58px;
-    -webkit-border-radius: 58px;
-    -moz-border-radius: 58px;
-    -ms-border-radius: 58px;
-    -o-border-radius: 58px;
-    padding: 20px 30px;
-    height: 100%;
-}
-
-.main-btn {
-    color: #fff;
-    background-color: $link-color;
-    padding: 13px;
-    border-radius: 58px;
-    -webkit-border-radius: 58px;
-    -moz-border-radius: 58px;
-    -ms-border-radius: 58px;
-    -o-border-radius: 58px;
-
-    &:disabled {
-        background-color: $disabled-color;
-    }
-}
-
-.blue {
-    color: $blue;
-}
-
-.container-xl, .container-lg, .container-md, .container-sm, .container {
-    max-width: 95%;
-}

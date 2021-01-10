@@ -11,6 +11,7 @@ const ViewOptions = ({options, selectedOptionId, setOption}) => {
                         name="view-option"
                         value={option.id}
                         checked={option.id == selectedOptionId}
+                        className="mr-2"
                     />
 
                     <span>{option.text_for_user}</span>
