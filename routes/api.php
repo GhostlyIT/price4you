@@ -21,10 +21,10 @@ Route::post('login', 'App\Http\Controllers\AuthController@login');
 
 
 //User
-Route::middleware('auth:api')->post('user/blacklist/remove', 'App\Http\Controllers\UserController@removeCompanyFromBlackList');
-Route::middleware('auth:api')->post('user/blacklist/add', 'App\Http\Controllers\UserController@addCompanyToBlackList');
-Route::middleware('auth:api')->get('user/options', 'App\Http\Controllers\OptionsController@getForUser');
-Route::middleware('auth:api')->post('user/options/view/save', 'App\Http\Controllers\OptionsController@saveViewOption');
+Route::middleware(['auth:api', 'auth.user'])->post('user/blacklist/remove', 'App\Http\Controllers\UserController@removeCompanyFromBlackList');
+Route::middleware(['auth:api', 'auth.user'])->post('user/blacklist/add', 'App\Http\Controllers\UserController@addCompanyToBlackList');
+Route::middleware(['auth:api', 'auth.user'])->get('user/options', 'App\Http\Controllers\OptionsController@getForUser');
+Route::middleware(['auth:api', 'auth.user'])->post('user/options/view/save', 'App\Http\Controllers\OptionsController@saveViewOption');
 
 
 //Company
@@ -39,13 +39,13 @@ Route::post('product/calculate-volume', 'App\Http\Controllers\ProductsController
 
 
 //Requests
-Route::middleware('auth:api')->post('request/save', 'App\Http\Controllers\RequestController@save');
-Route::middleware('auth:api')->get('request/get-for-user', 'App\Http\Controllers\RequestController@getForUser');
-Route::middleware('auth:api')->get('request/get-for-company', 'App\Http\Controllers\RequestController@getForCompany');
+Route::middleware(['auth:api', 'auth.user'])->post('request/save', 'App\Http\Controllers\RequestController@save');
+Route::middleware(['auth:api', 'auth.user'])->get('request/get-for-user', 'App\Http\Controllers\RequestController@getForUser');
+Route::middleware(['auth:api', 'auth.company'])->get('request/get-for-company', 'App\Http\Controllers\RequestController@getForCompany');
 
 
 //Responses
-Route::middleware('auth:api')->post('response/add', 'App\Http\Controllers\ResponseController@save');
+Route::middleware(['auth:api', 'auth.company'])->post('response/add', 'App\Http\Controllers\ResponseController@save');
 
 
 // Errors
