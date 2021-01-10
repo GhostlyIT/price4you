@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ValidationException;
 use App\Models\CompanyResponses;
+use App\Models\UserRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -45,6 +46,21 @@ class ResponseController extends Controller
                 'comment' => $comment
             ]);
             return response()->json(['message' => 'Отклик успешно добавлен', 'status' => 'success'],200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage() . ' ' . $e->getFile() . ' ' . $e->getLine(), 'status' => 'error'],400);
+        }
+    }
+
+    public function getAllResponsesAmount(Request $request) {
+        $user = Auth::user();
+
+        try {
+            $responsesCount = $user->requests()->withCount('responses')->get();
+            $rCount = 0;
+            foreach($responsesCount as $responseCount) {
+                $rCount += $responseCount->responses_count;
+            }
+            return response()->json(['responses_count' => $rCount, 'status' => 'success'],200);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage() . ' ' . $e->getFile() . ' ' . $e->getLine(), 'status' => 'error'],400);
         }

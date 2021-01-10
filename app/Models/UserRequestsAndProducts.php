@@ -32,4 +32,5 @@ class UserRequestsAndProducts extends Model
     public function responses() {
         return $this->hasMany('App\Models\CompanyResponses', 'request_id');
     }
+
 }

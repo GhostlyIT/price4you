@@ -20,4 +20,8 @@ class UserRequests extends Model
     public function products() {
         return $this->hasMany('App\Models\UserRequestsAndProducts');
     }
+
+    public function responses() {
+        return $this->hasManyThrough('App\Models\CompanyResponses', 'App\Models\UserRequestsAndProducts', 'user_requests_id', 'request_id');
+    }
 }
