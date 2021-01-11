@@ -78817,6 +78817,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_actions_authAction__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../store/actions/authAction */ "./resources/js/store/actions/authAction.js");
 /* harmony import */ var _store_actions_exitAction__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../store/actions/exitAction */ "./resources/js/store/actions/exitAction.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -78836,12 +78838,28 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var UserSideBlock = function UserSideBlock(props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(2),
       _useState2 = _slicedToArray(_useState, 2),
       activeLink = _useState2[0],
-      setActiveLink = _useState2[1];
+      setActiveLink = _useState2[1],
+      _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0),
+      _useState4 = _slicedToArray(_useState3, 2),
+      responsesAmount = _useState4[0],
+      setResponsesAmount = _useState4[1];
 
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    axios__WEBPACK_IMPORTED_MODULE_6___default.a.get('/api/response/count/all', {
+      headers: {
+        'Authorization': 'Bearer ' + props.token
+      }
+    }).then(function (response) {
+      setResponsesAmount(response.data.responses_count);
+    })["catch"](function (error) {
+      console.log(error.response.data.message);
+    });
+  }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "d-flex flex-column user-sideblock justify-content-between"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -78866,9 +78884,11 @@ var UserSideBlock = function UserSideBlock(props) {
     onClick: function onClick() {
       return setActiveLink('3');
     },
-    className: window.location.pathname === '/user/offers' ? 'active' : null,
+    className: "d-flex ".concat(window.location.pathname === '/user/offers' ? 'active' : null),
     to: "/user/offers"
-  }, "\u041F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u044F"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }, "\u041F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u044F", responsesAmount > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "amount-badge font-weight-bold ml-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, responsesAmount))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     onClick: function onClick() {
       return setActiveLink('4');
     },
@@ -78896,6 +78916,7 @@ var UserSideBlock = function UserSideBlock(props) {
 
 var mapStateToProps = function mapStateToProps(store) {
   return {
+    token: store.authReducer.userToken,
     userData: store.authReducer.userData
   };
 };
