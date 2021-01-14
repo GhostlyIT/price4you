@@ -62,7 +62,29 @@ class ResponseController extends Controller
             }
             return response()->json(['responses_count' => $rCount, 'status' => 'success'],200);
         } catch (\Exception $e) {
-            return response()->json(['message' => $e->getMessage() . ' ' . $e->getFile() . ' ' . $e->getLine(), 'status' => 'error'],400);
+            return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);
+        }
+    }
+
+    public function getForUser() {
+        $user = Auth::user();
+
+        try {
+            $requests = $user->requests()->get();
+            $responses = [];
+            foreach($requests as $request) {
+                if (!$request->responses()->get()->isEmpty())
+                    $responseList = $request->responses()->with(['product', 'product.request'])->orderBy('id', 'desc')->get();
+                    foreach($responseList as $response) {
+                        $response['product_info'] = $response->product()->with($response->product->product_type)->first();
+                        $response['request'] = $response->product->request;
+                        unset($response['product']);
+                        $responses[] = $response;
+                    }
+            }
+            return response()->json(['responses' => $responses, 'status' => 'success'],200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);
         }
     }
 }

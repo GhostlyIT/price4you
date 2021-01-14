@@ -6,6 +6,7 @@ import {bindActionCreators} from "redux";
 import authAction from "../../store/actions/authAction";
 import {connect} from "react-redux";
 import Options from "./user-components/Options/Options";
+import Offers from "./user-components/Offers/Offers";
 
 
 const User = (props) => {
@@ -23,6 +24,9 @@ const User = (props) => {
             </Route>
             <Route path={`${match.url}/settings`}>
                 <Options />
+            </Route>
+            <Route path={`${match.url}/offers`}>
+                <Offers />
             </Route>
         </>
     )

@@ -20,7 +20,7 @@ class CompanyResponses extends Model
         return $this->belongsTo('App\Models\Companies', 'company_id');
     }
 
-    public function request() {
+    public function product() {
         return $this->belongsTo('App\Models\UserRequestsAndProducts', 'request_id');
     }
 }

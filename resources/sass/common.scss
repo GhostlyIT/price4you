@@ -80,7 +80,7 @@ img {
     height: 100%;
 }
 
-.main-btn, .white-blue-btn {
+.main-btn, .white-blue-btn, .secondary-btn {
     color: #fff;
     background-color: $link-color;
     padding: 13px;
@@ -93,6 +93,11 @@ img {
     &:disabled {
         background-color: $disabled-color;
     }
+}
+
+.secondary-btn {
+    color: #000;
+    background-color: $input-background;
 }
 
 .white-blue-btn {
@@ -126,6 +131,7 @@ img {
 
 .ReactModal__Content {
     max-width: 70%;
+    min-width: 50%;
 }
 
 .modal__header {

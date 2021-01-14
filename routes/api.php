@@ -47,6 +47,7 @@ Route::middleware(['auth:api', 'auth.company'])->get('request/get-for-company', 
 //Responses
 Route::middleware(['auth:api', 'auth.company'])->post('response/add', 'App\Http\Controllers\ResponseController@save');
 Route::middleware(['auth:api', 'auth.user'])->get('response/count/all', 'App\Http\Controllers\ResponseController@getAllResponsesAmount');
+Route::middleware(['auth:api', 'auth.user'])->get('response/user/all', 'App\Http\Controllers\ResponseController@getForUser');
 
 
 // Errors

@@ -92,11 +92,11 @@ const UsersRequests = (props) => {
                                 <span className="request-picker__title">{request[type].name}</span>
                                 <span className="request-picker__title">{request.value} {request.unit}</span>
                             </span>
+
                             <div className="request-info__title position-relative mt-5">
                                 <hr />
                                 <span className="position-absolute" style={{top: "15px"}}>Параметры</span>
                             </div>
-
 
                             <div className="d-flex align-items-center flex-wrap">
                                 <span className="mr-2 font-weight-bold">Способ оплаты:</span>

@@ -10990,7 +10990,8 @@ img {
 }
 
 .main-btn,
-.white-blue-btn {
+.white-blue-btn,
+.secondary-btn {
   color: #fff;
   background-color: #4525F2;
   padding: 13px;
@@ -11002,8 +11003,14 @@ img {
 }
 
 .main-btn:disabled,
-.white-blue-btn:disabled {
+.white-blue-btn:disabled,
+.secondary-btn:disabled {
   background-color: #4525f282;
+}
+
+.secondary-btn {
+  color: #000;
+  background-color: #F2F4F8;
 }
 
 .white-blue-btn {
@@ -11041,6 +11048,7 @@ img {
 
 .ReactModal__Content {
   max-width: 70%;
+  min-width: 50%;
 }
 
 .modal__header {
@@ -11590,7 +11598,7 @@ img {
 }
 
 .requests-wrapper .request-info {
-  margin-top: 30px;
+  margin-top: 50px;
 }
 
 .requests-wrapper .request-info .request-info__parameter {
