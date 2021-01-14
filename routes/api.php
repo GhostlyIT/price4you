@@ -49,6 +49,11 @@ Route::middleware(['auth:api', 'auth.company'])->post('response/add', 'App\Http\
 Route::middleware(['auth:api', 'auth.user'])->get('response/count/all', 'App\Http\Controllers\ResponseController@getAllResponsesAmount');
 Route::middleware(['auth:api', 'auth.user'])->get('response/user/all', 'App\Http\Controllers\ResponseController@getForUser');
 
+//Messages
+Route::middleware('auth:api')->post('message/send', 'App\Http\Controllers\MessageController@send');
+Route::middleware('auth:api')->get('message/chats', 'App\Http\Controllers\MessageController@getChats');
+Route::middleware(['auth:api', 'chat.participation'])->get('message/all', 'App\Http\Controllers\MessageController@getMessagesForChat');
+
 
 // Errors
 Route::get('errorUnauthorized', function() {

@@ -65,6 +65,8 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
         'auth.company' => \App\Http\Middleware\IsCompany::class,
-        'auth.user' => \App\Http\Middleware\IsUser::class
+        'auth.user' => \App\Http\Middleware\IsUser::class,
+
+        'chat.participation' => \App\Http\Middleware\CheckChatParticipation::class
     ];
 }

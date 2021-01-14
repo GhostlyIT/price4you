@@ -49,4 +49,6 @@ class User extends Authenticatable
     public function blackList() {
         return $this->hasMany('App\Models\UserBlackList');
     }
+
+
 }

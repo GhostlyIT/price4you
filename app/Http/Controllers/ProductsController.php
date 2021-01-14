@@ -2,11 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Culture;
-
 use App\Models\Fertiliser;
-
-use App\Models\RegData;
 
 use App\Models\Seed;
 
