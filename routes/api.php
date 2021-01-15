@@ -53,6 +53,7 @@ Route::middleware(['auth:api', 'auth.user'])->get('response/user/all', 'App\Http
 Route::middleware('auth:api')->post('message/send', 'App\Http\Controllers\MessageController@send');
 Route::middleware('auth:api')->get('message/chats', 'App\Http\Controllers\MessageController@getChats');
 Route::middleware(['auth:api', 'chat.participation'])->get('message/all', 'App\Http\Controllers\MessageController@getMessagesForChat');
+Route::middleware('auth:api')->get('message/count/all', 'App\Http\Controllers\MessageController@getUnreadMessagesCount');
 
 
 // Errors

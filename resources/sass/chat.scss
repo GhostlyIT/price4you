@@ -1,0 +1,67 @@
+.chat {
+    border: 1px solid $chat-border-color;
+    border-radius: 20px;
+    min-height: 70vh;
+
+    .chat__opponents {
+        border-right: 1px solid $chat-border-color;
+        max-height: 599px;
+        overflow-y: scroll;
+
+        .chat__opponent {
+            padding: 16px;
+            cursor: pointer;
+
+            .chat__opponent_main {
+                width: 70%;
+
+                .chat__opponent_name {
+                    span {
+                        font-size: 20px;
+                        font-weight: 700;
+                    }
+                }
+
+                .chat__opponent_last_message {
+                    max-width: 100%;
+                }
+            }
+
+            &.active {
+                background-color: $input-background;
+            }
+
+            &:not(:last-child) {
+                border-bottom: 1px solid $chat-border-color;
+            }
+
+            &:first-child {
+                border-top-left-radius: 20px;
+                border-bottom: 1px solid $chat-border-color;
+            }
+
+            &.has-messages {
+                background-color: #a0c1ff;
+            }
+        }
+    }
+
+    .chat__chat {
+        height: 380px;
+        overflow-y: scroll;
+
+        .message {
+            margin-top: 20px;
+
+            .message__main_head__name {
+                margin-right: 30px;
+                font-size: 20px;
+                font-weight: 700;
+            }
+        }
+    }
+
+    .chat__input {
+        border-top: 1px solid $chat-border-color;
+    }
+}

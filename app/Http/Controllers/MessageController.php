@@ -6,6 +6,7 @@ use App\Exceptions\ValidationException;
 use App\Models\Chat;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Message;
 
@@ -57,6 +58,18 @@ class MessageController extends Controller
                 ->with([
                     'messages' => function($query) {
                         $query->orderBy('id', 'desc')->first();
+                    },
+                    'user1' => function($query) {
+                        $query->with('company');
+                    },
+                    'user2' => function($query) {
+                        $query->with('company');
+                    }
+                ])
+                ->withCount([
+                    'messages' => function($query) {
+                        $userId = Auth::id();
+                        $query->where('to', $userId)->where('read', 0);
                     }
                 ])
                 ->get();
@@ -76,10 +89,38 @@ class MessageController extends Controller
         }
 
         $chatId = $request->get('chat_id');
+        $userId = Auth::id();
 
         try {
-            $messages = Chat::findOrFail($chatId)->messages()->get();
+            $messages = Chat::findOrFail($chatId)->messages()->with('sender', 'sender.company')->get();
+            DB::table('messages')->where('chat_id', $chatId)->where('to', $userId)->update(['read' => 1]);
             return response()->json(['messages' => $messages, 'status' => 'success'],200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => 'error'], 400);
+        }
+    }
+
+    public function getUnreadMessagesCount(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'chat_id' => 'integer'
+        ]);
+
+        if ($validator->fails()) {
+            $this->failedValidation($validator);
+        }
+
+        $userId = Auth::id();
+        $chatId = null;
+
+        if ($request->has('chat_id')) $chatid = $request->get('chat_id');
+
+        try {
+            if ($chatId == null) {
+                $messagesCount = Message::where('to', $userId)->where('read', 0)->get()->count();
+            } else {
+                $messagesCount = Message::where('to', $userId)->where('read', 0)->where('chat_id', $chatId)->get()->count();
+            }
+            return response()->json(['unread_messages_count' => $messagesCount, 'status' => 'success'],200);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 'error'], 400);
         }

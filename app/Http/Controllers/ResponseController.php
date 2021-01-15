@@ -74,7 +74,7 @@ class ResponseController extends Controller
             $responses = [];
             foreach($requests as $request) {
                 if (!$request->responses()->get()->isEmpty())
-                    $responseList = $request->responses()->with(['product', 'product.request'])->orderBy('id', 'desc')->get();
+                    $responseList = $request->responses()->with(['company', 'product', 'product.request'])->orderBy('id', 'desc')->get();
                     foreach($responseList as $response) {
                         $response['product_info'] = $response->product()->with($response->product->product_type)->first();
                         $response['request'] = $response->product->request;

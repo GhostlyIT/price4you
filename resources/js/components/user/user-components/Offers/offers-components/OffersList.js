@@ -14,6 +14,7 @@ const OffersList = ({offers, openMessageModal}) => {
             const deliveryMethod = offer.request.delivery_method
             const deliveryAddress = offer.request.delivery_address
             const totalPrice = parseInt(price) * parseInt(value)
+            const recipientId = offer.company.user_id
 
             return(
                 <div key={offer.id} className="col-12 col-md-4 request-info d-flex flex-column mt-4">
@@ -63,7 +64,7 @@ const OffersList = ({offers, openMessageModal}) => {
                     </div>
 
                     <div className="d-flex flex-column mt-auto">
-                        <button onClick={() => openMessageModal()} type="button" className="secondary-btn mb-3">Написать</button>
+                        <button onClick={() => openMessageModal(recipientId)} type="button" className="secondary-btn mb-3">Написать</button>
                         <button type="button" className="main-btn">Выслать контакты</button>
                     </div>
                 </div>

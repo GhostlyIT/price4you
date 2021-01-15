@@ -8,7 +8,8 @@ import axios from "axios";
 
 const UserSideBlock = (props) => {
     const [activeLink, setActiveLink] = useState(2),
-        [responsesAmount, setResponsesAmount] = useState(0)
+        [responsesAmount, setResponsesAmount] = useState(0),
+        [unreadMessagesAmount, setUnreadMessagesAmount] = useState(0)
 
     useEffect(() => {
       axios.get('/api/response/count/all', {
@@ -16,6 +17,16 @@ const UserSideBlock = (props) => {
       })
           .then(response => {
               setResponsesAmount(response.data.responses_count)
+          })
+          .catch(error => {
+              console.log(error.response.data.message)
+          })
+
+      axios.get('/api/message/count/all', {
+          headers: {'Authorization': 'Bearer ' + props.token}
+      })
+          .then(response => {
+              setUnreadMessagesAmount(response.data.unread_messages_count)
           })
           .catch(error => {
               console.log(error.response.data.message)
@@ -41,7 +52,14 @@ const UserSideBlock = (props) => {
                         </span>
                     }
                 </Link>
-                <Link onClick={() => setActiveLink('4')} className={window.location.pathname === '/user/messages' ? 'active' : null} to="/user/messages">Сообщения</Link>
+                <Link onClick={() => setActiveLink('4')} className={`d-flex ${window.location.pathname === '/user/messages' ? 'active' : null}`} to="/user/messages">
+                    Сообщения
+                    {unreadMessagesAmount > 0 &&
+                        <span className="amount-badge font-weight-bold ml-2">
+                            <span>{unreadMessagesAmount}</span>
+                        </span>
+                    }
+                </Link>
                 <Link onClick={() => setActiveLink('5')} className={window.location.pathname === '/user/settings' ? 'active' : null} to="/user/settings">Настройки</Link>
                 <Link onClick={() => setActiveLink('6')} className={window.location.pathname === '/faq/how-works' ? 'active' : null} to="/faq/how-works">Как работает сервис</Link>
                 <button onClick={() => props.exit()} type="button">Выйти</button>

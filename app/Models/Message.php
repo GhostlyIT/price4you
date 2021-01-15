@@ -14,10 +14,10 @@ class Message extends Model
     ];
 
     public function sender() {
-        return $this->belongsTo('App/Models/User', 'from');
+        return $this->belongsTo('App\Models\User', 'from');
     }
 
     public function recipient() {
-        return $this->belongsTo('App/Models/User', 'to');
+        return $this->belongsTo('App\Models\User', 'to');
     }
 }

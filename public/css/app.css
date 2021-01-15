@@ -11637,3 +11637,69 @@ img {
   max-width: 80%;
 }
 
+.chat {
+  border: 1px solid darkgrey;
+  border-radius: 20px;
+  min-height: 70vh;
+}
+
+.chat .chat__opponents {
+  border-right: 1px solid darkgrey;
+  max-height: 599px;
+  overflow-y: scroll;
+}
+
+.chat .chat__opponents .chat__opponent {
+  padding: 16px;
+  cursor: pointer;
+}
+
+.chat .chat__opponents .chat__opponent .chat__opponent_main {
+  width: 70%;
+}
+
+.chat .chat__opponents .chat__opponent .chat__opponent_main .chat__opponent_name span {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.chat .chat__opponents .chat__opponent .chat__opponent_main .chat__opponent_last_message {
+  max-width: 100%;
+}
+
+.chat .chat__opponents .chat__opponent.active {
+  background-color: #F2F4F8;
+}
+
+.chat .chat__opponents .chat__opponent:not(:last-child) {
+  border-bottom: 1px solid darkgrey;
+}
+
+.chat .chat__opponents .chat__opponent:first-child {
+  border-top-left-radius: 20px;
+  border-bottom: 1px solid darkgrey;
+}
+
+.chat .chat__opponents .chat__opponent.has-messages {
+  background-color: #a0c1ff;
+}
+
+.chat .chat__chat {
+  height: 380px;
+  overflow-y: scroll;
+}
+
+.chat .chat__chat .message {
+  margin-top: 20px;
+}
+
+.chat .chat__chat .message .message__main_head__name {
+  margin-right: 30px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.chat .chat__input {
+  border-top: 1px solid darkgrey;
+}
+

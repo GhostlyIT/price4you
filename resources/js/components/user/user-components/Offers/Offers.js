@@ -6,7 +6,8 @@ import SendMessageModal from "../../../common/modals/SendMessageModal";
 
 const Offers = (props) => {
     const [offers, setOffers] = useState([]),
-        [isMessageModalOpen, setMessageModalOpen] = useState(false)
+        [isMessageModalOpen, setMessageModalOpen] = useState(false),
+        [recipient, setRecipient] = useState(null)
 
     useEffect(() => {
         axios.get('/api/response/user/all', {
@@ -23,11 +24,19 @@ const Offers = (props) => {
     return (
         <div className="col-12">
             <div className="row requests-wrapper">
-                <OffersList offers={offers} openMessageModal={() => setMessageModalOpen(true)} />
+                <OffersList
+                    offers={offers}
+                    openMessageModal={(recipientId) => {
+                            setRecipient(recipientId)
+                            setMessageModalOpen(true)
+                        }
+                    }
+                />
                 <SendMessageModal
                     isOpen={isMessageModalOpen}
                     closeModalFunc={() => setMessageModalOpen(false)}
                     modalTitle="Написать"
+                    recipientId={recipient}
                 />
             </div>
         </div>

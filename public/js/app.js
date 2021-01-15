@@ -77856,6 +77856,331 @@ var mapDispatchProps = function mapDispatchProps(dispatch) {
 
 /***/ }),
 
+/***/ "./resources/js/components/chat/Chat.js":
+/*!**********************************************!*\
+  !*** ./resources/js/components/chat/Chat.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _chat_components_ChatsList__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./chat-components/ChatsList */ "./resources/js/components/chat/chat-components/ChatsList.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _chat_components_Messages__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./chat-components/Messages */ "./resources/js/components/chat/chat-components/Messages.js");
+/* harmony import */ var _helpers_sendMessage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../helpers/sendMessage */ "./resources/js/helpers/sendMessage.js");
+/* harmony import */ var _helpers_notifications__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../helpers/notifications */ "./resources/js/helpers/notifications.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+var Chat = function Chat(_ref) {
+  var token = _ref.token;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
+      _useState2 = _slicedToArray(_useState, 2),
+      activeChat = _useState2[0],
+      _setActiveChat = _useState2[1],
+      _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState4 = _slicedToArray(_useState3, 2),
+      messages = _useState4[0],
+      setMessages = _useState4[1],
+      _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+      _useState6 = _slicedToArray(_useState5, 2),
+      currentMessage = _useState6[0],
+      setCurrentMessage = _useState6[1],
+      _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
+      _useState8 = _slicedToArray(_useState7, 2),
+      recipientId = _useState8[0],
+      setRecipientId = _useState8[1];
+
+  var messagesElement = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(null);
+  var input = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(null);
+
+  var handleSend = function handleSend() {
+    if (Object(_helpers_sendMessage__WEBPACK_IMPORTED_MODULE_5__["sendMessage"])(currentMessage, recipientId, token)) {
+      setCurrentMessage('');
+      input.current.value = '';
+      getMessages();
+    } else {
+      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_6__["showNotification"])('Сообщение', 'Произошла ошибка при отправке сообщения', 'danger');
+    }
+  };
+
+  var getMessages = function getMessages() {
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/message/all?chat_id=' + activeChat, {
+      headers: {
+        'Authorization': 'Bearer ' + token
+      }
+    }).then(function (response) {
+      setMessages(response.data.messages);
+    })["catch"](function (error) {
+      console.log(error.response.data.message);
+    });
+  };
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    if (activeChat != null) {
+      getMessages();
+    }
+  }, [activeChat]);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    if (messagesElement.current != null) {
+      messagesElement.current.scrollIntoView();
+    }
+  }, [messages]);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "chat row m-0 w-100"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "chat__opponents col-3 p-0 d-flex flex-column"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_chat_components_ChatsList__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    activeChat: activeChat,
+    setActiveChat: function setActiveChat(chatId, recipientId) {
+      _setActiveChat(chatId);
+
+      setRecipientId(recipientId);
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-9"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "chat__chat"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_chat_components_Messages__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    messages: messages
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      "float": "left",
+      clear: "both"
+    },
+    ref: messagesElement
+  })), activeChat != null && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "chat__input d-flex flex-column"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+    ref: input,
+    onChange: function onChange(e) {
+      return setCurrentMessage(e.target.value);
+    },
+    placeholder: "\u0412\u0430\u0448\u0435 \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435...",
+    rows: "5"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: function onClick() {
+      return handleSend();
+    },
+    type: "button",
+    className: "main-btn mb-3 mt-3 w-50",
+    disabled: currentMessage.length === 0
+  }, "\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C"))));
+};
+
+var mapStateToProps = function mapStateToProps(store) {
+  return {
+    token: store.authReducer.userToken,
+    userData: store.authReducer.userData
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(mapStateToProps)(Chat));
+
+/***/ }),
+
+/***/ "./resources/js/components/chat/chat-components/ChatsList.js":
+/*!*******************************************************************!*\
+  !*** ./resources/js/components/chat/chat-components/ChatsList.js ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _store_actions_authAction__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../store/actions/authAction */ "./resources/js/store/actions/authAction.js");
+/* harmony import */ var _store_actions_exitAction__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../store/actions/exitAction */ "./resources/js/store/actions/exitAction.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+var ChatsList = function ChatsList(_ref) {
+  var token = _ref.token,
+      userData = _ref.userData,
+      activeChat = _ref.activeChat,
+      setActiveChat = _ref.setActiveChat;
+  var maxLetters = 15;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      chats = _useState2[0],
+      setChats = _useState2[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/message/chats', {
+      headers: {
+        'Authorization': 'Bearer ' + token
+      }
+    }).then(function (response) {
+      setChats(response.data.chats);
+    })["catch"](function (error) {
+      console.log(error.response.data.message);
+    });
+  }, []);
+
+  if (chats.length > 0) {
+    return chats.map(function (chat) {
+      var messagesCount = chat.messages_count;
+      var opponent = chat.user1.id == userData.id ? chat.user2 : chat.user1;
+      var recipientId = opponent.id;
+      var message = chat.messages[0].message.slice(0, maxLetters);
+
+      if (message.length < chat.messages[0].message.length) {
+        message += '...';
+      }
+
+      if (opponent.account_type === 'company') {
+        opponent = opponent.company;
+        opponent.surname = '';
+      }
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        onClick: function onClick() {
+          return setActiveChat(chat.id, recipientId);
+        },
+        key: chat.id,
+        className: "chat__opponent w-100 d-flex align-items-center ".concat(activeChat == chat.id && 'active', " ").concat(messagesCount > 0 && 'has-messages')
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "chat__opponent_avatar",
+        style: {
+          width: '40px',
+          height: '40px',
+          borderRadius: '50%',
+          backgroundColor: 'grey',
+          marginRight: '20px'
+        }
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "chat__opponent_main d-flex flex-column"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "chat__opponent_name d-flex align-items-center"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, opponent.name, " ", opponent.surname), messagesCount > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "amount-badge font-weight-bold ml-2"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, messagesCount))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "chat__opponent_last_message"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, chat.messages[0].from == userData.id ? 'Вы:' : '', " ", message))));
+    });
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, "\u041F\u0435\u0440\u0435\u043F\u0438\u0441\u043E\u043A \u043F\u043E\u043A\u0430 \u043D\u0435\u0442");
+};
+
+var mapStateToProps = function mapStateToProps(store) {
+  return {
+    token: store.authReducer.userToken,
+    userData: store.authReducer.userData
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_5__["connect"])(mapStateToProps)(ChatsList));
+
+/***/ }),
+
+/***/ "./resources/js/components/chat/chat-components/Messages.js":
+/*!******************************************************************!*\
+  !*** ./resources/js/components/chat/chat-components/Messages.js ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _helpers_dateConverter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../helpers/dateConverter */ "./resources/js/helpers/dateConverter.js");
+
+
+
+var Messages = function Messages(_ref) {
+  var messages = _ref.messages;
+
+  if (messages.length > 0) {
+    return messages.map(function (message) {
+      var sender = message.sender;
+      var company = sender.company;
+      var date = Object(_helpers_dateConverter__WEBPACK_IMPORTED_MODULE_1__["getFullDate"])(message.created_at);
+      var fullName = sender.name + ' ' + sender.surname;
+
+      if (sender.account_type === 'company') {
+        fullName = company.company_name;
+      }
+
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        key: message.id,
+        className: "message d-flex"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "message__avatar",
+        style: {
+          width: '40px',
+          height: '40px',
+          borderRadius: '50%',
+          backgroundColor: 'grey',
+          marginRight: '20px'
+        }
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "message__main w-100"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "message__main_head d-flex align-items-center w-50"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "message__main_head__name"
+      }, fullName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, date)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "message__main_body"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, message.message))));
+    });
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: "text-center mt-3"
+  }, "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0441\u043E\u0431\u0435\u0441\u0435\u0434\u043D\u0438\u043A\u0430");
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Messages);
+
+/***/ }),
+
 /***/ "./resources/js/components/common/loader.js":
 /*!**************************************************!*\
   !*** ./resources/js/components/common/loader.js ***!
@@ -77948,26 +78273,74 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modal */ "./resources/js/components/common/modal.js");
+/* harmony import */ var _helpers_sendMessage__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../helpers/sendMessage */ "./resources/js/helpers/sendMessage.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _helpers_notifications__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../helpers/notifications */ "./resources/js/helpers/notifications.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
 
 
 
 var SendMessageModal = function SendMessageModal(_ref) {
   var isOpen = _ref.isOpen,
       closeModalFunc = _ref.closeModalFunc,
-      modalTitle = _ref.modalTitle;
+      modalTitle = _ref.modalTitle,
+      recipientId = _ref.recipientId,
+      token = _ref.token;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+      _useState2 = _slicedToArray(_useState, 2),
+      message = _useState2[0],
+      setMessage = _useState2[1];
+
+  var handle = function handle() {
+    if (Object(_helpers_sendMessage__WEBPACK_IMPORTED_MODULE_2__["sendMessage"])(message, recipientId, token) == true) {
+      setMessage('');
+      closeModalFunc();
+      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_4__["showNotification"])('Сообщение', 'Сообщение отправлено', 'success');
+    } else {
+      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_4__["showNotification"])('Сообщение', 'Произошла ошибка при отправке сообщения', 'danger');
+    }
+  };
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modal__WEBPACK_IMPORTED_MODULE_1__["default"], {
     isOpen: isOpen,
     closeModal: closeModalFunc,
     modalTitle: modalTitle
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+    onChange: function onChange(e) {
+      return setMessage(e.target.value);
+    },
     className: "form-control d-inline-block mb-4",
     rows: "5"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: function onClick() {
+      return handle();
+    },
     className: "main-btn"
   }, "\u041E\u0442\u043F\u0440\u0430\u0432\u0438\u0442\u044C \u0441\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u0435"));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (SendMessageModal);
+var mapStateToProps = function mapStateToProps(store) {
+  return {
+    token: store.authReducer.userToken
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(mapStateToProps)(SendMessageModal));
 
 /***/ }),
 
@@ -78882,7 +79255,11 @@ var UserSideBlock = function UserSideBlock(props) {
       _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0),
       _useState4 = _slicedToArray(_useState3, 2),
       responsesAmount = _useState4[0],
-      setResponsesAmount = _useState4[1];
+      setResponsesAmount = _useState4[1],
+      _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0),
+      _useState6 = _slicedToArray(_useState5, 2),
+      unreadMessagesAmount = _useState6[0],
+      setUnreadMessagesAmount = _useState6[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     axios__WEBPACK_IMPORTED_MODULE_6___default.a.get('/api/response/count/all', {
@@ -78891,6 +79268,15 @@ var UserSideBlock = function UserSideBlock(props) {
       }
     }).then(function (response) {
       setResponsesAmount(response.data.responses_count);
+    })["catch"](function (error) {
+      console.log(error.response.data.message);
+    });
+    axios__WEBPACK_IMPORTED_MODULE_6___default.a.get('/api/message/count/all', {
+      headers: {
+        'Authorization': 'Bearer ' + props.token
+      }
+    }).then(function (response) {
+      setUnreadMessagesAmount(response.data.unread_messages_count);
     })["catch"](function (error) {
       console.log(error.response.data.message);
     });
@@ -78927,9 +79313,11 @@ var UserSideBlock = function UserSideBlock(props) {
     onClick: function onClick() {
       return setActiveLink('4');
     },
-    className: window.location.pathname === '/user/messages' ? 'active' : null,
+    className: "d-flex ".concat(window.location.pathname === '/user/messages' ? 'active' : null),
     to: "/user/messages"
-  }, "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u044F"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }, "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u044F", unreadMessagesAmount > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "amount-badge font-weight-bold ml-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, unreadMessagesAmount))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     onClick: function onClick() {
       return setActiveLink('5');
     },
@@ -78986,6 +79374,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _user_components_Options_Options__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./user-components/Options/Options */ "./resources/js/components/user/user-components/Options/Options.js");
 /* harmony import */ var _user_components_Offers_Offers__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./user-components/Offers/Offers */ "./resources/js/components/user/user-components/Offers/Offers.js");
+/* harmony import */ var _chat_Chat__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../chat/Chat */ "./resources/js/components/chat/Chat.js");
+
 
 
 
@@ -79011,7 +79401,9 @@ var User = function User(props) {
     path: "".concat(match.url, "/settings")
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_user_components_Options_Options__WEBPACK_IMPORTED_MODULE_7__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "".concat(match.url, "/offers")
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_user_components_Offers_Offers__WEBPACK_IMPORTED_MODULE_8__["default"], null)));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_user_components_Offers_Offers__WEBPACK_IMPORTED_MODULE_8__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+    path: "".concat(match.url, "/messages")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_chat_Chat__WEBPACK_IMPORTED_MODULE_9__["default"], null)));
 };
 
 var mapStateToProps = function mapStateToProps(store) {
@@ -79583,7 +79975,11 @@ var Offers = function Offers(props) {
       _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState4 = _slicedToArray(_useState3, 2),
       isMessageModalOpen = _useState4[0],
-      setMessageModalOpen = _useState4[1];
+      setMessageModalOpen = _useState4[1],
+      _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
+      _useState6 = _slicedToArray(_useState5, 2),
+      recipient = _useState6[0],
+      setRecipient = _useState6[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/response/user/all', {
@@ -79602,15 +79998,17 @@ var Offers = function Offers(props) {
     className: "row requests-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_offers_components_OffersList__WEBPACK_IMPORTED_MODULE_3__["default"], {
     offers: offers,
-    openMessageModal: function openMessageModal() {
-      return setMessageModalOpen(true);
+    openMessageModal: function openMessageModal(recipientId) {
+      setRecipient(recipientId);
+      setMessageModalOpen(true);
     }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_modals_SendMessageModal__WEBPACK_IMPORTED_MODULE_4__["default"], {
     isOpen: isMessageModalOpen,
     closeModalFunc: function closeModalFunc() {
       return setMessageModalOpen(false);
     },
-    modalTitle: "\u041D\u0430\u043F\u0438\u0441\u0430\u0442\u044C"
+    modalTitle: "\u041D\u0430\u043F\u0438\u0441\u0430\u0442\u044C",
+    recipientId: recipient
   })));
 };
 
@@ -79654,6 +80052,7 @@ var OffersList = function OffersList(_ref) {
       var deliveryMethod = offer.request.delivery_method;
       var deliveryAddress = offer.request.delivery_address;
       var totalPrice = parseInt(price) * parseInt(value);
+      var recipientId = offer.company.user_id;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         key: offer.id,
         className: "col-12 col-md-4 request-info d-flex flex-column mt-4"
@@ -79719,7 +80118,7 @@ var OffersList = function OffersList(_ref) {
         className: "d-flex flex-column mt-auto"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return openMessageModal();
+          return openMessageModal(recipientId);
         },
         type: "button",
         className: "secondary-btn mb-3"
@@ -80286,15 +80685,26 @@ var mapDispatchProps = function mapDispatchProps(dispatch) {
 /*!***********************************************!*\
   !*** ./resources/js/helpers/dateConverter.js ***!
   \***********************************************/
-/*! exports provided: getMonthOnRus */
+/*! exports provided: getMonthOnRus, getFullDate */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getMonthOnRus", function() { return getMonthOnRus; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getFullDate", function() { return getFullDate; });
 var months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'];
 var getMonthOnRus = function getMonthOnRus(monthNumber) {
   return months[monthNumber];
+};
+var getFullDate = function getFullDate(rawDate) {
+  var transformedDate = new Date(rawDate);
+  var month = '0' + (parseInt(transformedDate.getMonth()) + parseInt(1));
+
+  if (month > 9) {
+    month = month.slice(0);
+  }
+
+  return transformedDate.getDate() + '.' + month + '.' + transformedDate.getFullYear() + ' ' + transformedDate.getHours() + ':' + transformedDate.getMinutes();
 };
 
 /***/ }),
@@ -80362,6 +80772,35 @@ var productTypeConverter = function productTypeConverter(type) {
   }
 
   return convertedType;
+};
+
+/***/ }),
+
+/***/ "./resources/js/helpers/sendMessage.js":
+/*!*********************************************!*\
+  !*** ./resources/js/helpers/sendMessage.js ***!
+  \*********************************************/
+/*! exports provided: sendMessage */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendMessage", function() { return sendMessage; });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+var sendMessage = function sendMessage(message, recipient_id, token) {
+  axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/message/send', {
+    recipient_id: recipient_id,
+    message: message
+  }, {
+    headers: {
+      'Authorization': 'Bearer ' + token
+    }
+  })["catch"](function (error) {
+    return false;
+  });
+  return true;
 };
 
 /***/ }),

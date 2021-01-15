@@ -20,4 +20,10 @@ class Companies extends Model
     public function user() {
         return $this->belongsTo('App\Models\User');
     }
+
+    public function getNameAttribute() {
+        return "{$this->company_name}";
+    }
+
+    protected $appends = ['name'];
 }
