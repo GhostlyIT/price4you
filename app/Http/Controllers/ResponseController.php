@@ -87,4 +87,25 @@ class ResponseController extends Controller
             return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);
         }
     }
+
+    public function reject(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'response_id' => 'integer|required'
+        ]);
+
+        if ($validator->fails()) {
+            $this->failedValidation($validator);
+        }
+
+        $responseId = $request->get('response_id');
+
+        try {
+            $response = CompanyResponses::find($responseId);
+            $response->status = 'rejected';
+            $response->save();
+            return response()->json(['message' => 'Предложение отклонено', 'status' => 'success'],200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);
+        }
+    }
 }

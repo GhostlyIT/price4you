@@ -48,6 +48,7 @@ Route::middleware(['auth:api', 'auth.company'])->get('request/get-for-company', 
 Route::middleware(['auth:api', 'auth.company'])->post('response/add', 'App\Http\Controllers\ResponseController@save');
 Route::middleware(['auth:api', 'auth.user'])->get('response/count/all', 'App\Http\Controllers\ResponseController@getAllResponsesAmount');
 Route::middleware(['auth:api', 'auth.user'])->get('response/user/all', 'App\Http\Controllers\ResponseController@getForUser');
+Route::middleware(['auth:api', 'auth.user', 'response.user'])->post('response/reject', 'App\Http\Controllers\ResponseController@reject');
 
 //Messages
 Route::middleware('auth:api')->post('message/send', 'App\Http\Controllers\MessageController@send');
@@ -56,7 +57,7 @@ Route::middleware(['auth:api', 'chat.participation'])->get('message/all', 'App\H
 Route::middleware('auth:api')->get('message/count/all', 'App\Http\Controllers\MessageController@getUnreadMessagesCount');
 
 
-// Errors
+//Errors
 Route::get('errorUnauthorized', function() {
     return response()->json(['message' => 'Не авторизован', 'status' => 'error'], 401);
 })->name('unathorized');

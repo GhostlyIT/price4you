@@ -1,8 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import axios from "axios"
-import {bindActionCreators} from "redux";
-import authAction from "../../../store/actions/authAction";
-import exitAction from "../../../store/actions/exitAction";
 import {connect} from "react-redux";
 
 const ChatsList = ({token, userData, activeChat, setActiveChat}) => {

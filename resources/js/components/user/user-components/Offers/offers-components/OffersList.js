@@ -64,8 +64,12 @@ const OffersList = ({offers, openMessageModal}) => {
                     </div>
 
                     <div className="d-flex flex-column mt-auto">
-                        <button onClick={() => openMessageModal(recipientId)} type="button" className="secondary-btn mb-3">Написать</button>
-                        <button type="button" className="main-btn">Выслать контакты</button>
+                        <button type="button" className="main-btn mb-3">Принять</button>
+
+                        <div className="d-flex justify-content-between">
+                            <button onClick={() => openMessageModal(recipientId)} type="button" className="secondary-btn" style={{width: '45%'}}>Написать</button>
+                            <button type="button" className="main-btn" style={{width: '45%', backgroundColor: '#dc3545'}}>Отказаться</button>
+                        </div>
                     </div>
                 </div>
             )

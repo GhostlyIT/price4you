@@ -67,6 +67,8 @@ class Kernel extends HttpKernel
         'auth.company' => \App\Http\Middleware\IsCompany::class,
         'auth.user' => \App\Http\Middleware\IsUser::class,
 
-        'chat.participation' => \App\Http\Middleware\CheckChatParticipation::class
+        'chat.participation' => \App\Http\Middleware\CheckChatParticipation::class,
+
+        'response.user' => \App\Http\Middleware\UsersResponse::class,
     ];
 }
