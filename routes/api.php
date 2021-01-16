@@ -49,6 +49,10 @@ Route::middleware(['auth:api', 'auth.company'])->post('response/add', 'App\Http\
 Route::middleware(['auth:api', 'auth.user'])->get('response/count/all', 'App\Http\Controllers\ResponseController@getAllResponsesAmount');
 Route::middleware(['auth:api', 'auth.user'])->get('response/user/all', 'App\Http\Controllers\ResponseController@getForUser');
 Route::middleware(['auth:api', 'auth.user', 'response.user'])->post('response/reject', 'App\Http\Controllers\ResponseController@reject');
+Route::middleware(['auth:api', 'auth.user', 'response.user'])->post('response/accept', 'App\Http\Controllers\ResponseController@accept');
+Route::middleware(['auth:api', 'auth.company', 'response.company'])->post('response/send-to-close', 'App\Http\Controllers\ResponseController@sendToCLose');
+Route::middleware(['auth:api', 'auth.user', 'response.user'])->post('response/close', 'App\Http\Controllers\ResponseController@close');
+
 
 //Messages
 Route::middleware('auth:api')->post('message/send', 'App\Http\Controllers\MessageController@send');

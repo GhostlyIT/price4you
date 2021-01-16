@@ -1,5 +1,5 @@
 .chat {
-    border: 1px solid $chat-border-color;
+    box-shadow: 0 3px 5px 0 hsla(0,0%,68.2%,.5);
     border-radius: 20px;
     min-height: 70vh;
 
@@ -62,6 +62,11 @@
     }
 
     .chat__input {
-        border-top: 1px solid $chat-border-color;
+
+        textarea {
+            border: 1px solid $chat-border-color;
+            border-radius: 15px;
+            padding: 10px;
+        }
     }
 }

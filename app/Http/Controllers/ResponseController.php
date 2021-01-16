@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ValidationException;
 use App\Models\CompanyResponses;
-use App\Models\UserRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -103,12 +102,78 @@ class ResponseController extends Controller
         $responseId = $request->get('response_id');
 
         try {
-            $response = CompanyResponses::find($responseId);
-            $response->status = 'rejected';
-            $response->save();
+            $this->changeStatus($responseId, 'rejected');
             return response()->json(['message' => 'Предложение отклонено', 'status' => 'success'],200);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);
         }
+    }
+
+    public function accept(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'response_id' => 'integer|required'
+        ]);
+
+        if ($validator->fails()) {
+            $this->failedValidation($validator);
+        }
+
+        $responseId = $request->get('response_id');
+
+        try {
+            $this->changeStatus($responseId, 'accepted');
+            return response()->json(['message' => 'Предложение отклонено', 'status' => 'success'],200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);
+        }
+    }
+
+    public function sendToClose(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'response_id' => 'integer|required'
+        ]);
+
+        if ($validator->fails()) {
+            $this->failedValidation($validator);
+        }
+
+        $responseId = $request->get('response_id');
+
+        try {
+            $this->changeStatus($responseId, 'awaits_for_closing');
+            return response()->json(['message' => 'Предложение отклонено', 'status' => 'success'],200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);
+        }
+    }
+
+    public function close(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'response_id' => 'integer|required'
+        ]);
+
+        if ($validator->fails()) {
+            $this->failedValidation($validator);
+        }
+
+        $responseId = $request->get('response_id');
+
+        try {
+            $this->changeStatus($responseId, 'closed');
+            return response()->json(['message' => 'Предложение отклонено', 'status' => 'success'],200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);
+        }
+    }
+
+
+
+
+
+
+    private function changeStatus(int $responseId, string $newStatus):void {
+        $response = CompanyResponses::findOrFail($responseId);
+        $response->status = $newStatus;
+        $response->save();
     }
 }

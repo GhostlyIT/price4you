@@ -70,5 +70,6 @@ class Kernel extends HttpKernel
         'chat.participation' => \App\Http\Middleware\CheckChatParticipation::class,
 
         'response.user' => \App\Http\Middleware\UsersResponse::class,
+        'response.company' => \App\Http\Middleware\CompanysResponse::class,
     ];
 }
