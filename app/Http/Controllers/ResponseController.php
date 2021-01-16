@@ -55,7 +55,9 @@ class ResponseController extends Controller
         $user = Auth::user();
 
         try {
-            $responsesCount = $user->requests()->withCount('responses')->get();
+            $responsesCount = $user->requests()->withCount(['responses' => function ($q) {
+                $q->where('company_responses.status', '!=', 'rejected');
+            }])->get();
             $rCount = 0;
             foreach($responsesCount as $responseCount) {
                 $rCount += $responseCount->responses_count;
@@ -74,7 +76,8 @@ class ResponseController extends Controller
             $responses = [];
             foreach($requests as $request) {
                 if (!$request->responses()->get()->isEmpty())
-                    $responseList = $request->responses()->with(['company', 'product', 'product.request'])->orderBy('id', 'desc')->get();
+                    $responseList = $request->responses()->where('company_responses.status', '!=', 'rejected')->with(['company', 'product', 'product.request'])->orderBy('id', 'desc')->get();
+
                     foreach($responseList as $response) {
                         $response['product_info'] = $response->product()->with($response->product->product_type)->first();
                         $response['request'] = $response->product->request;
