@@ -86,7 +86,15 @@ class RequestController extends Controller
     public function getForUser(Request $request) {
         try {
             $user = Auth::user();
-            $requests = $user->requests()->with(['products', 'products.product', 'products.fertiliser', 'products.seed', 'products.responses'])->get();
+            $requests = $user->requests()->with([
+                'products',
+                'products.product',
+                'products.fertiliser',
+                'products.seed',
+                'products.responses' => function ($q) {
+                    $q->where('status', 'open');
+                }
+            ])->get();
             return response()->json(['requests' => $requests, 'status' => 'success'],200);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 'error'], 400);

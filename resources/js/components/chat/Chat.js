@@ -5,8 +5,10 @@ import {connect} from "react-redux"
 import Messages from "./chat-components/Messages"
 import {sendMessage} from "../../helpers/sendMessage"
 import {showNotification} from "../../helpers/notifications"
+import {bindActionCreators} from "redux";
+import updateAction from "../../store/actions/updateAction";
 
-const Chat = ({token}) => {
+const Chat = ({token, updateComponent}) => {
     const [activeChat, setActiveChat] = useState(null),
         [messages, setMessages] = useState([]),
         [currentMessage, setCurrentMessage] = useState(''),
@@ -35,6 +37,7 @@ const Chat = ({token}) => {
             .catch(error => {
                 console.log(error.response.data.message)
             })
+        updateComponent()
     }
 
     useEffect(() => {
@@ -84,7 +87,13 @@ const mapStateToProps = store => {
     return {
         token: store.authReducer.userToken,
         userData: store.authReducer.userData
-    };
+    }
 }
 
-export default connect(mapStateToProps)(Chat)
+const mapDispatchProps = dispatch => {
+    return {
+        updateComponent: bindActionCreators(updateAction, dispatch)
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchProps)(Chat)

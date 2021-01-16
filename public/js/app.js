@@ -77874,6 +77874,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _chat_components_Messages__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./chat-components/Messages */ "./resources/js/components/chat/chat-components/Messages.js");
 /* harmony import */ var _helpers_sendMessage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../helpers/sendMessage */ "./resources/js/helpers/sendMessage.js");
 /* harmony import */ var _helpers_notifications__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../helpers/notifications */ "./resources/js/helpers/notifications.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _store_actions_updateAction__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../store/actions/updateAction */ "./resources/js/store/actions/updateAction.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -77894,8 +77896,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
 var Chat = function Chat(_ref) {
-  var token = _ref.token;
+  var token = _ref.token,
+      updateComponent = _ref.updateComponent;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
       _useState2 = _slicedToArray(_useState, 2),
@@ -77937,6 +77942,7 @@ var Chat = function Chat(_ref) {
     })["catch"](function (error) {
       console.log(error.response.data.message);
     });
+    updateComponent();
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
@@ -77998,7 +78004,13 @@ var mapStateToProps = function mapStateToProps(store) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(mapStateToProps)(Chat));
+var mapDispatchProps = function mapDispatchProps(dispatch) {
+  return {
+    updateComponent: Object(redux__WEBPACK_IMPORTED_MODULE_7__["bindActionCreators"])(_store_actions_updateAction__WEBPACK_IMPORTED_MODULE_8__["default"], dispatch)
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_3__["connect"])(mapStateToProps, mapDispatchProps)(Chat));
 
 /***/ }),
 
@@ -78036,7 +78048,8 @@ var ChatsList = function ChatsList(_ref) {
   var token = _ref.token,
       userData = _ref.userData,
       activeChat = _ref.activeChat,
-      setActiveChat = _ref.setActiveChat;
+      setActiveChat = _ref.setActiveChat,
+      updateVal = _ref.updateVal;
   var maxLetters = 15;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
@@ -78054,7 +78067,7 @@ var ChatsList = function ChatsList(_ref) {
     })["catch"](function (error) {
       console.log(error.response.data.message);
     });
-  }, []);
+  }, [updateVal]);
 
   if (chats.length > 0) {
     return chats.map(function (chat) {
@@ -78105,7 +78118,8 @@ var ChatsList = function ChatsList(_ref) {
 var mapStateToProps = function mapStateToProps(store) {
   return {
     token: store.authReducer.userToken,
-    userData: store.authReducer.userData
+    userData: store.authReducer.userData,
+    updateVal: store.updateReducer.counter
   };
 };
 
@@ -78252,6 +78266,60 @@ var MyModal = function MyModal(props) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (MyModal);
+
+/***/ }),
+
+/***/ "./resources/js/components/common/modals/ConfirmModal.js":
+/*!***************************************************************!*\
+  !*** ./resources/js/components/common/modals/ConfirmModal.js ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modal */ "./resources/js/components/common/modal.js");
+
+
+
+var ConfirmModal = function ConfirmModal(_ref) {
+  var isOpen = _ref.isOpen,
+      closeModalFunc = _ref.closeModalFunc,
+      modalTitle = _ref.modalTitle,
+      confirmFunc = _ref.confirmFunc,
+      children = _ref.children;
+
+  var handle = function handle() {
+    confirmFunc();
+    closeModalFunc();
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modal__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    isOpen: isOpen,
+    closeModal: closeModalFunc,
+    modalTitle: modalTitle
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal__body"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal__element"
+  }, children), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal__element d-flex justify-content-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: function onClick() {
+      return handle();
+    },
+    className: "main-btn mr-4"
+  }, "\u041F\u043E\u0434\u0442\u0432\u0435\u0440\u0434\u0438\u0442\u044C"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: function onClick() {
+      return closeModalFunc();
+    },
+    className: "danger-btn"
+  }, "\u041E\u0442\u043C\u0435\u043D\u0430"))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ConfirmModal);
 
 /***/ }),
 
@@ -79221,6 +79289,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _store_actions_updateAction__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../store/actions/updateAction */ "./resources/js/store/actions/updateAction.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -79232,6 +79301,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -79265,6 +79335,8 @@ var UserSideBlock = function UserSideBlock(props) {
     })["catch"](function (error) {
       console.log(error.response.data.message);
     });
+  }, [props.updateVal]);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     axios__WEBPACK_IMPORTED_MODULE_6___default.a.get('/api/message/count/all', {
       headers: {
         'Authorization': 'Bearer ' + props.token
@@ -79274,7 +79346,10 @@ var UserSideBlock = function UserSideBlock(props) {
     })["catch"](function (error) {
       console.log(error.response.data.message);
     });
-  }, []);
+  }, [props.updateVal]);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    props.updateComponent();
+  }, [activeLink]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "d-flex flex-column user-sideblock justify-content-between"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -79334,14 +79409,16 @@ var UserSideBlock = function UserSideBlock(props) {
 var mapStateToProps = function mapStateToProps(store) {
   return {
     token: store.authReducer.userToken,
-    userData: store.authReducer.userData
+    userData: store.authReducer.userData,
+    updateVal: store.updateReducer.counter
   };
 };
 
 var mapDispatchProps = function mapDispatchProps(dispatch) {
   return {
     auth: Object(redux__WEBPACK_IMPORTED_MODULE_2__["bindActionCreators"])(_store_actions_authAction__WEBPACK_IMPORTED_MODULE_3__["default"], dispatch),
-    exit: Object(redux__WEBPACK_IMPORTED_MODULE_2__["bindActionCreators"])(_store_actions_exitAction__WEBPACK_IMPORTED_MODULE_4__["default"], dispatch)
+    exit: Object(redux__WEBPACK_IMPORTED_MODULE_2__["bindActionCreators"])(_store_actions_exitAction__WEBPACK_IMPORTED_MODULE_4__["default"], dispatch),
+    updateComponent: Object(redux__WEBPACK_IMPORTED_MODULE_2__["bindActionCreators"])(_store_actions_updateAction__WEBPACK_IMPORTED_MODULE_7__["default"], dispatch)
   };
 };
 
@@ -79943,6 +80020,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _offers_components_OffersList__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./offers-components/OffersList */ "./resources/js/components/user/user-components/Offers/offers-components/OffersList.js");
 /* harmony import */ var _common_modals_SendMessageModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../common/modals/SendMessageModal */ "./resources/js/components/common/modals/SendMessageModal.js");
+/* harmony import */ var _common_modals_ConfirmModal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../common/modals/ConfirmModal */ "./resources/js/components/common/modals/ConfirmModal.js");
+/* harmony import */ var _helpers_changeOfferStatus__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../helpers/changeOfferStatus */ "./resources/js/helpers/changeOfferStatus.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _store_actions_updateAction__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../store/actions/updateAction */ "./resources/js/store/actions/updateAction.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -79961,6 +80042,10 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+
+
+
 var Offers = function Offers(props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
       _useState2 = _slicedToArray(_useState, 2),
@@ -79970,10 +80055,22 @@ var Offers = function Offers(props) {
       _useState4 = _slicedToArray(_useState3, 2),
       isMessageModalOpen = _useState4[0],
       setMessageModalOpen = _useState4[1],
-      _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
+      _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState6 = _slicedToArray(_useState5, 2),
-      recipient = _useState6[0],
-      setRecipient = _useState6[1];
+      isConfirmModalOpen = _useState6[0],
+      setConfirmModalOpen = _useState6[1],
+      _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState8 = _slicedToArray(_useState7, 2),
+      isRejectModalOpen = _useState8[0],
+      setRejectModalOpen = _useState8[1],
+      _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
+      _useState10 = _slicedToArray(_useState9, 2),
+      recipient = _useState10[0],
+      setRecipient = _useState10[1],
+      _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
+      _useState12 = _slicedToArray(_useState11, 2),
+      offerId = _useState12[0],
+      setOfferId = _useState12[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/response/user/all', {
@@ -79985,16 +80082,25 @@ var Offers = function Offers(props) {
     })["catch"](function (error) {
       console.log(error.response.data.message);
     });
-  }, []);
+  }, [props.updateVal]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-12"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row requests-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_offers_components_OffersList__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    key: props.updateVal,
     offers: offers,
     openMessageModal: function openMessageModal(recipientId) {
       setRecipient(recipientId);
       setMessageModalOpen(true);
+    },
+    openConfirmModal: function openConfirmModal(offerId) {
+      setOfferId(offerId);
+      setConfirmModalOpen(true);
+    },
+    openRejectModal: function openRejectModal(offerId) {
+      setOfferId(offerId);
+      setRejectModalOpen(true);
     }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_modals_SendMessageModal__WEBPACK_IMPORTED_MODULE_4__["default"], {
     isOpen: isMessageModalOpen,
@@ -80003,16 +80109,43 @@ var Offers = function Offers(props) {
     },
     modalTitle: "\u041D\u0430\u043F\u0438\u0441\u0430\u0442\u044C",
     recipientId: recipient
-  })));
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_modals_ConfirmModal__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    isOpen: isConfirmModalOpen,
+    closeModalFunc: function closeModalFunc() {
+      return setConfirmModalOpen(false);
+    },
+    modalTitle: "\u041F\u0440\u0438\u043D\u044F\u0442\u044C \u043F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u0435",
+    confirmFunc: function confirmFunc() {
+      Object(_helpers_changeOfferStatus__WEBPACK_IMPORTED_MODULE_6__["changeOfferStatus"])(props.token, 'accept', offerId);
+      props.updateComponent();
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("b", null, "\u0412\u043D\u0438\u043C\u0430\u043D\u0438\u0435!"), " \u041F\u043E\u0441\u0442\u0430\u0432\u0449\u0438\u043A \u043F\u043E\u043B\u0443\u0447\u0438\u0442 \u0412\u0430\u0448\u0438 \u0434\u0430\u043D\u043D\u044B\u0435 \u0438 \u0441\u0432\u044F\u0436\u0435\u0442\u0441\u044F \u0441 \u0412\u0430\u043C\u0438 \u0432 \u0431\u043B\u0438\u0436\u0430\u0439\u0448\u0435\u0435 \u0432\u0440\u0435\u043C\u044F \u0434\u043B\u044F \u0437\u0430\u043A\u043B\u044E\u0447\u0435\u043D\u0438\u044F \u0441\u0434\u0435\u043B\u043A\u0438. \u041A\u043E\u043C\u043F\u0430\u043D\u0438\u044F EcoPlant Organization \u043D\u0435 \u043D\u0435\u0441\u0435\u0442 \u043E\u0442\u0432\u0435\u0442\u0441\u0442\u0432\u0435\u043D\u043D\u043E\u0441\u0442\u044C \u0437\u0430 \u0434\u0435\u0439\u0441\u0442\u0432\u0438\u044F \u043F\u043E\u0441\u0442\u0430\u0432\u0449\u0438\u043A\u043E\u0432 \u0438\u043B\u0438 \u0438\u043D\u044B\u0445 \u0442\u0440\u0435\u0442\u044C\u0438\u0445 \u043B\u0438\u0446. \u0412 \u0441\u043B\u0443\u0447\u0430\u0435 \u0441\u0440\u044B\u0432\u0430 \u0441\u0434\u0435\u043B\u043A\u0438 \u043F\u0440\u043E\u0441\u0438\u043C \u043D\u0430\u043F\u0438\u0441\u0430\u0442\u044C \u043D\u0430\u043C.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_modals_ConfirmModal__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    isOpen: isRejectModalOpen,
+    closeModalFunc: function closeModalFunc() {
+      return setRejectModalOpen(false);
+    },
+    modalTitle: "\u041E\u0442\u043A\u043B\u043E\u043D\u0438\u0442\u044C \u043F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u0435",
+    confirmFunc: function confirmFunc() {
+      Object(_helpers_changeOfferStatus__WEBPACK_IMPORTED_MODULE_6__["changeOfferStatus"])(props.token, 'reject', offerId);
+      props.updateComponent();
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u0412\u044B \u0443\u0432\u0435\u0440\u0435\u043D\u044B \u0447\u0442\u043E \u0445\u043E\u0442\u0438\u0442\u0435 \u043E\u0442\u043A\u043B\u043E\u043D\u0438\u0442\u044C \u043F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u0435?"))));
 };
 
 var mapStateToProps = function mapStateToProps(store) {
   return {
-    token: store.authReducer.userToken
+    token: store.authReducer.userToken,
+    updateVal: store.updateReducer.counter
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps)(Offers));
+var mapDispatchProps = function mapDispatchProps(dispatch) {
+  return {
+    updateComponent: Object(redux__WEBPACK_IMPORTED_MODULE_7__["bindActionCreators"])(_store_actions_updateAction__WEBPACK_IMPORTED_MODULE_8__["default"], dispatch)
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, mapDispatchProps)(Offers));
 
 /***/ }),
 
@@ -80031,7 +80164,9 @@ __webpack_require__.r(__webpack_exports__);
 
 var OffersList = function OffersList(_ref) {
   var offers = _ref.offers,
-      openMessageModal = _ref.openMessageModal;
+      openMessageModal = _ref.openMessageModal,
+      openConfirmModal = _ref.openConfirmModal,
+      openRejectModal = _ref.openRejectModal;
 
   if (offers.length > 0) {
     return offers.map(function (offer) {
@@ -80047,6 +80182,7 @@ var OffersList = function OffersList(_ref) {
       var deliveryAddress = offer.request.delivery_address;
       var totalPrice = parseInt(price) * parseInt(value);
       var recipientId = offer.company.user_id;
+      var status = offer.status;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         key: offer.id,
         className: "col-12 col-md-4 request-info d-flex flex-column mt-4"
@@ -80102,7 +80238,7 @@ var OffersList = function OffersList(_ref) {
         className: "mr-2 font-weight-bold"
       }, "\u041A\u043E\u043B\u0438\u0447\u0435\u0441\u0442\u0432\u043E:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "request-info__parameter"
-      }, value)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, value, " ", unit)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "d-flex align-items-center flex-wrap mt-3 mb-4"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "mr-2 font-weight-bold"
@@ -80110,7 +80246,10 @@ var OffersList = function OffersList(_ref) {
         className: "request-info__parameter"
       }, totalPrice, " \u0440\u0443\u0431.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "d-flex flex-column mt-auto"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, status != 'accepted' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: function onClick() {
+          return openConfirmModal(offer.id);
+        },
         type: "button",
         className: "main-btn mb-3"
       }, "\u041F\u0440\u0438\u043D\u044F\u0442\u044C"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -80125,13 +80264,17 @@ var OffersList = function OffersList(_ref) {
           width: '45%'
         }
       }, "\u041D\u0430\u043F\u0438\u0441\u0430\u0442\u044C"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: function onClick() {
+          return openRejectModal(offer.id);
+        },
         type: "button",
-        className: "main-btn",
+        className: "danger-btn",
         style: {
-          width: '45%',
-          backgroundColor: '#dc3545'
+          width: '45%'
         }
-      }, "\u041E\u0442\u043A\u0430\u0437\u0430\u0442\u044C\u0441\u044F"))));
+      }, "\u041E\u0442\u043A\u0430\u0437\u0430\u0442\u044C\u0441\u044F"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "offer__accepted_text"
+      }, "\u0412\u044B \u043F\u0440\u0438\u043D\u044F\u043B\u0438 \u043F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u0435. \u041E\u0436\u0438\u0434\u0430\u0439\u0442\u0435 \u043F\u043E\u043A\u0430 \u0441 \u0412\u0430\u043C\u0438 \u0441\u0432\u044F\u0436\u0435\u0442\u0441\u044F \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u044F.")));
     });
   }
 
@@ -80581,7 +80724,6 @@ var UserRequests = function UserRequests(props) {
   }, []);
 
   var renderRequests = function renderRequests() {
-    console.log(requests);
     return requests.map(function (request) {
       var responsesAmount = 0;
 
@@ -80684,6 +80826,44 @@ var mapDispatchProps = function mapDispatchProps(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(mapStateToProps, mapDispatchProps)(UserRequests));
+
+/***/ }),
+
+/***/ "./resources/js/helpers/changeOfferStatus.js":
+/*!***************************************************!*\
+  !*** ./resources/js/helpers/changeOfferStatus.js ***!
+  \***************************************************/
+/*! exports provided: changeOfferStatus */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changeOfferStatus", function() { return changeOfferStatus; });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+
+var offerUrls = {
+  accept: 'accept',
+  reject: 'reject',
+  sendToClose: 'send-to-close',
+  close: 'close'
+};
+var changeOfferStatus = function changeOfferStatus(token, newStatus, offerId) {
+  if (newStatus in offerUrls) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/response/".concat(offerUrls[newStatus]), {
+      response_id: offerId
+    }, {
+      headers: {
+        'Authorization': 'Bearer ' + token
+      }
+    })["catch"](function (error) {
+      return false;
+    });
+    return true;
+  }
+
+  return false;
+};
 
 /***/ }),
 
@@ -80868,19 +81048,42 @@ var exitAction = function exitAction() {
 
 /***/ }),
 
-/***/ "./resources/js/store/initialState.js":
-/*!********************************************!*\
-  !*** ./resources/js/store/initialState.js ***!
-  \********************************************/
+/***/ "./resources/js/store/actions/updateAction.js":
+/*!****************************************************!*\
+  !*** ./resources/js/store/actions/updateAction.js ***!
+  \****************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+var updateAction = function updateAction() {
+  return {
+    type: 'UPDATE'
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (updateAction);
+
+/***/ }),
+
+/***/ "./resources/js/store/initialState.js":
+/*!********************************************!*\
+  !*** ./resources/js/store/initialState.js ***!
+  \********************************************/
+/*! exports provided: initialUpdateState, default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "initialUpdateState", function() { return initialUpdateState; });
 var initialState = {
   loggedIn: false,
   userToken: '',
   userData: ''
+};
+var initialUpdateState = {
+  counter: 0
 };
 /* harmony default export */ __webpack_exports__["default"] = (initialState);
 
@@ -80971,12 +81174,57 @@ var authReducer = function authReducer() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _authReducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./authReducer */ "./resources/js/store/reducers/authReducer.js");
+/* harmony import */ var _updateReducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./updateReducer */ "./resources/js/store/reducers/updateReducer.js");
+
 
 
 var reducers = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  authReducer: _authReducer__WEBPACK_IMPORTED_MODULE_1__["default"]
+  authReducer: _authReducer__WEBPACK_IMPORTED_MODULE_1__["default"],
+  updateReducer: _updateReducer__WEBPACK_IMPORTED_MODULE_2__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (reducers);
+
+/***/ }),
+
+/***/ "./resources/js/store/reducers/updateReducer.js":
+/*!******************************************************!*\
+  !*** ./resources/js/store/reducers/updateReducer.js ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _initialState__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../initialState */ "./resources/js/store/initialState.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+var updateReducer = function updateReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _initialState__WEBPACK_IMPORTED_MODULE_0__["initialUpdateState"];
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  var counter = 0;
+
+  if (state.counter < 1) {
+    counter = 1;
+  }
+
+  switch (action.type) {
+    case 'UPDATE':
+      return _objectSpread(_objectSpread({}, state), {}, {
+        counter: counter
+      });
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (updateReducer);
 
 /***/ }),
 

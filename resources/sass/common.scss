@@ -80,15 +80,16 @@ img {
     height: 100%;
 }
 
-.main-btn, .white-blue-btn, .secondary-btn {
+.main-btn, .white-blue-btn, .secondary-btn, .danger-btn {
     color: #fff;
     background-color: $link-color;
-    padding: 13px;
+    padding: 10px 20px;
     border-radius: 58px;
     -webkit-border-radius: 58px;
     -moz-border-radius: 58px;
     -ms-border-radius: 58px;
     -o-border-radius: 58px;
+    min-width: 25%;
 
     &:disabled {
         background-color: $disabled-color;
@@ -98,6 +99,10 @@ img {
 .secondary-btn {
     color: #000;
     background-color: $input-background;
+}
+
+.danger-btn {
+    background-color: #dc3545;
 }
 
 .white-blue-btn {
@@ -189,7 +194,7 @@ img {
 
 .modal__body {
 
-    .modal__element {
+    .modal__element:not(:first-child) {
         margin-top: 30px;
 
         textarea {

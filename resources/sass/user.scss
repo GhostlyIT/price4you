@@ -212,5 +212,11 @@
             border-radius: 16px;
             font-weight: 700;
         }
+
+        .offer__accepted_text {
+            background-color: $info;
+            padding: 15px 20px;
+            border-radius: 15px;
+        }
     }
 }

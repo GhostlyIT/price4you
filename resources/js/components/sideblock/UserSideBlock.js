@@ -5,6 +5,7 @@ import authAction from "../../store/actions/authAction";
 import exitAction from "../../store/actions/exitAction";
 import {connect} from "react-redux";
 import axios from "axios";
+import updateAction from "../../store/actions/updateAction";
 
 const UserSideBlock = (props) => {
     const [activeLink, setActiveLink] = useState(2),
@@ -21,17 +22,23 @@ const UserSideBlock = (props) => {
           .catch(error => {
               console.log(error.response.data.message)
           })
+    }, [props.updateVal])
 
-      axios.get('/api/message/count/all', {
-          headers: {'Authorization': 'Bearer ' + props.token}
-      })
-          .then(response => {
-              setUnreadMessagesAmount(response.data.unread_messages_count)
-          })
-          .catch(error => {
-              console.log(error.response.data.message)
-          })
-    }, [])
+    useEffect(() => {
+        axios.get('/api/message/count/all', {
+            headers: {'Authorization': 'Bearer ' + props.token}
+        })
+            .then(response => {
+                setUnreadMessagesAmount(response.data.unread_messages_count)
+            })
+            .catch(error => {
+                console.log(error.response.data.message)
+            })
+    }, [props.updateVal])
+
+    useEffect(() => {
+        props.updateComponent()
+    }, [activeLink])
 
     return(
         <div className="d-flex flex-column user-sideblock justify-content-between">
@@ -72,14 +79,16 @@ const UserSideBlock = (props) => {
 const mapStateToProps = store => {
     return {
         token: store.authReducer.userToken,
-        userData: store.authReducer.userData
+        userData: store.authReducer.userData,
+        updateVal: store.updateReducer.counter
     };
 }
 
 const mapDispatchProps = dispatch => {
     return {
         auth: bindActionCreators(authAction, dispatch),
-        exit: bindActionCreators(exitAction, dispatch)
+        exit: bindActionCreators(exitAction, dispatch),
+        updateComponent: bindActionCreators(updateAction, dispatch)
     }
 }
 

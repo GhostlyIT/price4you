@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react'
 import axios from "axios"
 import {connect} from "react-redux";
 
-const ChatsList = ({token, userData, activeChat, setActiveChat}) => {
+const ChatsList = ({token, userData, activeChat, setActiveChat, updateVal}) => {
     const maxLetters = 15
     const [chats, setChats] = useState([])
 
@@ -16,7 +16,7 @@ const ChatsList = ({token, userData, activeChat, setActiveChat}) => {
           .catch(error => {
               console.log(error.response.data.message)
           })
-    }, [])
+    }, [updateVal])
 
     if (chats.length > 0) {
         return chats.map(chat => {
@@ -69,7 +69,8 @@ const ChatsList = ({token, userData, activeChat, setActiveChat}) => {
 const mapStateToProps = store => {
     return {
         token: store.authReducer.userToken,
-        userData: store.authReducer.userData
+        userData: store.authReducer.userData,
+        updateVal: store.updateReducer.counter
     };
 }
 

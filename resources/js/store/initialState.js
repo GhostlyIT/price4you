@@ -1,7 +1,11 @@
 const initialState = {
     loggedIn: false,
     userToken: '',
-    userData: ''
+    userData: '',
+}
+
+export const initialUpdateState = {
+    counter: 0
 }
 
 export default initialState

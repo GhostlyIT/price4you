@@ -55,7 +55,7 @@ class ResponseController extends Controller
 
         try {
             $responsesCount = $user->requests()->withCount(['responses' => function ($q) {
-                $q->where('company_responses.status', '!=', 'rejected');
+                $q->where('company_responses.status', '=', 'open');
             }])->get();
             $rCount = 0;
             foreach($responsesCount as $responseCount) {

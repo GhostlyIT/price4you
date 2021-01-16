@@ -24,7 +24,6 @@ const UserRequests = (props) => {
     },[])
 
     const renderRequests = () => {
-        console.log(requests)
         return requests.map(request => {
             let responsesAmount = 0
             for (let i = 0; i < request.products.length; i++) {
