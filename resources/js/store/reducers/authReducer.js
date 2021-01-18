@@ -4,16 +4,18 @@ const authReducer = (state = initialState, action) => {
     switch(action.type) {
         case 'AUTH':
             return {
-                ...state,
                 loggedIn: action.payload.loggedIn,
                 userToken: action.payload.token,
                 userData: action.payload.user
             }
 
         case 'EXIT':
-            localStorage.removeItem('price4you')
+            return {}
+
+        case 'UPDATE_USER_INFO':
             return {
-                state
+                ...state,
+                userData: action.payload.user
             }
 
         default:

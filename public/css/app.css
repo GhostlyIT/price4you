@@ -11057,6 +11057,8 @@ img {
 .ReactModal__Content {
   max-width: 70%;
   min-width: 50%;
+  max-height: 90%;
+  overflow-y: scroll;
 }
 
 .modal__header {
@@ -11714,9 +11716,34 @@ img {
   font-weight: 700;
 }
 
+.chat .chat__chat .message .message__main_body {
+  white-space: pre;
+}
+
 .chat .chat__input textarea {
   border: 1px solid #e4e4e4;
   border-radius: 15px;
   padding: 10px;
+}
+
+.profile {
+  width: 100%;
+}
+
+.profile .profile-element {
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.profile .profile-element.profile__name {
+  text-align: center;
+}
+
+.profile .profile-element.profile__contacts .profile__contacts_item:not(:last-child) {
+  margin-bottom: 15px;
+}
+
+.profile .profile-element.profile__about p {
+  white-space: pre;
 }
 

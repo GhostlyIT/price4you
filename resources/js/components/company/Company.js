@@ -4,6 +4,7 @@ import Requests from "./company-components/Requests/Requests"
 import Responses from "./company-components/Responses/Responses"
 import Chat from "../chat/Chat"
 import Options from "./company-components/Options/Options"
+import Profile from "./company-components/Profile/Profile"
 
 const Company = () => {
     const match = useRouteMatch()
@@ -23,6 +24,9 @@ const Company = () => {
             </Route>
             <Route path={`${match.url}/settings`}>
                 <Options />
+            </Route>
+            <Route path={`${match.url}/info`}>
+                <Profile />
             </Route>
         </>
     )

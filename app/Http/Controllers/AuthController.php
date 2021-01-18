@@ -61,7 +61,7 @@ class AuthController extends Controller
                     'email' => $request->input('email'),
                     'director' => $request->input('director')
                 ];
-                Companies::create($newCompany);
+                $user->company = Companies::create($newCompany);
             }
             return response()->json(['message' => 'Аккаунт успешно зарегистрирован', 'status' => 'success', 'token' => $token, 'user_data' => $user], 200);
         } catch (\Exception $e) {

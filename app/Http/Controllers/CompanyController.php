@@ -82,4 +82,66 @@ class CompanyController extends Controller
             return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);
         }
     }
+
+    public function getInfo(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'company_id' => 'integer'
+        ]);
+
+        if ($validator->fails()) {
+            $this->failedValidation($validator);
+        }
+
+        $user = Auth::user();
+        $company = $user->company;
+
+        $companyId = $company->id;
+
+        if ($request->has('company_id')) $companyId = $request->get('company_id');
+
+        try {
+            $companyInfo = Companies::find($companyId);
+            return response()->json(['company' => $companyInfo, 'status' => 'success'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);
+        }
+    }
+
+    public function edit(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'company_name' => 'required|max:32',
+            'director' => 'required|string|max:32',
+            'address' => 'required',
+            'email' => 'required|email'
+        ]);
+
+        if ($validator->fails()) {
+            $this->failedValidation($validator);
+        }
+
+        $companyName = $request->get('company_name');
+        $director = $request->get('director');
+        $address = $request->get('address');
+        $email = $request->get('email');
+        $about = null;
+
+        if ($request->has('about') && $request->get('about') != '') $about = $request->get('about');
+
+        $user = auth::user();
+        $company = $user->company;
+
+        try {
+            $company->company_name = $companyName;
+            $company->company_address = $address;
+            $company->email = $email;
+            $company->director = $director;
+            $company->about = $about;
+            $company->save();
+
+            $user->company = $user->company;
+            return response()->json(['user' => $user, 'status' => 'success'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);
+        }
+    }
 }

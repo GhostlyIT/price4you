@@ -32,6 +32,8 @@ Route::get('company/search', 'App\Http\Controllers\CompanyController@search');
 Route::middleware(['auth:api', 'auth.company'])->get('company/options', 'App\Http\Controllers\OptionsController@getForCompany');
 Route::middleware(['auth:api', 'auth.company'])->post('company/manufacture/add', 'App\Http\Controllers\CompanyController@addManufacture');
 Route::middleware(['auth:api', 'auth.company'])->post('company/manufacture/remove', 'App\Http\Controllers\CompanyController@removeManufacture');
+Route::middleware('auth:api')->get('company/info', 'App\Http\Controllers\CompanyController@getInfo');
+Route::middleware(['auth:api', 'auth.company'])->post('company/edit', 'App\Http\Controllers\CompanyController@edit');
 
 
 //Products
