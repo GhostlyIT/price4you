@@ -10,10 +10,10 @@ const UsersRequests = (props) => {
     const [requests, setRequests] = useState([]),
         [requestsCount, setRequestsCount] = useState(0),
         [selectedRequest, setSelectedRequest] = useState(false),
-        [isModalOpen, setIsModalOpen] = useState(false),
+        [isModalOpen, setIsModalOpen] = useState(false)
 
-        [offset, setOffset] = useState(0),
-        limit = 9
+    const offset = 0
+    const limit = 9
 
 
     const getRequests = (offset = offset) => {
@@ -88,7 +88,7 @@ const UsersRequests = (props) => {
                     const type = request.product_type
                     return (
                         <div key={request.id} className="col-12 col-md-4 request-info d-flex flex-column">
-                            <span className="request-picker d-flex justify-content-between align-items-center" style={{height: "16%"}}>
+                            <span className="request-picker d-flex justify-content-between align-items-center">
                                 <span className="request-picker__title">{request[type].name}</span>
                                 <span className="request-picker__title">{request.value} {request.unit}</span>
                             </span>
@@ -139,9 +139,6 @@ const UsersRequests = (props) => {
                                         Вы уже откликнулись
                                     </button>
                             }
-
-
-
                         </div>
                     )
                 })

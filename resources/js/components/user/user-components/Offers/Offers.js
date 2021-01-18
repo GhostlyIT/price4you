@@ -4,7 +4,7 @@ import {connect} from "react-redux"
 import OffersList from "./offers-components/OffersList"
 import SendMessageModal from "../../../common/modals/SendMessageModal"
 import ConfirmModal from "../../../common/modals/ConfirmModal"
-import {changeOfferStatus} from "../../../../helpers/changeOfferStatus"
+import {changeOfferStatus} from "../../../../helpers/offerHelper"
 import {bindActionCreators} from "redux";
 import updateAction from "../../../../store/actions/updateAction"
 
@@ -78,7 +78,7 @@ const Offers = (props) => {
                     closeModalFunc={() => setRejectModalOpen(false)}
                     modalTitle="Отклонить предложение"
                     confirmFunc={() => {
-                        changeOfferStatus(props.token, 'reject', offerId)
+                        offerHelper(props.token, 'reject', offerId)
                         props.updateComponent()
                     }}
                 >

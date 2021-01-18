@@ -90,6 +90,33 @@ class ResponseController extends Controller
         }
     }
 
+    public function getForCompany() {
+        $user = Auth::user();
+        $company = $user->company;
+
+        try {
+            $responsesArr = [];
+            $responses = $company
+                ->responses()
+                ->where('status', '!=', 'rejected')
+                ->where('status', '!=', 'closed')
+                ->with(['product', 'product.request'])
+                ->orderBy('id', 'desc')
+                ->get();
+
+            foreach($responses as $response) {
+                $response['product_info'] = $response->product()->with($response->product->product_type)->first();
+                $response['request'] = $response->product->request;
+                unset($response['product']);
+                $responsesArr[] = $response;
+            }
+
+            return response()->json(['responses' => $responsesArr, 'status' => 'success'],200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);
+        }
+    }
+
     public function reject(Request $request) {
         $validator = Validator::make($request->all(), [
             'response_id' => 'integer|required'

@@ -76,7 +76,7 @@ const OffersList = ({offers, openMessageModal, openConfirmModal, openRejectModal
                                     </div>
                                 </>
                             :
-                                <span className="offer__accepted_text">Вы приняли предложение. Ожидайте пока с Вами свяжется компания.</span>
+                                <span className="info-message">Вы приняли предложение. Ожидайте пока с Вами свяжется компания.</span>
                         }
 
                     </div>

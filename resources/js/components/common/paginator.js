@@ -5,7 +5,7 @@ const Paginator = ({totalItemsAmount, itemsOnPageAmount, getItemsFunc}) => {
 
     useEffect(() => {
         getItemsFunc((activePage - 1) * itemsOnPageAmount)
-    }, [])
+    }, [activePage])
 
     const getPagesAmount = () => {
         return parseInt(totalItemsAmount) / parseInt(itemsOnPageAmount)

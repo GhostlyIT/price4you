@@ -21,6 +21,10 @@ class Companies extends Model
         return $this->belongsTo('App\Models\User');
     }
 
+    public function responses() {
+        return $this->hasMany('App\Models\CompanyResponses', 'company_id');
+    }
+
     public function getNameAttribute() {
         return "{$this->company_name}";
     }

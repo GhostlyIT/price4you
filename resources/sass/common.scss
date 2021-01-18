@@ -90,6 +90,7 @@ img {
     -ms-border-radius: 58px;
     -o-border-radius: 58px;
     min-width: 25%;
+    box-shadow: $box-shadow;
 
     &:disabled {
         background-color: $disabled-color;

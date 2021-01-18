@@ -213,10 +213,11 @@
             font-weight: 700;
         }
 
-        .offer__accepted_text {
+        .info-message {
             background-color: $info;
             padding: 15px 20px;
             border-radius: 15px;
+            box-shadow: $box-shadow;
         }
     }
 }

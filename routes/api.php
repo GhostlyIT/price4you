@@ -2,7 +2,6 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +24,7 @@ Route::middleware(['auth:api', 'auth.user'])->post('user/blacklist/remove', 'App
 Route::middleware(['auth:api', 'auth.user'])->post('user/blacklist/add', 'App\Http\Controllers\UserController@addCompanyToBlackList');
 Route::middleware(['auth:api', 'auth.user'])->get('user/options', 'App\Http\Controllers\OptionsController@getForUser');
 Route::middleware(['auth:api', 'auth.user'])->post('user/options/view/save', 'App\Http\Controllers\OptionsController@saveViewOption');
+Route::middleware('auth:api')->get('user/contact-data', 'App\Http\Controllers\UserController@getContactData');
 
 
 //Company
@@ -48,6 +48,7 @@ Route::middleware(['auth:api', 'auth.company'])->get('request/get-for-company', 
 Route::middleware(['auth:api', 'auth.company'])->post('response/add', 'App\Http\Controllers\ResponseController@save');
 Route::middleware(['auth:api', 'auth.user'])->get('response/count/all', 'App\Http\Controllers\ResponseController@getAllResponsesAmount');
 Route::middleware(['auth:api', 'auth.user'])->get('response/user/all', 'App\Http\Controllers\ResponseController@getForUser');
+Route::middleware(['auth:api', 'auth.company'])->get('response/company/all', 'App\Http\Controllers\ResponseController@getForCompany');
 Route::middleware(['auth:api', 'auth.user', 'response.user'])->post('response/reject', 'App\Http\Controllers\ResponseController@reject');
 Route::middleware(['auth:api', 'auth.user', 'response.user'])->post('response/accept', 'App\Http\Controllers\ResponseController@accept');
 Route::middleware(['auth:api', 'auth.company', 'response.company'])->post('response/send-to-close', 'App\Http\Controllers\ResponseController@sendToCLose');

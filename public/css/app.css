@@ -8303,7 +8303,7 @@ button.bg-dark:focus {
 }
 
 .shadow {
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  box-shadow: 0 3px 5px 0 rgba(174, 174, 174, 0.5) !important;
 }
 
 .shadow-lg {
@@ -11002,6 +11002,7 @@ img {
   -ms-border-radius: 58px;
   -o-border-radius: 58px;
   min-width: 25%;
+  box-shadow: 0 3px 5px 0 rgba(174, 174, 174, 0.5);
 }
 
 .main-btn:disabled,
@@ -11628,10 +11629,11 @@ img {
   font-weight: 700;
 }
 
-.requests-wrapper .request-info .offer__accepted_text {
+.requests-wrapper .request-info .info-message {
   background-color: #c7daff;
   padding: 15px 20px;
   border-radius: 15px;
+  box-shadow: 0 3px 5px 0 rgba(174, 174, 174, 0.5);
 }
 
 .options-wrapper .options-element {
