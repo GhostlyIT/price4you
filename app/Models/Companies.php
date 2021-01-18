@@ -25,6 +25,14 @@ class Companies extends Model
         return $this->hasMany('App\Models\CompanyResponses', 'company_id');
     }
 
+    public function manufacturesMiddleware() {
+        return $this->hasMany('App\Models\CompanyManufactures', 'company_id', 'id');
+    }
+
+    public function manufactures() {
+        return $this->hasManyThrough('App\Models\Manufacture', 'App\Models\CompanyManufactures');
+    }
+
     public function getNameAttribute() {
         return "{$this->company_name}";
     }

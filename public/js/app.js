@@ -78559,6 +78559,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _company_components_Requests_Requests__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./company-components/Requests/Requests */ "./resources/js/components/company/company-components/Requests/Requests.js");
 /* harmony import */ var _company_components_Responses_Responses__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./company-components/Responses/Responses */ "./resources/js/components/company/company-components/Responses/Responses.js");
 /* harmony import */ var _chat_Chat__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../chat/Chat */ "./resources/js/components/chat/Chat.js");
+/* harmony import */ var _company_components_Options_Options__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./company-components/Options/Options */ "./resources/js/components/company/company-components/Options/Options.js");
+
 
 
 
@@ -78578,10 +78580,380 @@ var Company = function Company() {
     path: "".concat(match.url, "/responses")
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_company_components_Responses_Responses__WEBPACK_IMPORTED_MODULE_3__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     path: "".concat(match.url, "/messages")
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_chat_Chat__WEBPACK_IMPORTED_MODULE_4__["default"], null)));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_chat_Chat__WEBPACK_IMPORTED_MODULE_4__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    path: "".concat(match.url, "/settings")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_company_components_Options_Options__WEBPACK_IMPORTED_MODULE_5__["default"], null)));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Company);
+
+/***/ }),
+
+/***/ "./resources/js/components/company/company-components/Options/Options.js":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/company/company-components/Options/Options.js ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _helpers_notifications__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../helpers/notifications */ "./resources/js/helpers/notifications.js");
+/* harmony import */ var _options_components_ViewOptions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./options-components/ViewOptions */ "./resources/js/components/company/company-components/Options/options-components/ViewOptions.js");
+/* harmony import */ var _options_components_SearchManufacture__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./options-components/SearchManufacture */ "./resources/js/components/company/company-components/Options/options-components/SearchManufacture.js");
+/* harmony import */ var _options_components_ChoosenManufactures__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./options-components/ChoosenManufactures */ "./resources/js/components/company/company-components/Options/options-components/ChoosenManufactures.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+var Options = function Options(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(1),
+      _useState2 = _slicedToArray(_useState, 2),
+      selectedViewOption = _useState2[0],
+      setSelectedViewOption = _useState2[1],
+      _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
+      _useState4 = _slicedToArray(_useState3, 2),
+      viewOptions = _useState4[0],
+      setViewOptions = _useState4[1],
+      _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState6 = _slicedToArray(_useState5, 2),
+      companyManufactures = _useState6[0],
+      setCompanyManufactures = _useState6[1];
+
+  var refreshOptions = function refreshOptions() {
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('/api/company/options', {
+      headers: {
+        'Authorization': 'Bearer ' + props.token
+      }
+    }).then(function (response) {
+      setViewOptions(response.data.all_view_options);
+      setSelectedViewOption(response.data.selected_view_option);
+      setCompanyManufactures(response.data.manufactures);
+    })["catch"](function (error) {
+      console.log(error.response.data.message);
+      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_3__["showNotification"])('Ошибка', 'Произошла ошибка. Попробуйте перезагрузить страницу.', 'danger');
+    });
+  };
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    refreshOptions();
+  }, []);
+
+  var saveViewOption = function saveViewOption(optionId) {
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/user/options/view/save', {
+      option_id: optionId
+    }, {
+      headers: {
+        'Authorization': 'Bearer ' + props.token
+      }
+    }).then(function () {
+      refreshOptions();
+    })["catch"](function (error) {
+      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_3__["showNotification"])('Ошибка', 'Произошла ошибка. Попробуйте еще раз.', 'danger');
+      console.log(error.response.data.message);
+    });
+  };
+
+  var addManufacture = function addManufacture(manufactureId) {
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/company/manufacture/add', {
+      manufacture_id: manufactureId
+    }, {
+      headers: {
+        'Authorization': 'Bearer ' + props.token
+      }
+    }).then(function (response) {
+      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_3__["showNotification"])('Список производителей', 'Производитель добавлен список.', 'success');
+      refreshOptions();
+    })["catch"](function (error) {
+      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_3__["showNotification"])('Ошибка', 'Произошла ошибка при добавлении производителя в список. Попробуйте еще раз.', 'danger');
+      console.log(error.response.data.message);
+    });
+  };
+
+  var removeManufacture = function removeManufacture(manufactureid) {
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/company/manufacture/remove', {
+      manufacture_id: manufactureid
+    }, {
+      headers: {
+        'Authorization': 'Bearer ' + props.token
+      }
+    }).then(function (response) {
+      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_3__["showNotification"])('Список производителей', 'Производитель был удален из списка.', 'success');
+      refreshOptions();
+    })["catch"](function (error) {
+      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_3__["showNotification"])('Ошибка', 'Произошла ошибка при удалени призводителя из списка. Попробуйте еще раз.', 'danger');
+      console.log(error.response.data.message);
+    });
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12 options-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: "text-center"
+  }, "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "options-element"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "options-element__title"
+  }, "\u041F\u043E\u043A\u0430\u0437\u044B\u0432\u0430\u0442\u044C \u0441\u0432\u043E\u0438 \u0434\u0430\u043D\u043D\u044B\u0435"), viewOptions != null && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_options_components_ViewOptions__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    options: viewOptions,
+    selectedOptionId: selectedViewOption,
+    setOption: saveViewOption
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "options-element"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "options-element__title"
+  }, "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0430 \u043F\u043E\u043B\u0443\u0447\u0435\u043D\u0438\u044F \u0437\u0430\u043F\u0440\u043E\u0441\u043E\u0432"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "options-element__text"
+  }, "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u043F\u0440\u043E\u0438\u0437\u0432\u043E\u0434\u0438\u0442\u0435\u043B\u0435\u0439, \u043F\u0440\u043E\u0434\u0443\u043A\u0446\u0438\u0435\u0439 \u043A\u043E\u0442\u043E\u0440\u044B\u0445 \u0432\u044B \u0442\u043E\u0440\u0433\u0443\u0435\u0442\u0435"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_options_components_SearchManufacture__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    companyManufactures: companyManufactures,
+    addManufacture: addManufacture
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "options-element"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "options-element__title"
+  }, "\u0412\u044B\u0431\u0440\u0430\u043D\u043D\u044B\u0435 \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u0438"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_options_components_ChoosenManufactures__WEBPACK_IMPORTED_MODULE_6__["default"], {
+    manufactures: companyManufactures,
+    removeManufacture: removeManufacture
+  })));
+};
+
+var mapStateToProps = function mapStateToProps(store) {
+  return {
+    token: store.authReducer.userToken
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps)(Options));
+
+/***/ }),
+
+/***/ "./resources/js/components/company/company-components/Options/options-components/ChoosenManufactures.js":
+/*!**************************************************************************************************************!*\
+  !*** ./resources/js/components/company/company-components/Options/options-components/ChoosenManufactures.js ***!
+  \**************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var ChoosenManufactures = function ChoosenManufactures(_ref) {
+  var manufactures = _ref.manufactures,
+      removeManufacture = _ref.removeManufacture;
+
+  if (manufactures.length > 0) {
+    return manufactures.map(function (manufacture) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        key: manufacture.id_manufacture,
+        className: "black-list"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "d-flex align-items-center"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "mr-4"
+      }, manufacture.name_manufacture_rus), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: function onClick() {
+          return removeManufacture(manufacture.id_manufacture);
+        },
+        type: "button",
+        className: "btn btn-danger"
+      }, "\u0423\u0434\u0430\u043B\u0438\u0442\u044C")));
+    });
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ChoosenManufactures);
+
+/***/ }),
+
+/***/ "./resources/js/components/company/company-components/Options/options-components/SearchManufacture.js":
+/*!************************************************************************************************************!*\
+  !*** ./resources/js/components/company/company-components/Options/options-components/SearchManufacture.js ***!
+  \************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _common_loader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../common/loader */ "./resources/js/components/common/loader.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+var SearchManufacture = function SearchManufacture(_ref) {
+  var companyManufactures = _ref.companyManufactures,
+      addManufacture = _ref.addManufacture;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      searchResult = _useState2[0],
+      setSearchResult = _useState2[1],
+      _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      loading = _useState4[0],
+      setLoading = _useState4[1],
+      _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      fallingListOpen = _useState6[0],
+      setFallingListOpen = _useState6[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    document.addEventListener('click', handleClick, false);
+  });
+
+  var handleClick = function handleClick(e) {
+    var companies = document.getElementById('companies');
+    var companyList = document.getElementById('company-wrapper');
+    var path = e.path || Event.composedPath && Event.composedPath();
+
+    if (!path.includes(companies) && !path.includes(companyList)) {
+      setFallingListOpen(false);
+    }
+  };
+
+  var searchCompany = function searchCompany(query) {
+    if (query != '') {
+      setLoading(true);
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/manufacture/search?query=".concat(query)).then(function (response) {
+        setSearchResult(response.data.manufactures);
+      })["catch"](function (error) {
+        setSearchResult([]);
+        console.log(error.response.data.message);
+      }).then(function () {
+        setLoading(false);
+      });
+    } else {
+      setSearchResult([]);
+    }
+  };
+
+  var renderCompanies = function renderCompanies() {
+    if (loading) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_loader__WEBPACK_IMPORTED_MODULE_1__["default"], null);
+    }
+
+    if (searchResult.length > 0) {
+      return searchResult.map(function (manufacture) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "company-wrapper falling-list__element",
+          key: manufacture.id_manufacture
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "text-center font-weight-bold mb-2"
+        }, manufacture.name_manufacture_rus), companyManufactures.findIndex(function (item) {
+          return item.id_manufacture == manufacture.id_manufacture;
+        }) == -1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            return addManufacture(manufacture.id_manufacture);
+          },
+          type: "button",
+          className: "white-blue-btn w-100"
+        }, "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "button",
+          className: "white-blue-btn w-100",
+          disabled: true
+        }, "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D"));
+      });
+    } else {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u041F\u0440\u043E\u0438\u0437\u0432\u043E\u0434\u0438\u0442\u0435\u043B\u0438 \u043D\u0435 \u043D\u0430\u0439\u0434\u0435\u043D\u044B");
+    }
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "position-relative"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    onClick: function onClick() {
+      return setFallingListOpen(true);
+    },
+    onChange: function onChange(e) {
+      return searchCompany(e.target.value);
+    },
+    id: "companies",
+    placeholder: "\u041F\u043E\u0438\u0441\u043A \u043F\u0440\u043E\u0438\u0437\u0432\u043E\u0434\u0438\u0442\u0435\u043B\u044F"
+  }), fallingListOpen === true && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "falling-list position-absolute"
+  }, renderCompanies()));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (SearchManufacture);
+
+/***/ }),
+
+/***/ "./resources/js/components/company/company-components/Options/options-components/ViewOptions.js":
+/*!******************************************************************************************************!*\
+  !*** ./resources/js/components/company/company-components/Options/options-components/ViewOptions.js ***!
+  \******************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var ViewOptions = function ViewOptions(_ref) {
+  var options = _ref.options,
+      selectedOptionId = _ref.selectedOptionId,
+      setOption = _ref.setOption;
+  return options.map(function (option) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      key: option.id,
+      className: "view-option__item"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      onChange: function onChange(e) {
+        return setOption(e.target.value);
+      },
+      type: "radio",
+      name: "view-option",
+      value: option.id,
+      checked: option.id == selectedOptionId,
+      className: "mr-2"
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, option.text_for_company)));
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ViewOptions);
 
 /***/ }),
 
@@ -79558,8 +79930,8 @@ var CompanySideblock = function CompanySideblock(props) {
     onClick: function onClick() {
       return setActiveLink('7');
     },
-    className: window.location.pathname === '/company/statistic' ? 'active' : null,
-    to: "/company/statistic"
+    className: window.location.pathname === '/company/settings' ? 'active' : null,
+    to: "/company/settings"
   }, "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     onClick: function onClick() {
       return setActiveLink('8');

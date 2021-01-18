@@ -23,12 +23,15 @@ Route::post('login', 'App\Http\Controllers\AuthController@login');
 Route::middleware(['auth:api', 'auth.user'])->post('user/blacklist/remove', 'App\Http\Controllers\UserController@removeCompanyFromBlackList');
 Route::middleware(['auth:api', 'auth.user'])->post('user/blacklist/add', 'App\Http\Controllers\UserController@addCompanyToBlackList');
 Route::middleware(['auth:api', 'auth.user'])->get('user/options', 'App\Http\Controllers\OptionsController@getForUser');
-Route::middleware(['auth:api', 'auth.user'])->post('user/options/view/save', 'App\Http\Controllers\OptionsController@saveViewOption');
+Route::middleware('auth:api')->post('user/options/view/save', 'App\Http\Controllers\OptionsController@saveViewOption');
 Route::middleware('auth:api')->get('user/contact-data', 'App\Http\Controllers\UserController@getContactData');
 
 
 //Company
 Route::get('company/search', 'App\Http\Controllers\CompanyController@search');
+Route::middleware(['auth:api', 'auth.company'])->get('company/options', 'App\Http\Controllers\OptionsController@getForCompany');
+Route::middleware(['auth:api', 'auth.company'])->post('company/manufacture/add', 'App\Http\Controllers\CompanyController@addManufacture');
+Route::middleware(['auth:api', 'auth.company'])->post('company/manufacture/remove', 'App\Http\Controllers\CompanyController@removeManufacture');
 
 
 //Products
@@ -36,6 +39,10 @@ Route::get('product/search/all', 'App\Http\Controllers\ProductsController@search
 Route::get('product/class', 'App\Http\Controllers\ProductsController@getProductClass');
 Route::get('product/rates-by-culture', 'App\Http\Controllers\ProductsController@getRatesByCulture');
 Route::post('product/calculate-volume', 'App\Http\Controllers\ProductsController@calculateProductVolume');
+
+
+//Manufactures
+Route::get('manufacture/search', 'App\Http\Controllers\ManufactureController@search');
 
 
 //Requests

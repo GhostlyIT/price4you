@@ -31,6 +31,27 @@ class OptionsController extends Controller
         }
     }
 
+    public function getForCompany() {
+        try {
+            $user = Auth::user();
+            $company = $user->company;
+            $viewOptions = ViewOptions::select('id', 'text_for_company')->get();
+            $manufactures = [];
+            $manufactureMiddlewares = $company->manufacturesMiddleware()->get();
+            foreach($manufactureMiddlewares as $manufactureMiddleware) {
+                $manufactures[] = $manufactureMiddleware->manufacture;
+            }
+            return response()->json([
+                'all_view_options' => $viewOptions,
+                'selected_view_option' => $user->view_option_id,
+                'manufactures' => $manufactures,
+                'status' => 'success'
+            ],200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);
+        }
+    }
+
     public function saveViewOption(Request $request) {
         $validator = Validator::make($request->all(), [
             'option_id' => 'integer|required'
@@ -47,22 +68,6 @@ class OptionsController extends Controller
             $user->view_option_id = $optionId;
             $user->save();
             return response()->json(['status' => 'success'],200);
-        } catch (\Exception $e) {
-            return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);
-        }
-    }
-
-    //TODO: доделать запросы для опций компаний
-    public function getForCompany() {
-        try {
-            $user = Auth::user();
-            $viewOptions = ViewOptions::select('id', 'text_for_company')->get();
-
-            return response()->json([
-                'all_view_options' => $viewOptions,
-                'selected_view_option' => $user->view_option_id,
-                'status' => 'success'
-            ],200);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);
         }
