@@ -24,7 +24,7 @@ const EditCompanyInfoModal = ({isModalOpen, closeModal, company, editFunc}) => {
 
                 <div className="modal__element d-flex flex-column">
                     <span className="mb-2 font-weight-bold">Адрес</span>
-                    <input onClick={e => setAddress(e.target.value)} type="text" value={address} />
+                    <input onChange={e => setAddress(e.target.value)} type="text" value={address} />
                 </div>
 
                 <div className="modal__element d-flex flex-column">

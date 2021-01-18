@@ -78485,7 +78485,7 @@ var EditCompanyInfoModal = function EditCompanyInfoModal(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "mb-2 font-weight-bold"
   }, "\u0410\u0434\u0440\u0435\u0441"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    onClick: function onClick(e) {
+    onChange: function onChange(e) {
       return setAddress(e.target.value);
     },
     type: "text",
