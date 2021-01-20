@@ -4,11 +4,11 @@ import {sendMessage} from "../../../helpers/sendMessage"
 import {connect} from "react-redux"
 import {showNotification} from "../../../helpers/notifications"
 
-const SendMessageModal = ({isOpen, closeModalFunc, modalTitle, recipientId, token}) => {
+const SendMessageModal = ({isOpen, closeModalFunc, modalTitle, recipientId, token, theme = null}) => {
     const [message, setMessage] = useState('')
 
     const handle = () => {
-        if (sendMessage(message, recipientId, token) == true) {
+        if (sendMessage(message, recipientId, token, theme) == true) {
             setMessage('')
             closeModalFunc()
             showNotification('Сообщение', 'Сообщение отправлено', 'success')

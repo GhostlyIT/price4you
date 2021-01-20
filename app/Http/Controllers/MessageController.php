@@ -30,6 +30,10 @@ class MessageController extends Controller
         $userId = Auth::id();
         $recipientId = $request->get('recipient_id');
         $message = $request->get('message');
+        $theme = null;
+
+        if ($request->has('theme'))
+            $theme = $request->get('theme');
 
         try {
             $chat = Chat::select('id')->where('user_1', $userId)->where('user_2', $recipientId)->orWhere('user_2', $userId)->where('user_1', $recipientId)->first();
@@ -38,10 +42,11 @@ class MessageController extends Controller
                 $chat = Chat::create(['user_1' => $userId, 'user_2' => $recipientId]);
 
             Message::create([
-               'from' => $userId,
-               'to' => $recipientId,
-               'chat_id' => $chat->id,
-               'message' => $message
+                'from'      => $userId,
+                'to'        => $recipientId,
+                'chat_id'   => $chat->id,
+                'message'   => $message,
+                'theme'     => $theme
             ]);
 
             return response()->json(['message' => 'Сообщение отправлено', 'status' => 'success'],200);

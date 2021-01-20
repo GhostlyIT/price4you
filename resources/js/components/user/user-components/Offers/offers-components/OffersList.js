@@ -17,6 +17,7 @@ const OffersList = ({offers, openMessageModal, openConfirmModal, openRejectModal
             const totalPrice = parseInt(price) * parseInt(value)
             const recipientId = offer.company.user_id
             const status = offer.status
+            const messageTheme = `Ответ на предложение ${productName} ${value} ${unit} стоимость ${price} руб. / ${unit}`
 
             return(
                 <div key={offer.id} className="col-12 col-md-4 request-info d-flex flex-column mt-4">
@@ -76,7 +77,7 @@ const OffersList = ({offers, openMessageModal, openConfirmModal, openRejectModal
                                 <button onClick={() => openConfirmModal(offer.id)} type="button" className="main-btn mb-3">Принять</button>
 
                                 <div className="d-flex justify-content-between">
-                                    <button onClick={() => openMessageModal(recipientId)} type="button" className="secondary-btn" style={{width: '45%'}}>Написать</button>
+                                    <button onClick={() => openMessageModal(recipientId, messageTheme)} type="button" className="secondary-btn" style={{width: '45%'}}>Написать</button>
                                     <button onClick={() => openRejectModal(offer.id)} type="button" className="danger-btn" style={{width: '45%'}}>Отказаться</button>
                                 </div>
                             </>
@@ -85,7 +86,7 @@ const OffersList = ({offers, openMessageModal, openConfirmModal, openRejectModal
                         {status == 'awaits_for_closing' &&
                             <>
                                 <button onClick={() => openCloseDealModal(offer.id)} className="main-btn mb-3">Закрыть сделку</button>
-                                <button onClick={() => openMessageModal(recipientId)} type="button" className="secondary-btn">Написать</button>
+                                <button onClick={() => openMessageModal(recipientId, messageTheme)} type="button" className="secondary-btn">Написать</button>
                             </>
                         }
 

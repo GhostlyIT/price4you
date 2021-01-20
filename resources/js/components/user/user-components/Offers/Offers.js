@@ -15,7 +15,8 @@ const Offers = (props) => {
         [isRejectModalOpen, setRejectModalOpen] = useState(false),
         [isCloseDealModalOpen, setCloseDealModalOpen] = useState(false),
         [recipient, setRecipient] = useState(null),
-        [offerId, setOfferId] = useState(null)
+        [offerId, setOfferId] = useState(null),
+        [messageTheme, setMessageTheme] = useState(null)
 
     useEffect(() => {
         axios.get('/api/response/user/all', {
@@ -34,8 +35,9 @@ const Offers = (props) => {
             <div className="row requests-wrapper">
                 <OffersList key={props.updateVal}
                     offers={offers}
-                    openMessageModal={recipientId => {
+                    openMessageModal={(recipientId, theme) => {
                             setRecipient(recipientId)
+                            setMessageTheme(theme)
                             setMessageModalOpen(true)
                         }
                     }
@@ -60,6 +62,7 @@ const Offers = (props) => {
                     closeModalFunc={() => setMessageModalOpen(false)}
                     modalTitle="Написать"
                     recipientId={recipient}
+                    theme={messageTheme}
                 />
 
                 <ConfirmModal

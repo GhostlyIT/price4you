@@ -78157,6 +78157,7 @@ var Messages = function Messages(_ref) {
       var sender = message.sender;
       var company = sender.company;
       var date = Object(_helpers_dateConverter__WEBPACK_IMPORTED_MODULE_1__["getFullDate"])(message.created_at);
+      var theme = message.theme;
       var fullName = sender.name + ' ' + sender.surname;
 
       if (sender.account_type === 'company') {
@@ -78178,10 +78179,16 @@ var Messages = function Messages(_ref) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "message__main w-100"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "message__main_head d-flex align-items-center w-50"
+        className: "message__main_head d-flex align-items-center w-100"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "d-flex flex-column mb-3"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "d-flex align-items-center"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "message__main_head__name"
-      }, fullName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, date)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, fullName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, date)), theme != null && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "font-weight-bold"
+      }, "\u0422\u0435\u043C\u0430:", theme))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "message__main_body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, message.message))));
     });
@@ -78568,7 +78575,9 @@ var SendMessageModal = function SendMessageModal(_ref) {
       closeModalFunc = _ref.closeModalFunc,
       modalTitle = _ref.modalTitle,
       recipientId = _ref.recipientId,
-      token = _ref.token;
+      token = _ref.token,
+      _ref$theme = _ref.theme,
+      theme = _ref$theme === void 0 ? null : _ref$theme;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
       _useState2 = _slicedToArray(_useState, 2),
@@ -78576,7 +78585,7 @@ var SendMessageModal = function SendMessageModal(_ref) {
       setMessage = _useState2[1];
 
   var handle = function handle() {
-    if (Object(_helpers_sendMessage__WEBPACK_IMPORTED_MODULE_2__["sendMessage"])(message, recipientId, token) == true) {
+    if (Object(_helpers_sendMessage__WEBPACK_IMPORTED_MODULE_2__["sendMessage"])(message, recipientId, token, theme) == true) {
       setMessage('');
       closeModalFunc();
       Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_4__["showNotification"])('Сообщение', 'Сообщение отправлено', 'success');
@@ -81119,7 +81128,11 @@ var Offers = function Offers(props) {
       _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
       _useState14 = _slicedToArray(_useState13, 2),
       offerId = _useState14[0],
-      setOfferId = _useState14[1];
+      setOfferId = _useState14[1],
+      _useState15 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
+      _useState16 = _slicedToArray(_useState15, 2),
+      messageTheme = _useState16[0],
+      setMessageTheme = _useState16[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/response/user/all', {
@@ -81139,8 +81152,9 @@ var Offers = function Offers(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_offers_components_OffersList__WEBPACK_IMPORTED_MODULE_3__["default"], {
     key: props.updateVal,
     offers: offers,
-    openMessageModal: function openMessageModal(recipientId) {
+    openMessageModal: function openMessageModal(recipientId, theme) {
       setRecipient(recipientId);
+      setMessageTheme(theme);
       setMessageModalOpen(true);
     },
     openConfirmModal: function openConfirmModal(offerId) {
@@ -81161,7 +81175,8 @@ var Offers = function Offers(props) {
       return setMessageModalOpen(false);
     },
     modalTitle: "\u041D\u0430\u043F\u0438\u0441\u0430\u0442\u044C",
-    recipientId: recipient
+    recipientId: recipient,
+    theme: messageTheme
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_modals_ConfirmModal__WEBPACK_IMPORTED_MODULE_5__["default"], {
     isOpen: isConfirmModalOpen,
     closeModalFunc: function closeModalFunc() {
@@ -81249,6 +81264,7 @@ var OffersList = function OffersList(_ref) {
       var totalPrice = parseInt(price) * parseInt(value);
       var recipientId = offer.company.user_id;
       var status = offer.status;
+      var messageTheme = "\u041E\u0442\u0432\u0435\u0442 \u043D\u0430 \u043F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u0435 ".concat(productName, " ").concat(value, " ").concat(unit, " \u0441\u0442\u043E\u0438\u043C\u043E\u0441\u0442\u044C ").concat(price, " \u0440\u0443\u0431. / ").concat(unit);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         key: offer.id,
         className: "col-12 col-md-4 request-info d-flex flex-column mt-4"
@@ -81324,7 +81340,7 @@ var OffersList = function OffersList(_ref) {
         className: "d-flex justify-content-between"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return openMessageModal(recipientId);
+          return openMessageModal(recipientId, messageTheme);
         },
         type: "button",
         className: "secondary-btn",
@@ -81347,7 +81363,7 @@ var OffersList = function OffersList(_ref) {
         className: "main-btn mb-3"
       }, "\u0417\u0430\u043A\u0440\u044B\u0442\u044C \u0441\u0434\u0435\u043B\u043A\u0443"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
-          return openMessageModal(recipientId);
+          return openMessageModal(recipientId, messageTheme);
         },
         type: "button",
         className: "secondary-btn"
@@ -82086,9 +82102,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
 var sendMessage = function sendMessage(message, recipient_id, token) {
+  var theme = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
   axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/message/send', {
     recipient_id: recipient_id,
-    message: message
+    message: message,
+    theme: theme
   }, {
     headers: {
       'Authorization': 'Bearer ' + token

@@ -7,6 +7,7 @@ const Messages = ({messages}) => {
             const sender = message.sender
             const company = sender.company
             const date = getFullDate(message.created_at)
+            const theme = message.theme
             let fullName = sender.name + ' ' + sender.surname
 
             if (sender.account_type === 'company') {
@@ -24,9 +25,17 @@ const Messages = ({messages}) => {
                     }}></div>
 
                     <div className="message__main w-100">
-                        <div className="message__main_head d-flex align-items-center w-50">
-                            <span className="message__main_head__name">{fullName}</span>
-                            <span>{date}</span>
+                        <div className="message__main_head d-flex align-items-center w-100">
+                            <div className="d-flex flex-column mb-3">
+                                <div className="d-flex align-items-center">
+                                    <span className="message__main_head__name">{fullName}</span>
+                                    <span>{date}</span>
+                                </div>
+                                {theme != null &&
+                                    <span className="font-weight-bold">Тема:{theme}</span>
+                                }
+                            </div>
+
                         </div>
                         <div className="message__main_body">
                             <p>{message.message}</p>
