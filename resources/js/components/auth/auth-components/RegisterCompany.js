@@ -31,7 +31,8 @@ const RegisterCompany = (props) => {
                 })
                 .then(response => {
                     showNotification('Регистрация', response.data.message, 'success')
-                    props.auth(response.data.token)
+                    props.auth({token: response.data.token, user: response.data.user_data})
+                    console.log({token: response.data.token, user: response.data.user_data})
                 })
                 .catch(error => {
                     showNotification('Регистрация', error.response.data.message, 'danger')

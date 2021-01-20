@@ -77143,7 +77143,7 @@ var Main = function Main(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-md-10 col-sm-12"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "main-window__inner row"
+    className: "main-window__inner"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Route"], {
     path: "/"
   }, props.loggedIn ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__["Redirect"], {
@@ -77716,7 +77716,14 @@ var RegisterCompany = function RegisterCompany(props) {
       director: companyDirector
     }).then(function (response) {
       Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_2__["showNotification"])('Регистрация', response.data.message, 'success');
-      props.auth(response.data.token);
+      props.auth({
+        token: response.data.token,
+        user: response.data.user_data
+      });
+      console.log({
+        token: response.data.token,
+        user: response.data.user_data
+      });
     })["catch"](function (error) {
       Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_2__["showNotification"])('Регистрация', error.response.data.message, 'danger');
     });
@@ -78409,8 +78416,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modal */ "./resources/js/components/common/modal.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -78422,7 +78427,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 
 
@@ -80137,6 +80141,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_actions_exitAction__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../store/actions/exitAction */ "./resources/js/store/actions/exitAction.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _store_actions_updateAction__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../store/actions/updateAction */ "./resources/js/store/actions/updateAction.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_7__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -80157,12 +80163,31 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var CompanySideblock = function CompanySideblock(props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(1),
       _useState2 = _slicedToArray(_useState, 2),
       activeLink = _useState2[0],
-      setActiveLink = _useState2[1];
+      setActiveLink = _useState2[1],
+      _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0),
+      _useState4 = _slicedToArray(_useState3, 2),
+      unreadMessagesAmount = _useState4[0],
+      setUnreadMessagesAmount = _useState4[1];
 
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    props.updateComponent();
+  }, [activeLink]);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    axios__WEBPACK_IMPORTED_MODULE_7___default.a.get('/api/message/count/all', {
+      headers: {
+        'Authorization': 'Bearer ' + props.token
+      }
+    }).then(function (response) {
+      setUnreadMessagesAmount(response.data.unread_messages_count);
+    })["catch"](function (error) {
+      console.log(error.response.data.message);
+    });
+  }, [props.updateVal]);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     props.updateComponent();
   }, [activeLink]);
@@ -80190,9 +80215,11 @@ var CompanySideblock = function CompanySideblock(props) {
     onClick: function onClick() {
       return setActiveLink('3');
     },
-    className: window.location.pathname === '/company/messages' ? 'active' : null,
+    className: "d-flex ".concat(window.location.pathname === '/company/messages' ? 'active' : null),
     to: "/company/messages"
-  }, "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u044F"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }, "\u0421\u043E\u043E\u0431\u0449\u0435\u043D\u0438\u044F", unreadMessagesAmount > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "amount-badge font-weight-bold ml-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, unreadMessagesAmount))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     onClick: function onClick() {
       return setActiveLink('6');
     },
@@ -81073,14 +81100,18 @@ var Offers = function Offers(props) {
       _useState8 = _slicedToArray(_useState7, 2),
       isRejectModalOpen = _useState8[0],
       setRejectModalOpen = _useState8[1],
-      _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
+      _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState10 = _slicedToArray(_useState9, 2),
-      recipient = _useState10[0],
-      setRecipient = _useState10[1],
+      isCloseDealModalOpen = _useState10[0],
+      setCloseDealModalOpen = _useState10[1],
       _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
       _useState12 = _slicedToArray(_useState11, 2),
-      offerId = _useState12[0],
-      setOfferId = _useState12[1];
+      recipient = _useState12[0],
+      setRecipient = _useState12[1],
+      _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
+      _useState14 = _slicedToArray(_useState13, 2),
+      offerId = _useState14[0],
+      setOfferId = _useState14[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/response/user/all', {
@@ -81111,6 +81142,10 @@ var Offers = function Offers(props) {
     openRejectModal: function openRejectModal(offerId) {
       setOfferId(offerId);
       setRejectModalOpen(true);
+    },
+    openCloseDealModal: function openCloseDealModal(offerId) {
+      setOfferId(offerId);
+      setCloseDealModalOpen(true);
     }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_modals_SendMessageModal__WEBPACK_IMPORTED_MODULE_4__["default"], {
     isOpen: isMessageModalOpen,
@@ -81136,10 +81171,20 @@ var Offers = function Offers(props) {
     },
     modalTitle: "\u041E\u0442\u043A\u043B\u043E\u043D\u0438\u0442\u044C \u043F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u0435",
     confirmFunc: function confirmFunc() {
-      offerHelper(props.token, 'reject', offerId);
+      Object(_helpers_offerHelper__WEBPACK_IMPORTED_MODULE_6__["changeOfferStatus"])(props.token, 'reject', offerId);
       props.updateComponent();
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u0412\u044B \u0443\u0432\u0435\u0440\u0435\u043D\u044B \u0447\u0442\u043E \u0445\u043E\u0442\u0438\u0442\u0435 \u043E\u0442\u043A\u043B\u043E\u043D\u0438\u0442\u044C \u043F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u0435?"))));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u0412\u044B \u0443\u0432\u0435\u0440\u0435\u043D\u044B \u0447\u0442\u043E \u0445\u043E\u0442\u0438\u0442\u0435 \u043E\u0442\u043A\u043B\u043E\u043D\u0438\u0442\u044C \u043F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u0435?")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_modals_ConfirmModal__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    isOpen: isCloseDealModalOpen,
+    closeModalFunc: function closeModalFunc() {
+      return setCloseDealModalOpen(false);
+    },
+    modalTitle: "\u0417\u0430\u043A\u0440\u044B\u0442\u044C \u0441\u0434\u0435\u043B\u043A\u0443",
+    confirmFunc: function confirmFunc() {
+      Object(_helpers_offerHelper__WEBPACK_IMPORTED_MODULE_6__["changeOfferStatus"])(props.token, 'close', offerId);
+      props.updateComponent();
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u0412\u044B \u0443\u0432\u0435\u0440\u0435\u043D\u044B \u0447\u0442\u043E \u0445\u043E\u0442\u0438\u0442\u0435 \u0437\u0430\u043A\u0440\u044B\u0442\u044C \u0441\u0434\u0435\u043B\u043A\u0443?"))));
 };
 
 var mapStateToProps = function mapStateToProps(store) {
@@ -81176,7 +81221,8 @@ var OffersList = function OffersList(_ref) {
   var offers = _ref.offers,
       openMessageModal = _ref.openMessageModal,
       openConfirmModal = _ref.openConfirmModal,
-      openRejectModal = _ref.openRejectModal;
+      openRejectModal = _ref.openRejectModal,
+      openCloseDealModal = _ref.openCloseDealModal;
 
   if (offers.length > 0) {
     return offers.map(function (offer) {
@@ -81256,7 +81302,9 @@ var OffersList = function OffersList(_ref) {
         className: "request-info__parameter"
       }, totalPrice, " \u0440\u0443\u0431.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "d-flex flex-column mt-auto"
-      }, status != 'accepted' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      }, status == 'accepted' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "info-message"
+      }, "\u0412\u044B \u043F\u0440\u0438\u043D\u044F\u043B\u0438 \u043F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u0435. \u041E\u0436\u0438\u0434\u0430\u0439\u0442\u0435 \u043F\u043E\u043A\u0430 \u0441 \u0412\u0430\u043C\u0438 \u0441\u0432\u044F\u0436\u0435\u0442\u0441\u044F \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u044F."), status == 'open' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         onClick: function onClick() {
           return openConfirmModal(offer.id);
         },
@@ -81282,9 +81330,18 @@ var OffersList = function OffersList(_ref) {
         style: {
           width: '45%'
         }
-      }, "\u041E\u0442\u043A\u0430\u0437\u0430\u0442\u044C\u0441\u044F"))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "info-message"
-      }, "\u0412\u044B \u043F\u0440\u0438\u043D\u044F\u043B\u0438 \u043F\u0440\u0435\u0434\u043B\u043E\u0436\u0435\u043D\u0438\u0435. \u041E\u0436\u0438\u0434\u0430\u0439\u0442\u0435 \u043F\u043E\u043A\u0430 \u0441 \u0412\u0430\u043C\u0438 \u0441\u0432\u044F\u0436\u0435\u0442\u0441\u044F \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u044F.")));
+      }, "\u041E\u0442\u043A\u0430\u0437\u0430\u0442\u044C\u0441\u044F"))), status == 'awaits_for_closing' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: function onClick() {
+          return openCloseDealModal(offer.id);
+        },
+        className: "main-btn mb-3"
+      }, "\u0417\u0430\u043A\u0440\u044B\u0442\u044C \u0441\u0434\u0435\u043B\u043A\u0443"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: function onClick() {
+          return openMessageModal(recipientId);
+        },
+        type: "button",
+        className: "secondary-btn"
+      }, "\u041D\u0430\u043F\u0438\u0441\u0430\u0442\u044C"))));
     });
   }
 
@@ -82220,11 +82277,11 @@ var authReducer = function authReducer() {
 
   switch (action.type) {
     case 'AUTH':
-      return {
+      return _objectSpread(_objectSpread({}, state), {}, {
         loggedIn: action.payload.loggedIn,
         userToken: action.payload.token,
         userData: action.payload.user
-      };
+      });
 
     case 'EXIT':
       return {};

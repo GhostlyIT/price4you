@@ -30,7 +30,7 @@ const Main = (props) => {
                     <div className="col-12 main-window mt-3">
                         <div className="row">
                             <div className="col-md-10 col-sm-12">
-                                <div className="main-window__inner row">
+                                <div className="main-window__inner">
                                     <Route path="/">
                                         {props.loggedIn ? <Redirect to={userPage} /> : <Auth />}
                                     </Route>

@@ -13,6 +13,7 @@ const Offers = (props) => {
         [isMessageModalOpen, setMessageModalOpen] = useState(false),
         [isConfirmModalOpen, setConfirmModalOpen] = useState(false),
         [isRejectModalOpen, setRejectModalOpen] = useState(false),
+        [isCloseDealModalOpen, setCloseDealModalOpen] = useState(false),
         [recipient, setRecipient] = useState(null),
         [offerId, setOfferId] = useState(null)
 
@@ -48,6 +49,10 @@ const Offers = (props) => {
                             setRejectModalOpen(true)
                         }
                     }
+                    openCloseDealModal={offerId => {
+                        setOfferId(offerId)
+                        setCloseDealModalOpen(true)
+                    }}
                 />
 
                 <SendMessageModal
@@ -78,12 +83,26 @@ const Offers = (props) => {
                     closeModalFunc={() => setRejectModalOpen(false)}
                     modalTitle="Отклонить предложение"
                     confirmFunc={() => {
-                        offerHelper(props.token, 'reject', offerId)
+                        changeOfferStatus(props.token, 'reject', offerId)
                         props.updateComponent()
                     }}
                 >
                     <p>
                         Вы уверены что хотите отклонить предложение?
+                    </p>
+                </ConfirmModal>
+
+                <ConfirmModal
+                    isOpen={isCloseDealModalOpen}
+                    closeModalFunc={() => setCloseDealModalOpen(false)}
+                    modalTitle="Закрыть сделку"
+                    confirmFunc={() => {
+                        changeOfferStatus(props.token, 'close', offerId)
+                        props.updateComponent()
+                    }}
+                >
+                    <p>
+                        Вы уверены что хотите закрыть сделку?
                     </p>
                 </ConfirmModal>
             </div>

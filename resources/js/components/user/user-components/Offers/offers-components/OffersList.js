@@ -1,6 +1,6 @@
 import React from 'react'
 
-const OffersList = ({offers, openMessageModal, openConfirmModal, openRejectModal}) => {
+const OffersList = ({offers, openMessageModal, openConfirmModal, openRejectModal, openCloseDealModal}) => {
     if (offers.length > 0) {
         return offers.map(offer => {
             const price = offer.price
@@ -65,18 +65,27 @@ const OffersList = ({offers, openMessageModal, openConfirmModal, openRejectModal
                     </div>
 
                     <div className="d-flex flex-column mt-auto">
-                        {status != 'accepted'
-                            ?
-                                <>
-                                    <button onClick={() => openConfirmModal(offer.id)} type="button" className="main-btn mb-3">Принять</button>
 
-                                    <div className="d-flex justify-content-between">
-                                        <button onClick={() => openMessageModal(recipientId)} type="button" className="secondary-btn" style={{width: '45%'}}>Написать</button>
-                                        <button onClick={() => openRejectModal(offer.id)} type="button" className="danger-btn" style={{width: '45%'}}>Отказаться</button>
-                                    </div>
-                                </>
-                            :
-                                <span className="info-message">Вы приняли предложение. Ожидайте пока с Вами свяжется компания.</span>
+                        {status == 'accepted' &&
+                            <span className="info-message">Вы приняли предложение. Ожидайте пока с Вами свяжется компания.</span>
+                        }
+
+                        {status == 'open' &&
+                            <>
+                                <button onClick={() => openConfirmModal(offer.id)} type="button" className="main-btn mb-3">Принять</button>
+
+                                <div className="d-flex justify-content-between">
+                                    <button onClick={() => openMessageModal(recipientId)} type="button" className="secondary-btn" style={{width: '45%'}}>Написать</button>
+                                    <button onClick={() => openRejectModal(offer.id)} type="button" className="danger-btn" style={{width: '45%'}}>Отказаться</button>
+                                </div>
+                            </>
+                        }
+
+                        {status == 'awaits_for_closing' &&
+                            <>
+                                <button onClick={() => openCloseDealModal(offer.id)} className="main-btn mb-3">Закрыть сделку</button>
+                                <button onClick={() => openMessageModal(recipientId)} type="button" className="secondary-btn">Написать</button>
+                            </>
                         }
 
                     </div>

@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import MyModal from "../modal"
-import axios from "axios"
 
 const EditCompanyInfoModal = ({isModalOpen, closeModal, company, editFunc}) => {
     const [companyName, setCompanyName] = useState(company.company_name),

@@ -18,8 +18,7 @@ class ResponseController extends Controller
     public function save(Request $request) {
         $validator = Validator::make($request->all(), [
             'request_id' => 'integer|required',
-            'price' => 'integer|required|min:1',
-            'comment' => 'string'
+            'price' => 'integer|required|min:1'
         ]);
 
         if ($validator->fails()) {
@@ -73,9 +72,10 @@ class ResponseController extends Controller
         try {
             $requests = $user->requests()->get();
             $responses = [];
+            $responseList = [];
             foreach($requests as $request) {
                 if (!$request->responses()->get()->isEmpty())
-                    $responseList = $request->responses()->where('company_responses.status', '!=', 'rejected')->with(['company', 'product', 'product.request'])->orderBy('id', 'desc')->get();
+                    $responseList = $request->responses()->where('company_responses.status', '!=', 'rejected')->where('company_responses.status', '!=', 'closed')->with(['company', 'product', 'product.request'])->orderBy('id', 'desc')->get();
 
                     foreach($responseList as $response) {
                         $response['product_info'] = $response->product()->with($response->product->product_type)->first();
