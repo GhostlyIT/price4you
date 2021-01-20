@@ -1,4 +1,5 @@
 import React from 'react'
+import {normalizePrice} from "../../../../../helpers/priceNormalizer"
 
 const OffersList = ({offers, openMessageModal, openConfirmModal, openRejectModal, openCloseDealModal}) => {
     if (offers.length > 0) {
@@ -61,7 +62,7 @@ const OffersList = ({offers, openMessageModal, openConfirmModal, openRejectModal
 
                     <div className="d-flex align-items-center flex-wrap mt-3 mb-4">
                         <span className="mr-2 font-weight-bold">Итоговая цена:</span>
-                        <span className="request-info__parameter">{totalPrice} руб.</span>
+                        <span className="request-info__parameter">{normalizePrice(totalPrice)} руб.</span>
                     </div>
 
                     <div className="d-flex flex-column mt-auto">

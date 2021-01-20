@@ -1,6 +1,7 @@
 import React from 'react'
 import {getTextForStatus} from "../../../../../helpers/offerHelper"
 import Buttons from "./Buttons"
+import {normalizePrice} from "../../../../../helpers/priceNormalizer"
 
 const Response = ({response, showContactData, closeDeal}) => {
     const type = response.product_info.product_type
@@ -42,9 +43,14 @@ const Response = ({response, showContactData, closeDeal}) => {
                 <span className="request-info__parameter">{response.request.comment}</span>
             </div>
 
-            <div className="d-flex align-items-center flex-wrap mt-3 mb-4">
+            <div className="d-flex align-items-center flex-wrap mt-3">
                 <span className="mr-2 font-weight-bold">Ваш комментарий в отклике:</span>
                 <span className="request-info__parameter">{response.comment}</span>
+            </div>
+
+            <div className="d-flex align-items-center flex-wrap mt-3 mb-4">
+                <span className="mr-2 font-weight-bold">Итоговая цена:</span>
+                <span className="request-info__parameter">{normalizePrice(response.price * response.product_info.value)} руб.</span>
             </div>
 
             <span className="info-message mb-4">{getTextForStatus(response.status)}</span>

@@ -79716,6 +79716,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _helpers_offerHelper__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../helpers/offerHelper */ "./resources/js/helpers/offerHelper.js");
 /* harmony import */ var _Buttons__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Buttons */ "./resources/js/components/company/company-components/Responses/responses-components/Buttons.js");
+/* harmony import */ var _helpers_priceNormalizer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../../helpers/priceNormalizer */ "./resources/js/helpers/priceNormalizer.js");
+
 
 
 
@@ -79774,12 +79776,18 @@ var Response = function Response(_ref) {
   }, "\u041A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439 \u043A \u0437\u0430\u044F\u0432\u043A\u0435:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "request-info__parameter"
   }, response.request.comment)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "d-flex align-items-center flex-wrap mt-3 mb-4"
+    className: "d-flex align-items-center flex-wrap mt-3"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "mr-2 font-weight-bold"
   }, "\u0412\u0430\u0448 \u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439 \u0432 \u043E\u0442\u043A\u043B\u0438\u043A\u0435:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "request-info__parameter"
-  }, response.comment)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+  }, response.comment)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "d-flex align-items-center flex-wrap mt-3 mb-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "mr-2 font-weight-bold"
+  }, "\u0418\u0442\u043E\u0433\u043E\u0432\u0430\u044F \u0446\u0435\u043D\u0430:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "request-info__parameter"
+  }, Object(_helpers_priceNormalizer__WEBPACK_IMPORTED_MODULE_3__["normalizePrice"])(response.price * response.product_info.value), " \u0440\u0443\u0431.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "info-message mb-4"
   }, Object(_helpers_offerHelper__WEBPACK_IMPORTED_MODULE_1__["getTextForStatus"])(response.status)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Buttons__WEBPACK_IMPORTED_MODULE_2__["default"], {
     status: response.status,
@@ -81215,6 +81223,8 @@ var mapDispatchProps = function mapDispatchProps(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _helpers_priceNormalizer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../../helpers/priceNormalizer */ "./resources/js/helpers/priceNormalizer.js");
+
 
 
 var OffersList = function OffersList(_ref) {
@@ -81300,7 +81310,7 @@ var OffersList = function OffersList(_ref) {
         className: "mr-2 font-weight-bold"
       }, "\u0418\u0442\u043E\u0433\u043E\u0432\u0430\u044F \u0446\u0435\u043D\u0430:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "request-info__parameter"
-      }, totalPrice, " \u0440\u0443\u0431.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, Object(_helpers_priceNormalizer__WEBPACK_IMPORTED_MODULE_1__["normalizePrice"])(totalPrice), " \u0440\u0443\u0431.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "d-flex flex-column mt-auto"
       }, status == 'accepted' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "info-message"
@@ -82005,6 +82015,23 @@ var changeOfferStatus = function changeOfferStatus(token, newStatus, offerId) {
   }
 
   return false;
+};
+
+/***/ }),
+
+/***/ "./resources/js/helpers/priceNormalizer.js":
+/*!*************************************************!*\
+  !*** ./resources/js/helpers/priceNormalizer.js ***!
+  \*************************************************/
+/*! exports provided: normalizePrice */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "normalizePrice", function() { return normalizePrice; });
+var normalizePrice = function normalizePrice(price) {
+  price = price.toString();
+  return price.replace(/(\d)(?=(\d{3})+(\D|$))/g, '$1 ');
 };
 
 /***/ }),
