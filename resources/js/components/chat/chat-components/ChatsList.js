@@ -44,13 +44,16 @@ const ChatsList = ({token, userData, activeChat, setActiveChat, updateVal}) => {
                         marginRight: '20px'
                     }}></div>
                     <div className="chat__opponent_main d-flex flex-column">
-                        <div className="chat__opponent_name d-flex align-items-center">
+                        <div className="chat__opponent_name d-flex align-items-center position-relative">
                             <span>{opponent.name} {opponent.surname}</span>
+
                             {messagesCount > 0 &&
                             <span className="amount-badge font-weight-bold ml-2">
                                 <span>{messagesCount}</span>
                             </span>
                             }
+
+                            {/*<span onClick={() => console.log('ok')} className="position-absolute chat__delete_btn"></span>*/}
                         </div>
                         <div className="chat__opponent_last_message">
                             <span>{chat.messages[0].from == userData.id ? 'Вы:' : ''} {message}</span>

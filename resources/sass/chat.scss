@@ -20,6 +20,16 @@
                         font-size: 20px;
                         font-weight: 700;
                     }
+
+                    .chat__delete_btn {
+                        right: -10px;
+                        background-image: url("/images/icons/recycle-bin.svg");
+                        background-repeat: no-repeat;
+                        background-position: center;
+                        width: 26px;
+                        height: 30px;
+                        top: -10px;
+                    }
                 }
 
                 .chat__opponent_last_message {

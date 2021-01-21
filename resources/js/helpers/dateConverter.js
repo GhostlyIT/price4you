@@ -27,5 +27,5 @@ export const getFullDate = rawDate => {
         '.' + month +
         '.' + transformedDate.getFullYear() +
         ' ' + transformedDate.getHours() +
-        ':' + transformedDate.getMinutes()
+        ':' + (transformedDate.getMinutes()<10?'0':'') + transformedDate.getMinutes()
 }

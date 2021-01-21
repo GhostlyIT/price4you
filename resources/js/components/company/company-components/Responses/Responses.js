@@ -20,6 +20,7 @@ const Responses = ({token, updateVal, updateComponent}) => {
         [activeResponse, setActiveResponse] = useState(null)
 
     const showContactData = userId => {
+        console.log(userId)
         axios.get(
             '/api/user/contact-data?user_id=' + userId,
             {

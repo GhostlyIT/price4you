@@ -29,7 +29,7 @@ class UserController extends Controller
         $userId = $request->get('user_id');
 
         try {
-            $contactData = User::findOrFail($userId)->select('name', 'surname', 'phone_number')->first();
+            $contactData = User::where('id', $userId)->select('name', 'surname', 'phone_number')->first();
             return response()->json(['contact_data' => $contactData, 'status' => 'success'], 200);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);

@@ -78110,7 +78110,7 @@ var ChatsList = function ChatsList(_ref) {
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "chat__opponent_main d-flex flex-column"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "chat__opponent_name d-flex align-items-center"
+        className: "chat__opponent_name d-flex align-items-center position-relative"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, opponent.name, " ", opponent.surname), messagesCount > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "amount-badge font-weight-bold ml-2"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, messagesCount))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -79569,6 +79569,7 @@ var Responses = function Responses(_ref) {
       setActiveResponse = _useState14[1];
 
   var showContactData = function showContactData(userId) {
+    console.log(userId);
     axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/user/contact-data?user_id=' + userId, {
       headers: {
         'Authorization': 'Bearer ' + token
@@ -81945,7 +81946,7 @@ var getFullDate = function getFullDate(rawDate) {
     month = month.slice(0);
   }
 
-  return transformedDate.getDate() + '.' + month + '.' + transformedDate.getFullYear() + ' ' + transformedDate.getHours() + ':' + transformedDate.getMinutes();
+  return transformedDate.getDate() + '.' + month + '.' + transformedDate.getFullYear() + ' ' + transformedDate.getHours() + ':' + (transformedDate.getMinutes() < 10 ? '0' : '') + transformedDate.getMinutes();
 };
 
 /***/ }),

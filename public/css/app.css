@@ -11609,6 +11609,9 @@ img {
 
 .requests-wrapper .request-info {
   margin-top: 50px;
+  box-shadow: 0 3px 5px 0 rgba(174, 174, 174, 0.5);
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
 .requests-wrapper .request-info .request-info__parameter {
@@ -11678,6 +11681,16 @@ img {
 .chat .chat__opponents .chat__opponent .chat__opponent_main .chat__opponent_name span {
   font-size: 20px;
   font-weight: 700;
+}
+
+.chat .chat__opponents .chat__opponent .chat__opponent_main .chat__opponent_name .chat__delete_btn {
+  right: -10px;
+  background-image: url("/images/icons/recycle-bin.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 26px;
+  height: 30px;
+  top: -10px;
 }
 
 .chat .chat__opponents .chat__opponent .chat__opponent_main .chat__opponent_last_message {
