@@ -14,8 +14,8 @@ class RenameColumnsUserRequests extends Migration
     public function up()
     {
         Schema::table('user_requests', function (Blueprint $table) {
-            $table->renameColumn('payment_method', 'payment_method');
-            $table->renameColumn('delivery_method', 'delivery_method');
+            $table->renameColumn('payment_method_id', 'payment_method');
+            $table->renameColumn('delivery_method_id', 'delivery_method');
         });
     }
 
@@ -27,7 +27,8 @@ class RenameColumnsUserRequests extends Migration
     public function down()
     {
         Schema::table('user_requests', function (Blueprint $table) {
-            //
+            $table->renameColumn('payment_method', 'payment_method_id');
+            $table->renameColumn('delivery_method', 'delivery_method_id');
         });
     }
 }

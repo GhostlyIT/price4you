@@ -11137,6 +11137,7 @@ img {
   max-height: 250px;
   overflow-y: scroll;
   max-width: 300px;
+  z-index: 100;
 }
 
 .falling-list .falling-list__element:not(:last-child) {

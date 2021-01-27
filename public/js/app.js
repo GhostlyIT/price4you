@@ -78753,6 +78753,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _options_components_ViewOptions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./options-components/ViewOptions */ "./resources/js/components/company/company-components/Options/options-components/ViewOptions.js");
 /* harmony import */ var _options_components_SearchManufacture__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./options-components/SearchManufacture */ "./resources/js/components/company/company-components/Options/options-components/SearchManufacture.js");
 /* harmony import */ var _options_components_ChoosenManufactures__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./options-components/ChoosenManufactures */ "./resources/js/components/company/company-components/Options/options-components/ChoosenManufactures.js");
+/* harmony import */ var _options_components_SearchRegion__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./options-components/SearchRegion */ "./resources/js/components/company/company-components/Options/options-components/SearchRegion.js");
+/* harmony import */ var _options_components_ChoosenRegions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./options-components/ChoosenRegions */ "./resources/js/components/company/company-components/Options/options-components/ChoosenRegions.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -78764,6 +78766,8 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
@@ -78785,7 +78789,11 @@ var Options = function Options(props) {
       _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
       _useState6 = _slicedToArray(_useState5, 2),
       companyManufactures = _useState6[0],
-      setCompanyManufactures = _useState6[1];
+      setCompanyManufactures = _useState6[1],
+      _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState8 = _slicedToArray(_useState7, 2),
+      regions = _useState8[0],
+      setRegions = _useState8[1];
 
   var refreshOptions = function refreshOptions() {
     axios__WEBPACK_IMPORTED_MODULE_2___default.a.get('/api/company/options', {
@@ -78796,6 +78804,7 @@ var Options = function Options(props) {
       setViewOptions(response.data.all_view_options);
       setSelectedViewOption(response.data.selected_view_option);
       setCompanyManufactures(response.data.manufactures);
+      setRegions(response.data.regions);
     })["catch"](function (error) {
       console.log(error.response.data.message);
       Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_3__["showNotification"])('Ошибка', 'Произошла ошибка. Попробуйте перезагрузить страницу.', 'danger');
@@ -78848,10 +78857,43 @@ var Options = function Options(props) {
       Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_3__["showNotification"])('Список производителей', 'Производитель был удален из списка.', 'success');
       refreshOptions();
     })["catch"](function (error) {
-      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_3__["showNotification"])('Ошибка', 'Произошла ошибка при удалени призводителя из списка. Попробуйте еще раз.', 'danger');
+      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_3__["showNotification"])('Ошибка', 'Произошла ошибка при удалении призводителя из списка. Попробуйте еще раз.', 'danger');
       console.log(error.response.data.message);
     });
   };
+
+  var addRegion = function addRegion(regionId) {
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/company/region/add', {
+      region_id: regionId
+    }, {
+      headers: {
+        'Authorization': 'Bearer ' + props.token
+      }
+    }).then(function (response) {
+      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_3__["showNotification"])('Список регионов', 'Регион добавлен в список.', 'success');
+      refreshOptions();
+    })["catch"](function (error) {
+      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_3__["showNotification"])('Ошибка', 'Произошла ошибка при удалении региона из списка. Попробуйте еще раз.', 'danger');
+      console.log(error.response.data.message);
+    });
+  };
+
+  var removeRegion = function removeRegion(regionId) {
+    axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/company/region/remove', {
+      region_id: regionId
+    }, {
+      headers: {
+        'Authorization': 'Bearer ' + props.token
+      }
+    }).then(function (response) {
+      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_3__["showNotification"])('Список регионов', 'Регион был удален из списка.', 'success');
+      refreshOptions();
+    })["catch"](function (error) {
+      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_3__["showNotification"])('Ошибка', 'Произошла ошибка при удалении региона из списка. Попробуйте еще раз.', 'danger');
+      console.log(error.response.data.message);
+    });
+  }; //TODO: написать метод для добавления регионов компаниям
+
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-12 options-wrapper"
@@ -78874,13 +78916,27 @@ var Options = function Options(props) {
   }, "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u043F\u0440\u043E\u0438\u0437\u0432\u043E\u0434\u0438\u0442\u0435\u043B\u0435\u0439, \u043F\u0440\u043E\u0434\u0443\u043A\u0446\u0438\u0435\u0439 \u043A\u043E\u0442\u043E\u0440\u044B\u0445 \u0432\u044B \u0442\u043E\u0440\u0433\u0443\u0435\u0442\u0435"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_options_components_SearchManufacture__WEBPACK_IMPORTED_MODULE_5__["default"], {
     companyManufactures: companyManufactures,
     addManufacture: addManufacture
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  })), companyManufactures.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "options-element"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
     className: "options-element__title"
   }, "\u0412\u044B\u0431\u0440\u0430\u043D\u043D\u044B\u0435 \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u0438"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_options_components_ChoosenManufactures__WEBPACK_IMPORTED_MODULE_6__["default"], {
     manufactures: companyManufactures,
     removeManufacture: removeManufacture
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "options-element"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "options-element__title"
+  }, "\u0412\u044B\u0431\u0435\u0440\u0438\u0442\u0435 \u0440\u0435\u0433\u0438\u043E\u043D\u044B, \u0432 \u043A\u043E\u0442\u043E\u0440\u044B\u0445 \u0432\u044B \u0442\u043E\u0440\u0433\u0443\u0435\u0442\u0435"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_options_components_SearchRegion__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    regions: regions,
+    addRegion: addRegion
+  })), regions.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "options-element"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "options-element__title"
+  }, "\u0412\u044B\u0431\u0440\u0430\u043D\u043D\u044B\u0435 \u0440\u0435\u0433\u0438\u043E\u043D\u044B"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_options_components_ChoosenRegions__WEBPACK_IMPORTED_MODULE_8__["default"], {
+    regions: regions,
+    removeRegion: removeRegion
   })));
 };
 
@@ -78934,6 +78990,49 @@ var ChoosenManufactures = function ChoosenManufactures(_ref) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ChoosenManufactures);
+
+/***/ }),
+
+/***/ "./resources/js/components/company/company-components/Options/options-components/ChoosenRegions.js":
+/*!*********************************************************************************************************!*\
+  !*** ./resources/js/components/company/company-components/Options/options-components/ChoosenRegions.js ***!
+  \*********************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var ChoosenRegions = function ChoosenRegions(_ref) {
+  var regions = _ref.regions,
+      removeRegion = _ref.removeRegion;
+
+  if (regions.length > 0) {
+    return regions.map(function (region) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        key: region.id_count_reg,
+        className: "black-list"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "d-flex align-items-center"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "mr-4"
+      }, region.name_regions), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: function onClick() {
+          return removeRegion(region.id_count_reg);
+        },
+        type: "button",
+        className: "btn btn-danger"
+      }, "\u0423\u0434\u0430\u043B\u0438\u0442\u044C")));
+    });
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null);
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ChoosenRegions);
 
 /***/ }),
 
@@ -79062,6 +79161,133 @@ var SearchManufacture = function SearchManufacture(_ref) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (SearchManufacture);
+
+/***/ }),
+
+/***/ "./resources/js/components/company/company-components/Options/options-components/SearchRegion.js":
+/*!*******************************************************************************************************!*\
+  !*** ./resources/js/components/company/company-components/Options/options-components/SearchRegion.js ***!
+  \*******************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _common_loader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../common/loader */ "./resources/js/components/common/loader.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+var SearchRegion = function SearchRegion(_ref) {
+  var regions = _ref.regions,
+      addRegion = _ref.addRegion;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      searchResult = _useState2[0],
+      setSearchResult = _useState2[1],
+      _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      loading = _useState4[0],
+      setLoading = _useState4[1],
+      _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      fallingListOpen = _useState6[0],
+      setFallingListOpen = _useState6[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    document.addEventListener('click', handleClick, false);
+  });
+
+  var handleClick = function handleClick(e) {
+    var companies = document.getElementById('regions');
+    var companyList = document.getElementById('company-wrapper');
+    var path = e.path || Event.composedPath && Event.composedPath();
+
+    if (!path.includes(companies) && !path.includes(companyList)) {
+      setFallingListOpen(false);
+    }
+  };
+
+  var searchCompany = function searchCompany(query) {
+    if (query != '') {
+      setLoading(true);
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/region/search?query=".concat(query)).then(function (response) {
+        setSearchResult(response.data.regions);
+      })["catch"](function (error) {
+        setSearchResult([]);
+      }).then(function () {
+        setLoading(false);
+      });
+    } else {
+      setSearchResult([]);
+    }
+  };
+
+  var renderRegions = function renderRegions() {
+    if (loading) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_loader__WEBPACK_IMPORTED_MODULE_1__["default"], null);
+    }
+
+    if (searchResult.length > 0) {
+      return searchResult.map(function (region) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "company-wrapper falling-list__element",
+          key: region.id_count_reg
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "text-center font-weight-bold mb-2"
+        }, region.name_regions), regions.findIndex(function (item) {
+          return item.id_count_reg == region.id_count_reg;
+        }) == -1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            return addRegion(region.id_count_reg);
+          },
+          type: "button",
+          className: "white-blue-btn w-100"
+        }, "\u0414\u043E\u0431\u0430\u0432\u0438\u0442\u044C") : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          type: "button",
+          className: "white-blue-btn w-100",
+          disabled: true
+        }, "\u0414\u043E\u0431\u0430\u0432\u043B\u0435\u043D"));
+      });
+    } else {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u0420\u0435\u0433\u0438\u043E\u043D\u044B \u043D\u0435 \u043D\u0430\u0439\u0434\u0435\u043D\u044B");
+    }
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "position-relative"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    onClick: function onClick() {
+      return setFallingListOpen(true);
+    },
+    onChange: function onChange(e) {
+      return searchCompany(e.target.value);
+    },
+    id: "regions",
+    placeholder: "\u041F\u043E\u0438\u0441\u043A \u0440\u0435\u0433\u0438\u043E\u043D\u0430"
+  }), fallingListOpen === true && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "falling-list position-absolute"
+  }, renderRegions()));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (SearchRegion);
 
 /***/ }),
 
@@ -80794,12 +81020,14 @@ var AddRequest = function AddRequest(props) {
           },
           id: 'field-picked-' + product.id,
           className: "col-2"
-        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
+        }), product.type != 'Защита растений' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
           onChange: function onChange(e) {
             return selectedProducts[i].unit = e.target.value;
           },
           className: "ml-3 mr-3"
-        }, renderProductUnits()), product.type === 'Защита растений' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+        }, renderProductUnits()) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+          className: "ml-3 mr-3"
+        }, selectedProducts[i].unit = product.tara.tara_unit), product.type === 'Защита растений' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
           className: "col-4"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
           onClick: function onClick() {

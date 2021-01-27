@@ -34,6 +34,8 @@ Route::middleware(['auth:api', 'auth.company'])->post('company/manufacture/add',
 Route::middleware(['auth:api', 'auth.company'])->post('company/manufacture/remove', 'App\Http\Controllers\CompanyController@removeManufacture');
 Route::middleware('auth:api')->get('company/info', 'App\Http\Controllers\CompanyController@getInfo');
 Route::middleware(['auth:api', 'auth.company'])->post('company/edit', 'App\Http\Controllers\CompanyController@edit');
+Route::middleware(['auth:api', 'auth.company'])->post('company/region/add', 'App\Http\Controllers\CompanyController@addRegion');
+Route::middleware(['auth:api', 'auth.company'])->post('company/region/remove', 'App\Http\Controllers\CompanyController@deleteRegion');
 
 
 //Products
@@ -45,6 +47,10 @@ Route::post('product/calculate-volume', 'App\Http\Controllers\ProductsController
 
 //Manufactures
 Route::get('manufacture/search', 'App\Http\Controllers\ManufactureController@search');
+
+
+//Regions
+Route::get('region/search', 'App\Http\Controllers\RegionController@search');
 
 
 //Requests

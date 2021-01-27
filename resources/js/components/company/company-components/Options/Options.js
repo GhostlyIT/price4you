@@ -5,12 +5,15 @@ import {showNotification} from "../../../../helpers/notifications"
 import ViewOptions from "./options-components/ViewOptions"
 import SearchManufacture from "./options-components/SearchManufacture"
 import ChoosenManufactures from "./options-components/ChoosenManufactures"
+import SearchRegion from "./options-components/SearchRegion";
+import ChoosenRegions from "./options-components/ChoosenRegions";
 
 
 const Options = (props) => {
     const [selectedViewOption, setSelectedViewOption] = useState(1),
         [viewOptions, setViewOptions] = useState(null),
-        [companyManufactures, setCompanyManufactures] = useState([])
+        [companyManufactures, setCompanyManufactures] = useState([]),
+        [regions, setRegions] = useState([])
 
     const refreshOptions = () => {
         axios.get('/api/company/options', {
@@ -20,6 +23,7 @@ const Options = (props) => {
                 setViewOptions(response.data.all_view_options)
                 setSelectedViewOption(response.data.selected_view_option)
                 setCompanyManufactures(response.data.manufactures)
+                setRegions(response.data.regions)
             })
             .catch(error => {
                 console.log(error.response.data.message)
@@ -40,13 +44,13 @@ const Options = (props) => {
                 headers: {'Authorization': 'Bearer ' + props.token}
             }
         )
-            .then(() => {
-                refreshOptions()
-            })
-            .catch(error => {
-                showNotification('Ошибка', 'Произошла ошибка. Попробуйте еще раз.', 'danger')
-                console.log(error.response.data.message)
-            })
+        .then(() => {
+            refreshOptions()
+        })
+        .catch(error => {
+            showNotification('Ошибка', 'Произошла ошибка. Попробуйте еще раз.', 'danger')
+            console.log(error.response.data.message)
+        })
     }
 
     const addManufacture = manufactureId => {
@@ -58,14 +62,14 @@ const Options = (props) => {
                 headers: {'Authorization': 'Bearer ' + props.token}
             }
         )
-            .then(response => {
-                showNotification('Список производителей', 'Производитель добавлен список.', 'success')
-                refreshOptions()
-            })
-            .catch(error => {
-                showNotification('Ошибка', 'Произошла ошибка при добавлении производителя в список. Попробуйте еще раз.', 'danger')
-                console.log(error.response.data.message)
-            })
+        .then(response => {
+            showNotification('Список производителей', 'Производитель добавлен список.', 'success')
+            refreshOptions()
+        })
+        .catch(error => {
+            showNotification('Ошибка', 'Произошла ошибка при добавлении производителя в список. Попробуйте еще раз.', 'danger')
+            console.log(error.response.data.message)
+        })
     }
 
     const removeManufacture = manufactureid => {
@@ -77,15 +81,55 @@ const Options = (props) => {
                 headers: {'Authorization': 'Bearer ' + props.token}
             }
         )
-            .then(response => {
-                showNotification('Список производителей', 'Производитель был удален из списка.', 'success')
-                refreshOptions()
-            })
-            .catch(error => {
-                showNotification('Ошибка', 'Произошла ошибка при удалени призводителя из списка. Попробуйте еще раз.', 'danger')
-                console.log(error.response.data.message)
-            })
+        .then(response => {
+            showNotification('Список производителей', 'Производитель был удален из списка.', 'success')
+            refreshOptions()
+        })
+        .catch(error => {
+            showNotification('Ошибка', 'Произошла ошибка при удалении призводителя из списка. Попробуйте еще раз.', 'danger')
+            console.log(error.response.data.message)
+        })
     }
+
+    const addRegion = regionId => {
+        axios.post('/api/company/region/add',
+            {
+                region_id: regionId
+            },
+            {
+                headers: {'Authorization': 'Bearer ' + props.token}
+            }
+        )
+        .then(response => {
+            showNotification('Список регионов', 'Регион добавлен в список.', 'success')
+            refreshOptions()
+        })
+        .catch(error => {
+            showNotification('Ошибка', 'Произошла ошибка при удалении региона из списка. Попробуйте еще раз.', 'danger')
+            console.log(error.response.data.message)
+        })
+    }
+
+    const removeRegion = regionId => {
+        axios.post('/api/company/region/remove',
+            {
+                region_id: regionId
+            },
+            {
+                headers: {'Authorization': 'Bearer ' + props.token}
+            }
+        )
+        .then(response => {
+            showNotification('Список регионов', 'Регион был удален из списка.', 'success')
+            refreshOptions()
+        })
+        .catch(error => {
+            showNotification('Ошибка', 'Произошла ошибка при удалении региона из списка. Попробуйте еще раз.', 'danger')
+            console.log(error.response.data.message)
+        })
+    }
+
+    //TODO: написать метод для добавления регионов компаниям
 
     return (
         <div className="col-12 options-wrapper">
@@ -110,10 +154,27 @@ const Options = (props) => {
                 <SearchManufacture companyManufactures={companyManufactures} addManufacture={addManufacture} />
             </div>
 
+            {
+                companyManufactures.length > 0 &&
+                <div className="options-element">
+                    <h3 className="options-element__title">Выбранные компании</h3>
+                    <ChoosenManufactures manufactures={companyManufactures} removeManufacture={removeManufacture} />
+                </div>
+            }
+
             <div className="options-element">
-                <h3 className="options-element__title">Выбранные компании</h3>
-                <ChoosenManufactures manufactures={companyManufactures} removeManufacture={removeManufacture} />
+                <h3 className="options-element__title">Выберите регионы, в которых вы торгуете</h3>
+                <SearchRegion regions={regions} addRegion={addRegion} />
             </div>
+
+            {
+                regions.length > 0 &&
+                <div className="options-element">
+                    <h3 className="options-element__title">Выбранные регионы</h3>
+                    <ChoosenRegions regions={regions} removeRegion={removeRegion} />
+                </div>
+            }
+
         </div>
     )
 }

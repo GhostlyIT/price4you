@@ -160,9 +160,12 @@ const AddRequest = (props) => {
                                 className="col-2"
                         />
 
-                        <select onChange={(e) => selectedProducts[i].unit = e.target.value } className="ml-3 mr-3">
-                            {renderProductUnits()}
-                        </select>
+                        {product.type != 'Защита растений'
+                            ? <select onChange={(e) => selectedProducts[i].unit = e.target.value } className="ml-3 mr-3">
+                                {renderProductUnits()}
+                            </select>
+                            : <span className="ml-3 mr-3">{selectedProducts[i].unit = product.tara.tara_unit}</span>
+                        }
 
                         { product.type === 'Защита растений' &&
                             <div className="col-4">
@@ -189,7 +192,6 @@ const AddRequest = (props) => {
         })
 
         if (product) {
-
             const selectCulture = (cultureDomElement, culture, regdata) => {
                 $('.calculate-product__culture').removeClass('selected')
                 cultureDomElement.addClass('selected')

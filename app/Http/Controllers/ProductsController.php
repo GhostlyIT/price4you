@@ -36,7 +36,7 @@ class ProductsController extends Controller
         $query = $request->get('query');
 
         try {
-            $products = Product::select('id_product AS id', 'name_product_rus')->where('name_product_rus', 'like', "%$query%")->orderBy('name_product_rus')->get();
+            $products = Product::select('id_product AS id', 'name_product_rus')->where('name_product_rus', 'like', "%$query%")->with('tara')->orderBy('name_product_rus')->get();
             foreach ($products as $product) {
                 //$product['culture'] = $product->culture()->get();
                 if ($product->regdata()->first()) {

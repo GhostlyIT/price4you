@@ -33,6 +33,10 @@ class Companies extends Model
         return $this->hasManyThrough('App\Models\Manufacture', 'App\Models\CompanyManufactures');
     }
 
+    public function regionsMiddleware() {
+        return $this->hasMany('App\Models\CompanyRegions', 'company_id');
+    }
+
     public function getNameAttribute() {
         return "{$this->company_name}";
     }

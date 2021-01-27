@@ -36,9 +36,18 @@ class Product extends Model
         return $this->hasMany('App\Models\RegDataForAvia', 'id_product');
     }
 
+    public function tara() {
+        return $this->hasOneThrough('App\Models\Tara\ProductTara', 'App\Models\Tara\ProductAndTara', 'id_product', 'id_product_tara', 'id', 'id_product_tara');
+    }
+
+
+
+
     public function getNameAttribute() {
         return "{$this->name_product_rus}";
     }
+
+
 
     protected $appends = ['name'];
 }

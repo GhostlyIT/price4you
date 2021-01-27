@@ -27,7 +27,8 @@ class ChangeTypesUserRequests extends Migration
     public function down()
     {
         Schema::table('user_requests', function (Blueprint $table) {
-            //
+            $table->integer('payment_method')->change();
+            $table->integer('delivery_method')->change();
         });
     }
 }

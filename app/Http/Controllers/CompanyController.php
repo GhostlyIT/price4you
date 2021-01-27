@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CompanyManufactures;
+use App\Models\CompanyRegions;
 use Illuminate\Http\Request;
 use App\Exceptions\ValidationException;
 use Illuminate\Support\Facades\Auth;
@@ -78,6 +79,51 @@ class CompanyController extends Controller
         try {
             CompanyManufactures::where('company_id', $company->id)->where('manufacture_id', $manufactureId)->delete();
             return response()->json(['message' => 'Производитель удален', 'status' => 'success'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);
+        }
+    }
+
+    public function addRegion(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'region_id' => 'integer|required'
+        ]);
+
+        if ($validator->fails()) {
+            $this->failedValidation($validator);
+        }
+
+        $user = Auth::user();
+        $company = $user->company;
+        $regionId = $request->get('region_id');
+
+        try {
+            CompanyRegions::create([
+                'company_id' => $company->id,
+                'region_id' => $regionId
+            ]);
+            return response()->json(['message' => 'Регион добавлен', 'status' => 'success'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);
+        }
+    }
+
+    public function deleteRegion(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'region_id' => 'integer|required'
+        ]);
+
+        if ($validator->fails()) {
+            $this->failedValidation($validator);
+        }
+
+        $user = Auth::user();
+        $company = $user->company;
+        $regionId = $request->get('region_id');
+
+        try {
+            CompanyRegions::where('company_id', $company->id)->where('region_id', $regionId)->delete();
+            return response()->json(['message' => 'Регион удален', 'status' => 'success'], 200);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);
         }

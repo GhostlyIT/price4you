@@ -37,14 +37,23 @@ class OptionsController extends Controller
             $company = $user->company;
             $viewOptions = ViewOptions::select('id', 'text_for_company')->get();
             $manufactures = [];
+            $regions = [];
+
             $manufactureMiddlewares = $company->manufacturesMiddleware()->get();
             foreach($manufactureMiddlewares as $manufactureMiddleware) {
                 $manufactures[] = $manufactureMiddleware->manufacture;
             }
+
+            $regionsMiddlewares = $company->regionsMiddleware()->get();
+            foreach($regionsMiddlewares as $regionsMiddleware) {
+                $regions[] = $regionsMiddleware->region;
+            }
+
             return response()->json([
                 'all_view_options' => $viewOptions,
                 'selected_view_option' => $user->view_option_id,
                 'manufactures' => $manufactures,
+                'regions' => $regions,
                 'status' => 'success'
             ],200);
         } catch (\Exception $e) {
