@@ -5,15 +5,15 @@ namespace App\Models\Tara;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ProductTara extends Model
+class SeedTara extends Model
 {
     use HasFactory;
 
     protected $connection = 'mysql_ecoplant';
-    protected $table = 'product_tara';
+    protected $table = 'seed_tara';
 
     public function getTaraNameAttribute() {
-        return "{$this->pack_and_tara}";
+        return "{$this->name_seed_tara_rus}";
     }
 
     protected $appends = ['tara_name'];

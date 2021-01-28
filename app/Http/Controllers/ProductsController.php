@@ -47,8 +47,8 @@ class ProductsController extends Controller
                     $product['regdata'] = $product->regdataForAvia()->with('culture')->get();
                 }
             }
-            $seeds = Seed::select('id_seed_product AS id', 'name_seed_rus')->where('name_seed_rus', 'like', "%$query%")->orderBy('name_seed_rus')->get();
-            $fertilisers = Fertiliser::select('id_fertiliser AS id', 'name_fertiliser')->where('name_fertiliser', 'like', "%$query%")->orderBy('name_fertiliser')->get();
+            $seeds = Seed::select('id_seed_product AS id', 'name_seed_rus')->where('name_seed_rus', 'like', "%$query%")->with('tara')->orderBy('name_seed_rus')->get();
+            $fertilisers = Fertiliser::select('id_fertiliser AS id', 'name_fertiliser')->where('name_fertiliser', 'like', "%$query%")->with('tara')->orderBy('name_fertiliser')->get();
             $totalResult = [
                 'Защита растений' => $products,
                 'Семена' => $seeds,

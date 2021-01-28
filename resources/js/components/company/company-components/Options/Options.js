@@ -129,8 +129,6 @@ const Options = (props) => {
         })
     }
 
-    //TODO: написать метод для добавления регионов компаниям
-
     return (
         <div className="col-12 options-wrapper">
             <h1 className="text-center">Настройки</h1>

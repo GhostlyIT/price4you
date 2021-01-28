@@ -153,6 +153,7 @@ const AddRequest = (props) => {
                         <label htmlFor={'field-picked-' + product.id} className="position-relative d-flex flex-column col-4">
                             {product.name}
                             <small>{product.type}</small>
+                            <small>Упаковка: {product.tara.tara_name}</small>
                         </label>
 
                         <input onChange={(e) => selectedProducts[i].value = parseFloat(e.target.value) }
@@ -160,7 +161,7 @@ const AddRequest = (props) => {
                                 className="col-2"
                         />
 
-                        {product.type != 'Защита растений'
+                        { product.type != 'Защита растений' && product.type != 'Удобрения'
                             ? <select onChange={(e) => selectedProducts[i].unit = e.target.value } className="ml-3 mr-3">
                                 {renderProductUnits()}
                             </select>
@@ -291,6 +292,9 @@ const AddRequest = (props) => {
         })
         .then((response) => {
             showNotification('Создание нового запроса', response.data.message, 'success')
+            setTimeout(() => {
+                document.location.reload()
+            }, 1000)
         })
         .catch((error) => {
             showNotification('Создание нового запроса', error.response.data.message, 'danger')

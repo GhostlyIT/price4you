@@ -78892,8 +78892,7 @@ var Options = function Options(props) {
       Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_3__["showNotification"])('Ошибка', 'Произошла ошибка при удалении региона из списка. Попробуйте еще раз.', 'danger');
       console.log(error.response.data.message);
     });
-  }; //TODO: написать метод для добавления регионов компаниям
-
+  };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-12 options-wrapper"
@@ -81014,13 +81013,13 @@ var AddRequest = function AddRequest(props) {
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
           htmlFor: 'field-picked-' + product.id,
           className: "position-relative d-flex flex-column col-4"
-        }, product.name, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("small", null, product.type)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+        }, product.name, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("small", null, product.type), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("small", null, "\u0423\u043F\u0430\u043A\u043E\u0432\u043A\u0430: ", product.tara.tara_name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
           onChange: function onChange(e) {
             return selectedProducts[i].value = parseFloat(e.target.value);
           },
           id: 'field-picked-' + product.id,
           className: "col-2"
-        }), product.type != 'Защита растений' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
+        }), product.type != 'Защита растений' && product.type != 'Удобрения' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
           onChange: function onChange(e) {
             return selectedProducts[i].unit = e.target.value;
           },
@@ -81155,6 +81154,9 @@ var AddRequest = function AddRequest(props) {
       }
     }).then(function (response) {
       Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_5__["showNotification"])('Создание нового запроса', response.data.message, 'success');
+      setTimeout(function () {
+        document.location.reload();
+      }, 1000);
     })["catch"](function (error) {
       Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_5__["showNotification"])('Создание нового запроса', error.response.data.message, 'danger');
     });
@@ -82358,7 +82360,7 @@ var sendMessage = function sendMessage(message, recipient_id, token) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "productUnits", function() { return productUnits; });
-var productUnits = ['кг', 'г', 'л', 'мл', 'уп.'];
+var productUnits = ['п.е.', 'шт.', 'кг.'];
 
 /***/ }),
 
