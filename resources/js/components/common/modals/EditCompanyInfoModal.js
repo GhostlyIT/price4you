@@ -1,16 +1,22 @@
 import React, {useState} from 'react'
 import MyModal from "../modal"
 
-const EditCompanyInfoModal = ({isModalOpen, closeModal, company, editFunc}) => {
+const EditCompanyInfoModal = ({isModalOpen, closeModal, company, user, editFunc}) => {
     const [companyName, setCompanyName] = useState(company.company_name),
         [director, setDirector] = useState(company.director),
         [address, setAddress] = useState(company.company_address),
-        [email, setEmail] = useState(company.email),
+        [email, setEmail] = useState(user.email),
+        [directorEmail, setDirectorEmail] = useState(company.email),
         [about, setAbout] = useState(company.about)
 
     return(
         <MyModal isOpen={isModalOpen} closeModal={closeModal} modalTitle="Редактирование профиля компании">
             <div className="modal__body">
+                <div className="modal__element d-flex flex-column">
+                    <span className="mb-2 font-weight-bold">Email для входа в аккаунт</span>
+                    <input onChange={e => setEmail(e.target.value)} type="email" value={email} />
+                </div>
+
                 <div className="modal__element d-flex flex-column">
                     <span className="mb-2 font-weight-bold">Название компании</span>
                     <input onChange={e => setCompanyName(e.target.value)} type="text" value={companyName} />
@@ -27,8 +33,8 @@ const EditCompanyInfoModal = ({isModalOpen, closeModal, company, editFunc}) => {
                 </div>
 
                 <div className="modal__element d-flex flex-column">
-                    <span className="mb-2 font-weight-bold">Email</span>
-                    <input onChange={e => setEmail(e.target.value)} type="email" value={email} />
+                    <span className="mb-2 font-weight-bold">Email директора</span>
+                    <input onChange={e => setDirectorEmail(e.target.value)} type="email" value={directorEmail} />
                 </div>
 
                 <div className="modal__element d-flex flex-column">
@@ -37,7 +43,7 @@ const EditCompanyInfoModal = ({isModalOpen, closeModal, company, editFunc}) => {
                 </div>
 
                 <div className="modal__element">
-                    <button onClick={() => editFunc(companyName, director, address, email, about)} className="main-btn" type="button">Сохранить</button>
+                    <button onClick={() => editFunc(companyName, director, address, email, directorEmail, about)} className="main-btn" type="button">Сохранить</button>
                 </div>
             </div>
         </MyModal>

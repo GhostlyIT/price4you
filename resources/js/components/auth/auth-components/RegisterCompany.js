@@ -15,10 +15,12 @@ const RegisterCompany = (props) => {
             [companyAddress, setCompanyAddress] = useState(''),
             [companyEmail, setCompanyEmail] = useState(''),
             [companyDirector, setCompanyDirector] = useState(''),
-            [disabled, setDisabled] = useState(true)
+            [disabled, setDisabled] = useState(true),
+            [email, setEmail] = useState('')
 
             const register = () => {
                 axios.post('/api/register', {
+                    email: email,
                     name: name,
                     surname: surname,
                     phone_number: phone,
@@ -26,7 +28,7 @@ const RegisterCompany = (props) => {
                     account_type: 'company',
                     company_name: companyName,
                     company_address: companyAddress,
-                    email: companyEmail,
+                    director_email: companyEmail,
                     director: companyDirector
                 })
                 .then(response => {
@@ -48,6 +50,7 @@ const RegisterCompany = (props) => {
                 <form className="d-flex flex-column mt-3">
                     <div className="row">
                         <div className="col-xs-12 col-md-6">
+                            <input value={email} onChange={event => setEmail(event.target.value)} className="mt-3 w-100" type="email" placeholder="Почта для входа" />
                             <input value={name} onChange={(event) => setName(event.target.value)} className="mt-3 w-100" id="register__name" type="text" placeholder="Имя" />
                             <input value={surname} onChange={(event) => setSurname(event.target.value)} className="mt-3 w-100" id="register__surname" type="text" placeholder="Фамилия" />
                             <InputMask mask="+7(999)999-99-99" value={phone} onChange={(event) => setPhone(event.target.value)} className="mt-3 w-100" id="register__tel" type="tel" placeholder="Номер телефона" />

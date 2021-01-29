@@ -8,6 +8,7 @@ import {connect} from "react-redux";
 import Options from "./user-components/Options/Options";
 import Offers from "./user-components/Offers/Offers";
 import Chat from "../chat/Chat";
+import Profile from "./user-components/Profile/Profile";
 
 const User = (props) => {
     const match = useRouteMatch()
@@ -30,6 +31,9 @@ const User = (props) => {
             </Route>
             <Route path={`${match.url}/messages`}>
                 <Chat />
+            </Route>
+            <Route path={`${match.url}/info`}>
+                <Profile />
             </Route>
         </>
     )

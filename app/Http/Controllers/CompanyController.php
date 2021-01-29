@@ -154,11 +154,14 @@ class CompanyController extends Controller
     }
 
     public function edit(Request $request) {
+        $user = auth::user();
+        $company = $user->company;
         $validator = Validator::make($request->all(), [
             'company_name' => 'required|max:32',
             'director' => 'required|string|max:32',
             'address' => 'required',
-            'email' => 'required|email'
+            'director_email' => 'required|email|unique:App\Models\Companies,email,' . $company->id,
+            'email' => 'required|email|unique:App\Models\User,email,' . $user->id
         ]);
 
         if ($validator->fails()) {
@@ -168,13 +171,13 @@ class CompanyController extends Controller
         $companyName = $request->get('company_name');
         $director = $request->get('director');
         $address = $request->get('address');
-        $email = $request->get('email');
+        $email = $request->get('director_email');
         $about = null;
 
         if ($request->has('about') && $request->get('about') != '') $about = $request->get('about');
 
-        $user = auth::user();
-        $company = $user->company;
+
+
 
         try {
             $company->company_name = $companyName;
@@ -183,6 +186,9 @@ class CompanyController extends Controller
             $company->director = $director;
             $company->about = $about;
             $company->save();
+
+            $user->email = $request->get('email');
+            $user->save();
 
             $user->company = $user->company;
             return response()->json(['user' => $user, 'status' => 'success'], 200);

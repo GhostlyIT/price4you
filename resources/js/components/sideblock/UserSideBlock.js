@@ -67,8 +67,9 @@ const UserSideBlock = (props) => {
                         </span>
                     }
                 </Link>
-                <Link onClick={() => setActiveLink('5')} className={window.location.pathname === '/user/settings' ? 'active' : null} to="/user/settings">Настройки</Link>
-                <Link onClick={() => setActiveLink('6')} className={window.location.pathname === '/faq/how-works' ? 'active' : null} to="/faq/how-works">Как работает сервис</Link>
+                <Link onClick={() => setActiveLink('5')} className={window.location.pathname === '/user/info' ? 'active' : null} to="/user/info">Мои данные</Link>
+                <Link onClick={() => setActiveLink('6')} className={window.location.pathname === '/user/settings' ? 'active' : null} to="/user/settings">Настройки</Link>
+                <Link onClick={() => setActiveLink('7')} className={window.location.pathname === '/faq/how-works' ? 'active' : null} to="/faq/how-works">Как работает сервис</Link>
                 <button onClick={() => props.exit()} type="button">Выйти</button>
             </div>
         </div>

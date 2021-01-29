@@ -25,6 +25,7 @@ Route::middleware(['auth:api', 'auth.user'])->post('user/blacklist/add', 'App\Ht
 Route::middleware(['auth:api', 'auth.user'])->get('user/options', 'App\Http\Controllers\OptionsController@getForUser');
 Route::middleware('auth:api')->post('user/options/view/save', 'App\Http\Controllers\OptionsController@saveViewOption');
 Route::middleware('auth:api')->get('user/contact-data', 'App\Http\Controllers\UserController@getContactData');
+Route::middleware('auth:api')->post('user/edit', 'App\Http\Controllers\UserController@edit');
 
 
 //Company

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Exceptions\ValidationException;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Support\Facades\Auth;
@@ -27,6 +28,7 @@ class AuthController extends Controller
 
     public function register(Request $request) {
         $validator = Validator::make($request->all(), [
+            'email' => 'required|email|unique:App\Models\User',
             'name' => 'required|string|max:32',
             'surname' => 'required|string|max:32',
             'phone_number' => 'required|regex:/\+7\([0-9]{3}\)[0-9]{3}-[0-9]{2}-[0-9]{2}/|unique:App\Models\User',
@@ -34,7 +36,7 @@ class AuthController extends Controller
             'account_type' => 'required|string|in:' . implode(',', $this->allowedAccountTypes),
             'company_name' => 'required_if:account_type,company|string',
             'company_address' => 'required_if:account_type,company|string',
-            'email' => 'required_if:account_type,company|email',
+            'director_email' => 'required_if:account_type,company|email',
             'director' => 'required_if:account_type,company|string|max:32'
         ]);
 
@@ -43,6 +45,7 @@ class AuthController extends Controller
         }
 
         $newUser = [
+            'email' => $request->input('email'),
             'name' => $request->input('name'),
             'surname' => $request->input('surname'),
             'phone_number' => $request->input('phone_number'),
@@ -50,6 +53,7 @@ class AuthController extends Controller
             'account_type' => $request->get('account_type')
         ];
 
+        DB::beginTransaction();
         try {
             $user = User::create($newUser);
             $token = $user->createToken('access_token')->accessToken;
@@ -58,13 +62,15 @@ class AuthController extends Controller
                     'user_id' => $user->id,
                     'company_name' => $request->input('company_name'),
                     'company_address' => $request->input('company_address'),
-                    'email' => $request->input('email'),
+                    'email' => $request->input('director_email'),
                     'director' => $request->input('director')
                 ];
                 $user->company = Companies::create($newCompany);
             }
+            DB::commit();
             return response()->json(['message' => 'Аккаунт успешно зарегистрирован', 'status' => 'success', 'token' => $token, 'user_data' => $user], 200);
         } catch (\Exception $e) {
+            DB::rollBack();
             if ($e->getCode() == 23000) {
                 return response()->json(['message' => 'такой номер телефона уже зарегистрирован', 'status' => 'error'], 401);
             }
@@ -74,7 +80,7 @@ class AuthController extends Controller
 
     public function login(Request $request) {
         $validator = Validator::make($request->all(), [
-            'phone_number' => 'required|regex:/\+7\([0-9]{3}\)[0-9]{3}-[0-9]{2}-[0-9]{2}/',
+            'email' => 'required|email',
             'password' => 'required|min:8',
         ]);
 
@@ -82,11 +88,8 @@ class AuthController extends Controller
             $this->failedValidation($validator);
         }
 
-        $phoneNumber = $request->input('phone_number');
-        $password = $request->input('password');
-
         try {
-            Auth::attempt(['phone_number' => $phoneNumber, 'password' => $password]);
+            Auth::attempt($request->only('email', 'password'));
             $user = Auth::user();
             if ($user === null) throw new \Exception("Ошибка входа");
             $token = $user->createToken('access_token')->accessToken;

@@ -12,10 +12,12 @@ const Register = (props) => {
             [surname, setSurname] = useState(''),
             [phone, setPhone] = useState(''),
             [password, setPassword] = useState(''),
-            [disabled, setDisabled] = useState(true)
+            [disabled, setDisabled] = useState(true),
+            [email, setEmail] = useState('')
 
     const register = () => {
         axios.post('/api/register', {
+            email: email,
             name: name,
             surname: surname,
             phone_number: phone,
@@ -38,6 +40,7 @@ const Register = (props) => {
                 <Link to="/register-company" className="text-center">Регистрация компании</Link>
 
                 <form className="d-flex flex-column mt-3">
+                    <input onChange={e => setEmail(e.target.value)} type="email" className="mt-3 w-100" placeholder="Ваш Email" />
                     <input value={name} onChange={(event) => setName(event.target.value)} className="mt-3 w-100" id="register__name" type="text" placeholder="Имя" />
                     <input value={surname} onChange={(event) => setSurname(event.target.value)} className="mt-3 w-100" id="register__surname" type="text" placeholder="Фамилия" />
                     <InputMask mask="+7(999)999-99-99" value={phone} onChange={(event) => setPhone(event.target.value)} className="mt-3 w-100" id="register__tel" type="tel" placeholder="Номер телефона" />

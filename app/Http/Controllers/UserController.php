@@ -80,4 +80,27 @@ class UserController extends Controller
             return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);
         }
     }
+
+    public function edit(Request $request) {
+        $user = Auth::user();
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'string|max:32',
+            'surname' => 'string|max:32',
+            'email' => 'email|unique:App\Models\User,email,' . $user->id,
+            'phone_number' => 'regex:/\+7\([0-9]{3}\)[0-9]{3}-[0-9]{2}-[0-9]{2}/|unique:App\Models\User,phone_number,' . $user->id
+        ]);
+
+        if ($validator->fails()) {
+            $this->failedValidation($validator);
+        }
+
+        try {
+            $user->update($request->all());
+            $user->save();
+            return response()->json(['user' => $user, 'status' => 'success']);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);
+        }
+    }
 }

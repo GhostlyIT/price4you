@@ -77323,9 +77323,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_actions_authAction__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../store/actions/authAction */ "./resources/js/store/actions/authAction.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var react_input_mask__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-input-mask */ "./node_modules/react-input-mask/index.js");
-/* harmony import */ var react_input_mask__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_input_mask__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _helpers_notifications__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../helpers/notifications */ "./resources/js/helpers/notifications.js");
+/* harmony import */ var _helpers_notifications__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../helpers/notifications */ "./resources/js/helpers/notifications.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -77346,12 +77344,11 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
 var Login = function Login(props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
       _useState2 = _slicedToArray(_useState, 2),
-      phone = _useState2[0],
-      setPhone = _useState2[1],
+      email = _useState2[0],
+      setEmail = _useState2[1],
       _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
       _useState4 = _slicedToArray(_useState3, 2),
       password = _useState4[0],
@@ -77359,21 +77356,21 @@ var Login = function Login(props) {
 
   var authAttempt = function authAttempt() {
     if (props.loggedIn) {
-      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_7__["showNotification"])('Вход', 'Вход в аккаунт уже выполнен', 'danger');
+      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_6__["showNotification"])('Вход', 'Вход в аккаунт уже выполнен', 'danger');
       return;
     }
 
     axios__WEBPACK_IMPORTED_MODULE_5___default.a.post('/api/login', {
-      phone_number: phone,
+      email: email,
       password: password
     }).then(function (response) {
-      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_7__["showNotification"])('Вход', response.data.message, 'success');
+      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_6__["showNotification"])('Вход', response.data.message, 'success');
       props.auth({
         token: response.data.token,
         user: response.data.user_data
       });
     })["catch"](function (error) {
-      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_7__["showNotification"])('Вход', error.response.data.message, 'danger');
+      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_6__["showNotification"])('Вход', error.response.data.message, 'danger');
     });
   };
 
@@ -77388,15 +77385,13 @@ var Login = function Login(props) {
     className: "text-center"
   }, "\u0420\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044F"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     className: "d-flex flex-column mt-3"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_input_mask__WEBPACK_IMPORTED_MODULE_6___default.a, {
-    mask: "+7(999)999-99-99",
-    value: phone,
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     onChange: function onChange(e) {
-      return setPhone(e.target.value);
+      return setEmail(e.target.value);
     },
-    id: "login__tel",
-    type: "tel",
-    placeholder: "\u041D\u043E\u043C\u0435\u0440 \u0442\u0435\u043B\u0435\u0444\u043E\u043D\u0430"
+    type: "email",
+    value: email,
+    placeholder: "Email"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     value: password,
     onChange: function onChange(e) {
@@ -77511,10 +77506,15 @@ var Register = function Register(props) {
       _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
       _useState10 = _slicedToArray(_useState9, 2),
       disabled = _useState10[0],
-      setDisabled = _useState10[1];
+      setDisabled = _useState10[1],
+      _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+      _useState12 = _slicedToArray(_useState11, 2),
+      email = _useState12[0],
+      setEmail = _useState12[1];
 
   var register = function register() {
     axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/register', {
+      email: email,
       name: name,
       surname: surname,
       phone_number: phone,
@@ -77543,6 +77543,13 @@ var Register = function Register(props) {
   }, "\u0420\u0435\u0433\u0438\u0441\u0442\u0440\u0430\u0446\u0438\u044F \u043A\u043E\u043C\u043F\u0430\u043D\u0438\u0438"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     className: "d-flex flex-column mt-3"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    onChange: function onChange(e) {
+      return setEmail(e.target.value);
+    },
+    type: "email",
+    className: "mt-3 w-100",
+    placeholder: "\u0412\u0430\u0448 Email"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     value: name,
     onChange: function onChange(event) {
       return setName(event.target.value);
@@ -77701,10 +77708,15 @@ var RegisterCompany = function RegisterCompany(props) {
       _useState17 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
       _useState18 = _slicedToArray(_useState17, 2),
       disabled = _useState18[0],
-      setDisabled = _useState18[1];
+      setDisabled = _useState18[1],
+      _useState19 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+      _useState20 = _slicedToArray(_useState19, 2),
+      email = _useState20[0],
+      setEmail = _useState20[1];
 
   var register = function register() {
     axios.post('/api/register', {
+      email: email,
       name: name,
       surname: surname,
       phone_number: phone,
@@ -77712,7 +77724,7 @@ var RegisterCompany = function RegisterCompany(props) {
       account_type: 'company',
       company_name: companyName,
       company_address: companyAddress,
-      email: companyEmail,
+      director_email: companyEmail,
       director: companyDirector
     }).then(function (response) {
       Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_2__["showNotification"])('Регистрация', response.data.message, 'success');
@@ -77745,6 +77757,14 @@ var RegisterCompany = function RegisterCompany(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-xs-12 col-md-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: email,
+    onChange: function onChange(event) {
+      return setEmail(event.target.value);
+    },
+    className: "mt-3 w-100",
+    type: "email",
+    placeholder: "\u041F\u043E\u0447\u0442\u0430 \u0434\u043B\u044F \u0432\u0445\u043E\u0434\u0430"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     value: name,
     onChange: function onChange(event) {
       return setName(event.target.value);
@@ -78442,6 +78462,7 @@ var EditCompanyInfoModal = function EditCompanyInfoModal(_ref) {
   var isModalOpen = _ref.isModalOpen,
       closeModal = _ref.closeModal,
       company = _ref.company,
+      user = _ref.user,
       editFunc = _ref.editFunc;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(company.company_name),
@@ -78456,14 +78477,18 @@ var EditCompanyInfoModal = function EditCompanyInfoModal(_ref) {
       _useState6 = _slicedToArray(_useState5, 2),
       address = _useState6[0],
       setAddress = _useState6[1],
-      _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(company.email),
+      _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(user.email),
       _useState8 = _slicedToArray(_useState7, 2),
       email = _useState8[0],
       setEmail = _useState8[1],
-      _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(company.about),
+      _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(company.email),
       _useState10 = _slicedToArray(_useState9, 2),
-      about = _useState10[0],
-      setAbout = _useState10[1];
+      directorEmail = _useState10[0],
+      setDirectorEmail = _useState10[1],
+      _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(company.about),
+      _useState12 = _slicedToArray(_useState11, 2),
+      about = _useState12[0],
+      setAbout = _useState12[1];
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modal__WEBPACK_IMPORTED_MODULE_1__["default"], {
     isOpen: isModalOpen,
@@ -78472,6 +78497,16 @@ var EditCompanyInfoModal = function EditCompanyInfoModal(_ref) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "modal__body"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal__element d-flex flex-column"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "mb-2 font-weight-bold"
+  }, "Email \u0434\u043B\u044F \u0432\u0445\u043E\u0434\u0430 \u0432 \u0430\u043A\u043A\u0430\u0443\u043D\u0442"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    onChange: function onChange(e) {
+      return setEmail(e.target.value);
+    },
+    type: "email",
+    value: email
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "modal__element d-flex flex-column"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "mb-2 font-weight-bold"
@@ -78505,12 +78540,12 @@ var EditCompanyInfoModal = function EditCompanyInfoModal(_ref) {
     className: "modal__element d-flex flex-column"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "mb-2 font-weight-bold"
-  }, "Email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+  }, "Email \u0434\u0438\u0440\u0435\u043A\u0442\u043E\u0440\u0430"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     onChange: function onChange(e) {
-      return setEmail(e.target.value);
+      return setDirectorEmail(e.target.value);
     },
     type: "email",
-    value: email
+    value: directorEmail
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "modal__element d-flex flex-column"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -78526,7 +78561,7 @@ var EditCompanyInfoModal = function EditCompanyInfoModal(_ref) {
     className: "modal__element"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: function onClick() {
-      return editFunc(companyName, director, address, email, about);
+      return editFunc(companyName, director, address, email, directorEmail, about);
     },
     className: "main-btn",
     type: "button"
@@ -78534,6 +78569,121 @@ var EditCompanyInfoModal = function EditCompanyInfoModal(_ref) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (EditCompanyInfoModal);
+
+/***/ }),
+
+/***/ "./resources/js/components/common/modals/EditUserInfoModal.js":
+/*!********************************************************************!*\
+  !*** ./resources/js/components/common/modals/EditUserInfoModal.js ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../modal */ "./resources/js/components/common/modal.js");
+/* harmony import */ var react_input_mask__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-input-mask */ "./node_modules/react-input-mask/index.js");
+/* harmony import */ var react_input_mask__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_input_mask__WEBPACK_IMPORTED_MODULE_2__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+var EditUserInfoModal = function EditUserInfoModal(_ref) {
+  var isModalOpen = _ref.isModalOpen,
+      closeModal = _ref.closeModal,
+      user = _ref.user,
+      editFunc = _ref.editFunc;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(user.name),
+      _useState2 = _slicedToArray(_useState, 2),
+      name = _useState2[0],
+      setName = _useState2[1],
+      _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(user.surname),
+      _useState4 = _slicedToArray(_useState3, 2),
+      surname = _useState4[0],
+      setSurname = _useState4[1],
+      _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(user.phone_number),
+      _useState6 = _slicedToArray(_useState5, 2),
+      phone = _useState6[0],
+      setPhone = _useState6[1],
+      _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(user.email),
+      _useState8 = _slicedToArray(_useState7, 2),
+      email = _useState8[0],
+      setEmail = _useState8[1];
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modal__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    isOpen: isModalOpen,
+    closeModal: closeModal,
+    modalTitle: "\u0420\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u043D\u0438\u0435 \u043F\u0440\u043E\u0444\u0438\u043B\u044F"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal__body"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal__element d-flex flex-column"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "mb-2 font-weight-bold"
+  }, "\u0418\u043C\u044F"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    onChange: function onChange(e) {
+      return setName(e.target.value);
+    },
+    type: "text",
+    value: name
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal__element d-flex flex-column"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "mb-2 font-weight-bold"
+  }, "\u0424\u0430\u043C\u0438\u043B\u0438\u044F"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    onChange: function onChange(e) {
+      return setSurname(e.target.value);
+    },
+    type: "text",
+    value: surname
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal__element d-flex flex-column"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "mb-2 font-weight-bold"
+  }, "\u0422\u0435\u043B\u0435\u0444\u043E\u043D"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_input_mask__WEBPACK_IMPORTED_MODULE_2___default.a, {
+    mask: "+7(999)999-99-99",
+    value: phone,
+    onChange: function onChange(e) {
+      return setPhone(e.target.value);
+    },
+    type: "tel"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal__element d-flex flex-column"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "mb-2 font-weight-bold"
+  }, "Email"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    onChange: function onChange(e) {
+      return setEmail(e.target.value);
+    },
+    type: "email",
+    value: email
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal__element"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: function onClick() {
+      return editFunc(name, surname, phone, email);
+    },
+    className: "main-btn",
+    type: "button"
+  }, "\u0421\u043E\u0445\u0440\u0430\u043D\u0438\u0442\u044C"))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (EditUserInfoModal);
 
 /***/ }),
 
@@ -79379,12 +79529,13 @@ var Profile = function Profile(_ref) {
       isEditModalOpen = _useState2[0],
       setEditModalOpen = _useState2[1];
 
-  var editInfo = function editInfo(companyName, director, address, email, about) {
+  var editInfo = function editInfo(companyName, director, address, email, directorEmail, about) {
     axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/company/edit', {
       company_name: companyName,
       director: director,
       address: address,
       email: email,
+      director_email: directorEmail,
       about: about
     }, {
       headers: {
@@ -79431,7 +79582,9 @@ var Profile = function Profile(_ref) {
     className: "phone-icon"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, user.phone_number)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "profile__contacts_item d-flex align-items-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Email: ", company.email))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Email \u0440\u0443\u043A\u043E\u0432\u043E\u0434\u0438\u0442\u0435\u043B\u044F: ", company.email)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile__contacts_item d-flex align-items-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Email \u0434\u043B\u044F \u0432\u0445\u043E\u0434\u0430: ", user.email))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "profile-element profile__about"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
     className: "profile-element__title"
@@ -79451,7 +79604,8 @@ var Profile = function Profile(_ref) {
     editFunc: function editFunc(companyName, director, address, email, about) {
       return editInfo(companyName, director, address, email, about);
     },
-    isModalOpen: isEditModalOpen
+    isModalOpen: isEditModalOpen,
+    user: user
   }));
 };
 
@@ -80670,11 +80824,17 @@ var UserSideBlock = function UserSideBlock(props) {
     onClick: function onClick() {
       return setActiveLink('5');
     },
+    className: window.location.pathname === '/user/info' ? 'active' : null,
+    to: "/user/info"
+  }, "\u041C\u043E\u0438 \u0434\u0430\u043D\u043D\u044B\u0435"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    onClick: function onClick() {
+      return setActiveLink('6');
+    },
     className: window.location.pathname === '/user/settings' ? 'active' : null,
     to: "/user/settings"
   }, "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     onClick: function onClick() {
-      return setActiveLink('6');
+      return setActiveLink('7');
     },
     className: window.location.pathname === '/faq/how-works' ? 'active' : null,
     to: "/faq/how-works"
@@ -80726,6 +80886,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _user_components_Options_Options__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./user-components/Options/Options */ "./resources/js/components/user/user-components/Options/Options.js");
 /* harmony import */ var _user_components_Offers_Offers__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./user-components/Offers/Offers */ "./resources/js/components/user/user-components/Offers/Offers.js");
 /* harmony import */ var _chat_Chat__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../chat/Chat */ "./resources/js/components/chat/Chat.js");
+/* harmony import */ var _user_components_Profile_Profile__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./user-components/Profile/Profile */ "./resources/js/components/user/user-components/Profile/Profile.js");
+
 
 
 
@@ -80754,7 +80916,9 @@ var User = function User(props) {
     path: "".concat(match.url, "/offers")
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_user_components_Offers_Offers__WEBPACK_IMPORTED_MODULE_8__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     path: "".concat(match.url, "/messages")
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_chat_Chat__WEBPACK_IMPORTED_MODULE_9__["default"], null)));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_chat_Chat__WEBPACK_IMPORTED_MODULE_9__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
+    path: "".concat(match.url, "/info")
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_user_components_Profile_Profile__WEBPACK_IMPORTED_MODULE_10__["default"], null)));
 };
 
 var mapStateToProps = function mapStateToProps(store) {
@@ -81982,6 +82146,143 @@ var ViewOptions = function ViewOptions(_ref) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (ViewOptions);
+
+/***/ }),
+
+/***/ "./resources/js/components/user/user-components/Profile/Profile.js":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/user/user-components/Profile/Profile.js ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _store_actions_updateAction__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../store/actions/updateAction */ "./resources/js/store/actions/updateAction.js");
+/* harmony import */ var _store_actions_updateUserInfoAction__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../store/actions/updateUserInfoAction */ "./resources/js/store/actions/updateUserInfoAction.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _common_modals_EditUserInfoModal__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../common/modals/EditUserInfoModal */ "./resources/js/components/common/modals/EditUserInfoModal.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _helpers_notifications__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../helpers/notifications */ "./resources/js/helpers/notifications.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+
+
+
+
+var Profile = function Profile(_ref) {
+  var user = _ref.user,
+      token = _ref.token,
+      updateUserInfo = _ref.updateUserInfo;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      isEditModalOpen = _useState2[0],
+      setEditModalOpen = _useState2[1];
+
+  var editInfo = function editInfo(name, surname, phone, email) {
+    axios__WEBPACK_IMPORTED_MODULE_6___default.a.post('/api/user/edit', {
+      email: email,
+      name: name,
+      surname: surname,
+      phone_number: phone
+    }, {
+      headers: {
+        Authorization: 'Bearer ' + token
+      }
+    }).then(function (response) {
+      updateUserInfo({
+        user: response.data.user
+      });
+      setEditModalOpen(false);
+      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_7__["showNotification"])('Редактирование', 'Информация успешно изменена', 'success');
+    })["catch"](function (error) {
+      console.log(error.response.data.message);
+      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_7__["showNotification"])('Редактирование', 'Произошла ошибка при изменении информации.', 'danger');
+    });
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-element profile__avatar d-flex justify-content-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      width: '200px',
+      height: '200px',
+      borderRadius: '50%',
+      backgroundColor: 'grey'
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-element profile__name"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, user.name, " ", user.surname)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-element profile__contacts d-flex flex-column"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "profile-element__title"
+  }, "\u041A\u043E\u043D\u0442\u0430\u043A\u0442\u044B"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile__contacts_item d-flex align-items-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u0418\u043C\u044F: ", user.name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile__contacts_item d-flex align-items-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u0424\u0430\u043C\u0438\u043B\u0438\u044F: ", user.surname)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile__contacts_item d-flex align-items-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "phone-icon"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, user.phone_number)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile__contacts_item d-flex align-items-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Email: ", user.email))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-element profile__buttons"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: function onClick() {
+      return setEditModalOpen(true);
+    },
+    className: "main-btn",
+    type: "button"
+  }, "\u0420\u0435\u0434\u0430\u043A\u0442\u0438\u0440\u043E\u0432\u0430\u0442\u044C")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_modals_EditUserInfoModal__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    closeModal: function closeModal() {
+      return setEditModalOpen(false);
+    },
+    user: user,
+    editFunc: function editFunc(name, surname, phone, email) {
+      return editInfo(name, surname, phone, email);
+    },
+    isModalOpen: isEditModalOpen
+  }));
+};
+
+var mapStateToProps = function mapStateToProps(store) {
+  return {
+    token: store.authReducer.userToken,
+    user: store.authReducer.userData
+  };
+};
+
+var mapDispatchProps = function mapDispatchProps(dispatch) {
+  return {
+    updateComponent: Object(redux__WEBPACK_IMPORTED_MODULE_1__["bindActionCreators"])(_store_actions_updateAction__WEBPACK_IMPORTED_MODULE_2__["default"], dispatch),
+    updateUserInfo: Object(redux__WEBPACK_IMPORTED_MODULE_1__["bindActionCreators"])(_store_actions_updateUserInfoAction__WEBPACK_IMPORTED_MODULE_3__["default"], dispatch)
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(mapStateToProps, mapDispatchProps)(Profile));
 
 /***/ }),
 

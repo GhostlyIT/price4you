@@ -4,11 +4,10 @@ import {connect} from 'react-redux'
 import { bindActionCreators } from 'redux'
 import authAction from '../../../store/actions/authAction'
 import axios from 'axios'
-import InputMask from 'react-input-mask'
 import {showNotification} from '../../../helpers/notifications'
 
 const Login = (props) => {
-    const   [phone, setPhone] = useState(''),
+    const   [email, setEmail] = useState(''),
             [password, setPassword] = useState('')
 
     const authAttempt = () => {
@@ -18,7 +17,7 @@ const Login = (props) => {
         }
 
         axios.post('/api/login', {
-            phone_number: phone,
+            email: email,
             password: password
         })
         .then(response => {
@@ -37,7 +36,7 @@ const Login = (props) => {
                 <Link to="/register" className="text-center">Регистрация</Link>
 
                 <form className="d-flex flex-column mt-3">
-                    <InputMask mask="+7(999)999-99-99" value={phone} onChange={(e) => setPhone(e.target.value)} id="login__tel" type="tel" placeholder="Номер телефона" />
+                    <input onChange={e => setEmail(e.target.value)} type="email" value={email} placeholder="Email" />
                     <input value={password} onChange={(e) => setPassword(e.target.value)} className="mt-3 w-100" id="login__pass" type="password" placeholder="Пароль" />
                     <div className="d-flex align-items-center mt-4 mb-4">
                         <input className="mr-3" id="login__remember" type="checkbox" />

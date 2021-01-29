@@ -1,25 +1,22 @@
-import React, {useState, useEffect} from 'react'
-import axios from 'axios'
-import {connect} from "react-redux";
+import React, {useState} from 'react'
 import {bindActionCreators} from "redux";
-import updateAction from "../../../../store/actions/updateAction"
-import updateUserInfoAction from "../../../../store/actions/updateUserInfoAction"
-import {showNotification} from "../../../../helpers/notifications"
-import EditCompanyInfoModal from "../../../common/modals/EditCompanyInfoModal"
+import updateAction from "../../../../store/actions/updateAction";
+import updateUserInfoAction from "../../../../store/actions/updateUserInfoAction";
+import {connect} from "react-redux";
+import EditUserInfoModal from "../../../common/modals/EditUserInfoModal";
+import axios from "axios";
+import {showNotification} from "../../../../helpers/notifications";
 
-const Profile = ({token, user, updateUserInfo}) => {
-    const company = user.company
+const Profile = ({user, token, updateUserInfo}) => {
     const [isEditModalOpen, setEditModalOpen] = useState(false)
 
-    const editInfo = (companyName, director, address, email, directorEmail, about) => {
-        axios.post('/api/company/edit',
+    const editInfo = (name, surname, phone, email) => {
+        axios.post('/api/user/edit',
             {
-                company_name: companyName,
-                director: director,
-                address: address,
                 email: email,
-                director_email: directorEmail,
-                about: about
+                name: name,
+                surname: surname,
+                phone_number: phone,
             },
             {
                 headers: {Authorization: 'Bearer ' + token}
@@ -48,19 +45,18 @@ const Profile = ({token, user, updateUserInfo}) => {
             </div>
 
             <div className="profile-element profile__name">
-                <h1>{company.company_name}</h1>
+                <h1>{user.name} {user.surname}</h1>
             </div>
 
             <div className="profile-element profile__contacts d-flex flex-column">
                 <h3 className="profile-element__title">Контакты</h3>
 
                 <div className="profile__contacts_item d-flex align-items-center">
-                    <span>Руководитель: {company.director}</span>
+                    <span>Имя: {user.name}</span>
                 </div>
 
                 <div className="profile__contacts_item d-flex align-items-center">
-                    <i className="geo-icon"></i>
-                    <span>{company.company_address}</span>
+                    <span>Фамилия: {user.surname}</span>
                 </div>
 
                 <div className="profile__contacts_item d-flex align-items-center">
@@ -69,29 +65,19 @@ const Profile = ({token, user, updateUserInfo}) => {
                 </div>
 
                 <div className="profile__contacts_item d-flex align-items-center">
-                    <span>Email руководителя: {company.email}</span>
+                    <span>Email: {user.email}</span>
                 </div>
-
-                <div className="profile__contacts_item d-flex align-items-center">
-                    <span>Email для входа: {user.email}</span>
-                </div>
-            </div>
-
-            <div className="profile-element profile__about">
-                <h3 className="profile-element__title">О компании</h3>
-                {company.about === null ? <p>Нет информации</p> : <p>{company.about}</p>}
             </div>
 
             <div className="profile-element profile__buttons">
                 <button onClick={() => setEditModalOpen(true)} className="main-btn" type="button">Редактировать</button>
             </div>
 
-            <EditCompanyInfoModal
+            <EditUserInfoModal
                 closeModal={() => setEditModalOpen(false)}
-                company={company}
-                editFunc={(companyName, director, address, email, about) => editInfo(companyName, director, address, email, about)}
-                isModalOpen={isEditModalOpen}
                 user={user}
+                editFunc={(name, surname, phone, email) => editInfo(name, surname, phone, email)}
+                isModalOpen={isEditModalOpen}
             />
         </div>
     )
