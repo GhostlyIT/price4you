@@ -26,7 +26,7 @@ class ManufactureController extends Controller
         $query = $request->get('query');
 
         try {
-            $manufactures = Manufacture::where('name_manufacture_rus', 'like', "%$query%")->orderBy('name_manufacture_rus')->get();
+            $manufactures = Manufacture::where('name_manufacture_rus', 'like', "%$query%")->orderBy('name_manufacture_rus')->distinct()->get();
             return response()->json(['manufactures' => $manufactures, 'status' => 'success'], 200);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);

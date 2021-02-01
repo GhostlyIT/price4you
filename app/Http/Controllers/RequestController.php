@@ -116,15 +116,30 @@ class RequestController extends Controller
 
         try {
             $user = Auth::user();
+            $company = $user->company;
+            $companyManufactures = $company->manufacturesIDs()->pluck('manufacture_id');
+
             $requestsCount = UserRequestsAndProducts::where('status', 'open')->count();
             $requests = UserRequestsAndProducts::where('status', 'open')
-                ->with('request', 'product', 'fertiliser', 'seed', 'responses')
+                ->with([
+                    'request',
+                    'product' => function($q) use ($companyManufactures) {
+                        if (count($companyManufactures) > 0) $q->whereIn('id_manufacture', $companyManufactures)->get();
+                    },
+                    'fertiliser' => function($q) use ($companyManufactures) {
+                        if (count($companyManufactures) > 0) $q->whereIn('id_manufacture', $companyManufactures)->get();
+                    },
+                    'seed' => function($q) use ($companyManufactures) {
+                        if (count($companyManufactures) > 0) $q->whereIn('id_manufacture', $companyManufactures)->get();
+                    },
+                    'responses'
+                ])
                 ->orderBy('created_at', 'desc')
                 ->offset($offset)
                 ->limit($limit)
                 ->get();
 
-            return response()->json(['requests' => $requests, 'requests_count' => $requestsCount, 'status' => 'success'],200);
+            return response()->json(['c' => $companyManufactures,'requests' => $requests, 'requests_count' => $requestsCount, 'status' => 'success'],200);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 'error'], 400);
         }
