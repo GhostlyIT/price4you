@@ -11653,6 +11653,11 @@ img {
   border-radius: 50%;
 }
 
+.avatar.avatar--small {
+  width: 40px;
+  height: 40px;
+}
+
 .options-wrapper .options-element {
   margin-bottom: 50px;
 }

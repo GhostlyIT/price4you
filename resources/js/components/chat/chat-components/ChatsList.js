@@ -23,6 +23,7 @@ const ChatsList = ({token, userData, activeChat, setActiveChat, updateVal}) => {
             const messagesCount = chat.messages_count
             let opponent = chat.user1.id == userData.id ? chat.user2 : chat.user1
             let recipientId = opponent.id
+            let avatar = opponent.avatar
 
             let message = chat.messages[0].message.slice(0, maxLetters)
             if (message.length < chat.messages[0].message.length) {
@@ -36,13 +37,10 @@ const ChatsList = ({token, userData, activeChat, setActiveChat, updateVal}) => {
 
             return(
                 <span onClick={() => setActiveChat(chat.id, recipientId)} key={chat.id} className={`chat__opponent w-100 d-flex align-items-center ${activeChat == chat.id && 'active'} ${messagesCount > 0 && 'has-messages'}`}>
-                    <div className="chat__opponent_avatar" style={{
-                        width: '40px',
-                        height: '40px',
-                        borderRadius: '50%',
-                        backgroundColor: 'grey',
-                        marginRight: '20px'
-                    }}></div>
+                    {avatar == null
+                        ? <div className="avatar avatar--small mr-3"></div>
+                        : <div className="avatar avatar--small mr-3" style={{backgroundImage: `url(${avatar})`}}></div>
+                    }
                     <div className="chat__opponent_main d-flex flex-column">
                         <div className="chat__opponent_name d-flex align-items-center position-relative">
                             <span>{opponent.name} {opponent.surname}</span>

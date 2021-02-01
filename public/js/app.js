@@ -78101,6 +78101,7 @@ var ChatsList = function ChatsList(_ref) {
       var messagesCount = chat.messages_count;
       var opponent = chat.user1.id == userData.id ? chat.user2 : chat.user1;
       var recipientId = opponent.id;
+      var avatar = opponent.avatar;
       var message = chat.messages[0].message.slice(0, maxLetters);
 
       if (message.length < chat.messages[0].message.length) {
@@ -78118,14 +78119,12 @@ var ChatsList = function ChatsList(_ref) {
         },
         key: chat.id,
         className: "chat__opponent w-100 d-flex align-items-center ".concat(activeChat == chat.id && 'active', " ").concat(messagesCount > 0 && 'has-messages')
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "chat__opponent_avatar",
+      }, avatar == null ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "avatar avatar--small mr-3"
+      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "avatar avatar--small mr-3",
         style: {
-          width: '40px',
-          height: '40px',
-          borderRadius: '50%',
-          backgroundColor: 'grey',
-          marginRight: '20px'
+          backgroundImage: "url(".concat(avatar, ")")
         }
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "chat__opponent_main d-flex flex-column"
@@ -78179,6 +78178,7 @@ var Messages = function Messages(_ref) {
       var date = Object(_helpers_dateConverter__WEBPACK_IMPORTED_MODULE_1__["getFullDate"])(message.created_at);
       var theme = message.theme;
       var fullName = sender.name + ' ' + sender.surname;
+      var avatar = sender.avatar;
 
       if (sender.account_type === 'company') {
         fullName = company.company_name;
@@ -78187,14 +78187,12 @@ var Messages = function Messages(_ref) {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         key: message.id,
         className: "message d-flex"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "message__avatar",
+      }, avatar == null ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "avatar avatar--small mr-3"
+      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "avatar avatar--small mr-3",
         style: {
-          width: '40px',
-          height: '40px',
-          borderRadius: '50%',
-          backgroundColor: 'grey',
-          marginRight: '20px'
+          backgroundImage: "url(".concat(avatar, ")")
         }
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "message__main w-100"
@@ -78208,7 +78206,7 @@ var Messages = function Messages(_ref) {
         className: "message__main_head__name"
       }, fullName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, date)), theme != null && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "font-weight-bold"
-      }, "\u0422\u0435\u043C\u0430:", theme))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, "\u0422\u0435\u043C\u0430: ", theme))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "message__main_body"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, message.message))));
     });
@@ -82517,11 +82515,17 @@ var getFullDate = function getFullDate(rawDate) {
   var transformedDate = new Date(rawDate);
   var month = '0' + (parseInt(transformedDate.getMonth()) + parseInt(1));
 
-  if (month > 9) {
+  if (parseInt(transformedDate.getMonth()) + 1 > 9) {
     month = month.slice(0);
   }
 
-  return transformedDate.getDate() + '.' + month + '.' + transformedDate.getFullYear() + ' ' + transformedDate.getHours() + ':' + (transformedDate.getMinutes() < 10 ? '0' : '') + transformedDate.getMinutes();
+  var day = '0' + transformedDate.getDate();
+
+  if (parseInt(transformedDate.getDate()) > 9) {
+    day = day.slice(0);
+  }
+
+  return day + '.' + month + '.' + transformedDate.getFullYear() + ' ' + transformedDate.getHours() + ':' + (transformedDate.getMinutes() < 10 ? '0' : '') + transformedDate.getMinutes();
 };
 
 /***/ }),

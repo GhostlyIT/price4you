@@ -9,6 +9,7 @@ const Messages = ({messages}) => {
             const date = getFullDate(message.created_at)
             const theme = message.theme
             let fullName = sender.name + ' ' + sender.surname
+            let avatar = sender.avatar
 
             if (sender.account_type === 'company') {
                 fullName = company.company_name
@@ -16,13 +17,10 @@ const Messages = ({messages}) => {
 
             return (
                 <div key={message.id} className="message d-flex">
-                    <div className="message__avatar" style={{
-                        width: '40px',
-                        height: '40px',
-                        borderRadius: '50%',
-                        backgroundColor: 'grey',
-                        marginRight: '20px'
-                    }}></div>
+                    {avatar == null
+                        ? <div className="avatar avatar--small mr-3"></div>
+                        : <div className="avatar avatar--small mr-3" style={{backgroundImage: `url(${avatar})`}}></div>
+                    }
 
                     <div className="message__main w-100">
                         <div className="message__main_head d-flex align-items-center w-100">
@@ -32,7 +30,7 @@ const Messages = ({messages}) => {
                                     <span>{date}</span>
                                 </div>
                                 {theme != null &&
-                                    <span className="font-weight-bold">Тема:{theme}</span>
+                                    <span className="font-weight-bold">Тема: {theme}</span>
                                 }
                             </div>
 
