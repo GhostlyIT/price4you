@@ -2,6 +2,7 @@
     padding-left: 15px;
     margin-bottom: 30px;
     color: $blue;
+    text-align: center;
 }
 
 .user-sideblock__links {
@@ -223,4 +224,14 @@
             box-shadow: $box-shadow;
         }
     }
+}
+
+.avatar {
+    width: 200px;
+    height: 200px;
+    background-image: url(/images/default-avatar.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50%;
 }

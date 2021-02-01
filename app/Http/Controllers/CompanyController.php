@@ -9,6 +9,7 @@ use App\Exceptions\ValidationException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Companies;
+use Image;
 
 class CompanyController extends Controller
 {
@@ -156,12 +157,13 @@ class CompanyController extends Controller
     public function edit(Request $request) {
         $user = auth::user();
         $company = $user->company;
+
         $validator = Validator::make($request->all(), [
-            'company_name' => 'required|max:32',
-            'director' => 'required|string|max:32',
-            'address' => 'required',
-            'director_email' => 'required|email|unique:App\Models\Companies,email,' . $company->id,
-            'email' => 'required|email|unique:App\Models\User,email,' . $user->id
+            'company_name' => 'max:32',
+            'director' => 'string|max:32',
+            'address' => '',
+            'director_email' => 'email|unique:App\Models\Companies,email,' . $company->id,
+            'email' => 'email|unique:App\Models\User,email,' . $user->id
         ]);
 
         if ($validator->fails()) {
@@ -177,18 +179,20 @@ class CompanyController extends Controller
         if ($request->has('about') && $request->get('about') != '') $about = $request->get('about');
 
 
-
-
         try {
-            $company->company_name = $companyName;
-            $company->company_address = $address;
-            $company->email = $email;
-            $company->director = $director;
-            $company->about = $about;
-            $company->save();
+            if ($request->has('company_name')) {
+                $company->company_name = $companyName;
+                $company->company_address = $address;
+                $company->email = $email;
+                $company->director = $director;
+                $company->about = $about;
+                $company->save();
+            }
 
-            $user->email = $request->get('email');
-            $user->save();
+            if ($request->has('email')) {
+                $user->email = $request->get('email');
+                $user->save();
+            }
 
             $user->company = $user->company;
             return response()->json(['user' => $user, 'status' => 'success'], 200);

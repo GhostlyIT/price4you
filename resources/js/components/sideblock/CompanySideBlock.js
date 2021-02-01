@@ -33,9 +33,11 @@ const CompanySideblock = (props) => {
 
     return(
         <div className="d-flex flex-column user-sideblock justify-content-between">
-            <div className="avatar">
 
-            </div>
+            {props.userData.avatar == null
+                ? <div className="avatar mb-4"></div>
+                : <div className="avatar mb-4" style={{backgroundImage: `url(${props.userData.avatar})`}}></div>
+            }
 
             <h3 className="user-name">{props.userData.company.company_name}</h3>
 

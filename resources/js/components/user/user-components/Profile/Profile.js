@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useRef} from 'react'
 import {bindActionCreators} from "redux";
 import updateAction from "../../../../store/actions/updateAction";
 import updateUserInfoAction from "../../../../store/actions/updateUserInfoAction";
@@ -6,8 +6,10 @@ import {connect} from "react-redux";
 import EditUserInfoModal from "../../../common/modals/EditUserInfoModal";
 import axios from "axios";
 import {showNotification} from "../../../../helpers/notifications";
+import {editAvatar} from "../../../../helpers/editAvatar";
 
 const Profile = ({user, token, updateUserInfo}) => {
+    const input = useRef(null)
     const [isEditModalOpen, setEditModalOpen] = useState(false)
 
     const editInfo = (name, surname, phone, email) => {
@@ -36,12 +38,12 @@ const Profile = ({user, token, updateUserInfo}) => {
     return(
         <div className="profile">
             <div className="profile-element profile__avatar d-flex justify-content-center">
-                <div style={{
-                    width: '200px',
-                    height: '200px',
-                    borderRadius: '50%',
-                    backgroundColor: 'grey'
-                }}></div>
+                <input onChange={e => editAvatar(e.target.files[0], token, input.current, updateUserInfo)} type="file" ref={input} style={{display: 'none'}} />
+                {user.avatar == null
+                    ? <div onClick={() => input.current.click()} className="avatar"></div>
+                    : <div onClick={() => input.current.click()} className="avatar" style={{backgroundImage: `url(${user.avatar})`}}></div>
+                }
+
             </div>
 
             <div className="profile-element profile__name">

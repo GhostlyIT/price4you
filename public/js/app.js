@@ -79497,6 +79497,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_actions_updateUserInfoAction__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../store/actions/updateUserInfoAction */ "./resources/js/store/actions/updateUserInfoAction.js");
 /* harmony import */ var _helpers_notifications__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../helpers/notifications */ "./resources/js/helpers/notifications.js");
 /* harmony import */ var _common_modals_EditCompanyInfoModal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../common/modals/EditCompanyInfoModal */ "./resources/js/components/common/modals/EditCompanyInfoModal.js");
+/* harmony import */ var _helpers_editAvatar__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../helpers/editAvatar */ "./resources/js/helpers/editAvatar.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -79518,11 +79519,13 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var Profile = function Profile(_ref) {
   var token = _ref.token,
       user = _ref.user,
       updateUserInfo = _ref.updateUserInfo;
   var company = user.company;
+  var input = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(null);
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -79557,12 +79560,27 @@ var Profile = function Profile(_ref) {
     className: "profile"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "profile-element profile__avatar d-flex justify-content-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    onChange: function onChange(e) {
+      return Object(_helpers_editAvatar__WEBPACK_IMPORTED_MODULE_8__["editAvatar"])(e.target.files[0], token, input.current, updateUserInfo);
+    },
+    type: "file",
+    ref: input,
     style: {
-      width: '200px',
-      height: '200px',
-      borderRadius: '50%',
-      backgroundColor: 'grey'
+      display: 'none'
+    }
+  }), user.avatar == null ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    onClick: function onClick() {
+      return input.current.click();
+    },
+    className: "avatar"
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    onClick: function onClick() {
+      return input.current.click();
+    },
+    className: "avatar",
+    style: {
+      backgroundImage: "url(".concat(user.avatar, ")")
     }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "profile-element profile__name"
@@ -79601,9 +79619,7 @@ var Profile = function Profile(_ref) {
       return setEditModalOpen(false);
     },
     company: company,
-    editFunc: function editFunc(companyName, director, address, email, about) {
-      return editInfo(companyName, director, address, email, about);
-    },
+    editFunc: editInfo,
     isModalOpen: isEditModalOpen,
     user: user
   }));
@@ -80590,8 +80606,13 @@ var CompanySideblock = function CompanySideblock(props) {
   }, [activeLink]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "d-flex flex-column user-sideblock justify-content-between"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "avatar"
+  }, props.userData.avatar == null ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "avatar mb-4"
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "avatar mb-4",
+    style: {
+      backgroundImage: "url(".concat(props.userData.avatar, ")")
+    }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
     className: "user-name"
   }, props.userData.company.company_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -80786,8 +80807,13 @@ var UserSideBlock = function UserSideBlock(props) {
   }, [activeLink]);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "d-flex flex-column user-sideblock justify-content-between"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "avatar"
+  }, props.userData.avatar == null ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "avatar mb-4"
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "avatar mb-4",
+    style: {
+      backgroundImage: "url(".concat(props.userData.avatar, ")")
+    }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
     className: "user-name"
   }, props.userData.name, " ", props.userData.surname), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -82168,6 +82194,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_6__);
 /* harmony import */ var _helpers_notifications__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../helpers/notifications */ "./resources/js/helpers/notifications.js");
+/* harmony import */ var _helpers_editAvatar__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../helpers/editAvatar */ "./resources/js/helpers/editAvatar.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -82189,10 +82216,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var Profile = function Profile(_ref) {
   var user = _ref.user,
       token = _ref.token,
       updateUserInfo = _ref.updateUserInfo;
+  var input = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(null);
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -82225,12 +82254,27 @@ var Profile = function Profile(_ref) {
     className: "profile"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "profile-element profile__avatar d-flex justify-content-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    onChange: function onChange(e) {
+      return Object(_helpers_editAvatar__WEBPACK_IMPORTED_MODULE_8__["editAvatar"])(e.target.files[0], token, input.current, updateUserInfo);
+    },
+    type: "file",
+    ref: input,
     style: {
-      width: '200px',
-      height: '200px',
-      borderRadius: '50%',
-      backgroundColor: 'grey'
+      display: 'none'
+    }
+  }), user.avatar == null ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    onClick: function onClick() {
+      return input.current.click();
+    },
+    className: "avatar"
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    onClick: function onClick() {
+      return input.current.click();
+    },
+    className: "avatar",
+    style: {
+      backgroundImage: "url(".concat(user.avatar, ")")
     }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "profile-element profile__name"
@@ -82478,6 +82522,44 @@ var getFullDate = function getFullDate(rawDate) {
   }
 
   return transformedDate.getDate() + '.' + month + '.' + transformedDate.getFullYear() + ' ' + transformedDate.getHours() + ':' + (transformedDate.getMinutes() < 10 ? '0' : '') + transformedDate.getMinutes();
+};
+
+/***/ }),
+
+/***/ "./resources/js/helpers/editAvatar.js":
+/*!********************************************!*\
+  !*** ./resources/js/helpers/editAvatar.js ***!
+  \********************************************/
+/*! exports provided: editAvatar */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "editAvatar", function() { return editAvatar; });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _notifications__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./notifications */ "./resources/js/helpers/notifications.js");
+
+
+var editAvatar = function editAvatar(file, token, input, updateUserFunc) {
+  var data = new FormData();
+  data.append('avatar', file, file.name);
+  axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/user/avatar/change', data, {
+    headers: {
+      Authorization: 'Bearer ' + token,
+      'Content-Type': 'multipart/form-data'
+    }
+  }).then(function (response) {
+    updateUserFunc({
+      user: response.data.user
+    });
+    Object(_notifications__WEBPACK_IMPORTED_MODULE_1__["showNotification"])('Редактирование', 'Аватар успешно изменен', 'success');
+  })["catch"](function (error) {
+    console.log(error.response.data.message);
+    Object(_notifications__WEBPACK_IMPORTED_MODULE_1__["showNotification"])('Редактирование', 'Произошла ошибка при изменении аватара.', 'danger');
+  }).then(function () {
+    return input.value = '';
+  });
 };
 
 /***/ }),

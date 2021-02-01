@@ -26,6 +26,7 @@ Route::middleware(['auth:api', 'auth.user'])->get('user/options', 'App\Http\Cont
 Route::middleware('auth:api')->post('user/options/view/save', 'App\Http\Controllers\OptionsController@saveViewOption');
 Route::middleware('auth:api')->get('user/contact-data', 'App\Http\Controllers\UserController@getContactData');
 Route::middleware('auth:api')->post('user/edit', 'App\Http\Controllers\UserController@edit');
+Route::middleware('auth:api')->post('user/avatar/change', 'App\Http\Controllers\UserController@changeAvatar');
 
 
 //Company

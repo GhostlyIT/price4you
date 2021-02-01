@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\UserBlackList;
 use App\Models\User;
+use Image;
 
 class UserController extends Controller
 {
@@ -98,6 +99,33 @@ class UserController extends Controller
         try {
             $user->update($request->all());
             $user->save();
+
+            return response()->json(['user' => $user, 'status' => 'success']);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);
+        }
+    }
+
+    public function changeAvatar(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'avatar' => 'required|image'
+        ]);
+
+        if ($validator->fails()) {
+            $this->failedValidation($validator);
+        }
+
+        try {
+            $user = Auth::user();
+
+            $newAvatar = Image::saveImage($request->file('avatar'), 'users/avatars');
+
+            if ($user->avatar != null) Image::deleteImage($user->avatar);
+
+            $user->avatar = $newAvatar;
+            $user->save();
+
+            $user->company = $user->company;
             return response()->json(['user' => $user, 'status' => 'success']);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);

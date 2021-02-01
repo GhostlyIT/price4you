@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useRef} from 'react'
 import axios from 'axios'
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
@@ -6,9 +6,11 @@ import updateAction from "../../../../store/actions/updateAction"
 import updateUserInfoAction from "../../../../store/actions/updateUserInfoAction"
 import {showNotification} from "../../../../helpers/notifications"
 import EditCompanyInfoModal from "../../../common/modals/EditCompanyInfoModal"
+import {editAvatar} from "../../../../helpers/editAvatar"
 
 const Profile = ({token, user, updateUserInfo}) => {
     const company = user.company
+    const input = useRef(null)
     const [isEditModalOpen, setEditModalOpen] = useState(false)
 
     const editInfo = (companyName, director, address, email, directorEmail, about) => {
@@ -39,12 +41,12 @@ const Profile = ({token, user, updateUserInfo}) => {
     return(
         <div className="profile">
             <div className="profile-element profile__avatar d-flex justify-content-center">
-                <div style={{
-                    width: '200px',
-                    height: '200px',
-                    borderRadius: '50%',
-                    backgroundColor: 'grey'
-                }}></div>
+                <input onChange={e => editAvatar(e.target.files[0], token, input.current, updateUserInfo)} type="file" ref={input} style={{display: 'none'}} />
+                    {user.avatar == null
+                        ? <div onClick={() => input.current.click()} className="avatar"></div>
+                        : <div onClick={() => input.current.click()} className="avatar" style={{backgroundImage: `url(${user.avatar})`}}></div>
+                    }
+
             </div>
 
             <div className="profile-element profile__name">
@@ -89,7 +91,7 @@ const Profile = ({token, user, updateUserInfo}) => {
             <EditCompanyInfoModal
                 closeModal={() => setEditModalOpen(false)}
                 company={company}
-                editFunc={(companyName, director, address, email, about) => editInfo(companyName, director, address, email, about)}
+                editFunc={editInfo}
                 isModalOpen={isEditModalOpen}
                 user={user}
             />
