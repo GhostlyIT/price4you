@@ -78376,6 +78376,7 @@ var ContactDataModal = function ContactDataModal(_ref) {
       modalTitle = _ref.modalTitle,
       contactData = _ref.contactData,
       writeMessageFunc = _ref.writeMessageFunc;
+  console.log(contactData);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modal__WEBPACK_IMPORTED_MODULE_1__["default"], {
     isOpen: isOpen,
     closeModal: closeModalFunc,
@@ -78386,14 +78387,12 @@ var ContactDataModal = function ContactDataModal(_ref) {
     className: "modal__element"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "d-flex align-items-center"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "user-avatar",
+  }, contactData.avatar == null ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "avatar avatar--small mr-3"
+  }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "avatar avatar--small mr-3",
     style: {
-      width: '40px',
-      height: '40px',
-      borderRadius: '50%',
-      backgroundColor: 'grey',
-      marginRight: '20px'
+      backgroundImage: "url(".concat(contactData.avatar, ")")
     }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "user-name",
