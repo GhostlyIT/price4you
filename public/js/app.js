@@ -77104,6 +77104,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _sideblock_UserSideBlock__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./sideblock/UserSideBlock */ "./resources/js/components/sideblock/UserSideBlock.js");
 /* harmony import */ var _company_Company__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./company/Company */ "./resources/js/components/company/Company.js");
 /* harmony import */ var _sideblock_CompanySideBlock__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./sideblock/CompanySideBlock */ "./resources/js/components/sideblock/CompanySideBlock.js");
+/* harmony import */ var _common_Header__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./common/Header */ "./resources/js/components/common/Header.js");
+
 
 
 
@@ -77137,8 +77139,8 @@ var Main = function Main(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-12 main-window mt-3"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12 main-window mt-3 mb-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_Header__WEBPACK_IMPORTED_MODULE_14__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-md-10 col-sm-12"
@@ -78218,6 +78220,42 @@ var Messages = function Messages(_ref) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Messages);
+
+/***/ }),
+
+/***/ "./resources/js/components/common/Header.js":
+/*!**************************************************!*\
+  !*** ./resources/js/components/common/Header.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+var Header = function Header() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "header"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "/",
+    className: "logo"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "header__links"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "https://ecoplantagro.ru/"
+  }, "EcoPlant \u0410\u0433\u0440\u043E"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "mailto:info@ecoplant.org"
+  }, "\u041F\u043E\u0434\u0434\u0435\u0440\u0436\u043A\u0430"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/faq"
+  }, "\u0427\u0430\u0441\u0442\u044B\u0435 \u0432\u043E\u043F\u0440\u043E\u0441\u044B")));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Header);
 
 /***/ }),
 

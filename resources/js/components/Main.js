@@ -10,8 +10,9 @@ import { bindActionCreators } from 'redux'
 import authAction from '../store/actions/authAction'
 import User from './user/User'
 import UserSideBlock from './sideblock/UserSideBlock'
-import Company from "./company/Company";
-import CompanySideBlock from "./sideblock/CompanySideBlock";
+import Company from "./company/Company"
+import CompanySideBlock from "./sideblock/CompanySideBlock"
+import Header from "./common/Header"
 
 const Main = (props) => {
 
@@ -27,7 +28,8 @@ const Main = (props) => {
             <div className="main-background" />
             <div className="container">
                 <div className="row">
-                    <div className="col-12 main-window mt-3">
+                    <div className="col-12 main-window mt-3 mb-3">
+                        <Header />
                         <div className="row">
                             <div className="col-md-10 col-sm-12">
                                 <div className="main-window__inner">
