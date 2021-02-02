@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ValidationException;
 use App\Models\CompanyResponses;
+use App\Models\UserRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -37,12 +38,18 @@ class ResponseController extends Controller
         $company = $user->company;
 
         try {
+            $request = UserRequests::findOrFail($requestId);
+            $user = $request->user;
+            $blackList = $user->blackList()->pluck('company_id');
+            if (in_array($company->id, $blackList)) throw new \Exception('Вы в черном списке');
+
             CompanyResponses::create([
                 'company_id' => $company->id,
                 'request_id' => $requestId,
                 'price' => $price,
                 'comment' => $comment
             ]);
+            
             return response()->json(['message' => 'Отклик успешно добавлен', 'status' => 'success'],200);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage() . ' ' . $e->getFile() . ' ' . $e->getLine(), 'status' => 'error'],400);

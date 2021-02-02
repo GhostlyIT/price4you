@@ -119,7 +119,6 @@ class RequestController extends Controller
             $company = $user->company;
             $companyManufactures = $company->manufacturesIDs()->pluck('manufacture_id');
 
-            $requestsCount = UserRequestsAndProducts::where('status', 'open')->count();
             $requests = UserRequestsAndProducts::where('status', 'open')
                 ->with([
                     'request',
@@ -135,11 +134,17 @@ class RequestController extends Controller
                     'responses'
                 ])
                 ->orderBy('created_at', 'desc')
-                ->offset($offset)
-                ->limit($limit)
                 ->get();
 
-            return response()->json(['c' => $companyManufactures,'requests' => $requests, 'requests_count' => $requestsCount, 'status' => 'success'],200);
+            $requestsArr = [];
+
+            foreach($requests as $request) {
+                if ($request[$request['product_type']] != null) $requestsArr[] = $request;
+            }
+
+            $requestsCount = count($requestsArr);
+
+            return response()->json(['requests' => array_slice($requestsArr, $offset, $limit), 'requests_count' => $requestsCount, 'status' => 'success'],200);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 'error'], 400);
         }
