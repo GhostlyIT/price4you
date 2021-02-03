@@ -56,7 +56,8 @@ img {
     background-repeat: no-repeat;
     position: fixed;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
 }
 
 .main-window {
@@ -280,4 +281,14 @@ img {
             color: #707070;
         }
     }
+}
+
+.menu__trigger {
+    background-image: url("/images/icons/burger_menu.svg");
+    width: 24px;
+    height: 24px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
 }

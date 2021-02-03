@@ -39,7 +39,7 @@ const Register = (props) => {
                 <h3 className="title text-center mb-2">Регистрация</h3>
                 <Link to="/register-company" className="text-center">Регистрация компании</Link>
 
-                <form className="d-flex flex-column mt-3">
+                <form className="d-flex flex-column mt-3 mb-3">
                     <input onChange={e => setEmail(e.target.value)} type="email" className="mt-3 w-100" placeholder="Ваш Email" />
                     <input value={name} onChange={(event) => setName(event.target.value)} className="mt-3 w-100" id="register__name" type="text" placeholder="Имя" />
                     <input value={surname} onChange={(event) => setSurname(event.target.value)} className="mt-3 w-100" id="register__surname" type="text" placeholder="Фамилия" />
@@ -52,12 +52,12 @@ const Register = (props) => {
                     <button onClick={() => register()} type="button" className="main-btn" disabled={disabled} >Зарегистрироваться</button>
                 </form>
 
-                <div className="d-flex flex-column align-items-center auth-socials">
-                    <span className="mb-3">или войти с помощью</span>
-                    <div className="d-flex">
-                        { props.socials() }
-                    </div>
-                </div>
+                {/*<div className="d-flex flex-column align-items-center auth-socials">*/}
+                {/*    <span className="mb-3">или войти с помощью</span>*/}
+                {/*    <div className="d-flex">*/}
+                {/*        { props.socials() }*/}
+                {/*    </div>*/}
+                {/*</div>*/}
             </div>
             <div className="col-md-6 d-none d-md-flex auth-img">
                 <img src="/images/auth/auth_register.svg" />

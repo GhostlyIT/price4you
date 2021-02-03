@@ -6,4 +6,19 @@
     .main-window {
         background-color: transparent;
     }
+
+    .header {
+        justify-content: space-between;
+    }
+
+    .main-window {
+        padding: 0;
+
+        .main-window__inner {
+            box-shadow: 0px 0px 17px -11px #1c2126;
+        }
+    }
+
+
+
 }

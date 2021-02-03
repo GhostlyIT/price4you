@@ -47,7 +47,7 @@ const RegisterCompany = (props) => {
                 <h3 className="title text-center mb-2">Регистрация компании</h3>
                 <Link to="/register" className="text-center">Регистрация</Link>
 
-                <form className="d-flex flex-column mt-3">
+                <form className="d-flex flex-column mt-3 mb-3">
                     <div className="row">
                         <div className="col-xs-12 col-md-6">
                             <input value={email} onChange={event => setEmail(event.target.value)} className="mt-3 w-100" type="email" placeholder="Почта для входа" />
@@ -70,12 +70,12 @@ const RegisterCompany = (props) => {
                     <button onClick={() => register()} type="button" className="main-btn" disabled={disabled}>Зарегистрироваться</button>
                 </form>
 
-                <div className="d-flex flex-column align-items-center auth-socials">
-                    <span className="mb-3">или войти с помощью</span>
-                    <div className="d-flex">
-                        { props.socials() }
-                    </div>
-                </div>
+                {/*<div className="d-flex flex-column align-items-center auth-socials">*/}
+                {/*    <span className="mb-3">или войти с помощью</span>*/}
+                {/*    <div className="d-flex">*/}
+                {/*        { props.socials() }*/}
+                {/*    </div>*/}
+                {/*</div>*/}
             </div>
         </div>
     )

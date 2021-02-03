@@ -13,6 +13,7 @@ import UserSideBlock from './sideblock/UserSideBlock'
 import Company from "./company/Company"
 import CompanySideBlock from "./sideblock/CompanySideBlock"
 import Header from "./common/Header"
+import MediaQuery from "react-responsive/src";
 
 const Main = (props) => {
 
@@ -31,7 +32,7 @@ const Main = (props) => {
                     <div className="col-12 main-window mt-3 mb-3">
                         <Header />
                         <div className="row">
-                            <div className="col-md-10 col-sm-12">
+                            <div className="col-lg-10 col-sm-12">
                                 <div className="main-window__inner">
                                     <Route path="/">
                                         {props.loggedIn ? <Redirect to={userPage} /> : <Auth />}
@@ -47,9 +48,11 @@ const Main = (props) => {
                                     </Route>
                                 </div>
                             </div>
-                            <div className="col-md-2 d-none d-md-flex flex-column">
-                                {props.loggedIn ? sideBlock : <SideBlock />}
-                            </div>
+                            <MediaQuery minDeviceWidth={1023}>
+                                <div className="col-2 flex-column">
+                                    {props.loggedIn ? sideBlock : <SideBlock />}
+                                </div>
+                            </MediaQuery>
                         </div>
                     </div>
                 </div>
