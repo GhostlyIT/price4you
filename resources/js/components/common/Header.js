@@ -2,7 +2,7 @@ import React from 'react'
 import {Link} from "react-router-dom"
 import MediaQuery from "react-responsive"
 
-const Header = () => {
+const Header = ({openMenuFunc}) => {
     return(
         <div className="header">
             <a href="/" className="logo" />
@@ -16,7 +16,7 @@ const Header = () => {
             </MediaQuery>
 
             <MediaQuery maxDeviceWidth={1023}>
-                <button className="menu__trigger" />
+                <button onClick={() => openMenuFunc()} className="menu__trigger" />
             </MediaQuery>
         </div>
     )

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import Auth from './auth/Auth'
 import SideBlock from './sideblock/SideBlock'
 import Faq from './faq/Faq'
@@ -13,9 +13,11 @@ import UserSideBlock from './sideblock/UserSideBlock'
 import Company from "./company/Company"
 import CompanySideBlock from "./sideblock/CompanySideBlock"
 import Header from "./common/Header"
-import MediaQuery from "react-responsive/src";
+import MediaQuery from "react-responsive/src"
+import MobileMenu from "./common/modals/MobileMenu"
 
 const Main = (props) => {
+    const [isMenuOpen, setMenuOpen] = useState(false)
 
     let userPage = "/user", sideBlock = <UserSideBlock />
 
@@ -30,7 +32,7 @@ const Main = (props) => {
             <div className="container">
                 <div className="row">
                     <div className="col-12 main-window mt-3 mb-3">
-                        <Header />
+                        <Header openMenuFunc={() => setMenuOpen(true)} />
                         <div className="row">
                             <div className="col-lg-10 col-sm-12">
                                 <div className="main-window__inner">
@@ -52,6 +54,9 @@ const Main = (props) => {
                                 <div className="col-2 flex-column">
                                     {props.loggedIn ? sideBlock : <SideBlock />}
                                 </div>
+                            </MediaQuery>
+                            <MediaQuery maxDeviceWidth={1023}>
+                                <MobileMenu isMenuOpen={isMenuOpen} closeModalFunc={() => setMenuOpen(false)} />
                             </MediaQuery>
                         </div>
                     </div>

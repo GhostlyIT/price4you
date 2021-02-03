@@ -40,29 +40,34 @@ const UserMenu = props => {
         props.updateComponent()
     }, [activeLink])
 
+    const changeLink = (linkNumber) => {
+        setActiveLink(linkNumber)
+        props.isMobile && props.closeMenuFunc()
+    }
+
     return (
         <div className="user-sideblock__links d-flex flex-column justify-content-between">
-            <Link onClick={() => setActiveLink('1')} className={window.location.pathname === '/user/add-request' ? 'active' : null} to="/user/add-request">Добавить запрос</Link>
-            <Link onClick={() => setActiveLink('2')} className={window.location.pathname === '/user/requests' || activeLink === 2 ? 'active' : null} to="/user/requests">Мои запросы</Link>
-            <Link onClick={() => setActiveLink('3')} className={`d-flex ${window.location.pathname === '/user/offers' ? 'active' : null}`} to="/user/offers">
+            <Link onClick={() => changeLink('1')} className={window.location.pathname === '/user/add-request' ? 'active' : null} to="/user/add-request">Добавить запрос</Link>
+            <Link onClick={() => changeLink('2')} className={window.location.pathname === '/user/requests' || activeLink === 2 ? 'active' : null} to="/user/requests">Мои запросы</Link>
+            <Link onClick={() => changeLink('3')} className={`d-flex ${window.location.pathname === '/user/offers' ? 'active' : null}`} to="/user/offers">
                 Предложения
                 {responsesAmount > 0 &&
-                <span className="amount-badge font-weight-bold ml-2">
-                                    <span>{responsesAmount}</span>
-                                </span>
+                    <span className="amount-badge font-weight-bold ml-2">
+                        <span>{responsesAmount}</span>
+                    </span>
                 }
             </Link>
-            <Link onClick={() => setActiveLink('4')} className={`d-flex ${window.location.pathname === '/user/messages' ? 'active' : null}`} to="/user/messages">
+            <Link onClick={() => changeLink('4')} className={`d-flex ${window.location.pathname === '/user/messages' ? 'active' : null}`} to="/user/messages">
                 Сообщения
                 {unreadMessagesAmount > 0 &&
-                <span className="amount-badge font-weight-bold ml-2">
-                                    <span>{unreadMessagesAmount}</span>
-                                </span>
+                    <span className="amount-badge font-weight-bold ml-2">
+                        <span>{unreadMessagesAmount}</span>
+                    </span>
                 }
             </Link>
-            <Link onClick={() => setActiveLink('5')} className={window.location.pathname === '/user/info' ? 'active' : null} to="/user/info">Мои данные</Link>
-            <Link onClick={() => setActiveLink('6')} className={window.location.pathname === '/user/settings' ? 'active' : null} to="/user/settings">Настройки</Link>
-            <Link onClick={() => setActiveLink('7')} className={window.location.pathname === '/faq/how-works' ? 'active' : null} to="/faq/how-works">Как работает сервис</Link>
+            <Link onClick={() => changeLink('5')} className={window.location.pathname === '/user/info' ? 'active' : null} to="/user/info">Мои данные</Link>
+            <Link onClick={() => changeLink('6')} className={window.location.pathname === '/user/settings' ? 'active' : null} to="/user/settings">Настройки</Link>
+            <Link onClick={() => changeLink('7')} className={window.location.pathname === '/faq/how-works' ? 'active' : null} to="/faq/how-works">Как работает сервис</Link>
             <button onClick={() => props.exit()} type="button">Выйти</button>
         </div>
     )
