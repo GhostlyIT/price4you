@@ -9,6 +9,8 @@ import Options from "./user-components/Options/Options";
 import Offers from "./user-components/Offers/Offers";
 import Chat from "../chat/Chat";
 import Profile from "./user-components/Profile/Profile";
+import MediaQuery from "react-responsive/src";
+import MobileChat from "../chat/MobileChat";
 
 const User = (props) => {
     const match = useRouteMatch()
@@ -30,7 +32,12 @@ const User = (props) => {
                 <Offers />
             </Route>
             <Route path={`${match.url}/messages`}>
-                <Chat />
+                <MediaQuery maxDeviceWidth={1023}>
+                    <MobileChat/>
+                </MediaQuery>
+                <MediaQuery minDeviceWidth={1023}>
+                    <Chat/>
+                </MediaQuery>
             </Route>
             <Route path={`${match.url}/info`}>
                 <Profile />
