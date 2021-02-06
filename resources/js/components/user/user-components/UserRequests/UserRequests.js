@@ -31,7 +31,7 @@ const UserRequests = (props) => {
             }
             const date = new Date(request.created_at);
             return (
-                <div key={request.id} className="col-4 mt-4">
+                <div key={request.id} className="col-xs-12 col-lg-4 mt-4">
                     <span onClick={() => setSelectedRequest(request)} className={`request-picker d-flex flex-column position-relative ${request == selectedRequest ? 'selected' : ''}`}>
                         <span className="request-picker__title">{request.title}</span>
                         <span className="request-picker__title">№ {request.id} от {date.getDate()} {getMonthOnRus(date.getMonth())} {date.getFullYear()}</span>
@@ -49,7 +49,7 @@ const UserRequests = (props) => {
 
     const requestInfo = () => {
         return(
-            <div className="request-info">
+            <div className="request-info" style={{boxShadow: "unset"}}>
                 <div className="request-info__title position-relative">
                     <hr />
                     <span className="position-absolute">Товары в заявке</span>
@@ -66,7 +66,7 @@ const UserRequests = (props) => {
                         }
 
                         return (
-                            <div key={'wrapper-' + product.id} className="col-4 mt-3">
+                            <div key={'wrapper-' + product.id} className="col-xs-12 col-lg-4 mt-3">
                                 <div key={product.id} className="d-flex justify-content-between align-items-center request-info__product position-relative">
                                     {responsesAmount > 0 &&
                                         <span className="amount-badge position-absolute">

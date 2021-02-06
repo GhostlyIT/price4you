@@ -83018,22 +83018,24 @@ var AddRequest = function AddRequest(props) {
           className: "d-flex align-items-center picked-products__field row"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("label", {
           htmlFor: 'field-picked-' + product.id,
-          className: "position-relative d-flex flex-column col-4"
-        }, product.name, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("small", null, product.type), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("small", null, "\u0423\u043F\u0430\u043A\u043E\u0432\u043A\u0430: ", product.tara.tara_name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+          className: "position-relative d-flex flex-column col-lg-4 col-xs-12"
+        }, product.name, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("small", null, product.type), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("small", null, "\u0423\u043F\u0430\u043A\u043E\u0432\u043A\u0430: ", product.tara.tara_name)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+          className: "d-flex align-items-center no-mobile-column col-lg-4 col-xs-12"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
           onChange: function onChange(e) {
             return selectedProducts[i].value = parseFloat(e.target.value);
           },
           id: 'field-picked-' + product.id,
-          className: "col-2"
+          className: "col-lg-2 col-xs-10"
         }), product.type != 'Защита растений' && product.type != 'Удобрения' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("select", {
           onChange: function onChange(e) {
             return selectedProducts[i].unit = e.target.value;
           },
-          className: "ml-3 mr-3"
+          className: "ml-3 mr-3 col-xs-2"
         }, renderProductUnits()) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
-          className: "ml-3 mr-3"
-        }, selectedProducts[i].unit = product.tara.tara_unit), product.type === 'Защита растений' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
-          className: "col-4"
+          className: "ml-3 mr-3 col-xs-2"
+        }, selectedProducts[i].unit = product.tara.tara_unit)), product.type === 'Защита растений' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+          className: "col-lg-4 col-xs-12 text-center"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
           onClick: function onClick() {
             setProductToCalculate(product);
@@ -84219,7 +84221,7 @@ var UserRequests = function UserRequests(props) {
       var date = new Date(request.created_at);
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         key: request.id,
-        className: "col-4 mt-4"
+        className: "col-xs-12 col-lg-4 mt-4"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         onClick: function onClick() {
           return setSelectedRequest(request);
@@ -84237,7 +84239,10 @@ var UserRequests = function UserRequests(props) {
 
   var requestInfo = function requestInfo() {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "request-info"
+      className: "request-info",
+      style: {
+        boxShadow: "unset"
+      }
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "request-info__title position-relative"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -84255,7 +84260,7 @@ var UserRequests = function UserRequests(props) {
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         key: 'wrapper-' + product.id,
-        className: "col-4 mt-3"
+        className: "col-xs-12 col-lg-4 mt-3"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         key: product.id,
         className: "d-flex justify-content-between align-items-center request-info__product position-relative"

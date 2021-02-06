@@ -150,26 +150,28 @@ const AddRequest = (props) => {
                 return (
                     <div key={'field-picked-' + product.name + '-' + product.id} className="d-flex align-items-center picked-products__field row">
 
-                        <label htmlFor={'field-picked-' + product.id} className="position-relative d-flex flex-column col-4">
+                        <label htmlFor={'field-picked-' + product.id} className="position-relative d-flex flex-column col-lg-4 col-xs-12">
                             {product.name}
                             <small>{product.type}</small>
                             <small>Упаковка: {product.tara.tara_name}</small>
                         </label>
 
-                        <input onChange={(e) => selectedProducts[i].value = parseFloat(e.target.value) }
-                                id={'field-picked-' + product.id}
-                                className="col-2"
-                        />
+                        <div className="d-flex align-items-center no-mobile-column col-lg-4 col-xs-12">
+                            <input onChange={(e) => selectedProducts[i].value = parseFloat(e.target.value) }
+                                    id={'field-picked-' + product.id}
+                                    className="col-lg-2 col-xs-10"
+                            />
 
-                        { product.type != 'Защита растений' && product.type != 'Удобрения'
-                            ? <select onChange={(e) => selectedProducts[i].unit = e.target.value } className="ml-3 mr-3">
-                                {renderProductUnits()}
-                            </select>
-                            : <span className="ml-3 mr-3">{selectedProducts[i].unit = product.tara.tara_unit}</span>
-                        }
+                            { product.type != 'Защита растений' && product.type != 'Удобрения'
+                                ? <select onChange={(e) => selectedProducts[i].unit = e.target.value } className="ml-3 mr-3 col-xs-2">
+                                    {renderProductUnits()}
+                                </select>
+                                : <span className="ml-3 mr-3 col-xs-2">{selectedProducts[i].unit = product.tara.tara_unit}</span>
+                            }
+                        </div>
 
                         { product.type === 'Защита растений' &&
-                            <div className="col-4">
+                            <div className="col-lg-4 col-xs-12 text-center">
                                     <button onClick={() => {
                                             setProductToCalculate(product)
                                             setIsModalOpen(true)

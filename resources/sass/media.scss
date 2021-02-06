@@ -19,6 +19,57 @@
         }
     }
 
+    .request-info__title {
+        margin-bottom: 30px;
+    }
 
+    #add-request {
+        .d-flex:not(.no-mobile-column) {
+            flex-direction: column;
+        }
 
+        .no-mobile-column {
+            margin-bottom: 20px;
+        }
+
+        .add-request__title input {
+            width: 100% !important;
+        }
+    }
+
+    .request-products {
+        div, input {
+            width: 100% !important;
+        }
+    }
+
+    .select-cards {
+        margin-right: 0;
+        margin-top: 20px;
+    }
+
+    .add-request__component {
+        input {
+            width: 100% !important;
+            margin-top: 10px;
+        }
+    }
+
+    .picked-product {
+        margin-bottom: 20px;
+    }
+
+    .calculate-product {
+        .d-flex {
+            flex-direction: column;
+        }
+
+        .calculate-product__culture-list {
+            display: block !important;
+        }
+
+        .calculate-product__row {
+            justify-content: center;
+        }
+    }
 }
