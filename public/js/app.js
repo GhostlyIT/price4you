@@ -80729,6 +80729,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _chat_Chat__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../chat/Chat */ "./resources/js/components/chat/Chat.js");
 /* harmony import */ var _company_components_Options_Options__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./company-components/Options/Options */ "./resources/js/components/company/company-components/Options/Options.js");
 /* harmony import */ var _company_components_Profile_Profile__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./company-components/Profile/Profile */ "./resources/js/components/company/company-components/Profile/Profile.js");
+/* harmony import */ var react_responsive_src__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-responsive/src */ "./node_modules/react-responsive/src/index.js");
+/* harmony import */ var _chat_MobileChat__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../chat/MobileChat */ "./resources/js/components/chat/MobileChat.js");
+
+
 
 
 
@@ -80750,7 +80754,11 @@ var Company = function Company() {
     path: "".concat(match.url, "/responses")
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_company_components_Responses_Responses__WEBPACK_IMPORTED_MODULE_3__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     path: "".concat(match.url, "/messages")
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_chat_Chat__WEBPACK_IMPORTED_MODULE_4__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_responsive_src__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    maxDeviceWidth: 1023
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_chat_MobileChat__WEBPACK_IMPORTED_MODULE_8__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_responsive_src__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    minDeviceWidth: 1023
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_chat_Chat__WEBPACK_IMPORTED_MODULE_4__["default"], null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     path: "".concat(match.url, "/settings")
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_company_components_Options_Options__WEBPACK_IMPORTED_MODULE_5__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     path: "".concat(match.url, "/info")
@@ -81537,7 +81545,9 @@ __webpack_require__.r(__webpack_exports__);
 var Requests = function Requests() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-12"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UsersRequests__WEBPACK_IMPORTED_MODULE_1__["default"], null));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "d-flex justify-content-center col-12"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "\u0417\u0430\u043F\u0440\u043E\u0441\u044B")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_UsersRequests__WEBPACK_IMPORTED_MODULE_1__["default"], null));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Requests);

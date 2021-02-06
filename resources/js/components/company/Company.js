@@ -5,6 +5,8 @@ import Responses from "./company-components/Responses/Responses"
 import Chat from "../chat/Chat"
 import Options from "./company-components/Options/Options"
 import Profile from "./company-components/Profile/Profile"
+import MediaQuery from "react-responsive/src";
+import MobileChat from "../chat/MobileChat";
 
 const Company = () => {
     const match = useRouteMatch()
@@ -20,7 +22,12 @@ const Company = () => {
                 <Responses />
             </Route>
             <Route path={`${match.url}/messages`}>
-                <Chat />
+                <MediaQuery maxDeviceWidth={1023}>
+                    <MobileChat/>
+                </MediaQuery>
+                <MediaQuery minDeviceWidth={1023}>
+                    <Chat/>
+                </MediaQuery>
             </Route>
             <Route path={`${match.url}/settings`}>
                 <Options />
