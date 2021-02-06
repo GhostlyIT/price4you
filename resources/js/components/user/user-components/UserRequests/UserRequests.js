@@ -119,6 +119,9 @@ const UserRequests = (props) => {
     return(
         <div className="col-12 requests-wrapper">
             <div className="requests row">
+                <div className="d-flex justify-content-center col-12">
+                    <h3>Мои запросы</h3>
+                </div>
                 { requests.length > 0
                     ? renderRequests()
                     : <h1 className="text-center">Запросов нет</h1>

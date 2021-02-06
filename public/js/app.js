@@ -84474,7 +84474,9 @@ var UserRequests = function UserRequests(props) {
     className: "col-12 requests-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "requests row"
-  }, requests.length > 0 ? renderRequests() : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "d-flex justify-content-center col-12"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "\u041C\u043E\u0438 \u0437\u0430\u043F\u0440\u043E\u0441\u044B")), requests.length > 0 ? renderRequests() : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
     className: "text-center"
   }, "\u0417\u0430\u043F\u0440\u043E\u0441\u043E\u0432 \u043D\u0435\u0442")), selectedRequest ? requestInfo() : null);
 };
