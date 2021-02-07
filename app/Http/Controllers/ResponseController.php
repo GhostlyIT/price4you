@@ -38,9 +38,7 @@ class ResponseController extends Controller
         $company = $user->company;
 
         try {
-            $request = UserRequests::findOrFail($requestId);
-            $user = $request->user;
-            $blackList = $user->blackList()->pluck('company_id');
+            $blackList = $user->blackList()->pluck('company_id')->toArray();
             if (in_array($company->id, $blackList)) throw new \Exception('Вы в черном списке');
 
             CompanyResponses::create([
@@ -49,7 +47,7 @@ class ResponseController extends Controller
                 'price' => $price,
                 'comment' => $comment
             ]);
-            
+
             return response()->json(['message' => 'Отклик успешно добавлен', 'status' => 'success'],200);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage() . ' ' . $e->getFile() . ' ' . $e->getLine(), 'status' => 'error'],400);
