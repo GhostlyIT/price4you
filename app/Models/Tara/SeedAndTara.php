@@ -11,4 +11,8 @@ class SeedAndTara extends Model
 
     protected $connection = 'mysql_ecoplant';
     protected $table = 'seed_and_seed_tara';
+
+    public function tara() {
+        return $this->hasOne('App\Models\Tara\SeedTara', 'id_seed_tara', 'id_seed_tara');
+    }
 }

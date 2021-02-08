@@ -11,4 +11,8 @@ class FertiliserAndTara extends Model
 
     protected $connection = 'mysql_ecoplant';
     protected $table = 'fertiliser_and_tara';
+
+    public function tara() {
+        return $this->hasOne('App\Models\Tara\ProductTara', 'id_product_tara', 'id_fertiliser_tara');
+    }
 }

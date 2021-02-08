@@ -40,6 +40,10 @@ class Product extends Model
         return $this->hasOneThrough('App\Models\Tara\ProductTara', 'App\Models\Tara\ProductAndTara', 'id_product', 'id_product_tara', 'id', 'id_product_tara');
     }
 
+    public function taraMiddleware() {
+        return $this->hasOne('App\Models\Tara\ProductAndTara', 'id_product', 'id_product');
+    }
+
 
 
 

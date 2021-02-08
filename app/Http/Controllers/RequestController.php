@@ -131,13 +131,16 @@ class RequestController extends Controller
                     },
                     'request.region',
                     'product' => function($q) use ($companyManufactures) {
-                        if (count($companyManufactures) > 0) $q->whereIn('id_manufacture', $companyManufactures)->get();
+                        if (count($companyManufactures) > 0) $q->whereIn('id_manufacture', $companyManufactures)->with('taraMiddleware.tara')->get();
+                        $q->with('taraMiddleware.tara')->get();
                     },
                     'fertiliser' => function($q) use ($companyManufactures) {
-                        if (count($companyManufactures) > 0) $q->whereIn('id_manufacture', $companyManufactures)->get();
+                        if (count($companyManufactures) > 0) $q->whereIn('id_manufacture', $companyManufactures)->with('taraMiddleware.tara')->get();
+                        $q->with('taraMiddleware.tara')->get();
                     },
                     'seed' => function($q) use ($companyManufactures) {
                         if (count($companyManufactures) > 0) $q->whereIn('id_manufacture', $companyManufactures)->get();
+                        $q->with('taraMiddleware.tara')->get();
                     },
                     'responses'
                 ])

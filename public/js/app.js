@@ -81658,7 +81658,7 @@ var UsersRequests = function UsersRequests(props) {
         className: "modal__element d-flex justify-content-center"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "mr-3"
-      }, selectedRequest[type].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, selectedRequest.value, " ", selectedRequest.unit)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      }, selectedRequest[type].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, selectedRequest.value, " ", selectedRequest.unit, " (", selectedRequest[type].tara_middleware.tara.tara_name, ")")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "modal__element"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         onChange: function onChange(e) {

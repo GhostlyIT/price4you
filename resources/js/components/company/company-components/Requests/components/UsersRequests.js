@@ -62,7 +62,7 @@ const UsersRequests = (props) => {
                 <div className="modal__body">
                     <div className="modal__element d-flex justify-content-center">
                         <span className="mr-3">{selectedRequest[type].name}</span>
-                        <span>{selectedRequest.value} {selectedRequest.unit}</span>
+                        <span>{selectedRequest.value} {selectedRequest.unit} ({selectedRequest[type].tara_middleware.tara.tara_name})</span>
                     </div>
                     <div className="modal__element">
                         <input onChange={(e) => price = e.target.value} type="number" min="0" placeholder={`Ваша цена за ${selectedRequest.unit} товара`}/>

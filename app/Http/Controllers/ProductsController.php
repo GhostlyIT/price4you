@@ -38,7 +38,6 @@ class ProductsController extends Controller
         try {
             $products = Product::select('id_product AS id', 'name_product_rus')->where('name_product_rus', 'like', "%$query%")->with('tara')->orderBy('name_product_rus')->get();
             foreach ($products as $product) {
-                //$product['culture'] = $product->culture()->get();
                 if ($product->regdata()->first()) {
                     $product['regdata'] = $product->regdata()->with('culture')->get();
                 } elseif ($product->regdataForLph()->first()) {

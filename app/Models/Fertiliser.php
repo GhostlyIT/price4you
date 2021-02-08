@@ -16,6 +16,10 @@ class Fertiliser extends Model
         return $this->hasOneThrough('App\Models\Tara\ProductTara', 'App\Models\Tara\FertiliserAndTara', 'id_fertiliser', 'id_product_tara', 'id', 'id_fertiliser_tara');
     }
 
+    public function taraMiddleware() {
+        return $this->hasOne('App\Models\Tara\FertiliserAndTara', 'id_fertiliser', 'id_fertiliser');
+    }
+
     public function getNameAttribute() {
         return "{$this->name_fertiliser}";
     }
