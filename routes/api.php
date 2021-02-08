@@ -70,6 +70,7 @@ Route::middleware(['auth:api', 'auth.user', 'response.user'])->post('response/re
 Route::middleware(['auth:api', 'auth.user', 'response.user'])->post('response/accept', 'App\Http\Controllers\ResponseController@accept');
 Route::middleware(['auth:api', 'auth.company', 'response.company'])->post('response/send-to-close', 'App\Http\Controllers\ResponseController@sendToCLose');
 Route::middleware(['auth:api', 'auth.user', 'response.user'])->post('response/close', 'App\Http\Controllers\ResponseController@close');
+Route::middleware(['auth:api', 'auth.company'])->get('response/accepted/amount', 'App\Http\Controllers\ResponseController@getAcceptedResponsesAmount');
 
 
 //Messages

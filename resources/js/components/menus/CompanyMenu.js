@@ -9,7 +9,8 @@ import axios from "axios";
 
 const CompanyMenu = props => {
     const [activeLink, setActiveLink] = useState(1),
-        [unreadMessagesAmount, setUnreadMessagesAmount] = useState(0)
+        [unreadMessagesAmount, setUnreadMessagesAmount] = useState(0),
+        [acceptedResponsesAmount, setAcceptedResponsesAmount] = useState(0)
 
     useEffect(() => {
         props.updateComponent()
@@ -19,12 +20,24 @@ const CompanyMenu = props => {
         axios.get('/api/message/count/all', {
             headers: {'Authorization': 'Bearer ' + props.token}
         })
-            .then(response => {
-                setUnreadMessagesAmount(response.data.unread_messages_count)
-            })
-            .catch(error => {
-                console.log(error.response.data.message)
-            })
+        .then(response => {
+            setUnreadMessagesAmount(response.data.unread_messages_count)
+        })
+        .catch(error => {
+            console.log(error.response.data.message)
+        })
+    }, [props.updateVal])
+
+    useEffect(() => {
+        axios.get('/api/response/accepted/amount', {
+            headers: {'Authorization': 'Bearer ' + props.token}
+        })
+        .then(response => {
+            setAcceptedResponsesAmount(response.data.responses_amount)
+        })
+        .catch(error => {
+            console.log(error.response.data.message)
+        })
     }, [props.updateVal])
 
     useEffect(() => {
@@ -39,7 +52,14 @@ const CompanyMenu = props => {
     return (
         <div className="user-sideblock__links d-flex flex-column justify-content-between">
             <Link onClick={() => changeLink('1')} className={window.location.pathname === '/company/requests' || activeLink === 1 ? 'active' : null} to="/company/requests">Запросы</Link>
-            <Link onClick={() => changeLink('2')} className={window.location.pathname === '/company/responses' ? 'active' : null} to="/company/responses">Отклики</Link>
+            <Link onClick={() => changeLink('2')} className={`d-flex ${window.location.pathname === '/company/responses' ? 'active' : null}`} to="/company/responses">
+                Отклики
+                {acceptedResponsesAmount > 0 &&
+                    <span className="amount-badge font-weight-bold ml-2">
+                        <span>{acceptedResponsesAmount}</span>
+                    </span>
+                }
+            </Link>
             <Link onClick={() => changeLink('3')} className={`d-flex ${window.location.pathname === '/company/messages' ? 'active' : null}`} to="/company/messages">
                 Сообщения
                 {unreadMessagesAmount > 0 &&

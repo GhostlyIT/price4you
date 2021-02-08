@@ -198,7 +198,18 @@ class ResponseController extends Controller
         }
     }
 
+    public function getAcceptedResponsesAmount() {
+        $user = Auth::user();
+        $company = $user->company;
 
+        try {
+            $responsesAmount = $company->responses()->where('status', 'accepted')->count();
+
+            return response()->json(['responses_amount' => $responsesAmount, 'status' => 'success'],200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);
+        }
+    }
 
 
 

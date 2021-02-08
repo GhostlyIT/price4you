@@ -82477,7 +82477,11 @@ var CompanyMenu = function CompanyMenu(props) {
       _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0),
       _useState4 = _slicedToArray(_useState3, 2),
       unreadMessagesAmount = _useState4[0],
-      setUnreadMessagesAmount = _useState4[1];
+      setUnreadMessagesAmount = _useState4[1],
+      _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0),
+      _useState6 = _slicedToArray(_useState5, 2),
+      acceptedResponsesAmount = _useState6[0],
+      setAcceptedResponsesAmount = _useState6[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     props.updateComponent();
@@ -82489,6 +82493,17 @@ var CompanyMenu = function CompanyMenu(props) {
       }
     }).then(function (response) {
       setUnreadMessagesAmount(response.data.unread_messages_count);
+    })["catch"](function (error) {
+      console.log(error.response.data.message);
+    });
+  }, [props.updateVal]);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    axios__WEBPACK_IMPORTED_MODULE_7___default.a.get('/api/response/accepted/amount', {
+      headers: {
+        'Authorization': 'Bearer ' + props.token
+      }
+    }).then(function (response) {
+      setAcceptedResponsesAmount(response.data.responses_amount);
     })["catch"](function (error) {
       console.log(error.response.data.message);
     });
@@ -82514,9 +82529,11 @@ var CompanyMenu = function CompanyMenu(props) {
     onClick: function onClick() {
       return changeLink('2');
     },
-    className: window.location.pathname === '/company/responses' ? 'active' : null,
+    className: "d-flex ".concat(window.location.pathname === '/company/responses' ? 'active' : null),
     to: "/company/responses"
-  }, "\u041E\u0442\u043A\u043B\u0438\u043A\u0438"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }, "\u041E\u0442\u043A\u043B\u0438\u043A\u0438", acceptedResponsesAmount > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "amount-badge font-weight-bold ml-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, acceptedResponsesAmount))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     onClick: function onClick() {
       return changeLink('3');
     },
