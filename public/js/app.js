@@ -83320,6 +83320,15 @@ var AddRequest = function AddRequest(props) {
           key: rate + i,
           className: "select-cards calculate-product__rate d-flex align-items-center justify-content-center"
         }, rate);
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+        onChange: function onChange(e) {
+          dataToCalculate.rate = e.target.value;
+          $('.calculate-product__rate').removeClass('selected');
+        },
+        type: "number",
+        step: "0.01",
+        min: "0",
+        placeholder: "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0441\u0432\u043E\u0435 \u0437\u043D\u0430\u0447\u0435\u043D\u0438\u0435"
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "d-flex align-items-center calculate-product__row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {

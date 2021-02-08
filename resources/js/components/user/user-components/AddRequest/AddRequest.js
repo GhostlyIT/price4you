@@ -268,6 +268,10 @@ const AddRequest = (props) => {
                                     )
                                 })
                             }
+                            <input onChange={e => {
+                                dataToCalculate.rate = e.target.value
+                                $('.calculate-product__rate').removeClass('selected')
+                            }} type="number" step="0.01" min="0" placeholder="Введите свое значение" />
                         </div>
                     </div>
 
