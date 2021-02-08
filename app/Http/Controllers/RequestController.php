@@ -35,7 +35,8 @@ class RequestController extends Controller
             'products.*.id' => 'required|integer',
             'products.*.value' => 'required|integer',
             'products.*.unit' => 'string|max:10',
-            'products.*.type_for_db' => 'required|string'
+            'products.*.type_for_db' => 'required|string',
+            'region' => 'required|integer'
         ]);
 
         if ($validator->fails()) {
@@ -48,6 +49,7 @@ class RequestController extends Controller
         $deliveryAddress = $request->get('delivery_address');
         $comment = $request->get('comment');
         $products = $request->get('products');
+        $region = $request->get('region');
 
         try {
             DB::beginTransaction();
@@ -58,7 +60,8 @@ class RequestController extends Controller
                 'payment_method' => $paymentMethod,
                 'delivery_method' => $deliveryMethod,
                 'comment' => $comment,
-                'delivery_address' => $deliveryAddress
+                'delivery_address' => $deliveryAddress,
+                'region_id' => $region
             ]);
 
             foreach ($products as $product) {
@@ -87,6 +90,7 @@ class RequestController extends Controller
         try {
             $user = Auth::user();
             $requests = $user->requests()->with([
+                'region',
                 'products',
                 'products.product',
                 'products.fertiliser',
@@ -122,6 +126,7 @@ class RequestController extends Controller
             $requests = UserRequestsAndProducts::where('status', 'open')
                 ->with([
                     'request',
+                    'request.region',
                     'product' => function($q) use ($companyManufactures) {
                         if (count($companyManufactures) > 0) $q->whereIn('id_manufacture', $companyManufactures)->get();
                     },

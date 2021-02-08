@@ -81723,6 +81723,12 @@ var UsersRequests = function UsersRequests(props) {
       className: "d-flex align-items-center flex-wrap mt-3"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "mr-2 font-weight-bold"
+    }, "\u0420\u0435\u0433\u0438\u043E\u043D \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0438:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "request-info__parameter"
+    }, request.request.region.name_regions)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "d-flex align-items-center flex-wrap mt-3"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "mr-2 font-weight-bold"
     }, "\u0410\u0434\u0440\u0435\u0441 \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0438:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "request-info__parameter"
     }, request.request.delivery_address)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -82986,6 +82992,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _store_actions_authAction__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../store/actions/authAction */ "./resources/js/store/actions/authAction.js");
 /* harmony import */ var _common_loader__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../common/loader */ "./resources/js/components/common/loader.js");
+/* harmony import */ var _components_SearchRegion__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/SearchRegion */ "./resources/js/components/user/user-components/AddRequest/components/SearchRegion.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -83005,6 +83012,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -83072,7 +83080,11 @@ var AddRequest = function AddRequest(props) {
       _useState25 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
       _useState26 = _slicedToArray(_useState25, 2),
       loading = _useState26[0],
-      setLoading = _useState26[1];
+      setLoading = _useState26[1],
+      _useState27 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(null),
+      _useState28 = _slicedToArray(_useState27, 2),
+      selectedRegion = _useState28[0],
+      setSelectedRegion = _useState28[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     document.addEventListener('click', handleClick, false);
@@ -83350,7 +83362,8 @@ var AddRequest = function AddRequest(props) {
       delivery_method: selectedDeliveryMethod,
       comment: comment,
       delivery_address: deliveryAddress,
-      products: selectedProducts
+      products: selectedProducts,
+      region: selectedRegion.id_count_reg
     }, {
       headers: {
         'Authorization': 'Bearer ' + props.token
@@ -83434,11 +83447,15 @@ var AddRequest = function AddRequest(props) {
     className: "d-flex align-items-center add-request__component"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h5", {
     className: "add-request__component--title"
-  }, "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0412\u0430\u0448 \u0430\u0434\u0440\u0435\u0441, \u043A\u0443\u0434\u0430 \u043D\u0435\u043E\u0431\u0445\u043E\u0434\u0438\u043C\u043E \u0434\u043E\u0441\u0442\u0430\u0432\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-    className: "address-field",
+  }, "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0412\u0430\u0448 \u0430\u0434\u0440\u0435\u0441, \u043A\u0443\u0434\u0430 \u043D\u0435\u043E\u0431\u0445\u043E\u0434\u0438\u043C\u043E \u0434\u043E\u0441\u0442\u0430\u0432\u0438\u0442\u044C \u0442\u043E\u0432\u0430\u0440:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(_components_SearchRegion__WEBPACK_IMPORTED_MODULE_10__["default"], {
+    selectedRegion: selectedRegion,
+    selectRegion: setSelectedRegion
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+    className: "address-field ml-2",
     onChange: function onChange(e) {
       return setDeliveryAddress(e.target.value);
-    }
+    },
+    placeholder: "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0430\u0434\u0440\u0435\u0441"
   })), selectedProducts.length > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "d-flex add-request__component"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h5", {
@@ -83475,6 +83492,146 @@ var mapDispatchProps = function mapDispatchProps(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_6__["connect"])(mapStateToProps, mapDispatchProps)(AddRequest));
+
+/***/ }),
+
+/***/ "./resources/js/components/user/user-components/AddRequest/components/SearchRegion.js":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/components/user/user-components/AddRequest/components/SearchRegion.js ***!
+  \********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _common_loader__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../common/loader */ "./resources/js/components/common/loader.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+var SearchRegion = function SearchRegion(_ref) {
+  var selectRegion = _ref.selectRegion,
+      selectedRegion = _ref.selectedRegion;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      searchResult = _useState2[0],
+      setSearchResult = _useState2[1],
+      _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      loading = _useState4[0],
+      setLoading = _useState4[1],
+      _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      fallingListOpen = _useState6[0],
+      setFallingListOpen = _useState6[1];
+
+  var input = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(null);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    document.addEventListener('click', handleClick, false);
+  });
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    if (selectedRegion != null) {
+      input.current.value = selectedRegion.name_regions;
+    }
+  }, [selectedRegion]);
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    if (selectedRegion === null) {
+      console.log('err');
+
+      if (searchResult.length > 0) {
+        selectRegion(searchResult[0]);
+      } else {
+        input.current.value = '';
+      }
+    } else {
+      input.current.value = selectedRegion.name_regions;
+    }
+  }, [fallingListOpen]);
+
+  var handleClick = function handleClick(e) {
+    var companies = document.getElementById('regions');
+    var companyList = document.getElementById('company-wrapper');
+    var path = e.path || Event.composedPath && Event.composedPath();
+
+    if (!path.includes(companies) && !path.includes(companyList)) {
+      setFallingListOpen(false);
+    }
+  };
+
+  var searchRegion = function searchRegion(query) {
+    if (query != '') {
+      setLoading(true);
+      axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/region/search?query=".concat(query)).then(function (response) {
+        setSearchResult(response.data.regions);
+      })["catch"](function (error) {
+        setSearchResult([]);
+      }).then(function () {
+        setLoading(false);
+      });
+    } else {//setSearchResult([])
+    }
+  };
+
+  var renderRegions = function renderRegions() {
+    if (loading) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_loader__WEBPACK_IMPORTED_MODULE_1__["default"], null);
+    }
+
+    if (searchResult.length > 0) {
+      return searchResult.map(function (region) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "company-wrapper falling-list__element",
+          key: region.id_count_reg
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", {
+          className: "text-center font-weight-bold mb-2"
+        }, region.name_regions), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            return selectRegion(region);
+          },
+          type: "button",
+          className: "white-blue-btn w-100"
+        }, "\u0412\u044B\u0431\u0440\u0430\u0442\u044C"));
+      });
+    } else {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\u0420\u0435\u0433\u0438\u043E\u043D\u044B \u043D\u0435 \u043D\u0430\u0439\u0434\u0435\u043D\u044B");
+    }
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "position-relative"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    onClick: function onClick() {
+      return setFallingListOpen(true);
+    },
+    onChange: function onChange(e) {
+      return searchRegion(e.target.value);
+    },
+    id: "regions",
+    placeholder: "\u0423\u043A\u0430\u0436\u0438\u0442\u0435 \u0412\u0430\u0448 \u0440\u0435\u0433\u0438\u043E\u043D",
+    ref: input
+  }), fallingListOpen === true && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "falling-list position-absolute"
+  }, renderRegions()));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (SearchRegion);
 
 /***/ }),
 
@@ -84480,6 +84637,10 @@ var UserRequests = function UserRequests(props) {
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "mr-2 font-weight-bold"
     }, "\u0421\u043F\u043E\u0441\u043E\u0431 \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0438:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, selectedRequest.delivery_method)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "d-flex align-items-center mt-3"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      className: "mr-2 font-weight-bold"
+    }, "\u0420\u0435\u0433\u0438\u043E\u043D \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0438:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, selectedRequest.region.name_regions)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "d-flex align-items-center mt-3"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "mr-2 font-weight-bold"

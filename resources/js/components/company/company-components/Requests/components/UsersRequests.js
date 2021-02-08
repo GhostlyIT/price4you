@@ -109,6 +109,11 @@ const UsersRequests = (props) => {
                             </div>
 
                             <div className="d-flex align-items-center flex-wrap mt-3">
+                                <span className="mr-2 font-weight-bold">Регион доставки:</span>
+                                <span className="request-info__parameter">{request.request.region.name_regions}</span>
+                            </div>
+
+                            <div className="d-flex align-items-center flex-wrap mt-3">
                                 <span className="mr-2 font-weight-bold">Адрес доставки:</span>
                                 <span className="request-info__parameter">{request.request.delivery_address}</span>
                             </div>

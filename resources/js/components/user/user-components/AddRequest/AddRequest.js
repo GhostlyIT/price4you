@@ -8,6 +8,7 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from "redux";
 import authAction from "../../../../store/actions/authAction"
 import Loader from "../../../common/loader";
+import SearchRegion from "./components/SearchRegion"
 
 const AddRequest = (props) => {
     const [products, setProducts] = useState([]),
@@ -26,7 +27,8 @@ const AddRequest = (props) => {
             rate: 0
         }),
         [comment, setComment] = useState(false),
-        [loading, setLoading] = useState(false)
+        [loading, setLoading] = useState(false),
+        [selectedRegion, setSelectedRegion] = useState(null)
 
     useEffect(() => {
         document.addEventListener('click', handleClick, false)
@@ -291,7 +293,8 @@ const AddRequest = (props) => {
             delivery_method: selectedDeliveryMethod,
             comment: comment,
             delivery_address: deliveryAddress,
-            products: selectedProducts
+            products: selectedProducts,
+            region: selectedRegion.id_count_reg
         },
         {
             headers: {'Authorization': 'Bearer ' + props.token}
@@ -365,7 +368,8 @@ const AddRequest = (props) => {
 
             <div className="d-flex align-items-center add-request__component">
                 <h5 className="add-request__component--title">Введите Ваш адрес, куда необходимо доставить товар:</h5>
-                <input className="address-field" onChange={e => setDeliveryAddress(e.target.value)}/>
+                <SearchRegion selectedRegion={selectedRegion} selectRegion={setSelectedRegion} />
+                <input className="address-field ml-2" onChange={e => setDeliveryAddress(e.target.value)} placeholder="Введите адрес" />
             </div>
 
             { selectedProducts.length > 0 &&
