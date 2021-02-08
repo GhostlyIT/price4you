@@ -318,13 +318,11 @@ const AddRequest = (props) => {
             <hr/>
 
             <div className="d-flex align-items-center add-request__title add-request__component">
-                <label htmlFor="request-title">Введите название запроса</label>
-                <input onChange={e => setRequestTitle(e.target.value)} id="request-title"/>
+                <input onChange={e => setRequestTitle(e.target.value)} id="request-title" placeholder="Введите название запроса"/>
             </div>
 
             <div className="d-flex align-items-center add-request__title add-request__component">
-                <label htmlFor="request-comment">Введите Ваш комментарий к запросу</label>
-                <input onChange={e => setComment(e.target.value)} id="request-comment"/>
+                <input onChange={e => setComment(e.target.value)} id="request-comment" placeholder="Введите Ваш комментарий к запросу" />
             </div>
 
             <div className="request-products d-flex flex-column add-request__component">
