@@ -29,16 +29,15 @@ class Companies extends Model
         return $this->hasMany('App\Models\CompanyManufactures', 'company_id', 'id');
     }
 
-//    public function manufactures() {
-//        return $this->hasManyThrough('App\Models\Manufacture', 'App\Models\CompanyManufactures');
-//    }
-
     public function manufacturesIDs() {
         return $this->hasMany('App\Models\CompanyManufactures', 'company_id');
     }
 
-
     public function regionsMiddleware() {
+        return $this->hasMany('App\Models\CompanyRegions', 'company_id');
+    }
+
+    public function regionsIDs() {
         return $this->hasMany('App\Models\CompanyRegions', 'company_id');
     }
 

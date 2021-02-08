@@ -121,11 +121,14 @@ class RequestController extends Controller
         try {
             $user = Auth::user();
             $company = $user->company;
-            $companyManufactures = $company->manufacturesIDs()->pluck('manufacture_id');
+            $companyManufactures = $company->manufacturesIDs()->pluck('manufacture_id')->toArray();
+            $companyRegions = $company->regionsIDs()->pluck('region_id')->toArray();
 
             $requests = UserRequestsAndProducts::where('status', 'open')
                 ->with([
-                    'request',
+                    'request' => function($q) use ($companyRegions) {
+                        if (count($companyRegions) > 0) $q->whereIn('region_id', $companyRegions)->get();
+                    },
                     'request.region',
                     'product' => function($q) use ($companyManufactures) {
                         if (count($companyManufactures) > 0) $q->whereIn('id_manufacture', $companyManufactures)->get();
@@ -144,7 +147,7 @@ class RequestController extends Controller
             $requestsArr = [];
 
             foreach($requests as $request) {
-                if ($request[$request['product_type']] != null) $requestsArr[] = $request;
+                if ($request[$request['product_type']] != null && $request['request'] != null) $requestsArr[] = $request;
             }
 
             $requestsCount = count($requestsArr);
