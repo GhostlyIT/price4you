@@ -80,6 +80,7 @@ const Options = (props) => {
         )
             .then(() => {
                 refreshOptions()
+                showNotification('Настройки', 'Настройки успешно изменены', 'success')
             })
             .catch(error => {
                 showNotification('Ошибка', 'Произошла ошибка. Попробуйте еще раз.', 'danger')

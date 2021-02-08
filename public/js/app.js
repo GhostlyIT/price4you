@@ -83924,6 +83924,7 @@ var Options = function Options(props) {
       }
     }).then(function () {
       refreshOptions();
+      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_3__["showNotification"])('Настройки', 'Настройки успешно изменены', 'success');
     })["catch"](function (error) {
       Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_3__["showNotification"])('Ошибка', 'Произошла ошибка. Попробуйте еще раз.', 'danger');
       console.log(error.response.data.message);
