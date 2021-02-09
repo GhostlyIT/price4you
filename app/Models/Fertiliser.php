@@ -24,5 +24,9 @@ class Fertiliser extends Model
         return "{$this->name_fertiliser}";
     }
 
-    protected $appends = ['name'];
+    public function getIdAttribute() {
+        return $this->id_fertiliser;
+    }
+
+    protected $appends = ['name', 'id'];
 }

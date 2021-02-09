@@ -38,6 +38,7 @@ class OptionsController extends Controller
             $viewOptions = ViewOptions::select('id', 'text_for_company')->get();
             $manufactures = [];
             $regions = [];
+            $products = [];
 
             $manufactureMiddlewares = $company->manufacturesMiddleware()->get();
             foreach($manufactureMiddlewares as $manufactureMiddleware) {
@@ -49,11 +50,18 @@ class OptionsController extends Controller
                 $regions[] = $regionsMiddleware->region;
             }
 
+            $productsMiddlewares = $company->productsMiddleware()->get();
+            foreach($productsMiddlewares as $productsMiddleware) {
+                $productType = $productsMiddleware->product_type;
+                $products[] = $productsMiddleware->$productType;
+            }
+
             return response()->json([
                 'all_view_options' => $viewOptions,
                 'selected_view_option' => $user->view_option_id,
                 'manufactures' => $manufactures,
                 'regions' => $regions,
+                'products' => $products,
                 'status' => 'success'
             ],200);
         } catch (\Exception $e) {

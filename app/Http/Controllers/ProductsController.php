@@ -36,7 +36,7 @@ class ProductsController extends Controller
         $query = $request->get('query');
 
         try {
-            $products = Product::select('id_product AS id', 'name_product_rus')->where('name_product_rus', 'like', "%$query%")->with('tara')->orderBy('name_product_rus')->get();
+            $products = Product::where('name_product_rus', 'like', "%$query%")->with('tara')->orderBy('name_product_rus')->get();
             foreach ($products as $product) {
                 if ($product->regdata()->first()) {
                     $product['regdata'] = $product->regdata()->with('culture')->get();
@@ -46,8 +46,8 @@ class ProductsController extends Controller
                     $product['regdata'] = $product->regdataForAvia()->with('culture')->get();
                 }
             }
-            $seeds = Seed::select('id_seed_product AS id', 'name_seed_rus')->where('name_seed_rus', 'like', "%$query%")->with('tara')->orderBy('name_seed_rus')->get();
-            $fertilisers = Fertiliser::select('id_fertiliser AS id', 'name_fertiliser')->where('name_fertiliser', 'like', "%$query%")->with('tara')->orderBy('name_fertiliser')->get();
+            $seeds = Seed::where('name_seed_rus', 'like', "%$query%")->with('tara')->orderBy('name_seed_rus')->get();
+            $fertilisers = Fertiliser::where('name_fertiliser', 'like', "%$query%")->with('tara')->orderBy('name_fertiliser')->get();
             $totalResult = [
                 'Защита растений' => $products,
                 'Семена' => $seeds,

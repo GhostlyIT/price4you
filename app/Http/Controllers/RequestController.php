@@ -123,6 +123,7 @@ class RequestController extends Controller
             $company = $user->company;
             $companyManufactures = $company->manufacturesIDs()->pluck('manufacture_id')->toArray();
             $companyRegions = $company->regionsIDs()->pluck('region_id')->toArray();
+            $companyProducts = $company->productsMiddleware()->get();
 
             $requests = UserRequestsAndProducts::where('status', 'open')
                 ->with([
@@ -130,17 +131,44 @@ class RequestController extends Controller
                         if (count($companyRegions) > 0) $q->whereIn('region_id', $companyRegions)->get();
                     },
                     'request.region',
-                    'product' => function($q) use ($companyManufactures) {
-                        if (count($companyManufactures) > 0) $q->whereIn('id_manufacture', $companyManufactures)->with('taraMiddleware.tara')->get();
-                        $q->with('taraMiddleware.tara')->get();
+                    'product' => function($q) use ($companyManufactures, $company, $companyProducts) {
+                        $res = $q->with('taraMiddleware.tara');
+
+                        if (count($companyProducts) > 0) {
+                            $companyProductsIDs = $company->productsMiddleware()->where('product_type', 'product')->pluck('product_id')->toArray();
+                            $res = $res->whereIn('id_product', $companyProductsIDs);
+                        }
+
+                        if (count($companyManufactures) > 0 && count($companyProducts) > 0) $res = $res->orWhereIn('id_manufacture', $companyManufactures);
+                        if (count($companyManufactures) > 0 && count($companyProducts) < 1) $res = $res->whereIn('id_manufacture', $companyManufactures);
+
+                        $res->get();
                     },
-                    'fertiliser' => function($q) use ($companyManufactures) {
-                        if (count($companyManufactures) > 0) $q->whereIn('id_manufacture', $companyManufactures)->with('taraMiddleware.tara')->get();
-                        $q->with('taraMiddleware.tara')->get();
+                    'fertiliser' => function($q) use ($companyManufactures, $company, $companyProducts) {
+                        $res = $q->with('taraMiddleware.tara');
+
+                        if (count($companyProducts) > 0) {
+                            $companyProductsIDs = $company->productsMiddleware()->where('product_type', 'fertiliser')->pluck('product_id')->toArray();
+                            $res = $res->whereIn('id_fertiliser', $companyProductsIDs);
+                        }
+
+                        if (count($companyManufactures) > 0 && count($companyProducts) > 0) $res = $res->orWhereIn('id_manufacture', $companyManufactures);
+                        if (count($companyManufactures) > 0 && count($companyProducts) < 1) $res = $res->whereIn('id_manufacture', $companyManufactures);
+
+                        $res->get();
                     },
-                    'seed' => function($q) use ($companyManufactures) {
-                        if (count($companyManufactures) > 0) $q->whereIn('id_manufacture', $companyManufactures)->get();
-                        $q->with('taraMiddleware.tara')->get();
+                    'seed' => function($q) use ($companyManufactures, $company, $companyProducts) {
+                        $res = $q->with('taraMiddleware.tara');
+
+                        if (count($companyProducts) > 0) {
+                            $companyProductsIDs = $company->productsMiddleware()->where('product_type', 'seed')->pluck('product_id')->toArray();
+                            $res = $res->whereIn('id_seed_product', $companyProductsIDs);
+                        }
+
+                        if (count($companyManufactures) > 0 && count($companyProducts) > 0) $res = $res->orWhereIn('id_manufacture', $companyManufactures);
+                        if (count($companyManufactures) > 0 && count($companyProducts) < 1) $res = $res->whereIn('id_manufacture', $companyManufactures);
+
+                        $res->get();
                     },
                     'responses'
                 ])

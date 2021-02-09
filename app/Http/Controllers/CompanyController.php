@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CompanyManufactures;
+use App\Models\CompanyProducts;
 use App\Models\CompanyRegions;
 use Illuminate\Http\Request;
 use App\Exceptions\ValidationException;
@@ -196,6 +197,47 @@ class CompanyController extends Controller
 
             $user->company = $user->company;
             return response()->json(['user' => $user, 'status' => 'success'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);
+        }
+    }
+
+    public function addProduct(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'product_id' => 'required|integer',
+            'product_type' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            $this->failedValidation($validator);
+        }
+
+        $user = Auth::user();
+        $company = $user->company;
+
+        try {
+            $company->productsMiddleware()->create($request->all());
+            return response()->json(['message' => 'Товар добавлен', 'status' => 'success'], 200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);
+        }
+    }
+
+    public function deleteProduct(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'product_id' => 'required|integer'
+        ]);
+
+        if ($validator->fails()) {
+            $this->failedValidation($validator);
+        }
+
+        $user = Auth::user();
+        $company = $user->company;
+
+        try {
+            $company->productsMiddleware()->where('product_id', $request->get('product_id'))->delete();
+            return response()->json(['message' => 'Товар удален', 'status' => 'success'], 200);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);
         }

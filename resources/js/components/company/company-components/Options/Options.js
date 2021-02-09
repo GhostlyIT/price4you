@@ -7,13 +7,17 @@ import SearchManufacture from "./options-components/SearchManufacture"
 import ChoosenManufactures from "./options-components/ChoosenManufactures"
 import SearchRegion from "./options-components/SearchRegion";
 import ChoosenRegions from "./options-components/ChoosenRegions";
+import SearchProduct from "./options-components/SearchProduct";
+import {productTypeConvertForDb} from "../../../../helpers/productTypeConverter";
+import ChoosenProducts from "./options-components/ChoosenProducts";
 
 
 const Options = (props) => {
     const [selectedViewOption, setSelectedViewOption] = useState(1),
         [viewOptions, setViewOptions] = useState(null),
         [companyManufactures, setCompanyManufactures] = useState([]),
-        [regions, setRegions] = useState([])
+        [regions, setRegions] = useState([]),
+        [products, setProducts] = useState([])
 
     const refreshOptions = () => {
         axios.get('/api/company/options', {
@@ -24,6 +28,7 @@ const Options = (props) => {
                 setSelectedViewOption(response.data.selected_view_option)
                 setCompanyManufactures(response.data.manufactures)
                 setRegions(response.data.regions)
+                setProducts(response.data.products)
             })
             .catch(error => {
                 console.log(error.response.data.message)
@@ -129,6 +134,47 @@ const Options = (props) => {
         })
     }
 
+    const addProduct = (productId, productType) => {
+        const type = productTypeConvertForDb(productType)
+
+        axios.post('/api/company/product/add',
+            {
+                product_id: productId,
+                product_type: type
+            },
+            {
+                headers: {'Authorization': 'Bearer ' + props.token}
+            }
+        )
+            .then(response => {
+                showNotification('Список товаров', 'Товар был добавлен в список.', 'success')
+                refreshOptions()
+            })
+            .catch(error => {
+                showNotification('Ошибка', 'Произошла ошибка при добавлении товара в список. Попробуйте еще раз.', 'danger')
+                console.log(error.response.data.message)
+            })
+    }
+
+    const removeProduct = productId => {
+        axios.post('/api/company/product/remove',
+            {
+                product_id: productId
+            },
+            {
+                headers: {'Authorization': 'Bearer ' + props.token}
+            }
+        )
+            .then(response => {
+                showNotification('Список товаров', 'Товар был удален из списка.', 'success')
+                refreshOptions()
+            })
+            .catch(error => {
+                showNotification('Ошибка', 'Произошла ошибка при удалении товара из списка. Попробуйте еще раз.', 'danger')
+                console.log(error.response.data.message)
+            })
+    }
+
     return (
         <div className="col-12 options-wrapper">
             <h1 className="text-center">Настройки</h1>
@@ -157,6 +203,19 @@ const Options = (props) => {
                 <div className="options-element">
                     <h3 className="options-element__title">Выбранные компании</h3>
                     <ChoosenManufactures manufactures={companyManufactures} removeManufacture={removeManufacture} />
+                </div>
+            }
+
+            <div className="options-element">
+                <h3 className="options-element__title">Выберите товары, которыми вы торгуете</h3>
+                <SearchProduct products={products} addProduct={addProduct} />
+            </div>
+
+            {
+                products.length > 0 &&
+                <div className="options-element">
+                    <h3 className="options-element__title">Выбранные товары</h3>
+                    <ChoosenProducts products={products} removeProduct={removeProduct} />
                 </div>
             }
 

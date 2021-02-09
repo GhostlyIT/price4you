@@ -51,7 +51,9 @@ class Product extends Model
         return "{$this->name_product_rus}";
     }
 
+    public function getIdAttribute() {
+        return $this->id_product;
+    }
 
-
-    protected $appends = ['name'];
+    protected $appends = ['name', 'id'];
 }

@@ -18,3 +18,24 @@ export const productTypeConverter = type => {
 
     return convertedType
 }
+
+export const productTypeConvertForDb = type => {
+    let result = ''
+
+    switch (type) {
+        case 'Защита растений':
+            result = 'product'
+            break
+        case 'Удобрения':
+            result = 'fertiliser'
+            break
+        case 'Семена':
+            result = 'seed'
+            break
+        default:
+            result = false
+            break
+    }
+
+    return result
+}

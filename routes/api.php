@@ -38,6 +38,8 @@ Route::middleware('auth:api')->get('company/info', 'App\Http\Controllers\Company
 Route::middleware(['auth:api', 'auth.company'])->post('company/edit', 'App\Http\Controllers\CompanyController@edit');
 Route::middleware(['auth:api', 'auth.company'])->post('company/region/add', 'App\Http\Controllers\CompanyController@addRegion');
 Route::middleware(['auth:api', 'auth.company'])->post('company/region/remove', 'App\Http\Controllers\CompanyController@deleteRegion');
+Route::middleware(['auth:api', 'auth.company'])->post('company/product/add', 'App\Http\Controllers\CompanyController@addProduct');
+Route::middleware(['auth:api', 'auth.company'])->post('company/product/remove', 'App\Http\Controllers\CompanyController@deleteProduct');
 
 
 //Products

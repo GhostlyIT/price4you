@@ -24,5 +24,9 @@ class Seed extends Model
         return "{$this->name_seed_rus}";
     }
 
-    protected $appends = ['name'];
+    public function getIdAttribute() {
+        return $this->id_seed_product;
+    }
+
+    protected $appends = ['name', 'id'];
 }
