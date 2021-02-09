@@ -334,6 +334,7 @@ const AddRequest = (props) => {
                             <div id="request-products" className="falling-list position-absolute">{renderProducts()}</div>
                         }
                     </div>
+                    <span className="ml-3">Можно добавить несколько товаров</span>
                 </div>
                 <div className="d-flex flex-wrap picked-products">{renderSelectedProducts()}</div>
             </div>
