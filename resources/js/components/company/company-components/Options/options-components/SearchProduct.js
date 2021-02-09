@@ -14,7 +14,7 @@ const SearchProduct = ({products, addProduct}) => {
     const handleClick = (e) => {
         const products = document.getElementById('products')
         const companyList = document.getElementById('company-wrapper')
-        let path = e.path || (Event.composedPath && Event.composedPath())
+        let path = e.path || (e.composedPath && e.composedPath())
         if (!path.includes(products) && !path.includes(companyList)) {
             setFallingListOpen(false)
         }

@@ -36,7 +36,7 @@ const AddRequest = (props) => {
 
     const handleClick = (e) => {
         const requestProduct = document.getElementById('request-product')
-        let path = e.path || (event.composedPath && event.composedPath())
+        let path = e.path || (e.composedPath && e.composedPath())
         if (!path.includes(requestProduct)) {
             setProductsOpen(false)
         }

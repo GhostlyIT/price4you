@@ -35,7 +35,7 @@ const SearchRegion = ({selectRegion, selectedRegion}) => {
     const handleClick = (e) => {
         const companies = document.getElementById('regions')
         const companyList = document.getElementById('company-wrapper')
-        let path = e.path || (Event.composedPath && Event.composedPath())
+        let path = e.path || (e.composedPath && e.composedPath())
 
         if (!path.includes(companies) && !path.includes(companyList)) {
             setFallingListOpen(false)

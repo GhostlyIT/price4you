@@ -81225,7 +81225,7 @@ var SearchManufacture = function SearchManufacture(_ref) {
   var handleClick = function handleClick(e) {
     var companies = document.getElementById('companies');
     var companyList = document.getElementById('company-wrapper');
-    var path = e.path || Event.composedPath && Event.composedPath();
+    var path = e.path || e.composedPath && e.composedPath();
 
     if (!path.includes(companies) && !path.includes(companyList)) {
       setFallingListOpen(false);
@@ -81353,7 +81353,7 @@ var SearchProduct = function SearchProduct(_ref) {
   var handleClick = function handleClick(e) {
     var products = document.getElementById('products');
     var companyList = document.getElementById('company-wrapper');
-    var path = e.path || Event.composedPath && Event.composedPath();
+    var path = e.path || e.composedPath && e.composedPath();
 
     if (!path.includes(products) && !path.includes(companyList)) {
       setFallingListOpen(false);
@@ -81482,7 +81482,7 @@ var SearchRegion = function SearchRegion(_ref) {
   var handleClick = function handleClick(e) {
     var companies = document.getElementById('regions');
     var companyList = document.getElementById('company-wrapper');
-    var path = e.path || Event.composedPath && Event.composedPath();
+    var path = e.path || e.composedPath && e.composedPath();
 
     if (!path.includes(companies) && !path.includes(companyList)) {
       setFallingListOpen(false);
@@ -83340,7 +83340,7 @@ var AddRequest = function AddRequest(props) {
 
   var handleClick = function handleClick(e) {
     var requestProduct = document.getElementById('request-product');
-    var path = e.path || event.composedPath && event.composedPath();
+    var path = e.path || e.composedPath && e.composedPath();
 
     if (!path.includes(requestProduct)) {
       setProductsOpen(false);
@@ -83816,7 +83816,7 @@ var SearchRegion = function SearchRegion(_ref) {
   var handleClick = function handleClick(e) {
     var companies = document.getElementById('regions');
     var companyList = document.getElementById('company-wrapper');
-    var path = e.path || Event.composedPath && Event.composedPath();
+    var path = e.path || e.composedPath && e.composedPath();
 
     if (!path.includes(companies) && !path.includes(companyList)) {
       setFallingListOpen(false);
@@ -84474,7 +84474,7 @@ var SearchCompany = function SearchCompany(_ref) {
   var handleClick = function handleClick(e) {
     var companies = document.getElementById('companies');
     var companyList = document.getElementById('company-wrapper');
-    var path = e.path || Event.composedPath && Event.composedPath();
+    var path = e.path || e.composedPath && e.composedPath();
 
     if (!path.includes(companies) && !path.includes(companyList)) {
       setFallingListOpen(false);
