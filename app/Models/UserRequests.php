@@ -28,7 +28,7 @@ class UserRequests extends Model
     }
 
     public function responses() {
-        return $this->hasManyThrough('App\Models\CompanyResponses', 'App\Models\UserRequestsAndProducts', 'user_requests_id', 'request_id');
+        return $this->hasManyThrough('App\Models\CompanyResponses', 'App\Models\UserRequestsAndProducts', 'user_requests_id', 'request_id', 'id', 'user_requests_id');
     }
 
     public function region() {

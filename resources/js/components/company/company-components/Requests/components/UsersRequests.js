@@ -35,11 +35,12 @@ const UsersRequests = (props) => {
             const type = selectedRequest.product_type
             let comment = null
             let price = 0
+            console.log(selectedRequest)
 
             const saveResponse = () => {
                 axios.post('/api/response/add',
                     {
-                        request_id: selectedRequest.id,
+                        request_id: selectedRequest.user_requests_id,
                         price: price,
                         comment: comment
                     },
@@ -54,7 +55,7 @@ const UsersRequests = (props) => {
                 })
                 .catch(error => {
                     console.log(error.response.data.message)
-                    showNotification('Отклик', 'Произошла ошибка. Попробуйте еще раз.', 'danger')
+                    showNotification('Отклик', error.response.data.message, 'danger')
                 })
             }
 

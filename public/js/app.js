@@ -81863,10 +81863,11 @@ var UsersRequests = function UsersRequests(props) {
       var type = selectedRequest.product_type;
       var comment = null;
       var price = 0;
+      console.log(selectedRequest);
 
       var saveResponse = function saveResponse() {
         axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/response/add', {
-          request_id: selectedRequest.id,
+          request_id: selectedRequest.user_requests_id,
           price: price,
           comment: comment
         }, {
@@ -81879,7 +81880,7 @@ var UsersRequests = function UsersRequests(props) {
           Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_6__["showNotification"])('Отклик', response.data.message, 'success');
         })["catch"](function (error) {
           console.log(error.response.data.message);
-          Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_6__["showNotification"])('Отклик', 'Произошла ошибка. Попробуйте еще раз.', 'danger');
+          Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_6__["showNotification"])('Отклик', error.response.data.message, 'danger');
         });
       };
 

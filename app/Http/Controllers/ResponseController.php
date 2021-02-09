@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exceptions\ValidationException;
 use App\Models\CompanyResponses;
+use App\Models\User;
 use App\Models\UserRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -38,7 +39,9 @@ class ResponseController extends Controller
         $company = $user->company;
 
         try {
-            $blackList = $user->blackList()->pluck('company_id')->toArray();
+            $usersRequest = UserRequests::findOrFail($requestId);
+            $customer = User::findOrFail($usersRequest->user_id);
+            $blackList = $customer->blackList()->pluck('company_id')->toArray();
             if (in_array($company->id, $blackList)) throw new \Exception('Вы в черном списке');
 
             CompanyResponses::create([
@@ -50,7 +53,7 @@ class ResponseController extends Controller
 
             return response()->json(['message' => 'Отклик успешно добавлен', 'status' => 'success'],200);
         } catch (\Exception $e) {
-            return response()->json(['message' => $e->getMessage() . ' ' . $e->getFile() . ' ' . $e->getLine(), 'status' => 'error'],400);
+            return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);
         }
     }
 
@@ -204,7 +207,6 @@ class ResponseController extends Controller
 
         try {
             $responsesAmount = $company->responses()->where('status', 'accepted')->count();
-
             return response()->json(['responses_amount' => $responsesAmount, 'status' => 'success'],200);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);
