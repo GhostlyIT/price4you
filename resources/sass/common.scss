@@ -259,6 +259,15 @@ img {
     padding: 12px;
 }
 
+.remove-btn {
+    right: -4px;
+    top: -4px;
+    background-image: url('../../public/images/icons/close-btn.svg');
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+}
+
 .header {
     display: flex;
     align-items: center;

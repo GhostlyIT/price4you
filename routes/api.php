@@ -61,6 +61,7 @@ Route::get('region/search', 'App\Http\Controllers\RegionController@search');
 Route::middleware(['auth:api', 'auth.user'])->post('request/save', 'App\Http\Controllers\RequestController@save');
 Route::middleware(['auth:api', 'auth.user'])->get('request/get-for-user', 'App\Http\Controllers\RequestController@getForUser');
 Route::middleware(['auth:api', 'auth.company'])->get('request/get-for-company', 'App\Http\Controllers\RequestController@getForCompany');
+Route::middleware(['auth:api', 'auth.user', 'request.user'])->delete('request/{requestId}/delete', 'App\Http\Controllers\RequestController@delete');
 
 
 //Responses

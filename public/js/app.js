@@ -83665,7 +83665,7 @@ var AddRequest = function AddRequest(props) {
     className: "falling-list position-absolute"
   }, renderProducts())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
     className: "ml-3"
-  }, "\u041C\u043E\u0436\u043D\u043E \u0434\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043D\u0435\u0441\u043A\u043E\u043B\u044C\u043A\u043E \u0442\u043E\u0432\u0430\u0440\u043E\u0432")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }, "\u0412\u044B \u043C\u043E\u0436\u0435\u0442\u0435 \u0434\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043D\u0435\u0441\u043A\u043E\u043B\u044C\u043A\u043E \u0442\u043E\u0432\u0430\u0440\u043E\u0432")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "d-flex flex-wrap picked-products"
   }, renderSelectedProducts())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "d-flex align-items-center request__payment-methods add-request__component"
@@ -83689,7 +83689,7 @@ var AddRequest = function AddRequest(props) {
       return setSelectedDeliveryMethod('До двери');
     },
     className: "select-cards d-flex align-items-center ".concat(selectedDeliveryMethod === 'До двери' && 'selected')
-  }, "\u0414\u043E \u0434\u0432\u0435\u0440\u0438"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }, "\u0414\u043E\u0441\u0442\u0430\u0432\u043A\u0430"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "d-flex align-items-center add-request__component"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h5", {
     className: "add-request__component--title"
@@ -84766,6 +84766,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _helpers_notifications__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../helpers/notifications */ "./resources/js/helpers/notifications.js");
 /* harmony import */ var _helpers_dateConverter__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../helpers/dateConverter */ "./resources/js/helpers/dateConverter.js");
 /* harmony import */ var _helpers_productTypeConverter__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../helpers/productTypeConverter */ "./resources/js/helpers/productTypeConverter.js");
+/* harmony import */ var _store_actions_updateAction__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../store/actions/updateAction */ "./resources/js/store/actions/updateAction.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -84777,6 +84778,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -84807,7 +84809,23 @@ var UserRequests = function UserRequests(props) {
     })["catch"](function (error) {
       Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_5__["showNotification"])('Ошибка', error.response, 'danger');
     });
-  }, []);
+  }, [props.updateVal]);
+
+  var deleteRequest = function deleteRequest(requestId) {
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a["delete"]("/api/request/".concat(requestId, "/delete"), {
+      headers: {
+        'Authorization': 'Bearer ' + props.token
+      }
+    }).then(function (response) {
+      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_5__["showNotification"])('Мои Запросы', 'Запрос успешно удален', 'success');
+      props.updateComponent();
+    })["catch"](function (error) {
+      console.log(error);
+      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_5__["showNotification"])('Мои Запросы', 'Произошла ошибка при удалении запроса', 'danger');
+    }).then(function () {
+      setSelectedRequest(false);
+    });
+  };
 
   var renderRequests = function renderRequests() {
     return requests.map(function (request) {
@@ -84830,9 +84848,21 @@ var UserRequests = function UserRequests(props) {
         className: "request-picker__title"
       }, request.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "request-picker__title"
-      }, "\u2116 ", request.id, " \u043E\u0442 ", date.getDate(), " ", Object(_helpers_dateConverter__WEBPACK_IMPORTED_MODULE_6__["getMonthOnRus"])(date.getMonth()), " ", date.getFullYear()), responsesAmount > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "amount-badge position-absolute font-weight-bold"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, responsesAmount))));
+      }, "\u2116 ", request.id, " \u043E\u0442 ", date.getDate(), " ", Object(_helpers_dateConverter__WEBPACK_IMPORTED_MODULE_6__["getMonthOnRus"])(date.getMonth()), " ", date.getFullYear()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "d-flex position-absolute align-items-center",
+        style: {
+          top: '-12px',
+          right: '-7px'
+        }
+      }, responsesAmount > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "amount-badge font-weight-bold"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "1")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: function onClick() {
+          return deleteRequest(request.id);
+        },
+        type: "button",
+        className: "remove-btn ml-2"
+      }))));
     });
   };
 
@@ -84898,6 +84928,7 @@ var UserRequests = function UserRequests(props) {
   };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    key: props.updateVal,
     className: "col-12 requests-wrapper"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "requests row"
@@ -84910,13 +84941,15 @@ var UserRequests = function UserRequests(props) {
 
 var mapStateToProps = function mapStateToProps(store) {
   return {
-    token: store.authReducer.userToken
+    token: store.authReducer.userToken,
+    updateVal: store.updateReducer.counter
   };
 };
 
 var mapDispatchProps = function mapDispatchProps(dispatch) {
   return {
-    auth: Object(redux__WEBPACK_IMPORTED_MODULE_2__["bindActionCreators"])(_store_actions_authAction__WEBPACK_IMPORTED_MODULE_3__["default"], dispatch)
+    auth: Object(redux__WEBPACK_IMPORTED_MODULE_2__["bindActionCreators"])(_store_actions_authAction__WEBPACK_IMPORTED_MODULE_3__["default"], dispatch),
+    updateComponent: Object(redux__WEBPACK_IMPORTED_MODULE_2__["bindActionCreators"])(_store_actions_updateAction__WEBPACK_IMPORTED_MODULE_8__["default"], dispatch)
   };
 };
 

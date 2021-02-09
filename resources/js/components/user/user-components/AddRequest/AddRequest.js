@@ -335,7 +335,7 @@ const AddRequest = (props) => {
                             <div id="request-products" className="falling-list position-absolute">{renderProducts()}</div>
                         }
                     </div>
-                    <span className="ml-3">Можно добавить несколько товаров</span>
+                    <span className="ml-3">Вы можете добавить несколько товаров</span>
                 </div>
                 <div className="d-flex flex-wrap picked-products">{renderSelectedProducts()}</div>
             </div>
@@ -359,7 +359,7 @@ const AddRequest = (props) => {
                         onClick={() => setSelectedDeliveryMethod('До двери')}
                         className={`select-cards d-flex align-items-center ${selectedDeliveryMethod === 'До двери' && 'selected'}`}
                     >
-                        До двери
+                        Доставка
                     </span>
                 </div>
             </div>

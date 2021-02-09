@@ -11177,6 +11177,15 @@ img {
   padding: 12px;
 }
 
+.remove-btn {
+  right: -4px;
+  top: -4px;
+  background-image: url(/images/close-btn.svg?b658112930d0985b48453e94930bf083);
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+}
+
 .header {
   display: flex;
   align-items: center;
@@ -11622,15 +11631,6 @@ img {
 
 #add-request .picked-products .picked-product span {
   color: #4525F2;
-}
-
-#add-request .picked-products .picked-product .remove-btn {
-  right: -4px;
-  top: -4px;
-  background-image: url(/images/close-btn.svg?b658112930d0985b48453e94930bf083);
-  width: 20px;
-  height: 20px;
-  background-color: transparent;
 }
 
 #add-request .add-request__component .add-request__component--title {

@@ -26,10 +26,10 @@ class RequestController extends Controller
 
     public function save(Request $request) {
         $validator = Validator::make($request->all(), [
-            'title' => 'string|max:255',
+            'title' => 'max:255',
             'payment_method' => 'required|string',
             'delivery_method' => 'required|string',
-            'comment' => 'string|max:2000',
+            'comment' => 'max:2000',
             'delivery_address' => 'required|string',
             'products' => 'required|array',
             'products.*.id' => 'required|integer',
@@ -184,6 +184,18 @@ class RequestController extends Controller
             $requestsCount = count($requestsArr);
 
             return response()->json(['requests' => array_slice($requestsArr, $offset, $limit), 'requests_count' => $requestsCount, 'status' => 'success'],200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => 'error'], 400);
+        }
+    }
+
+    public function delete($requestId) {
+        try {
+            $request = UserRequests::findOrFail($requestId);
+            $request->products()->delete(); //TODO: переделать через Events
+            $request->responses()->delete();
+            $request->delete();
+            return response()->json(['message' => 'Запрос успешно удален', 'status' => 'success'],200);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 'error'], 400);
         }

@@ -71,5 +71,7 @@ class Kernel extends HttpKernel
 
         'response.user' => \App\Http\Middleware\UsersResponse::class,
         'response.company' => \App\Http\Middleware\CompanysResponse::class,
+
+        'request.user' => \App\Http\Middleware\UsersRequest::class
     ];
 }

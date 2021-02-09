@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import {showNotification} from "../../../../helpers/notifications";
 import {getMonthOnRus} from "../../../../helpers/dateConverter";
 import {productTypeConverter} from "../../../../helpers/productTypeConverter";
+import updateAction from "../../../../store/actions/updateAction";
 
 const UserRequests = (props) => {
     const [requests, setRequests] = useState([]),
@@ -21,7 +22,26 @@ const UserRequests = (props) => {
         .catch(error => {
             showNotification('Ошибка', error.response, 'danger')
         })
-    },[])
+    },[props.updateVal])
+
+    const deleteRequest = requestId => {
+        axios.delete(`/api/request/${requestId}/delete`,
+            {
+                headers: {'Authorization': 'Bearer ' + props.token}
+            }
+        )
+        .then(response => {
+            showNotification('Мои Запросы', 'Запрос успешно удален', 'success')
+            props.updateComponent()
+        })
+        .catch(error => {
+            console.log(error)
+            showNotification('Мои Запросы', 'Произошла ошибка при удалении запроса', 'danger')
+        })
+        .then(() => {
+            setSelectedRequest(false)
+        })
+    }
 
     const renderRequests = () => {
         return requests.map(request => {
@@ -35,12 +55,16 @@ const UserRequests = (props) => {
                     <span onClick={() => setSelectedRequest(request)} className={`request-picker d-flex flex-column position-relative ${request == selectedRequest ? 'selected' : ''}`}>
                         <span className="request-picker__title">{request.title}</span>
                         <span className="request-picker__title">№ {request.id} от {date.getDate()} {getMonthOnRus(date.getMonth())} {date.getFullYear()}</span>
-                        {responsesAmount > 0 &&
-                            <span className="amount-badge position-absolute font-weight-bold">
-                                <span>{responsesAmount}</span>
-                            </span>
-                        }
 
+                            <div className="d-flex position-absolute align-items-center" style={{top: '-12px',
+                                right: '-7px'}}>
+                                {responsesAmount > 0 &&
+                                    <span className="amount-badge font-weight-bold">
+                                        <span>1</span>
+                                    </span>
+                                }
+                                <button onClick={() => deleteRequest(request.id)} type="button" className="remove-btn ml-2"></button>
+                            </div>
                     </span>
                 </div>
             )
@@ -122,7 +146,7 @@ const UserRequests = (props) => {
     }
 
     return(
-        <div className="col-12 requests-wrapper">
+        <div key={props.updateVal} className="col-12 requests-wrapper">
             <div className="requests row">
                 <div className="d-flex justify-content-center col-12">
                     <h3>Мои запросы</h3>
@@ -145,12 +169,14 @@ const UserRequests = (props) => {
 const mapStateToProps = store => {
     return {
         token: store.authReducer.userToken,
+        updateVal: store.updateReducer.counter
     };
 }
 
 const mapDispatchProps = dispatch => {
     return {
-        auth: bindActionCreators(authAction, dispatch)
+        auth: bindActionCreators(authAction, dispatch),
+        updateComponent: bindActionCreators(updateAction, dispatch)
     }
 }
 
