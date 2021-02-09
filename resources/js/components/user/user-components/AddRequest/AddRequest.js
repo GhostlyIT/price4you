@@ -313,13 +313,14 @@ const AddRequest = (props) => {
 
     return (
         <section id="add-request" className="col-12">
-            <h2 className="title">Новый запрос</h2>
-
-            <hr/>
-
+            {/*<h2 className="title">Новый запрос</h2>*/}
             <div className="d-flex align-items-center add-request__title add-request__component">
                 <input onChange={e => setRequestTitle(e.target.value)} id="request-title" placeholder="Введите название запроса"/>
             </div>
+
+            <hr/>
+
+
 
             <div className="d-flex align-items-center add-request__title add-request__component">
                 <input onChange={e => setComment(e.target.value)} id="request-comment" placeholder="Введите Ваш комментарий к запросу" />
