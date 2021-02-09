@@ -26,7 +26,7 @@ class RequestController extends Controller
 
     public function save(Request $request) {
         $validator = Validator::make($request->all(), [
-            'title' => 'required|string|max:255',
+            'title' => 'string|max:255',
             'payment_method' => 'required|string',
             'delivery_method' => 'required|string',
             'comment' => 'string|max:2000',
