@@ -35,7 +35,6 @@ const UsersRequests = (props) => {
             const type = selectedRequest.product_type
             let comment = null
             let price = 0
-            console.log(selectedRequest)
 
             const saveResponse = () => {
                 axios.post('/api/response/add',
