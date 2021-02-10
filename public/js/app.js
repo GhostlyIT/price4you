@@ -78672,6 +78672,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _common_Header__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./common/Header */ "./resources/js/components/common/Header.js");
 /* harmony import */ var react_responsive_src__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-responsive/src */ "./node_modules/react-responsive/src/index.js");
 /* harmony import */ var _common_modals_MobileMenu__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./common/modals/MobileMenu */ "./resources/js/components/common/modals/MobileMenu.js");
+/* harmony import */ var _docs_terms_of_use_pdf__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../docs/terms_of_use.pdf */ "./resources/js/docs/terms_of_use.pdf");
+/* harmony import */ var _docs_terms_of_use_pdf__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(_docs_terms_of_use_pdf__WEBPACK_IMPORTED_MODULE_17__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -78683,6 +78685,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -78757,7 +78760,14 @@ var Main = function Main(props) {
     closeModalFunc: function closeModalFunc() {
       return setMenuOpen(false);
     }
-  })))))));
+  })))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "footer__wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "d-flex container justify-content-between footer"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "\xA9 ", new Date().getFullYear(), ". EcoPlant Organization. \u0412\u0441\u0435 \u043F\u0440\u0430\u0432\u0430 \u0437\u0430\u0449\u0438\u0449\u0435\u043D\u044B"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: _docs_terms_of_use_pdf__WEBPACK_IMPORTED_MODULE_17___default.a,
+    target: "_blank"
+  }, "\u0423\u0441\u043B\u043E\u0432\u0438\u044F \u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u043D\u0438\u044F"))));
 };
 
 var mapStateToProps = function mapStateToProps(store) {
@@ -81863,7 +81873,6 @@ var UsersRequests = function UsersRequests(props) {
       var type = selectedRequest.product_type;
       var comment = null;
       var price = 0;
-      console.log(selectedRequest);
 
       var saveResponse = function saveResponse() {
         axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/response/add', {
@@ -84955,6 +84964,17 @@ var mapDispatchProps = function mapDispatchProps(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_4__["connect"])(mapStateToProps, mapDispatchProps)(UserRequests));
+
+/***/ }),
+
+/***/ "./resources/js/docs/terms_of_use.pdf":
+/*!********************************************!*\
+  !*** ./resources/js/docs/terms_of_use.pdf ***!
+  \********************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "assets/docs/terms_of_use.pdf";
 
 /***/ }),
 

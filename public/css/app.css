@@ -11180,7 +11180,7 @@ img {
 .remove-btn {
   right: -4px;
   top: -4px;
-  background-image: url(/images/close-btn.svg?b658112930d0985b48453e94930bf083);
+  background-image: url(/images/close-btn.svg?7ba0dd8664eadbccd7b29c7260e51d3a);
   width: 20px;
   height: 20px;
   background-color: transparent;
@@ -11873,5 +11873,17 @@ img {
 
 .profile .profile-element.profile__about p {
   white-space: pre;
+}
+
+.footer__wrapper {
+  background-color: #F2F4F8;
+  position: relative;
+  z-index: 1;
+}
+
+.footer__wrapper .footer {
+  margin-top: 30px;
+  width: 100%;
+  padding: 10px 0;
 }
 

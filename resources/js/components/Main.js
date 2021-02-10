@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import Auth from './auth/Auth'
 import SideBlock from './sideblock/SideBlock'
 import Faq from './faq/Faq'
-import {BrowserRouter as Router, Switch, Route, Link, Redirect} from 'react-router-dom'
+import {Route, Redirect} from 'react-router-dom'
 import {connect} from 'react-redux'
 import 'react-notifications-component/dist/theme.css'
 import 'animate.css'
@@ -15,6 +15,7 @@ import CompanySideBlock from "./sideblock/CompanySideBlock"
 import Header from "./common/Header"
 import MediaQuery from "react-responsive/src"
 import MobileMenu from "./common/modals/MobileMenu"
+import TermsOfUse from '../docs/terms_of_use.pdf'
 
 const Main = (props) => {
     const [isMenuOpen, setMenuOpen] = useState(false)
@@ -60,6 +61,12 @@ const Main = (props) => {
                             </MediaQuery>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div className="footer__wrapper">
+                <div className="d-flex container justify-content-between footer">
+                    <span>© {new Date().getFullYear()}. EcoPlant Organization. Все права защищены</span>
+                    <a href={TermsOfUse} target="_blank">Условия пользования</a>
                 </div>
             </div>
         </div>
