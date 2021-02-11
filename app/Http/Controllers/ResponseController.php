@@ -6,6 +6,7 @@ use App\Exceptions\ValidationException;
 use App\Models\CompanyResponses;
 use App\Models\User;
 use App\Models\UserRequests;
+use App\Models\UserRequestsAndProducts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -39,8 +40,8 @@ class ResponseController extends Controller
         $company = $user->company;
 
         try {
-            $usersRequest = UserRequests::findOrFail($requestId);
-            $customer = User::findOrFail($usersRequest->user_id);
+            $usersRequest = UserRequestsAndProducts::findOrFail($requestId);
+            $customer = User::findOrFail($usersRequest->request->user_id);
             $blackList = $customer->blackList()->pluck('company_id')->toArray();
             if (in_array($company->id, $blackList)) throw new \Exception('Вы в черном списке');
 
