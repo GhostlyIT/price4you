@@ -44,8 +44,7 @@ const RegisterCompany = (props) => {
     return (
         <div className="d-flex w-100">
             <div className="d-flex flex-column col-12">
-                <h3 className="title text-center mb-2">Регистрация компании</h3>
-                <Link to="/register" className="text-center">Регистрация</Link>
+                <h3 className="title text-center mb-2">Регистрация продавца</h3>
 
                 <form className="d-flex flex-column mt-3 mb-3">
                     <div className="row">

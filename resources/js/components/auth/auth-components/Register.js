@@ -37,7 +37,6 @@ const Register = (props) => {
         <div className="d-flex">
             <div className="d-flex flex-column col-md-6 col-sm-12">
                 <h3 className="title text-center mb-2">Регистрация</h3>
-                <Link to="/register-company" className="text-center">Регистрация компании</Link>
 
                 <form className="d-flex flex-column mt-3 mb-3">
                     <input onChange={e => setEmail(e.target.value)} type="email" className="mt-3 w-100" placeholder="Ваш Email" />
