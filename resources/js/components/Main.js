@@ -30,7 +30,7 @@ const Main = (props) => {
     return (
         <div className="main position-relative">
             <div className="main-background" />
-            <div className="container">
+            <div className="container" style={{flex: "1 0 auto"}}>
                 <div className="row">
                     <div className="col-12 main-window mt-3 mb-3">
                         <Header openMenuFunc={() => setMenuOpen(true)} />
