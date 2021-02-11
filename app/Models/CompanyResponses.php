@@ -21,6 +21,6 @@ class CompanyResponses extends Model
     }
 
     public function product() {
-        return $this->belongsTo('App\Models\UserRequestsAndProducts', 'request_id');
+        return $this->belongsTo('App\Models\UserRequestsAndProducts', 'request_id', 'id');
     }
 }

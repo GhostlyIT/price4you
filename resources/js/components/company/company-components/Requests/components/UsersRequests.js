@@ -39,7 +39,7 @@ const UsersRequests = (props) => {
             const saveResponse = () => {
                 axios.post('/api/response/add',
                     {
-                        request_id: selectedRequest.user_requests_id,
+                        request_id: selectedRequest.id,
                         price: price,
                         comment: comment
                     },

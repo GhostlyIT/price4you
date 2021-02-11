@@ -80,17 +80,24 @@ class ResponseController extends Controller
         try {
             $requests = $user->requests()->get();
             $responses = [];
-            $responseList = [];
             foreach($requests as $request) {
-                if (!$request->responses()->get()->isEmpty())
-                    $responseList = $request->responses()->where('company_responses.status', '!=', 'rejected')->where('company_responses.status', '!=', 'closed')->with(['company', 'product', 'product.request'])->orderBy('id', 'desc')->get();
+                $responseList = $request
+                    ->responses()
+                    ->where('company_responses.status', '!=', 'rejected')
+                    ->where('company_responses.status', '!=', 'closed')
+                    ->with(['company', 'product', 'product.request'])
+                    ->orderBy('id', 'desc')
+                    ->get();
 
-                    foreach($responseList as $response) {
-                        $response['product_info'] = $response->product()->with($response->product->product_type)->first();
-                        $response['request'] = $response->product->request;
-                        unset($response['product']);
-                        $responses[] = $response;
-                    }
+                foreach($responseList as $response) {
+                    $productType = $response->product->product_type;
+                    $product = $response->product;
+                    $product->$productType = $response->product->$productType;
+                    $response['product_info'] = $product;
+                    $response['request'] = $response->product->request;
+                    unset($response['product']);
+                    $responses[] = $response;
+                }
             }
             return response()->json(['responses' => $responses, 'status' => 'success'],200);
         } catch (\Exception $e) {

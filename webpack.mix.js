@@ -17,7 +17,7 @@ mix.react('resources/js/app.js', 'public/js')
 mix.webpackConfig({
     module: {
         rules: [
-            { test: /\.(jpg|png|gif|svg|pdf)$/, use: [ { loader: 'file-loader', options: { name: '[name].[ext]', outputPath: './assets/docs/' } } ] },
+            { test: /\.(pdf)$/, use: [ { loader: 'file-loader', options: { name: '[name].[ext]', outputPath: './assets/docs/' } } ] },
         ]
     }
 })

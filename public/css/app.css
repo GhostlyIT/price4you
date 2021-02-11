@@ -11182,7 +11182,7 @@ img {
 .remove-btn {
   right: -4px;
   top: -4px;
-  background-image: url(/images/close-btn.svg?7ba0dd8664eadbccd7b29c7260e51d3a);
+  background-image: url(/images/close-btn.svg?b658112930d0985b48453e94930bf083);
   width: 20px;
   height: 20px;
   background-color: transparent;
@@ -11220,6 +11220,23 @@ img {
   background-position: center;
   background-repeat: no-repeat;
   background-color: transparent;
+}
+
+#request-title {
+  background-color: transparent;
+  font-size: 20px;
+}
+
+#request-title::-moz-placeholder {
+  color: #000;
+}
+
+#request-title:-ms-input-placeholder {
+  color: #000;
+}
+
+#request-title::placeholder {
+  color: #000;
 }
 
 .auth-sideblock .auth-faq {

@@ -303,3 +303,12 @@ img {
     background-repeat: no-repeat;
     background-color: transparent;
 }
+
+#request-title {
+    background-color: transparent;
+    font-size: 20px;
+
+    &::placeholder {
+        color: #000;
+    }
+}

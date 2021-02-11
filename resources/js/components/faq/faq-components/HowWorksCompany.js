@@ -166,22 +166,6 @@ const HowWorksCompany = () => {
                     </div>
                 </div>
             </div>
-
-
-
-            <div className="faq__stripes">
-                <hr/>
-                <hr/>
-                <hr/>
-            </div>
-
-            <div className="faq__subscription d-flex justify-content-between align-items-center row">
-                <p className="col-7">Подписываясь на нашего бота вы в реальном времени будете получать от сервиса EcoPlant | Price4You  предложения для вас и вы не пропустите выгодной цены.</p>
-                <div className="d-flex align-items-center justify-content-end col-5">
-                    <a href="t.me:/ecoplantagro_bot">t.me:/ecoplantagro_bot</a>
-                    <a href="t.me:/ecoplantagro_bot"><img src="/images/social/tg_button.svg"/></a>
-                </div>
-            </div>
         </div>
     )
 }
