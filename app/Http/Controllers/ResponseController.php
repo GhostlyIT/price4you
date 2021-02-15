@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Exceptions\ValidationException;
 use App\Models\CompanyResponses;
 use App\Models\User;
-use App\Models\UserRequests;
 use App\Models\UserRequestsAndProducts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -91,10 +90,7 @@ class ResponseController extends Controller
                     ->get();
 
                 foreach($responseList as $response) {
-                    $productType = $response->product->product_type;
-                    $product = $response->product;
-                    $product->$productType = $response->product->$productType;
-                    $response['product_info'] = $product;
+                    $response['product_info'] = $response->product()->with($response->product->product_type)->first();
                     $response['request'] = $response->product->request;
                     unset($response['product']);
                     $responses[] = $response;
