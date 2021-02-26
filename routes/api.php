@@ -83,6 +83,11 @@ Route::middleware(['auth:api', 'chat.participation'])->get('message/all', 'App\H
 Route::middleware('auth:api')->get('message/count/all', 'App\Http\Controllers\MessageController@getUnreadMessagesCount');
 
 
+//Emails
+Route::get('email/verify/{id}', 'App\Http\Controllers\AuthController@verify')->name('verification.verify');
+Route::get('email/resend', 'App\Http\Controllers\AuthCOntroller@resend')->name('verification.resend');
+
+
 //Errors
 Route::get('errorUnauthorized', function() {
     return response()->json(['message' => 'Не авторизован', 'status' => 'error'], 401);

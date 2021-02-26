@@ -3,17 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Exceptions\ValidationException;
-
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-
 use Illuminate\Support\Facades\Auth;
-
 use App\Models\User;
-
 use App\Models\Companies;
+use Illuminate\Auth\Events\Registered;
 
 class AuthController extends Controller
 {
@@ -67,7 +63,11 @@ class AuthController extends Controller
                 ];
                 $user->company = Companies::create($newCompany);
             }
+
+            event(new Registered($user));
+
             DB::commit();
+
             return response()->json(['message' => 'Аккаунт успешно зарегистрирован', 'status' => 'success', 'token' => $token, 'user_data' => $user], 200);
         } catch (\Exception $e) {
             DB::rollBack();
@@ -98,5 +98,29 @@ class AuthController extends Controller
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 'error'], 401);
         }
+    }
+
+    public function verify($user_id, Request $request) {
+        if (!$request->hasValidSignature()) {
+            return response()->json(["msg" => "Invalid/Expired url provided."], 401);
+        }
+
+        $user = User::findOrFail($user_id);
+
+        if (!$user->hasVerifiedEmail()) {
+            $user->markEmailAsVerified();
+        }
+
+        return redirect()->to('/');
+    }
+
+    public function resend() {
+        if (auth()->user()->hasVerifiedEmail()) {
+            return response()->json(["msg" => "Email already verified."], 400);
+        }
+
+        auth()->user()->sendEmailVerificationNotification();
+
+        return response()->json(["msg" => "Email verification link sent on your email id"]);
     }
 }
