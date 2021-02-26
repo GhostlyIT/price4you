@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ResponseReceived;
 use App\Exceptions\ValidationException;
 use App\Models\CompanyResponses;
 use App\Models\User;
@@ -17,7 +18,8 @@ class ResponseController extends Controller
         throw new ValidationException($validator);
     }
 
-    public function save(Request $request) {
+    public function save(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'request_id' => 'integer|required',
             'price' => 'integer|required|min:1'
@@ -50,6 +52,8 @@ class ResponseController extends Controller
                 'price' => $price,
                 'comment' => $comment
             ]);
+
+            ResponseReceived::dispatch($customer, $usersRequest);
 
             return response()->json(['message' => 'Отклик успешно добавлен', 'status' => 'success'],200);
         } catch (\Exception $e) {
