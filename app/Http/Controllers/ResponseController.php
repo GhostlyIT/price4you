@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\OfferAccepted;
 use App\Events\ResponseReceived;
 use App\Exceptions\ValidationException;
 use App\Models\CompanyResponses;
@@ -164,8 +165,12 @@ class ResponseController extends Controller
         $responseId = $request->get('response_id');
 
         try {
+            $response = CompanyResponses::findOrFail($responseId);
             $this->changeStatus($responseId, 'accepted');
-            return response()->json(['message' => 'Предложение отклонено', 'status' => 'success'],200);
+
+            OfferAccepted::dispatch($response->company->user, $response->product);
+
+            return response()->json(['message' => 'Предложение принято', 'status' => 'success'],200);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);
         }
@@ -184,7 +189,7 @@ class ResponseController extends Controller
 
         try {
             $this->changeStatus($responseId, 'awaits_for_closing');
-            return response()->json(['message' => 'Предложение отклонено', 'status' => 'success'],200);
+            return response()->json(['message' => 'Заявка на закрытие сделки отправлена', 'status' => 'success'],200);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);
         }
@@ -203,7 +208,7 @@ class ResponseController extends Controller
 
         try {
             $this->changeStatus($responseId, 'closed');
-            return response()->json(['message' => 'Предложение отклонено', 'status' => 'success'],200);
+            return response()->json(['message' => 'Сделка закрыта', 'status' => 'success'],200);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);
         }

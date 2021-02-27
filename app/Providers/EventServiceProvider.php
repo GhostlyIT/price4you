@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Events\OfferAccepted;
+use App\Listeners\SendOfferAcceptedNotification;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -23,6 +25,10 @@ class EventServiceProvider extends ServiceProvider
 
         ResponseReceived::class => [
             SendResponseReceivedNotification::class
+        ],
+
+        OfferAccepted::class => [
+            SendOfferAcceptedNotification::class
         ]
     ];
 
