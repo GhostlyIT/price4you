@@ -64,15 +64,20 @@ class ResponseController extends Controller
 
     public function getAllResponsesAmount(Request $request) {
         $user = Auth::user();
+        $rCount = 0;
 
         try {
-            $responsesCount = $user->requests()->withCount(['responses' => function ($q) {
-                $q->where('company_responses.status', '=', 'open');
-            }])->get();
-            $rCount = 0;
-            foreach($responsesCount as $responseCount) {
-                $rCount += $responseCount->responses_count;
+            $requests = $user->requests()->get();
+            foreach($requests as $request) {
+                $responsesCount = $request->products()->withCount(['responses' => function ($q) {
+                    $q->where('company_responses.status', '=', 'open');
+                }])->get();
+
+                foreach($responsesCount as $responseCount) {
+                    $rCount += $responseCount->responses_count;
+                }
             }
+
             return response()->json(['responses_count' => $rCount, 'status' => 'success'],200);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);
@@ -86,20 +91,24 @@ class ResponseController extends Controller
             $requests = $user->requests()->get();
             $responses = [];
             foreach($requests as $request) {
-                $responseList = $request
-                    ->responses()
-                    ->where('company_responses.status', '!=', 'rejected')
-                    ->where('company_responses.status', '!=', 'closed')
-                    ->with(['company', 'product', 'product.request'])
-                    ->orderBy('id', 'desc')
-                    ->get();
+                $products = $request->products()->get();
 
-                foreach($responseList as $response) {
-                    $response['product_info'] = $response->product()->with($response->product->product_type)->first();
-                    $response['request'] = $response->product->request;
-                    unset($response['product']);
-                    $responses[] = $response;
+                foreach($products as $product) {
+                    $responseList = $product->responses()
+                        ->where('company_responses.status', '!=', 'rejected')
+                        ->where('company_responses.status', '!=', 'closed')
+                        ->with(['company', 'product', 'product.request'])
+                        ->orderBy('id', 'desc')
+                        ->get();
+
+                    foreach($responseList as $response) {
+                        $response['product_info'] = $response->product()->with($response->product->product_type)->first();
+                        $response['request'] = $response->product->request;
+                        unset($response['product']);
+                        $responses[] = $response;
+                    }
                 }
+
             }
             return response()->json(['responses' => $responses, 'status' => 'success'],200);
         } catch (\Exception $e) {
