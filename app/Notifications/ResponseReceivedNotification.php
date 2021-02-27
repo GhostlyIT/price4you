@@ -7,9 +7,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Illuminate\Support\HtmlString;
 
-class ResponseReceivedNotification extends Notification
+class ResponseReceivedNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 

@@ -57,7 +57,7 @@ class ResponseController extends Controller
 
             return response()->json(['message' => 'Отклик успешно добавлен', 'status' => 'success'],200);
         } catch (\Exception $e) {
-            return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);
+            return response()->json(['message' => $e->getMessage(), 'line' => $e->getLine(), 'file' => $e->getTrace(), 'status' => 'error'],400);
         }
     }
 
