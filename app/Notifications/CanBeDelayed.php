@@ -11,16 +11,17 @@ trait CanBeDelayed
     public function getDelay() {
         $delay = now();
 
-        $time = Carbon::now('Europe/Moscow');
-        $start = Carbon::create($time->year, $time->month, $time->day, 8, 0, 0, 'Europe/Moscow');
-        $end = Carbon::create($time->year, $time->month, $time->day, 21, 0, 0, 'Europe/Moscow');
+        $time = Carbon::now();
+        $start = Carbon::create($time->year, $time->month, $time->day, 8, 0, 0);
+        $end = Carbon::create($time->year, $time->month, $time->day, 21, 0, 0);
 
-        if (!$time->between($start, $end)) {
-            if ($time < $start) {
+        if (!$time->isBetween($start, $end)) {
+            if ($time->lessThan($start)) {
                 $delay = $start;
             }
-            if ($time > $end) {
-                $nextMorning = Carbon::create($time->year, $time->month, $time->addDay()->day, 8, 0, 0, 'Europe/Moscow');
+            if ($time->greaterThan($end)) {
+                $nextMorning = Carbon::create($time->year, $time->month, $time->addDay()->day, 8, 0, 0);
+                if (Carbon::now()->isLastOfMonth()) $nextMorning = $nextMorning->addMonth();
                 $delay = $nextMorning;
             }
         }

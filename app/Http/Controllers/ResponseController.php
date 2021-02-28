@@ -178,7 +178,6 @@ class ResponseController extends Controller
             $this->changeStatus($responseId, 'accepted');
 
             OfferAccepted::dispatch($response->company->user, $response->product);
-
             return response()->json(['message' => 'Предложение принято', 'status' => 'success'],200);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);
