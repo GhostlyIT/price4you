@@ -2,15 +2,18 @@
 
 namespace App\Models;
 
+use App\Notifications\ResetPasswordNotification;
+use Illuminate\Auth\Notifications\ResetPassword;
+use Illuminate\Contracts\Auth\CanResetPassword;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
 {
-    use HasFactory, Notifiable, HasApiTokens;
+    use HasFactory, Notifiable, HasApiTokens, \Illuminate\Auth\Passwords\CanResetPassword;
 
     /**
      * The attributes that are mass assignable.
@@ -52,5 +55,10 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany('App\Models\UserBlackList');
     }
 
+    public function sendPasswordResetNotification($token)
+    {
+        $url = config('app.url').'/#/reset-password/'.$token.'?email='.$this->email;
 
+        $this->notify(new ResetPasswordNotification($url));
+    }
 }

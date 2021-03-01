@@ -6,10 +6,12 @@ import authAction from '../../../store/actions/authAction'
 import axios from 'axios'
 import {showNotification} from '../../../helpers/notifications'
 import MediaQuery from "react-responsive"
+import ForgotPasswordModal from "../../common/modals/ForgotPasswordModal";
 
 const Login = (props) => {
     const   [email, setEmail] = useState(''),
-            [password, setPassword] = useState('')
+            [password, setPassword] = useState(''),
+            [isModalOpen, setModalOpen] = useState(false)
 
     const authAttempt = () => {
         if (props.loggedIn) {
@@ -43,6 +45,12 @@ const Login = (props) => {
                         <label className="mb-0" htmlFor="login__remember">Запомнить меня</label>
                     </div>
                     <button onClick={() => authAttempt()} type="button" className="main-btn">Войти</button>
+                    <div className="d-flex justify-content-center mt-4">
+                        <a href="#" onClick={e => {
+                            e.preventDefault()
+                            setModalOpen(true)
+                        }}>Забыли пароль?</a>
+                    </div>
                 </form>
 
                 {/*<div className="d-flex flex-column align-items-center auth-socials">*/}
@@ -52,6 +60,11 @@ const Login = (props) => {
                 {/*    </div>*/}
                 {/*</div>*/}
             </div>
+            <ForgotPasswordModal
+                closeModalFunc={() => setModalOpen(false)}
+                isOpen={isModalOpen}
+                modalTitle={"Смена пароля"}
+            />
             <MediaQuery minDeviceWidth={1023}>
                 <div className="col-6 auth-img">
                     <img src="/images/auth/auth_login.svg" />

@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Exceptions\ValidationException;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Companies;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -122,5 +124,45 @@ class AuthController extends Controller
         auth()->user()->sendEmailVerificationNotification();
 
         return response()->json(["msg" => "Email verification link sent on your email id"]);
+    }
+
+    public function forgotPassword(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email',
+        ]);
+
+        if ($validator->fails()) {
+            $this->failedValidation($validator);
+        }
+
+        $status = Password::sendResetLink($request->only('email'));
+
+        return $status === Password::RESET_LINK_SENT
+            ? response()->json(['status' => 'success', 'message' => __($status)])
+            : response()->json(['status' => 'error', 'message' => __($status)], 400);
+    }
+
+    public function resetPassword(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'token' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:8|confirmed'
+        ]);
+
+        if ($validator->fails()) {
+            $this->failedValidation($validator);
+        }
+
+        $status = Password::reset(
+            $request->only('email', 'password', 'password_confirmation', 'token'),
+            function ($user, $password) use ($request) {
+                $user = User::where('email', $request->get('email'))->first();
+                $user->password = bcrypt($password);
+                $user->save();
+            }
+        );
+        return $status == Password::PASSWORD_RESET
+            ? response()->json(['status' => 'success'])
+            : response()->json(['status' => 'error', 'message' => __($status)], 400);
     }
 }

@@ -4,6 +4,7 @@ import Login from './auth-components/Login'
 import Register from './auth-components/Register'
 import RegisterCompany from './auth-components/RegisterCompany'
 import {Route, Redirect} from 'react-router-dom'
+import ResetPassword from "./auth-components/ResetPassword";
 
 const Auth = () => {
     const socials = [
@@ -37,7 +38,7 @@ const Auth = () => {
 
     return (
         <>
-            <Route path="/">
+            <Route exact path="/">
                 <Redirect to="/login" />
             </Route>
             <Route path="/register">
@@ -48,6 +49,9 @@ const Auth = () => {
             </Route>
             <Route path="/register-company">
                 <RegisterCompany socials={getSocials}/>
+            </Route>
+            <Route path="/reset-password/:token">
+                <ResetPassword/>
             </Route>
         </>
     )

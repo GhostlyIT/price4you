@@ -19,3 +19,7 @@ Route::any('{query}',
     function() { return redirect('/'); })
     ->where('query', '.*');
 
+Route::get('/#/reset-password/{token}', function ($token) {
+    return redirect('http://localhost:8000/#/reset-password/'.$token);
+})->name('password.reset');
+

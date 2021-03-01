@@ -41,10 +41,10 @@ const Main = (props) => {
                                         {props.loggedIn ? <Redirect to={userPage} /> : <Auth />}
                                     </Route>
                                     <Route path="/user">
-                                        <User />
+                                        {props.loggedIn ? <User /> : <Redirect to="/login"/> }
                                     </Route>
                                     <Route path="/company">
-                                        <Company />
+                                        {props.loggedIn ? <Company /> : <Redirect to="/login"/> }
                                     </Route>
                                     <Route path="/faq">
                                         <Faq />
