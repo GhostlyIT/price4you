@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import { bindActionCreators } from 'redux'
 import authAction from '../../../store/actions/authAction'
@@ -11,7 +10,8 @@ import ForgotPasswordModal from "../../common/modals/ForgotPasswordModal";
 const Login = (props) => {
     const   [email, setEmail] = useState(''),
             [password, setPassword] = useState(''),
-            [isModalOpen, setModalOpen] = useState(false)
+            [isModalOpen, setModalOpen] = useState(false),
+            [passwordFieldType, setPasswordFieldType] = useState('password')
 
     const authAttempt = () => {
         if (props.loggedIn) {
@@ -39,7 +39,12 @@ const Login = (props) => {
 
                 <form className="d-flex flex-column mt-3 mb-3">
                     <input onChange={e => setEmail(e.target.value)} type="email" value={email} placeholder="Email" />
-                    <input value={password} onChange={(e) => setPassword(e.target.value)} className="mt-3 w-100" id="login__pass" type="password" placeholder="Пароль" />
+
+                    <div className="d-flex mt-3 align-items-center">
+                        <input value={password} onChange={(e) => setPassword(e.target.value)} className="w-75 password-field" type={passwordFieldType} placeholder="Пароль" />
+                        <span className="show-pass-btn" onClick={() => passwordFieldType === 'password' ? setPasswordFieldType('text') : setPasswordFieldType('password')}>{passwordFieldType === 'password' ? 'Показать пароль' : 'Скрыть пароль'}</span>
+                    </div>
+
                     <div className="d-flex align-items-center mt-4 mb-4">
                         <input className="mr-3" id="login__remember" type="checkbox" />
                         <label className="mb-0" htmlFor="login__remember">Запомнить меня</label>

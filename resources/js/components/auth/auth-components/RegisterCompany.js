@@ -16,7 +16,8 @@ const RegisterCompany = (props) => {
             [companyEmail, setCompanyEmail] = useState(''),
             [companyDirector, setCompanyDirector] = useState(''),
             [disabled, setDisabled] = useState(true),
-            [email, setEmail] = useState('')
+            [email, setEmail] = useState(''),
+            [passwordFieldType, setPasswordFieldType] = useState('password')
 
             const register = () => {
                 axios.post('/api/register', {
@@ -53,7 +54,10 @@ const RegisterCompany = (props) => {
                             <input value={name} onChange={(event) => setName(event.target.value)} className="mt-3 w-100" id="register__name" type="text" placeholder="Имя" />
                             <input value={surname} onChange={(event) => setSurname(event.target.value)} className="mt-3 w-100" id="register__surname" type="text" placeholder="Фамилия" />
                             <InputMask mask="+7(999)999-99-99" value={phone} onChange={(event) => setPhone(event.target.value)} className="mt-3 w-100" id="register__tel" type="tel" placeholder="Номер телефона" />
-                            <input value={password} onChange={(event) => setPassword(event.target.value)} className="mt-3 w-100" id="register__pass" type="password" placeholder="Пароль" />
+                            <div className="d-flex mt-3 align-items-center">
+                                <input value={password} onChange={(e) => setPassword(e.target.value)} className="w-75 password-field" type={passwordFieldType} placeholder="Пароль" />
+                                <span className="show-pass-btn" onClick={() => passwordFieldType === 'password' ? setPasswordFieldType('text') : setPasswordFieldType('password')}>{passwordFieldType === 'password' ? 'Показать пароль' : 'Скрыть пароль'}</span>
+                            </div>
                         </div>
                         <div className="col-xs-12 col-md-6">
                             <input value={companyName} onChange={(event) => setCompanyName(event.target.value)} className="mt-3 w-100" id="register__company-name" type="text" placeholder="Название компании" />

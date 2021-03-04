@@ -78940,16 +78940,15 @@ var Auth = function Auth() {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
-/* harmony import */ var _store_actions_authAction__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../store/actions/authAction */ "./resources/js/store/actions/authAction.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _helpers_notifications__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../helpers/notifications */ "./resources/js/helpers/notifications.js");
-/* harmony import */ var react_responsive__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-responsive */ "./node_modules/react-responsive/dist/react-responsive.js");
-/* harmony import */ var react_responsive__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_responsive__WEBPACK_IMPORTED_MODULE_7__);
-/* harmony import */ var _common_modals_ForgotPasswordModal__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../common/modals/ForgotPasswordModal */ "./resources/js/components/common/modals/ForgotPasswordModal.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var _store_actions_authAction__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../store/actions/authAction */ "./resources/js/store/actions/authAction.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _helpers_notifications__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../helpers/notifications */ "./resources/js/helpers/notifications.js");
+/* harmony import */ var react_responsive__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-responsive */ "./node_modules/react-responsive/dist/react-responsive.js");
+/* harmony import */ var react_responsive__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_responsive__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _common_modals_ForgotPasswordModal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../common/modals/ForgotPasswordModal */ "./resources/js/components/common/modals/ForgotPasswordModal.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -78961,7 +78960,6 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 
 
@@ -78984,25 +78982,29 @@ var Login = function Login(props) {
       _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState6 = _slicedToArray(_useState5, 2),
       isModalOpen = _useState6[0],
-      setModalOpen = _useState6[1];
+      setModalOpen = _useState6[1],
+      _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('password'),
+      _useState8 = _slicedToArray(_useState7, 2),
+      passwordFieldType = _useState8[0],
+      setPasswordFieldType = _useState8[1];
 
   var authAttempt = function authAttempt() {
     if (props.loggedIn) {
-      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_6__["showNotification"])('Вход', 'Вход в аккаунт уже выполнен', 'danger');
+      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_5__["showNotification"])('Вход', 'Вход в аккаунт уже выполнен', 'danger');
       return;
     }
 
-    axios__WEBPACK_IMPORTED_MODULE_5___default.a.post('/api/login', {
+    axios__WEBPACK_IMPORTED_MODULE_4___default.a.post('/api/login', {
       email: email,
       password: password
     }).then(function (response) {
-      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_6__["showNotification"])('Вход', response.data.message, 'success');
+      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_5__["showNotification"])('Вход', response.data.message, 'success');
       props.auth({
         token: response.data.token,
         user: response.data.user_data
       });
     })["catch"](function (error) {
-      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_6__["showNotification"])('Вход', error.response.data.message, 'danger');
+      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_5__["showNotification"])('Вход', error.response.data.message, 'danger');
     });
   };
 
@@ -79021,16 +79023,22 @@ var Login = function Login(props) {
     type: "email",
     value: email,
     placeholder: "Email"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "d-flex mt-3 align-items-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     value: password,
     onChange: function onChange(e) {
       return setPassword(e.target.value);
     },
-    className: "mt-3 w-100",
-    id: "login__pass",
-    type: "password",
+    className: "w-75 password-field",
+    type: passwordFieldType,
     placeholder: "\u041F\u0430\u0440\u043E\u043B\u044C"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "show-pass-btn",
+    onClick: function onClick() {
+      return passwordFieldType === 'password' ? setPasswordFieldType('text') : setPasswordFieldType('password');
+    }
+  }, passwordFieldType === 'password' ? 'Показать пароль' : 'Скрыть пароль')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "d-flex align-items-center mt-4 mb-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     className: "mr-3",
@@ -79053,13 +79061,13 @@ var Login = function Login(props) {
       e.preventDefault();
       setModalOpen(true);
     }
-  }, "\u0417\u0430\u0431\u044B\u043B\u0438 \u043F\u0430\u0440\u043E\u043B\u044C?")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_modals_ForgotPasswordModal__WEBPACK_IMPORTED_MODULE_8__["default"], {
+  }, "\u0417\u0430\u0431\u044B\u043B\u0438 \u043F\u0430\u0440\u043E\u043B\u044C?")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_modals_ForgotPasswordModal__WEBPACK_IMPORTED_MODULE_7__["default"], {
     closeModalFunc: function closeModalFunc() {
       return setModalOpen(false);
     },
     isOpen: isModalOpen,
     modalTitle: "Смена пароля"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_responsive__WEBPACK_IMPORTED_MODULE_7___default.a, {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_responsive__WEBPACK_IMPORTED_MODULE_6___default.a, {
     minDeviceWidth: 1023
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-6 auth-img"
@@ -79076,11 +79084,11 @@ var mapStateToProps = function mapStateToProps(store) {
 
 var mapDispatchProps = function mapDispatchProps(dispatch) {
   return {
-    auth: Object(redux__WEBPACK_IMPORTED_MODULE_3__["bindActionCreators"])(_store_actions_authAction__WEBPACK_IMPORTED_MODULE_4__["default"], dispatch)
+    auth: Object(redux__WEBPACK_IMPORTED_MODULE_2__["bindActionCreators"])(_store_actions_authAction__WEBPACK_IMPORTED_MODULE_3__["default"], dispatch)
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, mapDispatchProps)(Login));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps, mapDispatchProps)(Login));
 
 /***/ }),
 
@@ -79149,7 +79157,11 @@ var Register = function Register(props) {
       _useState11 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
       _useState12 = _slicedToArray(_useState11, 2),
       email = _useState12[0],
-      setEmail = _useState12[1];
+      setEmail = _useState12[1],
+      _useState13 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('password'),
+      _useState14 = _slicedToArray(_useState13, 2),
+      passwordFieldType = _useState14[0],
+      setPasswordFieldType = _useState14[1];
 
   var register = function register() {
     axios__WEBPACK_IMPORTED_MODULE_2___default.a.post('/api/register', {
@@ -79213,16 +79225,22 @@ var Register = function Register(props) {
     id: "register__tel",
     type: "tel",
     placeholder: "\u041D\u043E\u043C\u0435\u0440 \u0442\u0435\u043B\u0435\u0444\u043E\u043D\u0430"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    value: password,
-    onChange: function onChange(event) {
-      return setPassword(event.target.value);
-    },
-    className: "mt-3 w-100",
-    id: "register__pass",
-    type: "password",
-    placeholder: "\u041F\u0430\u0440\u043E\u043B\u044C"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "d-flex mt-3 align-items-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    value: password,
+    onChange: function onChange(e) {
+      return setPassword(e.target.value);
+    },
+    className: "w-75 password-field",
+    type: passwordFieldType,
+    placeholder: "\u041F\u0430\u0440\u043E\u043B\u044C"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "show-pass-btn",
+    onClick: function onClick() {
+      return passwordFieldType === 'password' ? setPasswordFieldType('text') : setPasswordFieldType('password');
+    }
+  }, passwordFieldType === 'password' ? 'Показать пароль' : 'Скрыть пароль')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "d-flex align-items-center mt-4 mb-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     className: "mr-3",
@@ -79342,7 +79360,11 @@ var RegisterCompany = function RegisterCompany(props) {
       _useState19 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
       _useState20 = _slicedToArray(_useState19, 2),
       email = _useState20[0],
-      setEmail = _useState20[1];
+      setEmail = _useState20[1],
+      _useState21 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('password'),
+      _useState22 = _slicedToArray(_useState21, 2),
+      passwordFieldType = _useState22[0],
+      setPasswordFieldType = _useState22[1];
 
   var register = function register() {
     axios.post('/api/register', {
@@ -79419,16 +79441,22 @@ var RegisterCompany = function RegisterCompany(props) {
     id: "register__tel",
     type: "tel",
     placeholder: "\u041D\u043E\u043C\u0435\u0440 \u0442\u0435\u043B\u0435\u0444\u043E\u043D\u0430"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "d-flex mt-3 align-items-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     value: password,
-    onChange: function onChange(event) {
-      return setPassword(event.target.value);
+    onChange: function onChange(e) {
+      return setPassword(e.target.value);
     },
-    className: "mt-3 w-100",
-    id: "register__pass",
-    type: "password",
+    className: "w-75 password-field",
+    type: passwordFieldType,
     placeholder: "\u041F\u0430\u0440\u043E\u043B\u044C"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "show-pass-btn",
+    onClick: function onClick() {
+      return passwordFieldType === 'password' ? setPasswordFieldType('text') : setPasswordFieldType('password');
+    }
+  }, passwordFieldType === 'password' ? 'Показать пароль' : 'Скрыть пароль'))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-xs-12 col-md-6"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     value: companyName,
@@ -79554,7 +79582,11 @@ var ResetPassword = function ResetPassword() {
       _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
       _useState4 = _slicedToArray(_useState3, 2),
       rePassword = _useState4[0],
-      setRePassword = _useState4[1];
+      setRePassword = _useState4[1],
+      _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('password'),
+      _useState6 = _slicedToArray(_useState5, 2),
+      passwordFieldType = _useState6[0],
+      setPasswordFieldType = _useState6[1];
 
   var resetPassword = function resetPassword() {
     axios__WEBPACK_IMPORTED_MODULE_1___default.a.post('/api/reset-password', {
@@ -79580,15 +79612,22 @@ var ResetPassword = function ResetPassword() {
     className: "title text-center mb-2"
   }, "\u0418\u0437\u043C\u0435\u043D\u0438\u0442\u044C \u043F\u0430\u0440\u043E\u043B\u044C ", email), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     className: "d-flex flex-column mt-3 mb-3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "d-flex mt-3 align-items-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     value: password,
     onChange: function onChange(e) {
       return setPassword(e.target.value);
     },
-    className: "mt-3 w-100",
-    type: "password",
+    className: "w-75 password-field",
+    type: passwordFieldType,
     placeholder: "\u041F\u0430\u0440\u043E\u043B\u044C"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "show-pass-btn",
+    onClick: function onClick() {
+      return passwordFieldType === 'password' ? setPasswordFieldType('text') : setPasswordFieldType('password');
+    }
+  }, passwordFieldType === 'password' ? 'Показать пароль' : 'Скрыть пароль')), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     value: rePassword,
     onChange: function onChange(e) {
       return setRePassword(e.target.value);

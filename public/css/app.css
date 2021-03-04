@@ -11239,6 +11239,15 @@ img {
   color: #000;
 }
 
+.show-pass-btn {
+  width: 25%;
+  margin-left: 14px;
+  cursor: pointer;
+  font-size: 13px;
+  text-decoration: underline;
+  color: #4525F2;
+}
+
 .auth-sideblock .auth-faq {
   margin-top: 90px;
 }

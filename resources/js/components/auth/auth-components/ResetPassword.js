@@ -13,7 +13,8 @@ const ResetPassword = () => {
     let email = query.get('email')
 
     const [password, setPassword] = useState(''),
-            [rePassword, setRePassword] = useState('')
+            [rePassword, setRePassword] = useState(''),
+            [passwordFieldType, setPasswordFieldType] = useState('password')
 
     const resetPassword = () => {
         axios.post('/api/reset-password', {
@@ -38,7 +39,10 @@ const ResetPassword = () => {
             <div className="d-flex flex-column col-12">
                 <h3 className="title text-center mb-2">Изменить пароль {email}</h3>
                 <form className="d-flex flex-column mt-3 mb-3">
-                    <input value={password} onChange={(e) => setPassword(e.target.value)} className="mt-3 w-100" type="password" placeholder="Пароль" />
+                    <div className="d-flex mt-3 align-items-center">
+                        <input value={password} onChange={(e) => setPassword(e.target.value)} className="w-75 password-field" type={passwordFieldType} placeholder="Пароль" />
+                        <span className="show-pass-btn" onClick={() => passwordFieldType === 'password' ? setPasswordFieldType('text') : setPasswordFieldType('password')}>{passwordFieldType === 'password' ? 'Показать пароль' : 'Скрыть пароль'}</span>
+                    </div>
                     <input value={rePassword} onChange={(e) => setRePassword(e.target.value)} className="mt-3 w-100" type="password" placeholder="Повторите пароль" />
                     <button onClick={() => resetPassword()} type="button" className="main-btn mt-3">Изменить пароль</button>
                 </form>
