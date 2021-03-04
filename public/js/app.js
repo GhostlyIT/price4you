@@ -82593,7 +82593,7 @@ var Response = function Response(_ref) {
     }));
   } else {
     console.log(response);
-    return '<div></div>';
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null);
   }
 };
 

@@ -63,7 +63,7 @@ const Response = ({response, showContactData, closeDeal}) => {
         )
     } else {
         console.log(response)
-        return ('<div></div>')
+        return (<div></div>)
     }
 }
 
