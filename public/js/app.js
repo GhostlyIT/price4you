@@ -82591,6 +82591,9 @@ var Response = function Response(_ref) {
       status: response.status,
       actions: actions
     }));
+  } else {
+    console.log(response);
+    return '<div></div>';
   }
 };
 

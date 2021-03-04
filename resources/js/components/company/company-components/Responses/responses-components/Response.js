@@ -61,6 +61,9 @@ const Response = ({response, showContactData, closeDeal}) => {
                 <Buttons status={response.status} actions={actions}/>
             </div>
         )
+    } else {
+        console.log(response)
+        return ('<div></div>')
     }
 }
 
