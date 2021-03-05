@@ -80035,39 +80035,44 @@ var ChatsList = function ChatsList(_ref) {
       var opponent = chat.user1.id == userData.id ? chat.user2 : chat.user1;
       var recipientId = opponent.id;
       var avatar = opponent.avatar;
-      var message = chat.messages[0].message.slice(0, maxLetters);
 
-      if (message.length < chat.messages[0].message.length) {
-        message += '...';
-      }
+      if (chat.messages.length > 0) {
+        var message = chat.messages[0].message.slice(0, maxLetters);
 
-      if (opponent.account_type === 'company') {
-        opponent = opponent.company;
-        opponent.surname = '';
-      }
-
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        onClick: function onClick() {
-          return setActiveChat(chat.id, recipientId);
-        },
-        key: chat.id,
-        className: "chat__opponent w-100 d-flex align-items-center ".concat(activeChat == chat.id && 'active', " ").concat(messagesCount > 0 && 'has-messages')
-      }, avatar == null ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "avatar avatar--small mr-3"
-      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "avatar avatar--small mr-3",
-        style: {
-          backgroundImage: "url(".concat(avatar, ")")
+        if (message.length < chat.messages[0].message.length) {
+          message += '...';
         }
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "chat__opponent_main d-flex flex-column"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "chat__opponent_name d-flex align-items-center position-relative"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, opponent.name, " ", opponent.surname), messagesCount > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "amount-badge font-weight-bold ml-2"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, messagesCount))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "chat__opponent_last_message"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, chat.messages[0].from == userData.id ? 'Вы:' : '', " ", message))));
+
+        if (opponent.account_type === 'company') {
+          opponent = opponent.company;
+          opponent.surname = '';
+        }
+
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          onClick: function onClick() {
+            return setActiveChat(chat.id, recipientId);
+          },
+          key: chat.id,
+          className: "chat__opponent w-100 d-flex align-items-center ".concat(activeChat == chat.id && 'active', " ").concat(messagesCount > 0 && 'has-messages')
+        }, avatar == null ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "avatar avatar--small mr-3"
+        }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "avatar avatar--small mr-3",
+          style: {
+            backgroundImage: "url(".concat(avatar, ")")
+          }
+        }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "chat__opponent_main d-flex flex-column"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "chat__opponent_name d-flex align-items-center position-relative"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, opponent.name, " ", opponent.surname), messagesCount > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "amount-badge font-weight-bold ml-2"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, messagesCount))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "chat__opponent_last_message"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, chat.messages[0].from == userData.id ? 'Вы:' : '', " ", message))));
+      } else {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null);
+      }
     });
   }
 
