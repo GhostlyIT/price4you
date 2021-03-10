@@ -102,10 +102,11 @@ class ResponseController extends Controller
                         ->get();
 
                     foreach($responseList as $response) {
-                        $response['product_info'] = $response->product()->with($response->product->product_type)->first();
-                        $response['request'] = $response->product->request;
+                        $product = $response->product()->with('seed', 'product', 'fertiliser')->first();
+                        $response['product_info'] = @$product;
+                        $response['request'] = @$product->request;
                         unset($response['product']);
-                        $responses[] = $response;
+                        $responsesArr[] = $response;
                     }
                 }
 
@@ -131,8 +132,9 @@ class ResponseController extends Controller
                 ->get();
 
             foreach($responses as $response) {
-                $response['product_info'] = $response->product()->with($response->product->product_type)->first();
-                $response['request'] = $response->product->request;
+                $product = $response->product()->with('seed', 'product', 'fertiliser')->first();
+                $response['product_info'] = @$product;
+                $response['request'] = @$product->request;
                 unset($response['product']);
                 $responsesArr[] = $response;
             }

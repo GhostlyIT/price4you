@@ -83605,8 +83605,23 @@ var AddRequest = function AddRequest(props) {
       _useState27 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(null),
       _useState28 = _slicedToArray(_useState27, 2),
       selectedRegion = _useState28[0],
-      setSelectedRegion = _useState28[1];
+      setSelectedRegion = _useState28[1],
+      _useState29 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(0),
+      _useState30 = _slicedToArray(_useState29, 2),
+      limit = _useState30[0],
+      setLimit = _useState30[1];
 
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/request/available-limit', {
+      headers: {
+        'Authorization': 'Bearer ' + props.token
+      }
+    }).then(function (response) {
+      return setLimit(response.data.limit);
+    })["catch"](function (error) {
+      return console.log(error.response.data.message);
+    });
+  }, []);
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     document.addEventListener('click', handleClick, false);
   });
@@ -83636,24 +83651,29 @@ var AddRequest = function AddRequest(props) {
   };
 
   var pickProduct = function pickProduct(product, productType) {
-    product['type'] = productType;
+    if (limit > 0) {
+      product['type'] = productType;
 
-    switch (productType) {
-      case 'Защита растений':
-        product['type_for_db'] = 'product';
-        break;
+      switch (productType) {
+        case 'Защита растений':
+          product['type_for_db'] = 'product';
+          break;
 
-      case 'Семена':
-        product['type_for_db'] = 'seed';
-        break;
+        case 'Семена':
+          product['type_for_db'] = 'seed';
+          break;
 
-      case 'Удобрения':
-        product['type_for_db'] = 'fertiliser';
-        break;
+        case 'Удобрения':
+          product['type_for_db'] = 'fertiliser';
+          break;
+      }
+
+      product['unit'] = 'кг';
+      selectedProducts.push(product);
+      setLimit(limit - 1);
+    } else {
+      Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_5__["showNotification"])('Добавление товара', 'Достигнут суточный лимит на количество товаров в запросе', 'danger');
     }
-
-    product['unit'] = 'кг';
-    selectedProducts.push(product);
   };
 
   var renderSelectedProducts = function renderSelectedProducts() {
@@ -83681,6 +83701,7 @@ var AddRequest = function AddRequest(props) {
     var index = arrCopy.indexOf(product);
     arrCopy.splice(index, 1);
     setFunction(arrCopy);
+    setLimit(limit + 1);
   };
 
   var renderProducts = function renderProducts() {
@@ -83920,7 +83941,9 @@ var AddRequest = function AddRequest(props) {
     placeholder: "\u0412\u0432\u0435\u0434\u0438\u0442\u0435 \u0412\u0430\u0448 \u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439 \u043A \u0437\u0430\u043F\u0440\u043E\u0441\u0443"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "request-products d-flex flex-column add-request__component"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("b", null, "\u0412\u043D\u0438\u043C\u0430\u043D\u0438\u0435!"), " \u0412 \u0434\u0435\u043D\u044C \u043C\u043E\u0436\u043D\u043E \u0434\u043E\u0431\u0430\u0432\u0438\u0442\u044C \u043D\u0435 \u0431\u043E\u043B\u0435\u0435 10 \u0442\u043E\u0432\u0430\u0440\u043E\u0432."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("span", {
+    className: "mb-3"
+  }, "\u0414\u043E\u0441\u0442\u0443\u043F\u043D\u044B\u0439 \u043B\u0438\u043C\u0438\u0442: ", limit), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "d-flex align-items-center"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
     className: "position-relative"

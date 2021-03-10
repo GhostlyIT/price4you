@@ -64,6 +64,12 @@ class RequestController extends Controller
                 'region_id' => $region
             ]);
 
+            $user = Auth::user();
+            $userLimit = $user->requestLimits()->first();
+            $userLimit == NULL ? $limit = 10 : $limit = $userLimit->limit;;
+
+            $productsAmount = 0;
+
             foreach ($products as $product) {
                 if (!array_key_exists('unit', $product)) {
                     $product['unit'] = 'кг';
@@ -76,7 +82,16 @@ class RequestController extends Controller
                     'value' => $product['value'],
                     'unit' => $product['unit']
                 ]);
+                $productsAmount++;
             }
+
+            $newLimit = $limit - $productsAmount;
+
+            if ($newLimit <= 0) throw new \Exception('Превышен дневной лимит на товары в заявке');
+
+            $userLimit = $user->requestLimits()->firstOrCreate();
+            $userLimit->limit = $newLimit;
+            $userLimit->save();
 
             DB::commit();
             return response()->json(['message' => 'Запрос успешно добавлен', 'status' => 'success'],200);
@@ -198,6 +213,16 @@ class RequestController extends Controller
             return response()->json(['message' => 'Запрос успешно удален', 'status' => 'success'],200);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 'error'], 400);
+        }
+    }
+
+    public function getAvailableLimit(Request $request) {
+        try {
+            $user = $request->user();
+            $userLimit = $user->requestLimits;
+            return response()->json(['limit' => $userLimit === NULL ? 10 : $userLimit->limit, 'status' => 'success']);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => 'error']);
         }
     }
 }

@@ -55,10 +55,13 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPassword
         return $this->hasMany('App\Models\UserBlackList');
     }
 
-    public function sendPasswordResetNotification($token)
-    {
+    public function sendPasswordResetNotification($token) {
         $url = config('app.url').'/#/reset-password/'.$token.'?email='.$this->email;
 
         $this->notify(new ResetPasswordNotification($url));
+    }
+
+    public function requestLimits() {
+        return $this->hasOne('App\Models\RequestLimit');
     }
 }

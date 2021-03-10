@@ -28,7 +28,16 @@ const AddRequest = (props) => {
         }),
         [comment, setComment] = useState(false),
         [loading, setLoading] = useState(false),
-        [selectedRegion, setSelectedRegion] = useState(null)
+        [selectedRegion, setSelectedRegion] = useState(null),
+        [limit, setLimit] = useState(0)
+
+    useEffect(() => {
+        axios.get('/api/request/available-limit', {
+            headers: {'Authorization': 'Bearer ' + props.token}
+        })
+        .then(response => setLimit(response.data.limit))
+        .catch(error => console.log(error.response.data.message))
+    }, [])
 
     useEffect(() => {
         document.addEventListener('click', handleClick, false)
@@ -61,20 +70,25 @@ const AddRequest = (props) => {
     }
 
     const pickProduct = (product, productType) => {
-        product['type'] = productType
-        switch (productType) {
-            case 'Защита растений':
-                product['type_for_db'] = 'product'
-                break
-            case 'Семена':
-                product['type_for_db'] = 'seed'
-                break
-            case 'Удобрения':
-                product['type_for_db'] = 'fertiliser'
-                break
+        if (limit > 0) {
+            product['type'] = productType
+            switch (productType) {
+                case 'Защита растений':
+                    product['type_for_db'] = 'product'
+                    break
+                case 'Семена':
+                    product['type_for_db'] = 'seed'
+                    break
+                case 'Удобрения':
+                    product['type_for_db'] = 'fertiliser'
+                    break
+            }
+            product['unit'] = 'кг'
+            selectedProducts.push(product)
+            setLimit(limit - 1)
+        } else {
+            showNotification('Добавление товара', 'Достигнут суточный лимит на количество товаров в запросе', 'danger')
         }
-        product['unit'] = 'кг'
-        selectedProducts.push(product)
     }
 
     const renderSelectedProducts = () => {
@@ -97,6 +111,7 @@ const AddRequest = (props) => {
         const index = arrCopy.indexOf(product)
         arrCopy.splice(index, 1)
         setFunction(arrCopy)
+        setLimit(limit + 1)
     }
 
     const renderProducts = () => {
@@ -327,6 +342,8 @@ const AddRequest = (props) => {
             </div>
 
             <div className="request-products d-flex flex-column add-request__component">
+                <p><b>Внимание!</b> В день можно добавить не более 10 товаров.</p>
+                <span className="mb-3">Доступный лимит: {limit}</span>
                 <div className="d-flex align-items-center">
                     <div className="position-relative">
                         <input onClick={() => setProductsOpen(true)} onChange={(e) => searchProduct(e.target.value)}
