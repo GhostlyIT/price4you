@@ -32,7 +32,7 @@ class Kernel extends ConsoleKernel
 
         $schedule->call(function() {
             (new CompaniesReminderService())->execute();
-        })->weekly();
+        })->daily();
     }
 
     /**
