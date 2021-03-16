@@ -3,6 +3,7 @@
 namespace App\Console;
 
 use App\Models\RequestLimit;
+use App\Services\CompaniesReminderService;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -28,6 +29,10 @@ class Kernel extends ConsoleKernel
         $schedule->call(function() {
             RequestLimit::truncate();
         })->daily();
+
+        $schedule->call(function() {
+            (new CompaniesReminderService())->execute();
+        })->weekly();
     }
 
     /**

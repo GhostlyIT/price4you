@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Exceptions\ValidationException;
 
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Support\Facades\Validator;
@@ -141,54 +142,54 @@ class RequestController extends Controller
             $companyProducts = $company->productsMiddleware()->get();
 
             $requests = UserRequestsAndProducts::where('status', 'open')
-                ->with([
-                    'request' => function($q) use ($companyRegions) {
-                        if (count($companyRegions) > 0) $q->whereIn('region_id', $companyRegions)->get();
-                    },
-                    'request.region',
-                    'product' => function($q) use ($companyManufactures, $company, $companyProducts) {
-                        $res = $q->with('taraMiddleware.tara');
+            ->with([
+                'request' => function($q) use ($companyRegions) {
+                    if (count($companyRegions) > 0) $q->whereIn('region_id', $companyRegions)->get();
+                },
+                'request.region',
+                'product' => function($q) use ($companyManufactures, $company, $companyProducts) {
+                    $res = $q->with('taraMiddleware.tara');
 
-                        if (count($companyProducts) > 0) {
-                            $companyProductsIDs = $company->productsMiddleware()->where('product_type', 'product')->pluck('product_id')->toArray();
-                            $res = $res->whereIn('id_product', $companyProductsIDs);
-                        }
+                    if (count($companyProducts) > 0) {
+                        $companyProductsIDs = $company->productsMiddleware()->where('product_type', 'product')->pluck('product_id')->toArray();
+                        $res = $res->whereIn('id_product', $companyProductsIDs);
+                    }
 
-                        if (count($companyManufactures) > 0 && count($companyProducts) > 0) $res = $res->orWhereIn('id_manufacture', $companyManufactures);
-                        if (count($companyManufactures) > 0 && count($companyProducts) < 1) $res = $res->whereIn('id_manufacture', $companyManufactures);
+                    if (count($companyManufactures) > 0 && count($companyProducts) > 0) $res = $res->orWhereIn('id_manufacture', $companyManufactures);
+                    if (count($companyManufactures) > 0 && count($companyProducts) < 1) $res = $res->whereIn('id_manufacture', $companyManufactures);
 
-                        $res->get();
-                    },
-                    'fertiliser' => function($q) use ($companyManufactures, $company, $companyProducts) {
-                        $res = $q->with('taraMiddleware.tara');
+                    $res->get();
+                },
+                'fertiliser' => function($q) use ($companyManufactures, $company, $companyProducts) {
+                    $res = $q->with('taraMiddleware.tara');
 
-                        if (count($companyProducts) > 0) {
-                            $companyProductsIDs = $company->productsMiddleware()->where('product_type', 'fertiliser')->pluck('product_id')->toArray();
-                            $res = $res->whereIn('id_fertiliser', $companyProductsIDs);
-                        }
+                    if (count($companyProducts) > 0) {
+                        $companyProductsIDs = $company->productsMiddleware()->where('product_type', 'fertiliser')->pluck('product_id')->toArray();
+                        $res = $res->whereIn('id_fertiliser', $companyProductsIDs);
+                    }
 
-                        if (count($companyManufactures) > 0 && count($companyProducts) > 0) $res = $res->orWhereIn('id_manufacture', $companyManufactures);
-                        if (count($companyManufactures) > 0 && count($companyProducts) < 1) $res = $res->whereIn('id_manufacture', $companyManufactures);
+                    if (count($companyManufactures) > 0 && count($companyProducts) > 0) $res = $res->orWhereIn('id_manufacture', $companyManufactures);
+                    if (count($companyManufactures) > 0 && count($companyProducts) < 1) $res = $res->whereIn('id_manufacture', $companyManufactures);
 
-                        $res->get();
-                    },
-                    'seed' => function($q) use ($companyManufactures, $company, $companyProducts) {
-                        $res = $q->with('taraMiddleware.tara');
+                    $res->get();
+                },
+                'seed' => function($q) use ($companyManufactures, $company, $companyProducts) {
+                    $res = $q->with('taraMiddleware.tara');
 
-                        if (count($companyProducts) > 0) {
-                            $companyProductsIDs = $company->productsMiddleware()->where('product_type', 'seed')->pluck('product_id')->toArray();
-                            $res = $res->whereIn('id_seed_product', $companyProductsIDs);
-                        }
+                    if (count($companyProducts) > 0) {
+                        $companyProductsIDs = $company->productsMiddleware()->where('product_type', 'seed')->pluck('product_id')->toArray();
+                        $res = $res->whereIn('id_seed_product', $companyProductsIDs);
+                    }
 
-                        if (count($companyManufactures) > 0 && count($companyProducts) > 0) $res = $res->orWhereIn('id_manufacture', $companyManufactures);
-                        if (count($companyManufactures) > 0 && count($companyProducts) < 1) $res = $res->whereIn('id_manufacture', $companyManufactures);
+                    if (count($companyManufactures) > 0 && count($companyProducts) > 0) $res = $res->orWhereIn('id_manufacture', $companyManufactures);
+                    if (count($companyManufactures) > 0 && count($companyProducts) < 1) $res = $res->whereIn('id_manufacture', $companyManufactures);
 
-                        $res->get();
-                    },
-                    'responses'
-                ])
-                ->orderBy('created_at', 'desc')
-                ->get();
+                    $res->get();
+                },
+                'responses'
+            ])
+            ->orderBy('created_at', 'desc')
+            ->get();
 
             $requestsArr = [];
 
@@ -197,6 +198,9 @@ class RequestController extends Controller
             }
 
             $requestsCount = count($requestsArr);
+
+            $company->last_online = Carbon::now();
+            $company->save();
 
             return response()->json(['requests' => array_slice($requestsArr, $offset, $limit), 'requests_count' => $requestsCount, 'status' => 'success'],200);
         } catch (\Exception $e) {
