@@ -13,15 +13,18 @@ const UserRequests = (props) => {
         [selectedRequest, setSelectedRequest] = useState(false)
 
     useEffect(() => {
+        let isMounted = true;
         axios.get('/api/request/get-for-user', {
             headers: {'Authorization': 'Bearer ' + props.token}
         })
         .then(response => {
-            setRequests(response.data.requests)
+            if (isMounted) setRequests(response.data.requests)
         })
         .catch(error => {
             showNotification('Ошибка', error.response, 'danger')
         })
+
+        return () => { isMounted = false };
     },[props.updateVal])
 
     const deleteRequest = requestId => {

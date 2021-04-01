@@ -24,5 +24,5 @@
     <body class="antialiased">
         <div id="root"></div>
     </body>
-    <script src="{{mix('js/app.js')}}?v=2.5" ></script>
+    <script src="{{mix('js/app.js')}}?v=2.6" ></script>
 </html>

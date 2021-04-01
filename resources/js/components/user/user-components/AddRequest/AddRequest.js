@@ -29,19 +29,61 @@ const AddRequest = (props) => {
         [comment, setComment] = useState(false),
         [loading, setLoading] = useState(false),
         [selectedRegion, setSelectedRegion] = useState(null),
-        [limit, setLimit] = useState(0)
+        [limit, setLimit] = useState(0),
+        [isLimitSet, setIsLimitSet] = useState(false)
 
     useEffect(() => {
+        let isMounted = true;
         axios.get('/api/request/available-limit', {
             headers: {'Authorization': 'Bearer ' + props.token}
         })
-        .then(response => setLimit(response.data.limit))
-        .catch(error => console.log(error.response.data.message))
+        .then(response => {
+            if (isMounted) {
+                setLimit(response.data.limit)
+                setIsLimitSet(true)
+            }
+        })
+        .catch(error => {
+            console.log(error.response.data.message)
+        })
+
+        return () => { isMounted = false };
     }, [])
 
     useEffect(() => {
         document.addEventListener('click', handleClick, false)
-    })
+    }, [])
+
+    useEffect(() => {
+        let isMounted = true;
+        $.getJSON("https://api.ipify.org?format=json",function(data) {
+
+                axios.post('/api/deferred-order', {
+                        ip: data.ip
+                    },
+                    {
+                        headers: {'Authorization': 'Bearer ' + props.token}
+                    })
+                    .then(response => {
+                        if (isMounted) {
+
+                            const products = response.data.order
+                            for (let i = 0; i < products.length; i++) {
+                                pickProduct(products[i], products[i].type)
+                                setLimit(limit - selectedProducts.length)
+                            }
+                            setProductsOpen(true)
+                            setProductsOpen(false)
+                        }
+                    })
+                    .catch(error => {
+                        console.log(error.response.data.message)
+                    })
+            })
+
+
+        return () => { isMounted = false };
+    }, [isLimitSet])
 
     const handleClick = (e) => {
         const requestProduct = document.getElementById('request-product')

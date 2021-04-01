@@ -11,6 +11,7 @@ class Product extends Model
 
     protected $connection = 'mysql_ecoplant';
     protected $table = 'product';
+    protected $primaryKey = 'id_product';
 
     public function requestAndProduct() {
         return $this->hasMany('App\Models\UserRequestsAndProducts');

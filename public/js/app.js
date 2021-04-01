@@ -83609,22 +83609,62 @@ var AddRequest = function AddRequest(props) {
       _useState29 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(0),
       _useState30 = _slicedToArray(_useState29, 2),
       limit = _useState30[0],
-      setLimit = _useState30[1];
+      setLimit = _useState30[1],
+      _useState31 = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])(false),
+      _useState32 = _slicedToArray(_useState31, 2),
+      isLimitSet = _useState32[0],
+      setIsLimitSet = _useState32[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+    var isMounted = true;
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/request/available-limit', {
       headers: {
         'Authorization': 'Bearer ' + props.token
       }
     }).then(function (response) {
-      return setLimit(response.data.limit);
+      if (isMounted) {
+        setLimit(response.data.limit);
+        setIsLimitSet(true);
+      }
     })["catch"](function (error) {
-      return console.log(error.response.data.message);
+      console.log(error.response.data.message);
     });
+    return function () {
+      isMounted = false;
+    };
   }, []);
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     document.addEventListener('click', handleClick, false);
-  });
+  }, []);
+  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
+    var isMounted = true;
+    $.getJSON("https://api.ipify.org?format=json", function (data) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/deferred-order', {
+        ip: data.ip
+      }, {
+        headers: {
+          'Authorization': 'Bearer ' + props.token
+        }
+      }).then(function (response) {
+        if (isMounted) {
+          var _products = response.data.order;
+
+          for (var i = 0; i < _products.length; i++) {
+            pickProduct(_products[i], _products[i].type);
+            setLimit(limit - selectedProducts.length);
+          }
+
+          setProductsOpen(true);
+          setProductsOpen(false);
+        }
+      })["catch"](function (error) {
+        console.log(error.response.data.message);
+      });
+    });
+    return function () {
+      isMounted = false;
+    };
+  }, [isLimitSet]);
 
   var handleClick = function handleClick(e) {
     var requestProduct = document.getElementById('request-product');
@@ -84087,7 +84127,7 @@ var SearchRegion = function SearchRegion(_ref) {
   var input = Object(react__WEBPACK_IMPORTED_MODULE_0__["useRef"])(null);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     document.addEventListener('click', handleClick, false);
-  });
+  }, []);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     if (selectedRegion != null) {
       input.current.value = selectedRegion.name_regions;
@@ -84095,8 +84135,6 @@ var SearchRegion = function SearchRegion(_ref) {
   }, [selectedRegion]);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     if (selectedRegion === null) {
-      console.log('err');
-
       if (searchResult.length > 0) {
         selectRegion(searchResult[0]);
       } else {
@@ -85096,15 +85134,19 @@ var UserRequests = function UserRequests(props) {
       setSelectedRequest = _useState4[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    var isMounted = true;
     axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/request/get-for-user', {
       headers: {
         'Authorization': 'Bearer ' + props.token
       }
     }).then(function (response) {
-      setRequests(response.data.requests);
+      if (isMounted) setRequests(response.data.requests);
     })["catch"](function (error) {
       Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_5__["showNotification"])('Ошибка', error.response, 'danger');
     });
+    return function () {
+      isMounted = false;
+    };
   }, [props.updateVal]);
 
   var deleteRequest = function deleteRequest(requestId) {

@@ -11,7 +11,7 @@ const SearchRegion = ({selectRegion, selectedRegion}) => {
 
     useEffect(() => {
         document.addEventListener('click', handleClick, false)
-    })
+    }, [])
 
     useEffect(() => {
         if (selectedRegion != null) {
@@ -21,7 +21,6 @@ const SearchRegion = ({selectRegion, selectedRegion}) => {
 
     useEffect(() => {
         if (selectedRegion === null) {
-            console.log('err')
             if (searchResult.length > 0) {
                 selectRegion(searchResult[0])
             } else {

@@ -95,3 +95,18 @@ Route::get('email/resend', 'App\Http\Controllers\AuthCOntroller@resend')->name('
 Route::get('errorUnauthorized', function() {
     return response()->json(['message' => 'Не авторизован', 'status' => 'error'], 401);
 })->name('unathorized');
+
+
+Route::post('/qwe', function(Request $request) {
+    try {
+        \App\Models\DeferredOrder::updateOrCreate(
+            ['ip' => $request->get('ip')],
+            ['products' => $request->get('products')]
+        );
+        return response()->json(['message' => 'success']);
+    } catch (\Exception $e) {
+        return response()->json(['message' => $e->getMessage()], 400);
+    }
+});
+
+Route::middleware(['auth:api', 'auth.user'])->post('/deferred-order', 'App\Http\Controllers\DeferredOrderController@findOrder');

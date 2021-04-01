@@ -44,7 +44,7 @@ const User = (props) => {
             </Route>
         </>
     )
-}
+};
 
 const mapStateToProps = store => {
     return {

@@ -11,6 +11,7 @@ class Seed extends Model
 
     protected $connection = 'mysql_ecoplant';
     protected $table = 'seed_product';
+    protected $primaryKey = 'id_seed_product';
 
     public function tara() {
         return $this->hasOneThrough('App\Models\Tara\SeedTara', 'App\Models\Tara\SeedAndTara', 'id_seed_product', 'id_seed_tara', 'id', 'id_seed_tara');
