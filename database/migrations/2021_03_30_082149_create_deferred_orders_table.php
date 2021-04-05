@@ -16,7 +16,7 @@ class CreateDeferredOrdersTable extends Migration
         Schema::create('deferred_orders', function (Blueprint $table) {
             $table->id();
             $table->string('ip');
-            $table->json('products');
+            $table->string('products');
             $table->timestamps();
         });
     }
