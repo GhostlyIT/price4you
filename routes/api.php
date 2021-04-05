@@ -97,16 +97,6 @@ Route::get('errorUnauthorized', function() {
 })->name('unathorized');
 
 
-Route::post('/qwe', function(Request $request) {
-    try {
-        \App\Models\DeferredOrder::updateOrCreate(
-            ['ip' => $request->get('ip')],
-            ['products' => $request->get('products')]
-        );
-        return response()->json(['message' => 'success']);
-    } catch (\Exception $e) {
-        return response()->json(['message' => $e->getMessage()], 400);
-    }
-});
-
-Route::middleware(['auth:api', 'auth.user'])->post('/deferred-order', 'App\Http\Controllers\DeferredOrderController@findOrder');
+//Deferred orders
+Route::post('/deffered-order/save', 'App\Http\Controllers\DeferredOrderController@save');
+Route::middleware(['auth:api', 'auth.user'])->post('/deferred-order/get', 'App\Http\Controllers\DeferredOrderController@findOrder');

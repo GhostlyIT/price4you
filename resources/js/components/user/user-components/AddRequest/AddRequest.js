@@ -56,30 +56,36 @@ const AddRequest = (props) => {
 
     useEffect(() => {
         let isMounted = true;
-        $.getJSON("https://api.ipify.org?format=json",function(data) {
+        if (isMounted) {
+            $.getJSON("https://api.ipify.org?format=json",function(data) {
+                if (isMounted) {
+                    axios.post('/api/deferred-order/get', {
+                            ip: data.ip
+                        },
+                        {
+                            headers: {'Authorization': 'Bearer ' + props.token}
+                        })
+                        .then(response => {
+                            if (isMounted) {
+                                const products = response.data.order
 
-                axios.post('/api/deferred-order', {
-                        ip: data.ip
-                    },
-                    {
-                        headers: {'Authorization': 'Bearer ' + props.token}
-                    })
-                    .then(response => {
-                        if (isMounted) {
+                                for (let i = 0; i < products.length; i++) {
+                                    pickProduct(products[i], products[i].type)
+                                    setLimit(limit - selectedProducts.length)
+                                    console.log('y')
+                                }
 
-                            const products = response.data.order
-                            for (let i = 0; i < products.length; i++) {
-                                pickProduct(products[i], products[i].type)
-                                setLimit(limit - selectedProducts.length)
+                                setProductsOpen(true)
+                                setProductsOpen(false)
                             }
-                            setProductsOpen(true)
-                            setProductsOpen(false)
-                        }
-                    })
-                    .catch(error => {
-                        console.log(error.response.data.message)
-                    })
-            })
+
+                        })
+                        .catch(error => {
+                            console.log(error.response.data.message)
+                        })
+                    }
+                })
+            }
 
 
         return () => { isMounted = false };

@@ -83638,29 +83638,36 @@ var AddRequest = function AddRequest(props) {
   }, []);
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(function () {
     var isMounted = true;
-    $.getJSON("https://api.ipify.org?format=json", function (data) {
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/deferred-order', {
-        ip: data.ip
-      }, {
-        headers: {
-          'Authorization': 'Bearer ' + props.token
-        }
-      }).then(function (response) {
+
+    if (isMounted) {
+      $.getJSON("https://api.ipify.org?format=json", function (data) {
         if (isMounted) {
-          var _products = response.data.order;
+          axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/deferred-order/get', {
+            ip: data.ip
+          }, {
+            headers: {
+              'Authorization': 'Bearer ' + props.token
+            }
+          }).then(function (response) {
+            if (isMounted) {
+              var _products = response.data.order;
 
-          for (var i = 0; i < _products.length; i++) {
-            pickProduct(_products[i], _products[i].type);
-            setLimit(limit - selectedProducts.length);
-          }
+              for (var i = 0; i < _products.length; i++) {
+                pickProduct(_products[i], _products[i].type);
+                setLimit(limit - selectedProducts.length);
+                console.log('y');
+              }
 
-          setProductsOpen(true);
-          setProductsOpen(false);
+              setProductsOpen(true);
+              setProductsOpen(false);
+            }
+          })["catch"](function (error) {
+            console.log(error.response.data.message);
+          });
         }
-      })["catch"](function (error) {
-        console.log(error.response.data.message);
       });
-    });
+    }
+
     return function () {
       isMounted = false;
     };

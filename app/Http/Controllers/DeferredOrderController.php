@@ -8,22 +8,37 @@ use App\Services\ProductService;
 
 class DeferredOrderController extends Controller
 {
+    public function save(Request $request)
+    {
+        try {
+            DeferredOrder::updateOrCreate(
+                ['ip' => $request->get('ip')],
+                ['products' => $request->get('products')]
+            );
+            return response()->json(['message' => 'success']);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 400);
+        }
+    }
+
     public function findOrder(Request $request)
     {
         $userIP = $request->get('ip');
         $order = DeferredOrder::where('ip', $userIP)->first();
         $products = [];
 
-        try {
-            foreach($order->products as $item) {
-                $product = new ProductService($item['product_id'], $item['product_type']);
-                $products[] = $product->getProduct();
+        if ($order !== NULL) {
+            try {
+                foreach (json_decode($order->products) as $item) {
+                    $product = new ProductService($item->product_id, $item->product_type);
+                    $products[] = $product->getProduct();
+                }
+            } catch (\Exception $e) {
+                return response()->json(['message' => $e->getMessage(), 'line' => $e->getLine()], 400);
             }
-        } catch (\Exception $e) {
-            return response()->json(['message' => $e->getMessage(), 'order' => $order, 'ip' => $userIP], 400);
-        }
 
-        $order->delete();
+            $order->delete();
+        }
 
         return response()->json(['order' => $products]);
     }

@@ -11,6 +11,7 @@ class Fertiliser extends Model
 
     protected $connection = 'mysql_ecoplant';
     protected $table = 'fertiliser';
+    protected $primaryKey = 'id_fertiliser';
 
     public function tara() {
         return $this->hasOneThrough('App\Models\Tara\ProductTara', 'App\Models\Tara\FertiliserAndTara', 'id_fertiliser', 'id_product_tara', 'id', 'id_fertiliser_tara');
