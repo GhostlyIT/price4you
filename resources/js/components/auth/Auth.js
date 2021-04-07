@@ -38,17 +38,17 @@ const Auth = () => {
 
     return (
         <>
-            <Route exact path="/">
+            <Route path="/">
                 <Redirect to="/login" />
             </Route>
             <Route path="/register">
-                <Register socials={getSocials}/>
+                <Register socials={getSocials} />
             </Route>
             <Route path="/login">
-                <Login socials={getSocials}/>
+                <Login socials={getSocials} />
             </Route>
             <Route path="/register-company">
-                <RegisterCompany socials={getSocials}/>
+                <RegisterCompany socials={getSocials} />
             </Route>
             <Route path="/reset-password/:token">
                 <ResetPassword/>

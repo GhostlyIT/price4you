@@ -20,10 +20,10 @@ import TermsOfUse from '../docs/terms_of_use.pdf'
 const Main = (props) => {
     const [isMenuOpen, setMenuOpen] = useState(false)
 
-    let userPage = "/user", sideBlock = <UserSideBlock />
+    let userPage = <User />, sideBlock = <UserSideBlock />
 
     if (props.loggedIn && props.user.account_type === 'company') {
-        userPage = "/company"
+        userPage = <Company />
         sideBlock = <CompanySideBlock />
     }
 
@@ -38,13 +38,7 @@ const Main = (props) => {
                             <div className="col-lg-10 col-sm-12">
                                 <div className="main-window__inner">
                                     <Route path="/">
-                                        {props.loggedIn ? <Redirect to={userPage} /> : <Auth />}
-                                    </Route>
-                                    <Route path="/user">
-                                        {props.loggedIn ? <User /> : <Redirect to="/login"/> }
-                                    </Route>
-                                    <Route path="/company">
-                                        {props.loggedIn ? <Company /> : <Redirect to="/login"/> }
+                                        {props.loggedIn ? userPage : <Auth />}
                                     </Route>
                                     <Route path="/faq">
                                         <Faq />

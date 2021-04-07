@@ -14,8 +14,12 @@ import MobileChat from "../chat/MobileChat";
 
 const User = (props) => {
     const match = useRouteMatch()
+    match.url = '/user'
     return(
         <>
+            <Route path="/login">
+                <Redirect to="/user" />
+            </Route>
             <Route exact path={match.url}>
                 <Redirect to={`${match.url}/requests`} />
             </Route>
