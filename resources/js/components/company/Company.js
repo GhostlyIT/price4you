@@ -13,6 +13,9 @@ const Company = () => {
     match.url = '/company'
     return(
         <>
+            <Route exact path="/">
+                <Redirect to="/company" />
+            </Route>
             <Route path="/login">
                 <Redirect to="/company" />
             </Route>

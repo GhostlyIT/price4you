@@ -17,6 +17,9 @@ const User = (props) => {
     match.url = '/user'
     return(
         <>
+            <Route exact path="/">
+                <Redirect to="/user" />
+            </Route>
             <Route path="/login">
                 <Redirect to="/user" />
             </Route>
