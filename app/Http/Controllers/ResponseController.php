@@ -70,7 +70,7 @@ class ResponseController extends Controller
             $requests = $user->requests()->get();
             foreach($requests as $request) {
                 $responsesCount = $request->products()->withCount(['responses' => function ($q) {
-                    $q->where('company_responses.status', '=', 'open');
+                    $q->where('company_responses.status', '=', 'open')->orWhere('company_responses.status', '=', 'awaits_for_closing');
                 }])->get();
 
                 foreach($responsesCount as $responseCount) {
@@ -106,7 +106,7 @@ class ResponseController extends Controller
                         $response['product_info'] = @$product;
                         $response['request'] = @$product->request;
                         unset($response['product']);
-                        $responsesArr[] = $response;
+                        $responses[] = $response;
                     }
                 }
 
@@ -217,7 +217,11 @@ class ResponseController extends Controller
         $responseId = $request->get('response_id');
 
         try {
+            $response = CompanyResponses::find($responseId);
+            $product = $response->product;
             $this->changeStatus($responseId, 'closed');
+            $product->status = 'closed';
+            $product->save();
             return response()->json(['message' => 'Сделка закрыта', 'status' => 'success'],200);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);

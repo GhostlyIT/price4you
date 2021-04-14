@@ -48,29 +48,36 @@ const UserRequests = (props) => {
 
     const renderRequests = () => {
         return requests.map(request => {
-            let responsesAmount = 0
-            for (let i = 0; i < request.products.length; i++) {
-                responsesAmount += parseInt(request.products[i].responses.length)
-            }
-            const date = new Date(request.created_at);
-            return (
-                <div key={request.id} className="col-xs-12 col-lg-4 mt-4">
-                    <span onClick={() => setSelectedRequest(request)} className={`request-picker d-flex flex-column position-relative ${request == selectedRequest ? 'selected' : ''}`}>
+            if (request.products.length > 0) {
+                let responsesAmount = 0
+                for (let i = 0; i < request.products.length; i++) {
+                    responsesAmount += parseInt(request.products[i].responses.length)
+                }
+                const date = new Date(request.created_at);
+                return (
+                    <div key={request.id} className="col-xs-12 col-lg-4 mt-4">
+                    <span onClick={() => setSelectedRequest(request)}
+                          className={`request-picker d-flex flex-column position-relative ${request == selectedRequest ? 'selected' : ''}`}>
                         <span className="request-picker__title">{request.title}</span>
-                        <span className="request-picker__title">№ {request.id} от {date.getDate()} {getMonthOnRus(date.getMonth())} {date.getFullYear()}</span>
+                        <span
+                            className="request-picker__title">№ {request.id} от {date.getDate()} {getMonthOnRus(date.getMonth())} {date.getFullYear()}</span>
 
-                            <div className="d-flex position-absolute align-items-center" style={{top: '-12px',
-                                right: '-7px'}}>
+                            <div className="d-flex position-absolute align-items-center" style={{
+                                top: '-12px',
+                                right: '-7px'
+                            }}>
                                 {responsesAmount > 0 &&
-                                    <span className="amount-badge font-weight-bold">
-                                        <span>1</span>
+                                <span className="amount-badge font-weight-bold">
+                                        <span>{responsesAmount}</span>
                                     </span>
                                 }
-                                <button onClick={() => deleteRequest(request.id)} type="button" className="remove-btn ml-2"></button>
+                                <button onClick={() => deleteRequest(request.id)} type="button"
+                                        className="remove-btn ml-2"></button>
                             </div>
                     </span>
-                </div>
-            )
+                    </div>
+                )
+            }
         })
     }
 

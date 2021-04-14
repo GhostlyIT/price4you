@@ -85183,40 +85183,42 @@ var UserRequests = function UserRequests(props) {
 
   var renderRequests = function renderRequests() {
     return requests.map(function (request) {
-      var responsesAmount = 0;
+      if (request.products.length > 0) {
+        var responsesAmount = 0;
 
-      for (var i = 0; i < request.products.length; i++) {
-        responsesAmount += parseInt(request.products[i].responses.length);
-      }
-
-      var date = new Date(request.created_at);
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        key: request.id,
-        className: "col-xs-12 col-lg-4 mt-4"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        onClick: function onClick() {
-          return setSelectedRequest(request);
-        },
-        className: "request-picker d-flex flex-column position-relative ".concat(request == selectedRequest ? 'selected' : '')
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "request-picker__title"
-      }, request.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "request-picker__title"
-      }, "\u2116 ", request.id, " \u043E\u0442 ", date.getDate(), " ", Object(_helpers_dateConverter__WEBPACK_IMPORTED_MODULE_6__["getMonthOnRus"])(date.getMonth()), " ", date.getFullYear()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "d-flex position-absolute align-items-center",
-        style: {
-          top: '-12px',
-          right: '-7px'
+        for (var i = 0; i < request.products.length; i++) {
+          responsesAmount += parseInt(request.products[i].responses.length);
         }
-      }, responsesAmount > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "amount-badge font-weight-bold"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "1")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        onClick: function onClick() {
-          return deleteRequest(request.id);
-        },
-        type: "button",
-        className: "remove-btn ml-2"
-      }))));
+
+        var date = new Date(request.created_at);
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          key: request.id,
+          className: "col-xs-12 col-lg-4 mt-4"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          onClick: function onClick() {
+            return setSelectedRequest(request);
+          },
+          className: "request-picker d-flex flex-column position-relative ".concat(request == selectedRequest ? 'selected' : '')
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "request-picker__title"
+        }, request.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "request-picker__title"
+        }, "\u2116 ", request.id, " \u043E\u0442 ", date.getDate(), " ", Object(_helpers_dateConverter__WEBPACK_IMPORTED_MODULE_6__["getMonthOnRus"])(date.getMonth()), " ", date.getFullYear()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+          className: "d-flex position-absolute align-items-center",
+          style: {
+            top: '-12px',
+            right: '-7px'
+          }
+        }, responsesAmount > 0 && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          className: "amount-badge font-weight-bold"
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, responsesAmount)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+          onClick: function onClick() {
+            return deleteRequest(request.id);
+          },
+          type: "button",
+          className: "remove-btn ml-2"
+        }))));
+      }
     });
   };
 

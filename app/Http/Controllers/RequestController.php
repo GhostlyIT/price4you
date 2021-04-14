@@ -107,12 +107,15 @@ class RequestController extends Controller
             $user = Auth::user();
             $requests = $user->requests()->with([
                 'region',
-                'products',
-                'products.product',
-                'products.fertiliser',
-                'products.seed',
-                'products.responses' => function ($q) {
-                    $q->where('status', 'open');
+                'products' => function ($q) {
+                    $q->where('status', 'open')->with([
+                        'product',
+                        'fertiliser',
+                        'seed',
+                        'responses' => function ($q) {
+                            $q->where('status', 'open');
+                        }
+                    ]);
                 }
             ])->get();
             return response()->json(['requests' => $requests, 'status' => 'success'],200);
@@ -211,9 +214,7 @@ class RequestController extends Controller
     public function delete($requestId) {
         try {
             $request = UserRequests::findOrFail($requestId);
-            $request->products()->delete(); //TODO: переделать через Events
-            $request->responses()->delete();
-            $request->delete();
+            $request->products()->update(['status' => 'closed']);
             return response()->json(['message' => 'Запрос успешно удален', 'status' => 'success'],200);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 'error'], 400);
@@ -228,5 +229,16 @@ class RequestController extends Controller
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 'error']);
         }
+    }
+
+    public function getArchive() {
+        $user = Auth::user();
+        $requests = $user->requests()->with([
+            'region',
+            'products' => function ($q) {
+                $q->where('status', 'closed')->with('product', 'fertiliser', 'seed');
+            },
+        ])->get();
+        return response()->json(['archive_requests' => $requests]);
     }
 }
