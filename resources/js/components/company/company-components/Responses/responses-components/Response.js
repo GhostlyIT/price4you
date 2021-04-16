@@ -14,11 +14,11 @@ const Response = ({response, showContactData, closeDeal}) => {
 
         return (
             <div key={response.id} className="col-12 col-md-4 request-info d-flex flex-column">
-            <span className="request-picker d-flex justify-content-between align-items-center">
-                <span className="request-picker__title">{response.product_info[type].name}</span>
-                <span
-                    className="request-picker__title">{response.product_info.value} {response.product_info.unit}</span>
-            </span>
+                <span className="request-picker d-flex justify-content-between align-items-center">
+                    <span className="request-picker__title">{response.product_info[type].name}</span>
+                    <span
+                        className="request-picker__title">{response.product_info.value} {response.product_info.unit}</span>
+                </span>
 
                 <div className="request-info__title position-relative mt-5">
                     <hr/>
@@ -62,7 +62,6 @@ const Response = ({response, showContactData, closeDeal}) => {
             </div>
         )
     } else {
-        console.log(response)
         return (<div></div>)
     }
 }

@@ -11,6 +11,7 @@ import Chat from "../chat/Chat";
 import Profile from "./user-components/Profile/Profile";
 import MediaQuery from "react-responsive/src";
 import MobileChat from "../chat/MobileChat";
+import Archive from "./user-components/Archive/Archive";
 
 const User = (props) => {
     const match = useRouteMatch()
@@ -48,6 +49,9 @@ const User = (props) => {
             </Route>
             <Route path={`${match.url}/info`}>
                 <Profile />
+            </Route>
+            <Route path={`${match.url}/archive`}>
+                <Archive/>
             </Route>
         </>
     )

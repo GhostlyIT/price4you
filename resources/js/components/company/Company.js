@@ -7,6 +7,7 @@ import Options from "./company-components/Options/Options"
 import Profile from "./company-components/Profile/Profile"
 import MediaQuery from "react-responsive/src";
 import MobileChat from "../chat/MobileChat";
+import Archive from "./company-components/Archive/Archive";
 
 const Company = () => {
     const match = useRouteMatch()
@@ -41,6 +42,9 @@ const Company = () => {
             </Route>
             <Route path={`${match.url}/info`}>
                 <Profile />
+            </Route>
+            <Route path={`${match.url}/archive`}>
+                <Archive />
             </Route>
         </>
     )

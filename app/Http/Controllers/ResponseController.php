@@ -240,6 +240,35 @@ class ResponseController extends Controller
         }
     }
 
+    public function getArchive()
+    {
+        $user = Auth::user();
+        $company = $user->company;
+
+        try {
+            $responsesArr = [];
+            $responses = $company
+                ->responses()
+                ->where('status', 'rejected')
+                ->orWhere('status', 'closed')
+                ->with(['product', 'product.request'])
+                ->orderBy('id', 'desc')
+                ->get();
+
+            foreach($responses as $response) {
+                $product = $response->product()->with('seed', 'product', 'fertiliser')->first();
+                $response['product_info'] = @$product;
+                $response['request'] = @$product->request;
+                unset($response['product']);
+                $responsesArr[] = $response;
+            }
+
+            return response()->json(['responses' => $responsesArr, 'status' => 'success'],200);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);
+        }
+    }
+
 
 
 

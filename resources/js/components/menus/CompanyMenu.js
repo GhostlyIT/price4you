@@ -8,13 +8,9 @@ import {connect} from "react-redux";
 import axios from "axios";
 
 const CompanyMenu = props => {
-    const [activeLink, setActiveLink] = useState(1),
-        [unreadMessagesAmount, setUnreadMessagesAmount] = useState(0),
+    const [unreadMessagesAmount, setUnreadMessagesAmount] = useState(0),
         [acceptedResponsesAmount, setAcceptedResponsesAmount] = useState(0)
 
-    useEffect(() => {
-        props.updateComponent()
-    }, [activeLink])
 
     useEffect(() => {
         axios.get('/api/message/count/all', {
@@ -40,19 +36,18 @@ const CompanyMenu = props => {
         })
     }, [props.updateVal])
 
-    useEffect(() => {
-        props.updateComponent()
-    }, [activeLink])
 
-    const changeLink = (linkNumber) => {
-        setActiveLink(linkNumber)
+    const changeLink = (e) => {
+        props.updateComponent()
+        $('.sideblock-link').removeClass('active')
+        e.currentTarget.classList.add('active')
         props.isMobile && props.closeMenuFunc()
     }
 
     return (
         <div className="user-sideblock__links d-flex flex-column justify-content-between">
-            <Link onClick={() => changeLink('1')} className={window.location.pathname === '/company/requests' || activeLink === 1 ? 'active' : null} to="/company/requests">Запросы</Link>
-            <Link onClick={() => changeLink('2')} className={`d-flex ${window.location.pathname === '/company/responses' ? 'active' : null}`} to="/company/responses">
+            <Link onClick={e => changeLink(e)} className="sideblock-link" to="/company/requests">Запросы</Link>
+            <Link onClick={e => changeLink(e)} className="sideblock-link" to="/company/responses">
                 Отклики
                 {acceptedResponsesAmount > 0 &&
                     <span className="amount-badge font-weight-bold ml-2">
@@ -60,7 +55,7 @@ const CompanyMenu = props => {
                     </span>
                 }
             </Link>
-            <Link onClick={() => changeLink('3')} className={`d-flex ${window.location.pathname === '/company/messages' ? 'active' : null}`} to="/company/messages">
+            <Link onClick={e => changeLink(e)} className="sideblock-link" to="/company/messages">
                 Сообщения
                 {unreadMessagesAmount > 0 &&
                     <span className="amount-badge font-weight-bold ml-2">
@@ -68,11 +63,9 @@ const CompanyMenu = props => {
                     </span>
                 }
             </Link>
-            {/*<Link onClick={() => changeLink('4')} className={window.location.pathname === '/company/add-product' ? 'active' : null} to="/company/add-product">Добавить товар</Link>*/}
-            {/*<Link onClick={() => changeLink('5')} className={window.location.pathname === '/company/employee-info' ? 'active' : null} to="/company/employee-info">Мои данные</Link>*/}
-            <Link onClick={() => changeLink('6')} className={window.location.pathname === '/company/info' ? 'active' : null} to="/company/info">Данные компании</Link>
-            <Link onClick={() => changeLink('7')} className={window.location.pathname === '/company/settings' ? 'active' : null} to="/company/settings">Настройки</Link>
-            <Link onClick={() => changeLink('8')} className={window.location.pathname === '/faq/how-works' ? 'active' : null} to="/faq/how-works">Как работает сервис</Link>
+            <Link onClick={e => changeLink(e)} className="sideblock-link" to="/company/info">Данные компании</Link>
+            <Link onClick={e => changeLink(e)} className="sideblock-link" to="/company/settings">Настройки</Link>
+            <Link onClick={e => changeLink(e)} className="sideblock-link" to="/faq/how-works">Как работает сервис</Link>
             <button onClick={() => props.exit()} type="button">Выйти</button>
         </div>
     )

@@ -65,6 +65,7 @@ Route::middleware(['auth:api', 'auth.user'])->get('request/get-for-user', 'App\H
 Route::middleware(['auth:api', 'auth.company'])->get('request/get-for-company', 'App\Http\Controllers\RequestController@getForCompany');
 Route::middleware(['auth:api', 'auth.user', 'request.user'])->delete('request/{requestId}/delete', 'App\Http\Controllers\RequestController@delete');
 Route::middleware('auth:api')->get('request/available-limit', 'App\Http\Controllers\RequestController@getAvailableLimit');
+Route::middleware(['auth:api', 'auth.user'])->get('request/archive', 'App\Http\Controllers\RequestController@getArchive');
 
 
 //Responses
@@ -77,7 +78,7 @@ Route::middleware(['auth:api', 'auth.user', 'response.user'])->post('response/ac
 Route::middleware(['auth:api', 'auth.company', 'response.company'])->post('response/send-to-close', 'App\Http\Controllers\ResponseController@sendToCLose');
 Route::middleware(['auth:api', 'auth.user', 'response.user'])->post('response/close', 'App\Http\Controllers\ResponseController@close');
 Route::middleware(['auth:api', 'auth.company'])->get('response/accepted/amount', 'App\Http\Controllers\ResponseController@getAcceptedResponsesAmount');
-
+Route::middleware(['auth:api', 'auth.company'])->get('response/archive', 'App\Http\Controllers\ResponseController@getArchive');
 
 //Messages
 Route::middleware('auth:api')->post('message/send', 'App\Http\Controllers\MessageController@send');

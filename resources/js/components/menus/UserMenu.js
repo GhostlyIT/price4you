@@ -8,20 +8,19 @@ import updateAction from "../../store/actions/updateAction";
 import {connect} from "react-redux"
 
 const UserMenu = props => {
-    const [activeLink, setActiveLink] = useState(2),
-        [responsesAmount, setResponsesAmount] = useState(0),
+    const [responsesAmount, setResponsesAmount] = useState(0),
         [unreadMessagesAmount, setUnreadMessagesAmount] = useState(0)
 
     useEffect(() => {
         axios.get('/api/response/count/all', {
             headers: {'Authorization': 'Bearer ' + props.token}
         })
-            .then(response => {
-                setResponsesAmount(response.data.responses_count)
-            })
-            .catch(error => {
-                console.log(error.response.data.message)
-            })
+        .then(response => {
+            setResponsesAmount(response.data.responses_count)
+        })
+        .catch(error => {
+            console.log(error.response.data.message)
+        })
     }, [props.updateVal])
 
     useEffect(() => {
@@ -36,20 +35,18 @@ const UserMenu = props => {
             })
     }, [props.updateVal])
 
-    useEffect(() => {
+    const changeLink = (e) => {
         props.updateComponent()
-    }, [activeLink])
-
-    const changeLink = (linkNumber) => {
-        setActiveLink(linkNumber)
+        $('.sideblock-link').removeClass('active')
+        e.currentTarget.classList.add('active')
         props.isMobile && props.closeMenuFunc()
     }
 
     return (
         <div className="user-sideblock__links d-flex flex-column justify-content-between">
-            <Link onClick={() => changeLink('1')} className={window.location.pathname === '/user/add-request' ? 'active' : null} to="/user/add-request">Добавить запрос</Link>
-            <Link onClick={() => changeLink('2')} className={window.location.pathname === '/user/requests' || activeLink === 2 ? 'active' : null} to="/user/requests">Мои запросы</Link>
-            <Link onClick={() => changeLink('3')} className={`d-flex ${window.location.pathname === '/user/offers' ? 'active' : null}`} to="/user/offers">
+            <Link onClick={e => changeLink(e)} className="sideblock-link" to="/user/add-request">Добавить запрос</Link>
+            <Link onClick={e => changeLink(e)} className="sideblock-link" to="/user/requests">Мои запросы</Link>
+            <Link onClick={e => changeLink(e)} className="sideblock-link" to="/user/offers">
                 Предложения
                 {responsesAmount > 0 &&
                     <span className="amount-badge font-weight-bold ml-2">
@@ -57,7 +54,7 @@ const UserMenu = props => {
                     </span>
                 }
             </Link>
-            <Link onClick={() => changeLink('4')} className={`d-flex ${window.location.pathname === '/user/messages' ? 'active' : null}`} to="/user/messages">
+            <Link onClick={e => changeLink(e)} className="sideblock-link" to="/user/messages">
                 Сообщения
                 {unreadMessagesAmount > 0 &&
                     <span className="amount-badge font-weight-bold ml-2">
@@ -65,9 +62,10 @@ const UserMenu = props => {
                     </span>
                 }
             </Link>
-            <Link onClick={() => changeLink('5')} className={window.location.pathname === '/user/info' ? 'active' : null} to="/user/info">Мои данные</Link>
-            <Link onClick={() => changeLink('6')} className={window.location.pathname === '/user/settings' ? 'active' : null} to="/user/settings">Настройки</Link>
-            <Link onClick={() => changeLink('7')} className={window.location.pathname === '/faq/how-works' ? 'active' : null} to="/faq/how-works">Как работает сервис</Link>
+            <Link onClick={e => changeLink(e)} className="sideblock-link" to="/user/info">Мои данные</Link>
+            <Link onClick={e => changeLink(e)} className="sideblock-link" to="/user/settings">Настройки</Link>
+            <Link onClick={e => changeLink(e)} className="sideblock-link" to="/user/archive">Архив</Link>
+            <Link onClick={e => changeLink(e)} className="sideblock-link" to="/faq/how-works">Как работает сервис</Link>
             <button onClick={() => props.exit()} type="button">Выйти</button>
         </div>
     )
