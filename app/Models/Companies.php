@@ -22,7 +22,7 @@ class Companies extends Model
     }
 
     public function responses() {
-        return $this->hasMany('App\Models\CompanyResponses', 'company_id');
+        return $this->hasMany('App\Models\CompanyResponses', 'company_id', 'id');
     }
 
     public function manufacturesMiddleware() {

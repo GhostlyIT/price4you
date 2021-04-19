@@ -242,15 +242,17 @@ class ResponseController extends Controller
 
     public function getArchive()
     {
-        $user = Auth::user();
-        $company = $user->company;
-
         try {
+            $user = Auth::user();
+            $company = $user->company;
+
             $responsesArr = [];
             $responses = $company
                 ->responses()
-                ->where('status', 'rejected')
-                ->orWhere('status', 'closed')
+                ->where('status', 'closed')
+                ->orWhere(function($q) use ($company) {
+                    $q->where('status', 'rejected')->where('company_id', $company->id);
+                })
                 ->with(['product', 'product.request'])
                 ->orderBy('id', 'desc')
                 ->get();
@@ -263,7 +265,7 @@ class ResponseController extends Controller
                 $responsesArr[] = $response;
             }
 
-            return response()->json(['responses' => $responsesArr, 'status' => 'success'],200);
+            return response()->json(['responses' => $responses, 'status' => 'success'],200);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);
         }
