@@ -65,6 +65,7 @@ const CompanyMenu = props => {
             </Link>
             <Link onClick={e => changeLink(e)} className="sideblock-link" to="/company/info">Данные компании</Link>
             <Link onClick={e => changeLink(e)} className="sideblock-link" to="/company/settings">Настройки</Link>
+            <Link onClick={e => changeLink(e)} className="sideblock-link" to="/company/archive">Архив откликов</Link>
             <Link onClick={e => changeLink(e)} className="sideblock-link" to="/faq/how-works">Как работает сервис</Link>
             <button onClick={() => props.exit()} type="button">Выйти</button>
         </div>

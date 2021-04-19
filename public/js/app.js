@@ -83195,6 +83195,12 @@ var CompanyMenu = function CompanyMenu(props) {
       return changeLink(e);
     },
     className: "sideblock-link",
+    to: "/company/archive"
+  }, "\u0410\u0440\u0445\u0438\u0432 \u043E\u0442\u043A\u043B\u0438\u043A\u043E\u0432"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    onClick: function onClick(e) {
+      return changeLink(e);
+    },
+    className: "sideblock-link",
     to: "/faq/how-works"
   }, "\u041A\u0430\u043A \u0440\u0430\u0431\u043E\u0442\u0430\u0435\u0442 \u0441\u0435\u0440\u0432\u0438\u0441"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: function onClick() {
