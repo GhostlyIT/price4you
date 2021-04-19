@@ -23,7 +23,7 @@ const Archive = ({token, updateVal, updateComponent}) => {
             <>
                 <div className="row requests-wrapper">
                     <div className="d-flex justify-content-center col-12">
-                        <h3>Архив отлкиков</h3>
+                        <h3>Архив откликов</h3>
                     </div>
                     {
                         responses.map(response => {
