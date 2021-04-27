@@ -11021,6 +11021,22 @@ img {
   background-color: #F2F4F8;
 }
 
+.secondary-btn.archive-btn {
+  min-width: 10%;
+}
+
+.secondary-btn.archive-btn.active {
+  color: #fff;
+  background-color: #4525F2;
+  padding: 10px 20px;
+  border-radius: 58px;
+  -webkit-border-radius: 58px;
+  -moz-border-radius: 58px;
+  -ms-border-radius: 58px;
+  -o-border-radius: 58px;
+  box-shadow: 0 3px 5px 0 rgba(174, 174, 174, 0.5);
+}
+
 .danger-btn {
   background-color: #dc3545;
 }
@@ -11294,6 +11310,14 @@ img {
 }
 
 @media screen and (max-width: 1023px) {
+  .archive-filter {
+    flex-direction: column;
+  }
+
+  .archive-filter button {
+    margin-top: 20px;
+  }
+
   .main-window__inner {
     padding: 20px;
   }
@@ -11576,6 +11600,7 @@ img {
   padding: 12px 16px;
   border-bottom: 1px solid #E5E5E5;
   font-weight: 600;
+  display: flex;
 }
 
 .user-sideblock__links a.active {

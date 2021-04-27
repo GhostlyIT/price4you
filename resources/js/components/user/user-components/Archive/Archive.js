@@ -7,10 +7,13 @@ import axios from "axios";
 import {showNotification} from "../../../../helpers/notifications";
 import {getMonthOnRus} from "../../../../helpers/dateConverter";
 import {productTypeConverter} from "../../../../helpers/productTypeConverter";
+import ConfirmModal from "../../../common/modals/ConfirmModal";
 
 const Archive = (props) => {
     const [requests, setRequests] = useState([]),
-        [selectedRequest, setSelectedRequest] = useState(false)
+        [selectedRequest, setSelectedRequest] = useState(false),
+        [isConfirmModalOpen, setConfirmModalOpen] = useState(false),
+        [selectedForRepeat, setSelectedForRepeat] = useState(null)
 
     useEffect(() => {
         let isMounted = true;
@@ -27,21 +30,34 @@ const Archive = (props) => {
         return () => { isMounted = false };
     },[props.updateVal])
 
+    const openModal = (id) => {
+        setSelectedForRepeat(id)
+        setConfirmModalOpen(true)
+    }
+
     const renderRequests = () => {
         return requests.map(request => {
             if (request.products.length > 0) {
                 const date = new Date(request.created_at);
                 return (
-                    <div key={request.id} className="col-xs-12 col-lg-4 mt-4">
-                    <span onClick={() => setSelectedRequest(request)}
-                          className={`request-picker d-flex flex-column position-relative ${request == selectedRequest ? 'selected' : ''}`}>
-                        <span className="request-picker__title">{request.title}</span>
-                        <span className="request-picker__title">№ {request.id} от {date.getDate()} {getMonthOnRus(date.getMonth())} {date.getFullYear()}</span>
-                    </span>
+                    <div key={request.id} className="col-xs-12 col-lg-4 mt-4 d-flex flex-column align-items-center flex-column">
+                        <span onClick={() => setSelectedRequest(request)}
+                              className={`request-picker d-flex flex-column position-relative ${request == selectedRequest ? 'selected' : ''}`}>
+                            <span className="request-picker__title">{request.title}</span>
+                            <span className="request-picker__title">№ {request.id} от {date.getDate()} {getMonthOnRus(date.getMonth())} {date.getFullYear()}</span>
+                        </span>
                     </div>
                 )
             }
         })
+    }
+
+    const repeat = id => {
+        axios.patch(`/api/request/${id}/repeat`, {}, {
+            headers: {'Authorization': 'Bearer ' + props.token}
+        })
+        .then(() => showNotification('Повтор запроса', 'Ваш запрос снова активен', 'success'))
+        .catch(() => showNotification('Повтор запроса', 'Произошла ошибка', 'danger'))
     }
 
     const requestInfo = () => {
@@ -62,8 +78,8 @@ const Archive = (props) => {
                         }
 
                         return (
-                            <div key={'wrapper-' + product.id} className="col-xs-12 col-lg-4 mt-3">
-                                <div key={product.id} className="d-flex justify-content-between align-items-center request-info__product position-relative">
+                            <div key={'wrapper-' + product.id} className="col-xs-12 col-lg-4 mt-3 d-flex justify-content-center align-items-center flex-column">
+                                <div key={product.id} className="w-100 d-flex justify-content-between align-items-center request-info__product position-relative">
 
                                     <span className="request-info__product-title d-flex flex-column">
                                         {product[type].name}
@@ -71,6 +87,8 @@ const Archive = (props) => {
                                     </span>
                                     <span>{product.value} {product.unit}</span>
                                 </div>
+
+                                <button onClick={() => openModal(product.id)} type="button" className="main-btn mt-2">Повторить</button>
                             </div>
                         )
                     })
@@ -125,6 +143,21 @@ const Archive = (props) => {
             </div>
 
             { selectedRequest ? requestInfo() : null }
+
+            <ConfirmModal
+                isOpen={isConfirmModalOpen}
+                closeModalFunc={() => setConfirmModalOpen(false)}
+                modalTitle="Повторить запрос"
+                confirmFunc={() => {
+                    repeat(selectedForRepeat)
+                    setSelectedRequest(false)
+                    props.updateComponent()
+                }}
+            >
+                <p>
+                    Вы уверены, что хотите повторить запрос?
+                </p>
+            </ConfirmModal>
         </div>
     )
 }

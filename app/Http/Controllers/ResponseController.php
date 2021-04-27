@@ -240,22 +240,31 @@ class ResponseController extends Controller
         }
     }
 
-    public function getArchive()
+    public function getArchive(string $status)
     {
         try {
             $user = Auth::user();
             $company = $user->company;
 
             $responsesArr = [];
-            $responses = $company
-                ->responses()
-                ->where('status', 'closed')
-                ->orWhere(function($q) use ($company) {
-                    $q->where('status', 'rejected')->where('company_id', $company->id);
-                })
-                ->with(['product', 'product.request'])
-                ->orderBy('id', 'desc')
-                ->get();
+            if ($status === 'all') {
+                $responses = $company
+                    ->responses()
+                    ->where('status', 'closed')
+                    ->orWhere(function ($q) use ($company) {
+                        $q->where('status', 'rejected')->where('company_id', $company->id);
+                    })
+                    ->with(['product', 'product.request'])
+                    ->orderBy('id', 'desc')
+                    ->get();
+            } else {
+                $responses = $company
+                    ->responses()
+                    ->where('status', $status)
+                    ->with(['product', 'product.request'])
+                    ->orderBy('id', 'desc')
+                    ->get();
+            }
 
             foreach($responses as $response) {
                 $product = $response->product()->with('seed', 'product', 'fertiliser')->first();
@@ -265,7 +274,7 @@ class ResponseController extends Controller
                 $responsesArr[] = $response;
             }
 
-            return response()->json(['responses' => $responses, 'status' => 'success'],200);
+            return response()->json(['responses' => $responsesArr, 'status' => 'success'],200);
         } catch (\Exception $e) {
             return response()->json(['message' => $e->getMessage(), 'status' => 'error'],400);
         }

@@ -81062,6 +81062,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _store_actions_updateAction__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../../store/actions/updateAction */ "./resources/js/store/actions/updateAction.js");
 /* harmony import */ var _helpers_priceNormalizer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../helpers/priceNormalizer */ "./resources/js/helpers/priceNormalizer.js");
+/* harmony import */ var _archive_queries__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./archive-queries */ "./resources/js/components/company/company-components/Archive/archive-queries.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -81081,6 +81082,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var Archive = function Archive(_ref) {
   var token = _ref.token,
       updateVal = _ref.updateVal,
@@ -81092,7 +81094,7 @@ var Archive = function Archive(_ref) {
       setResponses = _useState2[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/response/archive', {
+    axios__WEBPACK_IMPORTED_MODULE_1___default.a.get('/api/response/archive/all', {
       headers: {
         Authorization: 'Bearer ' + token
       }
@@ -81103,71 +81105,91 @@ var Archive = function Archive(_ref) {
     });
   }, [updateVal]);
 
-  if (responses.length > 0) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "row requests-wrapper"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "d-flex justify-content-center col-12"
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "\u0410\u0440\u0445\u0438\u0432 \u043E\u0442\u043A\u043B\u0438\u043A\u043E\u0432")), responses.map(function (response) {
-      if (response.product_info) {
-        var type = response.product_info.product_type;
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          key: response.id,
-          className: "col-12 col-md-4 request-info d-flex flex-column"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "request-picker d-flex justify-content-between align-items-center"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "request-picker__title"
-        }, response.product_info[type].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "request-picker__title"
-        }, response.product_info.value, " ", response.product_info.unit)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "request-info__title position-relative mt-5"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "position-absolute",
-          style: {
-            top: "15px"
-          }
-        }, "\u041F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "d-flex align-items-center flex-wrap"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "mr-2 font-weight-bold"
-        }, "\u0421\u043F\u043E\u0441\u043E\u0431 \u043E\u043F\u043B\u0430\u0442\u044B:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "request-info__parameter"
-        }, response.request.payment_method)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "d-flex align-items-center flex-wrap mt-3"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "mr-2 font-weight-bold"
-        }, "\u0421\u043F\u043E\u0441\u043E\u0431 \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0438:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "request-info__parameter"
-        }, response.request.delivery_method)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "d-flex align-items-center flex-wrap mt-3"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "mr-2 font-weight-bold"
-        }, "\u0410\u0434\u0440\u0435\u0441 \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0438:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "request-info__parameter"
-        }, response.request.delivery_address)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "d-flex align-items-center flex-wrap mt-3"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "mr-2 font-weight-bold"
-        }, "\u041A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439 \u043A \u0437\u0430\u044F\u0432\u043A\u0435:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "request-info__parameter"
-        }, response.request.comment)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "d-flex align-items-center flex-wrap mt-3"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "mr-2 font-weight-bold"
-        }, "\u0412\u0430\u0448 \u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439 \u0432 \u043E\u0442\u043A\u043B\u0438\u043A\u0435:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "request-info__parameter"
-        }, response.comment)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-          className: "d-flex align-items-center flex-wrap mt-3 mb-4"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "mr-2 font-weight-bold"
-        }, "\u0418\u0442\u043E\u0433\u043E\u0432\u0430\u044F \u0446\u0435\u043D\u0430:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-          className: "request-info__parameter"
-        }, Object(_helpers_priceNormalizer__WEBPACK_IMPORTED_MODULE_5__["normalizePrice"])(response.price * response.product_info.value), " \u0440\u0443\u0431.")));
-      }
-    })));
-  }
+  var renderResponses = function renderResponses() {
+    if (responses.length > 0) {
+      return responses.map(function (response) {
+        if (response.product_info) {
+          var type = response.product_info.product_type;
+          return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            key: response.id,
+            className: "col-12 col-md-4 request-info d-flex flex-column"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+            className: "request-picker d-flex justify-content-between align-items-center"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+            className: "request-picker__title"
+          }, response.product_info[type].name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+            className: "request-picker__title"
+          }, response.product_info.value, " ", response.product_info.unit)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "request-info__title position-relative mt-5"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+            className: "position-absolute",
+            style: {
+              top: "15px"
+            }
+          }, "\u041F\u0430\u0440\u0430\u043C\u0435\u0442\u0440\u044B")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "d-flex align-items-center flex-wrap"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+            className: "mr-2 font-weight-bold"
+          }, "\u0421\u043F\u043E\u0441\u043E\u0431 \u043E\u043F\u043B\u0430\u0442\u044B:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+            className: "request-info__parameter"
+          }, response.request.payment_method)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "d-flex align-items-center flex-wrap mt-3"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+            className: "mr-2 font-weight-bold"
+          }, "\u0421\u043F\u043E\u0441\u043E\u0431 \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0438:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+            className: "request-info__parameter"
+          }, response.request.delivery_method)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "d-flex align-items-center flex-wrap mt-3"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+            className: "mr-2 font-weight-bold"
+          }, "\u0410\u0434\u0440\u0435\u0441 \u0434\u043E\u0441\u0442\u0430\u0432\u043A\u0438:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+            className: "request-info__parameter"
+          }, response.request.delivery_address)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "d-flex align-items-center flex-wrap mt-3"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+            className: "mr-2 font-weight-bold"
+          }, "\u041A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439 \u043A \u0437\u0430\u044F\u0432\u043A\u0435:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+            className: "request-info__parameter"
+          }, response.request.comment)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "d-flex align-items-center flex-wrap mt-3"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+            className: "mr-2 font-weight-bold"
+          }, "\u0412\u0430\u0448 \u043A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439 \u0432 \u043E\u0442\u043A\u043B\u0438\u043A\u0435:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+            className: "request-info__parameter"
+          }, response.comment)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "d-flex align-items-center flex-wrap mt-3 mb-4"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+            className: "mr-2 font-weight-bold"
+          }, "\u0418\u0442\u043E\u0433\u043E\u0432\u0430\u044F \u0446\u0435\u043D\u0430:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+            className: "request-info__parameter"
+          }, Object(_helpers_priceNormalizer__WEBPACK_IMPORTED_MODULE_5__["normalizePrice"])(response.price * response.product_info.value), " \u0440\u0443\u0431.")));
+        }
+      });
+    } else {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "\u0410\u0440\u0445\u0438\u0432 \u043F\u0443\u0441\u0442");
+    }
+  };
 
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row requests-wrapper"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "d-flex col-12 align-items-center archive-filter"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "\u0410\u0440\u0445\u0438\u0432 \u043E\u0442\u043A\u043B\u0438\u043A\u043E\u0432:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: function onClick(e) {
+      return Object(_archive_queries__WEBPACK_IMPORTED_MODULE_6__["changeArchiveFilter"])('all', e.currentTarget, token, setResponses);
+    },
+    className: "ml-3 archive-btn secondary-btn active"
+  }, "\u0412\u0441\u0435"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: function onClick(e) {
+      return Object(_archive_queries__WEBPACK_IMPORTED_MODULE_6__["changeArchiveFilter"])('rejected', e.currentTarget, token, setResponses);
+    },
+    className: "ml-3 archive-btn secondary-btn"
+  }, "\u041E\u0442\u043A\u043B\u043E\u043D\u0435\u043D\u043D\u044B\u0435"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: function onClick(e) {
+      return Object(_archive_queries__WEBPACK_IMPORTED_MODULE_6__["changeArchiveFilter"])('closed', e.currentTarget, token, setResponses);
+    },
+    className: "ml-3 archive-btn secondary-btn"
+  }, "\u041F\u0440\u0438\u043D\u044F\u0442\u044B\u0435")), renderResponses()));
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "\u0410\u0440\u0445\u0438\u0432 \u043F\u0443\u0441\u0442");
 };
 
@@ -81185,6 +81207,37 @@ var mapDispatchProps = function mapDispatchProps(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_2__["connect"])(mapStateToProps, mapDispatchProps)(Archive));
+
+/***/ }),
+
+/***/ "./resources/js/components/company/company-components/Archive/archive-queries.js":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/company/company-components/Archive/archive-queries.js ***!
+  \***************************************************************************************/
+/*! exports provided: changeArchiveFilter */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "changeArchiveFilter", function() { return changeArchiveFilter; });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _helpers_notifications__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../helpers/notifications */ "./resources/js/helpers/notifications.js");
+
+
+var changeArchiveFilter = function changeArchiveFilter(filter, clickedBtn, token, callback) {
+  $('.archive-btn').removeClass('active');
+  $(clickedBtn).addClass('active');
+  axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/response/archive/".concat(filter), {
+    headers: {
+      Authorization: 'Bearer ' + token
+    }
+  }).then(function (response) {
+    callback(response.data.responses);
+  })["catch"](function () {
+    Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_1__["showNotification"])('Ошибка', 'Произошла ошибка при загрузке архива', 'danger');
+  });
+};
 
 /***/ }),
 
@@ -82388,7 +82441,7 @@ var UsersRequests = function UsersRequests(props) {
     }, "\u041A\u043E\u043C\u043C\u0435\u043D\u0442\u0430\u0440\u0438\u0439 \u043A \u0437\u0430\u044F\u0432\u043A\u0435:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
       className: "request-info__parameter"
     }, request.request.comment)), request.responses.findIndex(function (response) {
-      return response.company_id == props.userData.company.id;
+      return response.company_id == props.userData.company.id && response.status != 'closed';
     }) == -1 ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       onClick: function onClick() {
         setSelectedRequest(request);
@@ -84412,6 +84465,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _helpers_notifications__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../../../helpers/notifications */ "./resources/js/helpers/notifications.js");
 /* harmony import */ var _helpers_dateConverter__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../../helpers/dateConverter */ "./resources/js/helpers/dateConverter.js");
 /* harmony import */ var _helpers_productTypeConverter__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../../helpers/productTypeConverter */ "./resources/js/helpers/productTypeConverter.js");
+/* harmony import */ var _common_modals_ConfirmModal__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../common/modals/ConfirmModal */ "./resources/js/components/common/modals/ConfirmModal.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -84434,6 +84488,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var Archive = function Archive(props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
       _useState2 = _slicedToArray(_useState, 2),
@@ -84442,7 +84497,15 @@ var Archive = function Archive(props) {
       _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState4 = _slicedToArray(_useState3, 2),
       selectedRequest = _useState4[0],
-      setSelectedRequest = _useState4[1];
+      setSelectedRequest = _useState4[1],
+      _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      isConfirmModalOpen = _useState6[0],
+      setConfirmModalOpen = _useState6[1],
+      _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(null),
+      _useState8 = _slicedToArray(_useState7, 2),
+      selectedForRepeat = _useState8[0],
+      setSelectedForRepeat = _useState8[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     var isMounted = true;
@@ -84460,13 +84523,18 @@ var Archive = function Archive(props) {
     };
   }, [props.updateVal]);
 
+  var openModal = function openModal(id) {
+    setSelectedForRepeat(id);
+    setConfirmModalOpen(true);
+  };
+
   var renderRequests = function renderRequests() {
     return requests.map(function (request) {
       if (request.products.length > 0) {
         var date = new Date(request.created_at);
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
           key: request.id,
-          className: "col-xs-12 col-lg-4 mt-4"
+          className: "col-xs-12 col-lg-4 mt-4 d-flex flex-column align-items-center flex-column"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
           onClick: function onClick() {
             return setSelectedRequest(request);
@@ -84478,6 +84546,18 @@ var Archive = function Archive(props) {
           className: "request-picker__title"
         }, "\u2116 ", request.id, " \u043E\u0442 ", date.getDate(), " ", Object(_helpers_dateConverter__WEBPACK_IMPORTED_MODULE_7__["getMonthOnRus"])(date.getMonth()), " ", date.getFullYear())));
       }
+    });
+  };
+
+  var repeat = function repeat(id) {
+    axios__WEBPACK_IMPORTED_MODULE_5___default.a.patch("/api/request/".concat(id, "/repeat"), {}, {
+      headers: {
+        'Authorization': 'Bearer ' + props.token
+      }
+    }).then(function () {
+      return Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_6__["showNotification"])('Повтор запроса', 'Ваш запрос снова активен', 'success');
+    })["catch"](function () {
+      return Object(_helpers_notifications__WEBPACK_IMPORTED_MODULE_6__["showNotification"])('Повтор запроса', 'Произошла ошибка', 'danger');
     });
   };
 
@@ -84503,13 +84583,19 @@ var Archive = function Archive(props) {
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         key: 'wrapper-' + product.id,
-        className: "col-xs-12 col-lg-4 mt-3"
+        className: "col-xs-12 col-lg-4 mt-3 d-flex justify-content-center align-items-center flex-column"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         key: product.id,
-        className: "d-flex justify-content-between align-items-center request-info__product position-relative"
+        className: "w-100 d-flex justify-content-between align-items-center request-info__product position-relative"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "request-info__product-title d-flex flex-column"
-      }, product[type].name, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, convertedType)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, product.value, " ", product.unit)));
+      }, product[type].name, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, convertedType)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, product.value, " ", product.unit)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: function onClick() {
+          return openModal(product.id);
+        },
+        type: "button",
+        className: "main-btn mt-2"
+      }, "\u041F\u043E\u0432\u0442\u043E\u0440\u0438\u0442\u044C"));
     })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "request-info__title position-relative mt-5"
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("hr", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -84548,7 +84634,18 @@ var Archive = function Archive(props) {
     className: "d-flex justify-content-center col-12"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "\u0410\u0440\u0445\u0438\u0432 \u0437\u0430\u043F\u0440\u043E\u0441\u043E\u0432")), requests.length > 0 ? renderRequests() : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
     className: "text-center"
-  }, "\u0417\u0430\u043F\u0440\u043E\u0441\u043E\u0432 \u043D\u0435\u0442")), selectedRequest ? requestInfo() : null);
+  }, "\u0417\u0430\u043F\u0440\u043E\u0441\u043E\u0432 \u043D\u0435\u0442")), selectedRequest ? requestInfo() : null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_common_modals_ConfirmModal__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    isOpen: isConfirmModalOpen,
+    closeModalFunc: function closeModalFunc() {
+      return setConfirmModalOpen(false);
+    },
+    modalTitle: "\u041F\u043E\u0432\u0442\u043E\u0440\u0438\u0442\u044C \u0437\u0430\u043F\u0440\u043E\u0441",
+    confirmFunc: function confirmFunc() {
+      repeat(selectedForRepeat);
+      setSelectedRequest(false);
+      props.updateComponent();
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\u0412\u044B \u0443\u0432\u0435\u0440\u0435\u043D\u044B, \u0447\u0442\u043E \u0445\u043E\u0442\u0438\u0442\u0435 \u043F\u043E\u0432\u0442\u043E\u0440\u0438\u0442\u044C \u0437\u0430\u043F\u0440\u043E\u0441?")));
 };
 
 var mapStateToProps = function mapStateToProps(store) {

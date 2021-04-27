@@ -123,7 +123,7 @@ const UsersRequests = (props) => {
                                 <span className="request-info__parameter">{request.request.comment}</span>
                             </div>
 
-                            { request.responses.findIndex(response => response.company_id == props.userData.company.id) == -1
+                            { request.responses.findIndex(response => response.company_id == props.userData.company.id && response.status != 'closed') == -1
                                 ?
                                     <button
                                         onClick={() => {

@@ -1,4 +1,12 @@
 @media screen and (max-width: 1023px) {
+    .archive-filter {
+        flex-direction: column;
+
+        button {
+            margin-top: 20px;
+        }
+    }
+
     .main-window__inner {
         padding: 20px;
     }

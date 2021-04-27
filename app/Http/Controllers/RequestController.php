@@ -3,18 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Exceptions\ValidationException;
-
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
-
 use Illuminate\Support\Facades\Validator;
-
 use Illuminate\Support\Facades\Auth;
-
 use App\Models\UserRequests;
-
 use App\Models\UserRequestsAndProducts;
 
 class RequestController extends Controller
@@ -240,5 +234,19 @@ class RequestController extends Controller
             },
         ])->get();
         return response()->json(['archive_requests' => $requests]);
+    }
+
+    public function repeat($requestId): \Illuminate\Http\JsonResponse
+    {
+        try {
+            $request = UserRequestsAndProducts::findOrFail($requestId);
+            $request->status = 'open';
+            $request->created_at = Carbon::now();
+            $request->save();
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage(), 'status' => 'error'], 400);
+        }
+
+        return response()->json(['status' => 'success']);
     }
 }
