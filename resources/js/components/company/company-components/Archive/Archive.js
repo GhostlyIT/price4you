@@ -24,6 +24,12 @@ const Archive = ({token, updateVal, updateComponent}) => {
             return responses.map(response => {
                 if (response.product_info) {
                     const type = response.product_info.product_type
+                    let status = '';
+                    if (response.status === 'closed') {
+                        status = 'Принят'
+                    } else if (response.status === 'rejected') {
+                        status = 'Отклонен'
+                    }
                     return (
                         <div key={response.id} className="col-12 col-md-4 request-info d-flex flex-column">
                                     <span className="request-picker d-flex justify-content-between align-items-center">
@@ -70,6 +76,11 @@ const Archive = ({token, updateVal, updateComponent}) => {
                                 <span className="mr-2 font-weight-bold">Итоговая цена:</span>
                                 <span
                                     className="request-info__parameter">{normalizePrice(response.price * response.product_info.value)} руб.</span>
+                            </div>
+
+                            <div className="d-flex align-items-center flex-wrap mt-3">
+                                <span className="mr-2 font-weight-bold">Статус:</span>
+                                <span className="request-info__parameter">{status}</span>
                             </div>
                         </div>
                     )

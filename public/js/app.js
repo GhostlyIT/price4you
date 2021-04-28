@@ -81110,6 +81110,14 @@ var Archive = function Archive(_ref) {
       return responses.map(function (response) {
         if (response.product_info) {
           var type = response.product_info.product_type;
+          var status = '';
+
+          if (response.status === 'closed') {
+            status = 'Принят';
+          } else if (response.status === 'rejected') {
+            status = 'Отклонен';
+          }
+
           return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
             key: response.id,
             className: "col-12 col-md-4 request-info d-flex flex-column"
@@ -81162,7 +81170,13 @@ var Archive = function Archive(_ref) {
             className: "mr-2 font-weight-bold"
           }, "\u0418\u0442\u043E\u0433\u043E\u0432\u0430\u044F \u0446\u0435\u043D\u0430:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
             className: "request-info__parameter"
-          }, Object(_helpers_priceNormalizer__WEBPACK_IMPORTED_MODULE_5__["normalizePrice"])(response.price * response.product_info.value), " \u0440\u0443\u0431.")));
+          }, Object(_helpers_priceNormalizer__WEBPACK_IMPORTED_MODULE_5__["normalizePrice"])(response.price * response.product_info.value), " \u0440\u0443\u0431.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+            className: "d-flex align-items-center flex-wrap mt-3"
+          }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+            className: "mr-2 font-weight-bold"
+          }, "\u0421\u0442\u0430\u0442\u0443\u0441:"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+            className: "request-info__parameter"
+          }, status)));
         }
       });
     } else {

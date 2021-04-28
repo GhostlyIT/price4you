@@ -261,6 +261,7 @@ class ResponseController extends Controller
                 $responses = $company
                     ->responses()
                     ->where('status', $status)
+                    ->where('company_id', $company->id)
                     ->with(['product', 'product.request'])
                     ->orderBy('id', 'desc')
                     ->get();
