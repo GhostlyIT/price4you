@@ -4,6 +4,7 @@ namespace App\Console;
 
 use App\Models\RequestLimit;
 use App\Services\CompaniesReminderService;
+use App\Services\RequestService;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -32,6 +33,10 @@ class Kernel extends ConsoleKernel
 
         $schedule->call(function() {
             (new CompaniesReminderService())->execute();
+        })->daily();
+
+        $schedule->call(function() {
+           RequestService::cleanUpRequestsAndResponsesByDays(21);
         })->daily();
     }
 
